@@ -1,0 +1,11 @@
+Webots Proto Cache File version 1.5
+protoFileHash: 9fbe2c4802ec3a81ba296471c92963b7
+needsRobotAncestor: 1
+baseType: Robot
+slotType: 
+parameters: translation,rotation,controller
+tags: 
+license: 
+licenseUrl: 
+documentationUrl: 
+info: box\srobot\sfür\sideomotor\sinversion\sscenarion\nkann\ssound\sabspielen\sund\sverschwinden

@@ -1,0 +1,75 @@
+#VRML_SIM R2021a utf8
+#box robot für ideomotor inversion scenarion
+#kann sound abspielen und verschwinden
+
+PROTO ColoredBoxRobot [
+  field SFVec3f    translation  0 0 0
+  field SFRotation rotation     0 1 0 0
+  field SFString controller "void"
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    children [
+      DEF disp Display {
+        children [
+          DEF disp Shape {
+            appearance Appearance {
+              material Material {
+                emissiveColor 1 1 1
+              }
+              texture ImageTexture {
+                url [
+                  "textures/webots_billboard.jpg"
+                ]
+                filtering 0
+              }
+              textureTransform TextureTransform {
+                rotation -1.57
+             }
+            }
+            geometry Cylinder {
+              height 0.1
+              radius 0.03
+            }
+          }
+        ]
+        boundingObject USE disp
+        width 100
+        height 236
+      }
+      DEF back Shape {
+        appearance Appearance {
+          material Material {
+            ambientIntensity 1
+            diffuseColor 1 1 1
+            emissiveColor 1 1 1
+            shininess 0
+          }
+          texture ImageTexture {
+            url [
+              "textures/asphalt.jpg"
+            ]
+            filtering 0
+          }
+          textureTransform TextureTransform {
+            rotation -1.57
+          }
+        }
+      }
+      Receiver {
+        channel 1
+        byteSize 16
+      }
+      Speaker {
+      }
+      Emitter{
+        channel 1
+        byteSize 16
+      }
+    ]
+    boundingObject USE back
+    controller IS controller
+  }
+}
