@@ -59,3 +59,7 @@ Thumbs.db
 *.exe
 *.out
 *.app
+
+# Webots Configs
+*.wbproj
+*.cache
