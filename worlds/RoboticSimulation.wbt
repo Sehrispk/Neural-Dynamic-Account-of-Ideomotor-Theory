@@ -3,13 +3,18 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.7 0.7 0.2 0.75
-  position 1.2 1.6 2.3
-
+  orientation -0.9995754683560439 -0.029044845737551818 0.0022978243791047536 0.5846328471454416
+  position -0.06184412365860319 0.6182900675601402 0.9546516268668476
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
 RectangleArena {
+}
+ColoredBoxRobot {
+  translation 0 0.05 -0.26
+}
+E-puck {
+  translation 0 0 0.25
 }
