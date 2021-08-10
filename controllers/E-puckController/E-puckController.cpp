@@ -1,24 +1,24 @@
 // File:          E-puckController.cpp
-// Date:
-// Description:
-// Author:
-// Modifications:
+// Date:          10.08.21
+// Description:   E-Puck Controller for agent Simulation. Connects to Cedar.
+// Author:        Stephan Sehring
 
-// You may need to add webots include files such as
-// <webots/DistanceSensor.hpp>, <webots/Motor.hpp>, etc.
-// and/or to add some other includes
 #include <webots/Robot.hpp>
+#include <webots/DistanceSensor.hpp>
+#include <webots/Motor.hpp>
+#include <webots/Camera.hpp>
+#include <opencv2/core/core.hpp>
+#include <fstream>
+#include <map>
+
+#include "utilities.h"
+#include "tcp_communication_looper.h"
+#include "E-Puck.h"
 
 // All the webots classes are defined in the "webots" namespace
 using namespace webots;
 
-// This is the main program of your controller.
-// It creates an instance of your Robot instance, launches its
-// function(s) and destroys it at the end of the execution.
-// Note that only one instance of Robot should be created in
-// a controller program.
-// The arguments of the main function can be specified by the
-// "controllerArgs" field of the Robot node
+
 int main(int argc, char **argv) {
   // create the Robot instance.
   Robot *robot = new Robot();
