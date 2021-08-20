@@ -5,48 +5,47 @@
 
 #include <webots/Robot.hpp>
 #include <webots/DistanceSensor.hpp>
+#include <webots/PositionSensor.hpp>
 #include <webots/Motor.hpp>
 #include <webots/Camera.hpp>
+#include <webots/Receiver.hpp>
+#include <webots/Emitter.hpp>
 #include <opencv2/core/core.hpp>
 #include <fstream>
 #include <map>
 
 #include "utilities.h"
 #include "tcp_communication_looper.h"
-#include "E-Puck.h"
+#include "E_Puck.h"
 
-// All the webots classes are defined in the "webots" namespace
+// all the webots classes are defined in the "webots" namespace
 using namespace webots;
 
 
 int main(int argc, char **argv) {
-  // create the Robot instance.
-  Robot *robot = new Robot();
+    // load configuration file
+    std::string configFileName = "default_config";
+    if (argc > 1) //read configuration
+    {
+    configFileName = std::string(argv[1]);
+    }
 
-  // get the time step of the current world.
-  int timeStep = (int)robot->getBasicTimeStep();
+    // create E_Puck instance
+    E_Puck* epuck = new E_Puck();
 
-  // You should insert a getDevice-like function in order to get the
-  // instance of a device of the robot. Something like:
-  //  Motor *motor = robot->getMotor("motorname");
-  //  DistanceSensor *ds = robot->getDistanceSensor("dsname");
-  //  ds->enable(timeStep);
+    // get the time step of the current world.
+    int timeStep = (int)epuck->getBasicTimeStep();
 
-  // Main loop:
-  // - perform simulation steps until Webots is stopping the controller
-  while (robot->step(timeStep) != -1) {
-    // Read the sensors:
-    // Enter here functions to read sensor data, like:
-    //  double val = ds->getValue();
+    // main loop
+    comThread->run();
+    while (epuck->step(timeStep) != -1) {
+        epuck->step();
+    }
 
-    // Process sensor data here.
+    // clean up
+    comThread->stop();
+    comThread = nullptr;
+    delete epuck;
 
-    // Enter here functions to send actuator commands, like:
-    //  motor->setPosition(10.0);
-  };
-
-  // Enter here exit cleanup code.
-
-  delete robot;
-  return 0;
+    return 0;
 }
