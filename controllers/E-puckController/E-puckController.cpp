@@ -10,16 +10,15 @@
 #include <webots/Camera.hpp>
 #include <webots/Receiver.hpp>
 #include <webots/Emitter.hpp>
-#include <opencv2/core/core.hpp>
+#include <opencv4/opencv2/core/core.hpp>
 #include <fstream>
+#include <iostream>
 #include <map>
-
-#include "utilities.h"
-#include "tcp_communication_looper.h"
-#include "E_Puck.h"
 
 // all the webots classes are defined in the "webots" namespace
 using namespace webots;
+#include "tcp_communication_looper.h"
+#include "E_Puck.h"
 
 
 int main(int argc, char **argv) {
@@ -31,20 +30,18 @@ int main(int argc, char **argv) {
     }
 
     // create E_Puck instance
-    E_Puck* epuck = new E_Puck();
+    E_Puck* epuck = new E_Puck(configFileName);
 
     // get the time step of the current world.
     int timeStep = (int)epuck->getBasicTimeStep();
 
     // main loop
-    comThread->run();
+    //comThread->run();
     while (epuck->step(timeStep) != -1) {
-        epuck->step();
+        epuck->update();
     }
 
     // clean up
-    comThread->stop();
-    comThread = nullptr;
     delete epuck;
 
     return 0;

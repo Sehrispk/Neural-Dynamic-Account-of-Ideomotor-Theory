@@ -3566,51 +3566,6 @@
             },
             "comments": ""
         },
-        "cedar.processing.sinks.TCPWriter": {
-            "name": "TCP-Break-Writer",
-            "port": "50000",
-            "ip_adress": "127.0.0.1",
-            "timeout (ms)": "3000",
-            "max timeouts": "50",
-            "send interval (timesteps)": "1",
-            "comments": ""
-        },
-        "cedar.processing.sources.TCPReader": {
-            "name": "TCP-Camera-Reader",
-            "buffer size": "32768",
-            "port": "50000",
-            "packet timeout (ms)": "500",
-            "message timeout (ms)": "50",
-            "accept interval (steps)": "30",
-            "comments": ""
-        },
-        "cedar.processing.sinks.TCPWriter": {
-            "name": "TCP-LED-Writer",
-            "port": "50000",
-            "ip_adress": "127.0.0.1",
-            "timeout (ms)": "3000",
-            "max timeouts": "50",
-            "send interval (timesteps)": "1",
-            "comments": ""
-        },
-        "cedar.processing.sources.TCPReader": {
-            "name": "TCP-MIC-Reader",
-            "buffer size": "32768",
-            "port": "50000",
-            "packet timeout (ms)": "500",
-            "message timeout (ms)": "50",
-            "accept interval (steps)": "30",
-            "comments": ""
-        },
-        "cedar.processing.sinks.TCPWriter": {
-            "name": "TCP-Motor-Writer",
-            "port": "50000",
-            "ip_adress": "127.0.0.1",
-            "timeout (ms)": "3000",
-            "max timeouts": "50",
-            "send interval (timesteps)": "1",
-            "comments": ""
-        },
         "cedar.dynamics.NeuralField": {
             "name": "Transient-Node1",
             "activation as output": "false",
@@ -4083,12 +4038,7 @@
                 "Transient-Node1",
                 "Transient-Node2",
                 "Transient-Node3",
-                "Transient-Node4",
-                "TCP-Camera-Reader",
-                "TCP-MIC-Reader",
-                "TCP-Motor-Writer",
-                "TCP-Break-Writer",
-                "TCP-LED-Writer"
+                "Transient-Node4"
             ]
         }
     },
@@ -4670,51 +4620,6 @@
         },
         {
             "type": "step",
-            "step": "TCP-Break-Writer",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-2618",
-            "positionY": "1540"
-        },
-        {
-            "type": "step",
-            "step": "TCP-Camera-Reader",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-361.90476190476221",
-            "positionY": "1571.4285714285727"
-        },
-        {
-            "type": "step",
-            "step": "TCP-LED-Writer",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-2282",
-            "positionY": "1540"
-        },
-        {
-            "type": "step",
-            "step": "TCP-MIC-Reader",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-161.90476190476201",
-            "positionY": "1576.1904761904771"
-        },
-        {
-            "type": "step",
-            "step": "TCP-Motor-Writer",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-2968",
-            "positionY": "1540"
-        },
-        {
-            "type": "step",
             "step": "Transient-Node1",
             "display style": "ICON_AND_TEXT",
             "width": "124",
@@ -4786,10 +4691,10 @@
         }
     ],
     "ui view": {
-        "ScrollBarX": "-1331",
-        "ScrollBarY": "420",
-        "SliderPosX": "-1331",
-        "SliderPosY": "420",
+        "ScrollBarX": "-1565",
+        "ScrollBarY": "481",
+        "SliderPosX": "-1565",
+        "SliderPosY": "481",
         "Zoom": "0.40999999999999998"
     },
     "ui generic": {

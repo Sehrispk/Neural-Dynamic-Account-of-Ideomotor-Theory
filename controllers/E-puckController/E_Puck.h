@@ -1,6 +1,6 @@
 class E_Puck : public Robot
 {
-    // IP and Buffersize load from Config
+      // IP and Buffersize load from Config
     std::string caren_ip_address;
     int read_buffer_size;
     // Ports loaded from the Config
@@ -19,18 +19,12 @@ class E_Puck : public Robot
     std::unique_ptr<ComLooper> comThread;
 
 private:
-    void initFromConfig();
-
     void sendToCedar(auto SensorValues);
-
     auto receiveFromCedar();
-
-    void readSensorValues();
-
+    void initFromConfig();
+    auto readSensorValues();
     auto getMotorCommands(auto MotorSurface);
-
     void applyMotorCommands(auto MotorCommands);
-
     std::map<std::string, std::string> readConfiguration(std::string configFilePath);
 
 public:
@@ -44,7 +38,7 @@ public:
         comThread = std::make_unique<ComLooper>();
         // init from config
         initFromConfig();
-    }
+    };
 
     ~E_Puck()
     {
@@ -53,7 +47,7 @@ public:
             comThread->stop();
             comThread = nullptr;
         }
-    }
+    };
 
-    void step();
+    void update();
 };

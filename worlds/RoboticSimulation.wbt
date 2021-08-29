@@ -12,10 +12,7 @@ TexturedBackgroundLight {
 }
 RectangleArena {
 }
-ColoredBoxRobot {
-  translation 0 0.05 -0.26
-  controller "ObjectController"
-}
 E-puck {
   translation 0 0 0.25
+  controller "E-puckController"
 }

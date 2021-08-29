@@ -1,7 +1,7 @@
 #ifndef TCP_CONTROLLER_UTILITIES
 #define TCP_CONTROLLER_UTILITIES
 
-void split(const std::string &str,
+static void split(const std::string &str,
            const std::string &separator,
            std::vector <std::string> &parts)
 {
@@ -30,7 +30,7 @@ should be doable in 4 + 61n instructions.
    If the inner loop is strung out (approx. 5*8 = 40 instructions),
 it would take about 6 + 46n instructions. */
 
-unsigned int generateChecksum(const char *message, int message_length)
+static unsigned int generateChecksum(const char *message, int message_length)
 {
     int j;
     unsigned int byte, crc, mask;

@@ -40,19 +40,20 @@
 ### ---- C++ Sources ----
 ### if your program uses several C++ source files:
 ### CXX_SOURCES = my_plugin.cc my_clever_algo.cpp my_graphics.c++
+CXX_SOURCES = E-puckController.cpp E_Puck.cpp
 ###
 ### ---- Compilation options ----
 ### if special compilation flags are necessary:
-### CFLAGS = -Wno-unused-result
+CFLAGS = -std=gnu++17 -fconcepts
 ###
 ### ---- Linked libraries ----
 ### if your program needs additional libraries:
-### INCLUDE = -I"/my_library_path/include"
-### LIBRARIES = -L"/path/to/my/library" -lmy_library -lmy_other_library
+INCLUDE = -I"/usr/include/opencv4"
+LIBRARIES = -L"/usr/lib/x86_64-linux-gnu" -lopencv_core -lpthread
 ###
 ### ---- Linking options ----
 ### if special linking flags are needed:
-### LFLAGS = -s
+###LFLAGS = -o main
 ###
 ### ---- Webots included libraries ----
 ### if you want to use the Webots C API in your C++ controller program:
