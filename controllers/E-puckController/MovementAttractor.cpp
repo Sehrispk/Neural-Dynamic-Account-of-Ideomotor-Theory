@@ -1,3 +1,27 @@
+void transform2Distance(std::vector<float> sensorReadings)
+{
+    // transformiert Sensorwerte in metrische Werte
+    
+    // durchschnittliche min-max Werte aus der Literatur
+    float min_mean[8] = {67.0834, 67.1868, 67.2067, 67.2328, 67.2380, 67.1407, 67.2426, 67.1777};
+    float max_mean = 1760.0;
+    
+    // normalisierung und umrechnung
+    for (int i=0; i<8; i++)
+    {
+    	sensorReadings[i] = (sensorReadings[i] - min_mean[i]) / (max_mean - min_mean[i]);
+    	sensorReadings[i] = std::min(std::max(sensorReadings[i], 0.0f),1.0f);
+    	if (sensorReadings[i] == 0)
+    	{
+    		sensorReadings[i] = 70;
+    	}
+    	else
+    	{
+    		sensorReadings[i] = -9.6 * log(sensorReadings[i]) - 1;
+    	}
+    }
+}
+
 float f_target(float psi_target)
 {
     // forcelet parameter
@@ -6,41 +30,52 @@ float f_target(float psi_target)
     return -lambda * sin(psi_target);
 }
 
-float f_obstacle(float ps_distance)
+void f_obstacle(std::vector<float> ps_distance, float forcelets[])
 {
     // forcelet parameter
-    float sigma = pi / 3;
+    float sigma = M_PI / 3;
     float beta_1 = 15.;
     float beta_2 = 10.;
     // [psi0, psi1, psi2, ...]
-    float psi_obs[8] = [1.27, 0.77, 0., 5.21, 4.21, pi, 2.37, 1.87] - pi / 2;
+    float psi_obs[8] = {1.27 - M_PI / 2, 0.77 - M_PI / 2, 0. - M_PI / 2, 5.21 - M_PI / 2, 4.21 - M_PI / 2, M_PI - M_PI / 2, 2.37 - M_PI / 2, 1.87 - M_PI / 2};
 
-    float lambda = beta_1*exp(-ps_distance / beta_2);
+    float lambda[8];
 
-    return lambda *psi_obs *exp(-psi_obs ^ 2 / (2 * sigma ^ 2));
+    for (int i = 0; i<8; i++)
+    {
+    	lambda[i] = beta_1*exp(-ps_distance[i]/beta_2);
+    
+    	forcelets[i] = lambda[i] * psi_obs[i] * exp(-(psi_obs[i] * psi_obs[i]) / (2*sigma*sigma));
+    	std::cout << ps_distance[i] << std::endl;
+    }
 }
 
-float* MovementAttractor(float psi_target)
+void MovementAttractor(std::vector<float> ps_distance, float psi_target, float v[])
 {
-    float v[2];
+    float f_obs[8];
     // parameter
     float max_v = 6.28;
     float v_0 = 0.2 * max_v;
 
     // berechne forcelets
-    float orientation_change = (f_target(psi_tar)) + sum(f_obstacle(ps_distance));
-    orientation_change = min(max(orientation_change, -max_v), max_v);
+    f_obstacle(ps_distance, f_obs);
+    float f_sum = 0;
+    for (int i=0; i<8; i++)
+    {
+    	f_sum += f_obs[i];
+    }
+    float orientation_change = (f_target(psi_target)) + f_sum;
+    orientation_change = std::min(std::max(orientation_change, -max_v), max_v);
 
     // beschränke änderung auf mögliche geschwindigkeiten
     if (abs(v_0 - orientation_change) > max_v || abs(v_0 + orientation_change) > max_v)
     {
-        v[0] = sign(orientation_change) * max_v;
-        v[1] = -vL;
+        v[0] = ((orientation_change > 0) - (orientation_change < 0)) * max_v;
+        v[1] = -v[0];
     }
     else
     {
         v[0] = v_0 + orientation_change;
         v[1] = v_0 - orientation_change;
     }
-    return v;
 }

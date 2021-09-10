@@ -7,8 +7,8 @@ class E_Puck : public Robot
     int camera_port_snd;
     int mic_port_snd;
     int motor_port_rcv;
-    
 
+    // devices and ComThread
     std::map<std::string, std::string> configMap;
     std::map<std::string, std::vector<webots::Motor*>> motorMap;
     std::map<std::string, std::vector<webots::PositionSensor*>> wheelsensorMap;
@@ -17,14 +17,36 @@ class E_Puck : public Robot
     std::map<std::string, webots::Receiver*> recMap;
     std::map<std::string, webots::Emitter*> emMap;
     std::unique_ptr<ComLooper> comThread;
+    
+    // Command and Sensor Structs
+    struct SensorData
+    {
+        cv::Mat wheelPosition;
+        cv::Mat sensorReadings;
+        cv::Mat receiverReading;
+        cv::Mat cameraPicture;
+    };
+    struct CedarData
+    {
+        cv::Mat motorCommand;
+        float LEDCommand;
+    };
+    struct MotorData
+    {
+        float psi_target;
+    };
+    
+    // SensorReadings and MotorCommands
+    SensorData SensorReadings;
+    CedarData MotorSurface;
+    MotorData MotorCommands;
 
 private:
-    void sendToCedar(auto SensorValues);
-    auto receiveFromCedar();
+    void ComThreadUpdate();
     void initFromConfig();
-    auto readSensorValues();
-    auto getMotorCommands(auto MotorSurface);
-    void applyMotorCommands(auto MotorCommands);
+    void readSensorValues();
+    void getMotorCommands();
+    void applyMotorCommands();
     std::map<std::string, std::string> readConfiguration(std::string configFilePath);
 
 public:

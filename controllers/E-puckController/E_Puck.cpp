@@ -14,37 +14,28 @@ using namespace webots;
 
 #include "tcp_communication_looper.h"
 #include "E_Puck.h"
-
+#include "MovementAttractor.cpp"
 
 void E_Puck::update()
 {
-    //auto SensorValues = readSensorValues();
+    readSensorValues();
     
-    //sendToCedar(SensorValues);
+    ComThreadUpdate();
 
-    //auto MotorSurface = receiveFromCedar();
+    //getMotorCommands();
 
-    //auto MotorCommands = getMotorCommands(MotorSurface);
-
-    //applyMotorCommands(MotorCommands);
-    for (auto const& [identifier, motors] : motorMap)
-    {
-        for (std::vector<webots::Motor*>::size_type i = 0; i < motors.size(); i++)
-          {
-             motors[i]->setPosition(INFINITY);
-             motors[i]->setVelocity(3.14);
-          }
-    }
+    applyMotorCommands();
 }
 
-void E_Puck::sendToCedar(auto SensorValues)
+void E_Puck::ComThreadUpdate()
 {
-    // send camera picture
+///////////////////////////////////sendToCedar////////////////////////////////////////////////
+// send camera picture
     for (auto const& [identifier, camera] : cameraMap)
     {
         if (comThread->doesWriteSocketExist(identifier))
         {
-            comThread->setWriteMatrix(identifier, SensorValues.cameraPicture);
+            comThread->setWriteMatrix(identifier, SensorReadings.cameraPicture);
         }
     }
 
@@ -53,7 +44,7 @@ void E_Puck::sendToCedar(auto SensorValues)
     {
         if (comThread->doesWriteSocketExist(identifier))
         {
-            comThread->setWriteMatrix(identifier, SensorValues.receiverReading);
+            comThread->setWriteMatrix(identifier, SensorReadings.receiverReading);
         }
     }
 
@@ -62,7 +53,7 @@ void E_Puck::sendToCedar(auto SensorValues)
     {
         if (comThread->doesWriteSocketExist(identifier))
         {
-            comThread->setWriteMatrix(identifier, SensorValues.sensorReadings);
+            comThread->setWriteMatrix(identifier, SensorReadings.sensorReadings);
         }
     }
 
@@ -71,20 +62,12 @@ void E_Puck::sendToCedar(auto SensorValues)
     {
         if (comThread->doesWriteSocketExist(identifier))
         {
-            comThread->setWriteMatrix(identifier, SensorValues.wheelPosition);
+            comThread->setWriteMatrix(identifier, SensorReadings.wheelPosition);
         }
     }
-}
-
-auto E_Puck::receiveFromCedar()
-{
-    struct MotorSurface
-    {
-        cv::Mat motorAttractor;
-        float LEDCommand;
-    };
-
-    cv::Mat motorAttractor;
+ 
+//////////////////////////////////receiveFromCedar/////////////////////////////////////////////////////
+cv::Mat motorAttractor;
     for (auto const& [identifier, motors] : motorMap)
     {
         if (comThread->doesReadSocketExist(identifier))
@@ -104,22 +87,14 @@ auto E_Puck::receiveFromCedar()
         }
     }
     float LEDCommand=0;
-
-    MotorSurface return_value{motorAttractor, LEDCommand};
-
-    return return_value;
+    
+    MotorSurface = E_Puck::CedarData {motorAttractor, LEDCommand};
 }
 
-auto E_Puck::readSensorValues()
-{
-    struct SensorValues
-    {
-        std::vector<float> wheelPosition;
-        std::vector<float> sensorReadings;
-        const void* receiverReading;
-        cv::Mat cameraPicture;
-    };
 
+
+void E_Puck::readSensorValues()
+{
     // read camera picture
     cv::Mat cameraPicture;
     for (auto const& [identifier, cam] : cameraMap)
@@ -134,13 +109,15 @@ auto E_Puck::readSensorValues()
     }
 
     // read receiver value
-    const void* receiverReading;
-    for (auto const& [identifier, receiver] : recMap)
-    {
-        receiverReading = receiver->getData();
-        receiver->nextPacket();
-    }
-
+    //const void* receiverReading;
+    //for (auto const& [identifier, receiver] : recMap)
+    //{
+    //    receiverReading = receiver->getData();
+    //    receiver->nextPacket();
+    //}
+    float receiverReading = 0.0;
+    cv::Mat recMat(1, 1, CV_32F, receiverReading);
+    
     // read distance sensor value
     std::vector<float> sensorReadings;
     for (auto const& [identifier, sensor] : sensorMap)
@@ -150,6 +127,8 @@ auto E_Puck::readSensorValues()
         sensorReadings.push_back(sensor[i]->getValue());
       }
     }
+    transform2Distance(sensorReadings);
+    cv::Mat sensorMat(sensorReadings);
 
     //read wheel position value
     std::vector<float> wheelPosition;
@@ -160,35 +139,37 @@ auto E_Puck::readSensorValues()
         wheelPosition.push_back(sensor[i]->getValue());
       }
     }
+    cv::Mat wheelMat(wheelPosition);
 
-    SensorValues return_values{wheelPosition, sensorReadings, receiverReading, cameraPicture}; 
-
-    return return_values;
+    SensorReadings = E_Puck::SensorData {wheelMat, sensorMat, recMat, cameraPicture}; 
 }
 
-auto E_Puck::getMotorCommands(auto MotorSurface)
+void E_Puck::getMotorCommands()
 {
-    struct MotorCommands
-    {
-        float psi_target;
-    };
-    int width;
-    float fov;
+    int width = 0;
+    float fov = 0;
     for (auto const& [identifier, camera] : cameraMap)
     {
         width = camera->getWidth();
         fov = camera->getFov();
     }
-    float psi_target = (width / 2 - MotorSurface.motorAttractor) * 2 * fov / width;
+    float psi_target = (width / 2 - MotorSurface.motorCommand.at<float>(0)) * 2 * fov / width;
 
-    return MotorCommands(psi_target);
+    MotorCommands = E_Puck::MotorData {psi_target};
 }
 
-void E_Puck::applyMotorCommands(auto MotorCommands)
+void E_Puck::applyMotorCommands()
 {
-    float v[2] = MovementAttractor(MotorCommands.psi_target);
-    //wb_motor_set_velocity(obj.left_motor, vL);
-    //wb_motor_set_velocity(obj.right_motor, vR);
+    float v[2] = {0, 0};
+    MovementAttractor(SensorReadings.sensorReadings, MotorCommands.psi_target, v);
+    for (auto const& [identifier, motor] : motorMap)
+    {
+      for (std::vector<webots::DistanceSensor*>::size_type i=0; i<motor.size(); i++)
+      {
+        motor[i]->setPosition(INFINITY);
+        motor[i]->setVelocity(v[i]);
+      }
+    }
 }
 
 void E_Puck::initFromConfig()
@@ -208,6 +189,13 @@ void E_Puck::initFromConfig()
         // add to sensor map
         std::string SensorIdentifier = "distance_sensors";
         sensorMap[SensorIdentifier] = distance_sensors;
+        for (auto const& [identifier, sensor] : sensorMap)
+        {
+          for (std::vector<webots::DistanceSensor*>::size_type i=0; i < sensor.size(); i++)
+          {
+            sensor[i]->enable(this->getBasicTimeStep());
+          }
+        }
 
 
     // init motors 
@@ -231,6 +219,13 @@ void E_Puck::initFromConfig()
         // add to motor sensor map
         std::string WheelSensorIdentifier = "wheelsensors";
         wheelsensorMap[WheelSensorIdentifier] = motorsensors;
+        for (auto const& [identifier, sensor] : wheelsensorMap)
+        {
+          for (std::vector<webots::DistanceSensor*>::size_type i=0; i < sensor.size(); i++)
+          {
+            sensor[i]->enable(this->getBasicTimeStep());
+          }
+        }
 
 
     // init camera
@@ -242,6 +237,10 @@ void E_Puck::initFromConfig()
         if (configMap.find("camera_port_snd") != configMap.end())
         {
             comThread->addWriteSocket(cameraIdentifier, std::stoi(configMap["camera_port_snd"]), configMap["cedar_ip"]);
+        }
+        for (auto const& [identifier, cam] : cameraMap)
+        {
+          cam->enable(this->getBasicTimeStep());
         }
 
 
