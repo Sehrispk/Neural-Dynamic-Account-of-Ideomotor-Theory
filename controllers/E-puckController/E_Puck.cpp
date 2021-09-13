@@ -22,7 +22,7 @@ void E_Puck::update()
     
     ComThreadUpdate();
 
-    //getMotorCommands();
+    getMotorCommands();
 
     applyMotorCommands();
 }
@@ -35,7 +35,7 @@ void E_Puck::ComThreadUpdate()
     {
         if (comThread->doesWriteSocketExist(identifier))
         {
-            comThread->setWriteMatrix(identifier, SensorReadings.cameraPicture);
+            comThread->setWriteMatrix(identifier, sensordata.cameraMat);
         }
     }
 
@@ -44,7 +44,7 @@ void E_Puck::ComThreadUpdate()
     {
         if (comThread->doesWriteSocketExist(identifier))
         {
-            comThread->setWriteMatrix(identifier, SensorReadings.receiverReading);
+            comThread->setWriteMatrix(identifier, sensordata.receiverMat);
         }
     }
 
@@ -53,7 +53,7 @@ void E_Puck::ComThreadUpdate()
     {
         if (comThread->doesWriteSocketExist(identifier))
         {
-            comThread->setWriteMatrix(identifier, SensorReadings.sensorReadings);
+            comThread->setWriteMatrix(identifier, sensordata.psMat);
         }
     }
 
@@ -62,7 +62,7 @@ void E_Puck::ComThreadUpdate()
     {
         if (comThread->doesWriteSocketExist(identifier))
         {
-            comThread->setWriteMatrix(identifier, SensorReadings.wheelPosition);
+            comThread->setWriteMatrix(identifier, sensordata.wheelMat);
         }
     }
  
@@ -84,11 +84,12 @@ cv::Mat motorAttractor;
             {
                 std::cout << "Trying to get: " << identifier << "attractor, but read a Matrix with " << commandMatrix.rows << " entries and we have only " << 1 << " attracor." << std::endl;
             }
+            else{motorAttractor = cv::Mat::zeros(1,1,CV_32F);}
         }
     }
     float LEDCommand=0;
-    
-    MotorSurface = E_Puck::CedarData {motorAttractor, LEDCommand};
+    cedardata.motorMat = motorAttractor;
+    cedardata.LEDMat = LEDCommand;
 }
 
 
@@ -107,6 +108,7 @@ void E_Puck::readSensorValues()
         cameraPicture = cv::Mat(cam->getHeight(), cam->getWidth(), CV_8UC3);
         cv::mixChannels(&pictureMat, 1, &cameraPicture, 1, from_to, 3); // kill the alpha channel
     }
+    sensordata.cameraMat = cameraPicture;
 
     // read receiver value
     //const void* receiverReading;
@@ -117,6 +119,7 @@ void E_Puck::readSensorValues()
     //}
     float receiverReading = 0.0;
     cv::Mat recMat(1, 1, CV_32F, receiverReading);
+    sensordata.receiverMat = recMat;
     
     // read distance sensor value
     std::vector<float> sensorReadings;
@@ -128,7 +131,10 @@ void E_Puck::readSensorValues()
       }
     }
     transform2Distance(sensorReadings);
-    cv::Mat sensorMat(sensorReadings);
+    for (int i=0; i<8; i++)
+    {
+      sensordata.psMat.at<float>(i) = sensorReadings[i];
+    }
 
     //read wheel position value
     std::vector<float> wheelPosition;
@@ -140,8 +146,7 @@ void E_Puck::readSensorValues()
       }
     }
     cv::Mat wheelMat(wheelPosition);
-
-    SensorReadings = E_Puck::SensorData {wheelMat, sensorMat, recMat, cameraPicture}; 
+    sensordata.wheelMat = wheelMat;
 }
 
 void E_Puck::getMotorCommands()
@@ -153,15 +158,16 @@ void E_Puck::getMotorCommands()
         width = camera->getWidth();
         fov = camera->getFov();
     }
-    float psi_target = (width / 2 - MotorSurface.motorCommand.at<float>(0)) * 2 * fov / width;
-
-    MotorCommands = E_Puck::MotorData {psi_target};
+    float psi_target = ((float)width / 2 - cedardata.motorMat.at<float>(0)) * 2 * fov / width;
+    //float psi_target = 0;
+    std::cout << psi_target/M_PI*360 << std::endl;
+    motordata.psi_targetMat = psi_target;
 }
 
 void E_Puck::applyMotorCommands()
 {
     float v[2] = {0, 0};
-    MovementAttractor(SensorReadings.sensorReadings, MotorCommands.psi_target, v);
+    MovementAttractor(E_Puck::sensordata.psMat, motordata.psi_targetMat, v);
     for (auto const& [identifier, motor] : motorMap)
     {
       for (std::vector<webots::DistanceSensor*>::size_type i=0; i<motor.size(); i++)

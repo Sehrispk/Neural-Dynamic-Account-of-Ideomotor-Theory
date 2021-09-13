@@ -1,4 +1,4 @@
-void transform2Distance(std::vector<float> sensorReadings)
+void transform2Distance(std::vector<float>& sensorReadings)
 {
     // transformiert Sensorwerte in metrische Werte
     
@@ -11,7 +11,7 @@ void transform2Distance(std::vector<float> sensorReadings)
     {
     	sensorReadings[i] = (sensorReadings[i] - min_mean[i]) / (max_mean - min_mean[i]);
     	sensorReadings[i] = std::min(std::max(sensorReadings[i], 0.0f),1.0f);
-    	if (sensorReadings[i] == 0)
+    	if (sensorReadings[i] <= 0)
     	{
     		sensorReadings[i] = 70;
     	}
@@ -30,7 +30,7 @@ float f_target(float psi_target)
     return -lambda * sin(psi_target);
 }
 
-void f_obstacle(std::vector<float> ps_distance, float forcelets[])
+void f_obstacle(cv::Mat ps_distance, float forcelets[])
 {
     // forcelet parameter
     float sigma = M_PI / 3;
@@ -43,18 +43,17 @@ void f_obstacle(std::vector<float> ps_distance, float forcelets[])
 
     for (int i = 0; i<8; i++)
     {
-    	lambda[i] = beta_1*exp(-ps_distance[i]/beta_2);
+    	lambda[i] = beta_1*exp(-ps_distance.at<float>(i)/beta_2);
     
     	forcelets[i] = lambda[i] * psi_obs[i] * exp(-(psi_obs[i] * psi_obs[i]) / (2*sigma*sigma));
-    	std::cout << ps_distance[i] << std::endl;
     }
 }
 
-void MovementAttractor(std::vector<float> ps_distance, float psi_target, float v[])
+void MovementAttractor(cv::Mat ps_distance, float psi_target, float v[])
 {
     float f_obs[8];
     // parameter
-    float max_v = 6.28;
+    float max_v = 6.279;
     float v_0 = 0.2 * max_v;
 
     // berechne forcelets
@@ -67,7 +66,7 @@ void MovementAttractor(std::vector<float> ps_distance, float psi_target, float v
     float orientation_change = (f_target(psi_target)) + f_sum;
     orientation_change = std::min(std::max(orientation_change, -max_v), max_v);
 
-    // beschränke änderung auf mögliche geschwindigkeiten
+    // beschrï¿½nke ï¿½nderung auf mï¿½gliche geschwindigkeiten
     if (abs(v_0 - orientation_change) > max_v || abs(v_0 + orientation_change) > max_v)
     {
         v[0] = ((orientation_change > 0) - (orientation_change < 0)) * max_v;

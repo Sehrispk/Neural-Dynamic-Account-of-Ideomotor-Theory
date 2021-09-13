@@ -21,25 +21,25 @@ class E_Puck : public Robot
     // Command and Sensor Structs
     struct SensorData
     {
-        cv::Mat wheelPosition;
-        cv::Mat sensorReadings;
-        cv::Mat receiverReading;
-        cv::Mat cameraPicture;
+        cv::Mat wheelMat;
+        cv::Mat psMat;
+        cv::Mat receiverMat;
+        cv::Mat cameraMat;
     };
     struct CedarData
     {
-        cv::Mat motorCommand;
-        float LEDCommand;
+        cv::Mat motorMat;
+        float LEDMat;
     };
     struct MotorData
     {
-        float psi_target;
+        float psi_targetMat;
     };
     
     // SensorReadings and MotorCommands
-    SensorData SensorReadings;
-    CedarData MotorSurface;
-    MotorData MotorCommands;
+    SensorData sensordata;
+    CedarData cedardata;
+    MotorData motordata;
 
 private:
     void ComThreadUpdate();
@@ -56,10 +56,13 @@ public:
         std::cout << "Create E-Puck with ConfigFile: " << configFilePath << std::endl;
         // read config
         configMap = readConfiguration(configFilePath);
-        //Create the Communication Thread
+        //Create and start the Communication Thread
         comThread = std::make_unique<ComLooper>();
+        comThread->run();
         // init from config
         initFromConfig();
+        // init structs
+        sensordata = SensorData{cv::Mat::zeros(1,1,CV_32F), cv::Mat::zeros(8,1,CV_32F), cv::Mat::zeros(1,1,CV_32F), cv::Mat::zeros(52, 39, CV_8UC4)};
     };
 
     ~E_Puck()

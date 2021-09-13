@@ -36,7 +36,6 @@ int main(int argc, char **argv) {
     int timeStep = (int)epuck->getBasicTimeStep();
 
     // main loop
-    //comThread->run();
     while (epuck->step(timeStep) != -1) {
         epuck->update();
     }
