@@ -810,6 +810,10 @@
             "accept interval (steps)": "30",
             "comments": ""
         },
+        "cedar.processing.steps.ChannelSplit": {
+            "name": "Channel Split",
+            "comments": ""
+        },
         "cedar.dynamics.NeuralField": {
             "name": "CoS-Node1",
             "activation as output": "false",
@@ -1258,6 +1262,12 @@
             },
             "comments": ""
         },
+        "cedar.processing.steps.ColorConversion": {
+            "name": "Color Conversion",
+            "source type": "BGR",
+            "target type": "HSV",
+            "comments": ""
+        },
         "cedar.dynamics.NeuralField": {
             "name": "Color-Action-Field",
             "activation as output": "false",
@@ -1444,6 +1454,19 @@
                     "0"
                 ],
                 "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.processing.steps.Convolution": {
+            "name": "Convolution",
+            "kernels": "",
+            "convolution": {
+                "borderType": "Cyclic",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.FFTW"
+                },
+                "alternate even kernel center": "false"
             },
             "comments": ""
         },
@@ -2227,6 +2250,11 @@
             },
             "comments": ""
         },
+        "cedar.processing.steps.MatrixTypeConverter": {
+            "name": "Matrix Type Converter",
+            "target type": "Float",
+            "comments": ""
+        },
         "cedar.processing.sources.TCPReader": {
             "name": "Microphone TCP Reader",
             "buffer size": "32768",
@@ -2666,6 +2694,21 @@
             "comments": ""
         },
         "cedar.processing.Projection": {
+            "name": "Projection",
+            "dimension mapping": {
+                "0": "4294967295",
+                "1": "1",
+                "2": "0"
+            },
+            "output dimensionality": "2",
+            "output dimension sizes": [
+                "100",
+                "52"
+            ],
+            "compression type": "SUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
             "name": "Projection 2",
             "dimension mapping": {
                 "0": "0",
@@ -2673,9 +2716,25 @@
             },
             "output dimensionality": "1",
             "output dimension sizes": [
-                "10"
+                "100"
             ],
             "compression type": "SUM",
+            "comments": ""
+        },
+        "cedar.dynamics.RateMatrixToSpaceCode": {
+            "name": "Rate Matrix To Space Code",
+            "number of bins": "100",
+            "lower limit": "0",
+            "upper limit": "255",
+            "comments": ""
+        },
+        "cedar.processing.Resize": {
+            "name": "Resize",
+            "output size": [
+                "39",
+                "52"
+            ],
+            "interpolation": "LINEAR",
             "comments": ""
         },
         "cedar.dynamics.NeuralField": {
@@ -3057,8 +3116,13 @@
             "comments": ""
         },
         "cedar.processing.StaticGain": {
+            "name": "Static Gain",
+            "gain factor": "0.002",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
             "name": "Static Gain 2",
-            "gain factor": "6",
+            "gain factor": "2",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -3073,7 +3137,7 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 6",
-            "gain factor": "1",
+            "gain factor": "5",
             "comments": ""
         },
         "cedar.dynamics.NeuralField": {
@@ -3572,7 +3636,7 @@
                         "threshold": "0",
                         "beta": "100"
                     },
-                    "global inhibition": "-2.1000000000000001",
+                    "global inhibition": "-0.10000000000000001",
                     "lateral kernels": {
                         "cedar.aux.kernel.Gauss": {
                             "dimensionality": "1",
@@ -3953,218 +4017,6 @@
                 "positionY": "294"
             }
         },
-        "Image PreProcessing": {
-            "meta": {
-                "format": "1"
-            },
-            "steps": {
-                "cedar.processing.steps.ChannelSplit": {
-                    "name": "Channel Split",
-                    "comments": ""
-                },
-                "cedar.processing.steps.ColorConversion": {
-                    "name": "Color Conversion",
-                    "source type": "BGR",
-                    "target type": "HSV",
-                    "comments": ""
-                },
-                "cedar.processing.steps.Convolution": {
-                    "name": "Convolution",
-                    "kernels": "",
-                    "convolution": {
-                        "borderType": "Cyclic",
-                        "mode": "Same",
-                        "engine": {
-                            "type": "cedar.aux.conv.FFTW"
-                        },
-                        "alternate even kernel center": "false"
-                    },
-                    "comments": ""
-                },
-                "cedar.processing.steps.MatrixTypeConverter": {
-                    "name": "Matrix Type Converter",
-                    "target type": "Float",
-                    "comments": ""
-                },
-                "cedar.processing.Projection": {
-                    "name": "Projection",
-                    "dimension mapping": {
-                        "0": "4294967295",
-                        "1": "1",
-                        "2": "0"
-                    },
-                    "output dimensionality": "2",
-                    "output dimension sizes": [
-                        "10",
-                        "52"
-                    ],
-                    "compression type": "SUM",
-                    "comments": ""
-                },
-                "cedar.dynamics.RateMatrixToSpaceCode": {
-                    "name": "Rate Matrix To Space Code",
-                    "number of bins": "10",
-                    "lower limit": "0",
-                    "upper limit": "255.09999999999999",
-                    "comments": ""
-                },
-                "cedar.processing.Resize": {
-                    "name": "Resize",
-                    "output size": [
-                        "39",
-                        "52"
-                    ],
-                    "interpolation": "LINEAR",
-                    "comments": ""
-                },
-                "cedar.processing.StaticGain": {
-                    "name": "Static Gain",
-                    "gain factor": "0.002",
-                    "comments": ""
-                }
-            },
-            "connections": [
-                {
-                    "source": "external input.output",
-                    "target": "Resize.input"
-                },
-                {
-                    "source": "Resize.output",
-                    "target": "Color Conversion.input image"
-                },
-                {
-                    "source": "Color Conversion.converted image",
-                    "target": "Matrix Type Converter.matrix"
-                },
-                {
-                    "source": "Matrix Type Converter.converted matrix",
-                    "target": "Channel Split.three channel input"
-                },
-                {
-                    "source": "Channel Split.channel 1",
-                    "target": "Rate Matrix To Space Code.bin map"
-                },
-                {
-                    "source": "Channel Split.channel 2",
-                    "target": "Rate Matrix To Space Code.values"
-                },
-                {
-                    "source": "Rate Matrix To Space Code.output",
-                    "target": "Static Gain.input"
-                },
-                {
-                    "source": "Static Gain.output",
-                    "target": "Convolution.matrix"
-                },
-                {
-                    "source": "Resize.output",
-                    "target": "external output.input"
-                },
-                {
-                    "source": "Convolution.result",
-                    "target": "Projection.input"
-                },
-                {
-                    "source": "Projection.output",
-                    "target": "external output 2.input"
-                }
-            ],
-            "name": "Image PreProcessing",
-            "connectors": {
-                "external input": "true",
-                "external output": "false",
-                "external output 2": "false"
-            },
-            "is looped": "false",
-            "time factor": "1",
-            "ui": [
-                {
-                    "type": "step",
-                    "step": "Channel Split",
-                    "display style": "ICON_ONLY",
-                    "width": "40",
-                    "height": "40",
-                    "positionX": "294.84536082474256",
-                    "positionY": "60.824742268041064"
-                },
-                {
-                    "type": "step",
-                    "step": "Color Conversion",
-                    "display style": "ICON_ONLY",
-                    "width": "40",
-                    "height": "40",
-                    "positionX": "116.49484536082485",
-                    "positionY": "60.824742268040836"
-                },
-                {
-                    "type": "step",
-                    "step": "Convolution",
-                    "display style": "ICON_ONLY",
-                    "width": "40",
-                    "height": "40",
-                    "positionX": "560.8247422680414",
-                    "positionY": "53.608247422680506"
-                },
-                {
-                    "type": "step",
-                    "step": "Matrix Type Converter",
-                    "display style": "ICON_ONLY",
-                    "width": "40",
-                    "height": "40",
-                    "positionX": "206.18556701030951",
-                    "positionY": "59.793814432990075"
-                },
-                {
-                    "type": "step",
-                    "step": "Projection",
-                    "display style": "ICON_ONLY",
-                    "width": "40",
-                    "height": "40",
-                    "positionX": "642.26804123711372",
-                    "positionY": "52.577319587628153"
-                },
-                {
-                    "type": "step",
-                    "step": "Rate Matrix To Space Code",
-                    "display style": "ICON_ONLY",
-                    "width": "40",
-                    "height": "40",
-                    "positionX": "387.62886597938171",
-                    "positionY": "60.824742268041291"
-                },
-                {
-                    "type": "step",
-                    "step": "Resize",
-                    "display style": "ICON_ONLY",
-                    "width": "40",
-                    "height": "40",
-                    "positionX": "31.958762886598151",
-                    "positionY": "59.793814432990075"
-                },
-                {
-                    "type": "step",
-                    "step": "Static Gain",
-                    "display style": "ICON_ONLY",
-                    "width": "40",
-                    "height": "40",
-                    "positionX": "475.25773195876354",
-                    "positionY": "56.701030927835063"
-                }
-            ],
-            "ui generic": {
-                "group": "Image PreProcessing",
-                "architecture widgets": "",
-                "width": "726.80412371134037",
-                "height": "131.44329896907175",
-                "smart mode": "false",
-                "collapsed": "false",
-                "lock geometry": "false",
-                "uncollapsed width": "726.80412371134037",
-                "uncollapsed height": "131.44329896907175",
-                "positionX": "-896.90721649484556",
-                "positionY": "1306.1855670103103"
-            }
-        },
         "Perception Space": {
             "meta": {
                 "format": "1"
@@ -4178,7 +4030,7 @@
                     "threshold for updating the stepIcon": "0.80000000000000004",
                     "dimensionality": "2",
                     "sizes": [
-                        "10",
+                        "100",
                         "52"
                     ],
                     "time scale": "40",
@@ -4597,18 +4449,6 @@
     },
     "connections": [
         {
-            "source": "Picture.Picture",
-            "target": "Image PreProcessing.external input"
-        },
-        {
-            "source": "Image PreProcessing.external output",
-            "target": "Histogram.input"
-        },
-        {
-            "source": "Image PreProcessing.external output 2",
-            "target": "Static Gain 2.input"
-        },
-        {
             "source": "Static Gain 2.output",
             "target": "Perception Space.external input 2"
         },
@@ -4639,6 +4479,46 @@
         {
             "source": "Static Gain 6.output",
             "target": "Attention Space.external input 6"
+        },
+        {
+            "source": "Picture.Picture",
+            "target": "Resize.input"
+        },
+        {
+            "source": "Resize.output",
+            "target": "Color Conversion.input image"
+        },
+        {
+            "source": "Rate Matrix To Space Code.output",
+            "target": "Static Gain.input"
+        },
+        {
+            "source": "Static Gain.output",
+            "target": "Convolution.matrix"
+        },
+        {
+            "source": "Projection.output",
+            "target": "Static Gain 2.input"
+        },
+        {
+            "source": "Color Conversion.converted image",
+            "target": "Matrix Type Converter.matrix"
+        },
+        {
+            "source": "Matrix Type Converter.converted matrix",
+            "target": "Channel Split.three channel input"
+        },
+        {
+            "source": "Channel Split.channel 1",
+            "target": "Rate Matrix To Space Code.bin map"
+        },
+        {
+            "source": "Channel Split.channel 2",
+            "target": "Rate Matrix To Space Code.values"
+        },
+        {
+            "source": "Convolution.result",
+            "target": "Projection.input"
         }
     ],
     "name": "element",
@@ -4787,6 +4667,15 @@
         },
         {
             "type": "step",
+            "step": "Channel Split",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-559.38508799333533",
+            "positionY": "1358.80323857128"
+        },
+        {
+            "type": "step",
             "step": "CoS-Node1",
             "display style": "ICON_AND_TEXT",
             "width": "124",
@@ -4859,6 +4748,15 @@
         },
         {
             "type": "step",
+            "step": "Color Conversion",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-756.54873477038439",
+            "positionY": "1375.3436426116848"
+        },
+        {
+            "type": "step",
             "step": "Color-Action-Field",
             "display style": "ICON_AND_TEXT",
             "width": "124",
@@ -4883,6 +4781,15 @@
             "height": "40",
             "positionX": "-4270",
             "positionY": "1092"
+        },
+        {
+            "type": "step",
+            "step": "Convolution",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-271.1834843278142",
+            "positionY": "1371.6625013016774"
         },
         {
             "type": "step",
@@ -5039,6 +4946,15 @@
         },
         {
             "type": "step",
+            "step": "Matrix Type Converter",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-644.00447776736428",
+            "positionY": "1374.186452150371"
+        },
+        {
+            "type": "step",
             "step": "Microphone TCP Reader",
             "display style": "ICON_AND_TEXT",
             "width": "124",
@@ -5061,8 +4977,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-971.13402061855675",
-            "positionY": "1327.8350515463919"
+            "positionX": "-1010.0229095074454",
+            "positionY": "1366.7239404352811"
         },
         {
             "type": "step",
@@ -5120,12 +5036,39 @@
         },
         {
             "type": "step",
+            "step": "Projection",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-184.56341768197419",
+            "positionY": "1372.3992502343024"
+        },
+        {
+            "type": "step",
             "step": "Projection 2",
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-294",
-            "positionY": "784"
+            "positionX": "-294.00000000000006",
+            "positionY": "787.84615384615404"
+        },
+        {
+            "type": "step",
+            "step": "Rate Matrix To Space Code",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-446.0207747578882",
+            "positionY": "1357.4143496823922"
+        },
+        {
+            "type": "step",
+            "step": "Resize",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-860.65552431531819",
+            "positionY": "1365.0955430594618"
         },
         {
             "type": "step",
@@ -5183,12 +5126,21 @@
         },
         {
             "type": "step",
+            "step": "Static Gain",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-346.14443403103166",
+            "positionY": "1364.2754868270342"
+        },
+        {
+            "type": "step",
             "step": "Static Gain 2",
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-248.45360824742266",
-            "positionY": "1243.2989690721649"
+            "positionX": "-252.99906279287723",
+            "positionY": "1246.7080599812559"
         },
         {
             "type": "step",
@@ -5290,11 +5242,11 @@
         }
     ],
     "ui view": {
-        "ScrollBarX": "-794",
-        "ScrollBarY": "732",
-        "SliderPosX": "-794",
-        "SliderPosY": "732",
-        "Zoom": "0.91000000000000003"
+        "ScrollBarX": "-996",
+        "ScrollBarY": "807",
+        "SliderPosX": "-996",
+        "SliderPosY": "807",
+        "Zoom": "0.88"
     },
     "ui generic": {
         "group": "element",
