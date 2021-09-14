@@ -158,9 +158,9 @@ void E_Puck::getMotorCommands()
         width = camera->getWidth();
         fov = camera->getFov();
     }
-    float psi_target = ((float)width / 2 - cedardata.motorMat.at<float>(0)) * 2 * fov / width;
-    //float psi_target = 0;
-    std::cout << psi_target/M_PI*360 << std::endl;
+    //float psi_target = ((float)width / 2 - cedardata.motorMat.at<float>(0)) * 2 * fov / width;
+    float psi_target = 0;
+    //std::cout << psi_target/M_PI*360 << std::endl;
     motordata.psi_targetMat = psi_target;
 }
 

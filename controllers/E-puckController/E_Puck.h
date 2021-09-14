@@ -57,10 +57,10 @@ public:
         // read config
         configMap = readConfiguration(configFilePath);
         //Create and start the Communication Thread
-        comThread = std::make_unique<ComLooper>();
-        comThread->run();
         // init from config
+        comThread = std::make_unique<ComLooper>();
         initFromConfig();
+        comThread->run();
         // init structs
         sensordata = SensorData{cv::Mat::zeros(1,1,CV_32F), cv::Mat::zeros(8,1,CV_32F), cv::Mat::zeros(1,1,CV_32F), cv::Mat::zeros(52, 39, CV_8UC4)};
     };
