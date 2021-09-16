@@ -1,8 +1,303 @@
 {
     "meta": {
-        "format": "1"
+        "format": "1",
+        "required plugins": [
+            "Plugin"
+        ]
     },
     "steps": {
+        "cedar.dynamics.NeuralField": {
+            "name": "Action-Attention-1",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "0",
+            "sizes": "",
+            "time scale": "40",
+            "resting level": "-0.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": {
+                "cedar.aux.kernel.Box": {
+                    "dimensionality": "1",
+                    "anchor": [
+                        "0"
+                    ],
+                    "amplitude": "1",
+                    "widths": [
+                        "1"
+                    ]
+                }
+            },
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Action-Attention-2",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "0",
+            "sizes": "",
+            "time scale": "40",
+            "resting level": "-0.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Action-Attention-3",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "0",
+            "sizes": "",
+            "time scale": "40",
+            "resting level": "-0.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": {
+                "cedar.aux.kernel.Box": {
+                    "dimensionality": "1",
+                    "anchor": [
+                        "0"
+                    ],
+                    "amplitude": "1",
+                    "widths": [
+                        "1"
+                    ]
+                }
+            },
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Action-Introception-1",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "0",
+            "sizes": "",
+            "time scale": "40",
+            "resting level": "-5",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Action-Introception-2",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "0",
+            "sizes": "",
+            "time scale": "40",
+            "resting level": "-5",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Action-Introception-3",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "0",
+            "sizes": "",
+            "time scale": "40",
+            "resting level": "-5",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
         "cedar.dynamics.NeuralField": {
             "name": "Action1-Intention-Node",
             "activation as output": "false",
@@ -585,8 +880,8 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "100",
-            "resting level": "-5",
+            "time scale": "40",
+            "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -641,8 +936,8 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "100",
-            "resting level": "-5",
+            "time scale": "40",
+            "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -697,8 +992,8 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "100",
-            "resting level": "-5",
+            "time scale": "40",
+            "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -753,8 +1048,8 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "100",
-            "resting level": "-5",
+            "time scale": "40",
+            "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -764,18 +1059,7 @@
                 "beta": "100"
             },
             "global inhibition": "0",
-            "lateral kernels": {
-                "cedar.aux.kernel.Box": {
-                    "dimensionality": "1",
-                    "anchor": [
-                        "0"
-                    ],
-                    "amplitude": "1",
-                    "widths": [
-                        "1"
-                    ]
-                }
-            },
+            "lateral kernels": "",
             "lateral kernel convolution": {
                 "borderType": "Zero",
                 "mode": "Same",
@@ -799,6 +1083,13 @@
                 ],
                 "limit": "5"
             },
+            "comments": ""
+        },
+        "cedar.processing.sources.Boost": {
+            "name": "Boost",
+            "strength": "6",
+            "active": "true",
+            "deactivate on reset": "false",
             "comments": ""
         },
         "cedar.processing.sources.TCPReader": {
@@ -1332,6 +1623,69 @@
             "comments": ""
         },
         "cedar.dynamics.NeuralField": {
+            "name": "Color-Attention-Field",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "1",
+            "sizes": [
+                "50"
+            ],
+            "time scale": "40",
+            "resting level": "-0.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "-0.10000000000000001",
+            "lateral kernels": {
+                "cedar.aux.kernel.Gauss": {
+                    "dimensionality": "1",
+                    "anchor": [
+                        "0"
+                    ],
+                    "amplitude": "1",
+                    "sigmas": [
+                        "3"
+                    ],
+                    "normalize": "true",
+                    "shifts": [
+                        "0"
+                    ],
+                    "limit": "5"
+                }
+            },
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
             "name": "Color-Belief-Field",
             "activation as output": "false",
             "discrete metric (workaround)": "false",
@@ -1341,8 +1695,8 @@
             "sizes": [
                 "50"
             ],
-            "time scale": "100",
-            "resting level": "-5",
+            "time scale": "40",
+            "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -1351,7 +1705,7 @@
                 "threshold": "0",
                 "beta": "100"
             },
-            "global inhibition": "-0.01",
+            "global inhibition": "-0.10000000000000001",
             "lateral kernels": {
                 "cedar.aux.kernel.Gauss": {
                     "dimensionality": "1",
@@ -1402,7 +1756,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "2",
             "sizes": [
-                "100",
+                "50",
                 "52"
             ],
             "time scale": "40",
@@ -1415,8 +1769,21 @@
                 "threshold": "0",
                 "beta": "100"
             },
-            "global inhibition": "-0",
-            "lateral kernels": "",
+            "global inhibition": "-0.01",
+            "lateral kernels": {
+                "cedar.aux.kernel.Box": {
+                    "dimensionality": "2",
+                    "anchor": [
+                        "0",
+                        "0"
+                    ],
+                    "amplitude": "1",
+                    "widths": [
+                        "3",
+                        "3"
+                    ]
+                }
+            },
             "lateral kernel convolution": {
                 "borderType": "Zero",
                 "mode": "Same",
@@ -1592,8 +1959,8 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "100",
-            "resting level": "-5",
+            "time scale": "40",
+            "resting level": "-2.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -1603,18 +1970,7 @@
                 "beta": "100"
             },
             "global inhibition": "0",
-            "lateral kernels": {
-                "cedar.aux.kernel.Box": {
-                    "dimensionality": "1",
-                    "anchor": [
-                        "0"
-                    ],
-                    "amplitude": "1",
-                    "widths": [
-                        "1"
-                    ]
-                }
-            },
+            "lateral kernels": "",
             "lateral kernel convolution": {
                 "borderType": "Zero",
                 "mode": "Same",
@@ -1726,123 +2082,6 @@
                 "3"
             ],
             "cyclic": "false",
-            "comments": ""
-        },
-        "cedar.dynamics.HebbianConnection": {
-            "name": "Hebbian Connection",
-            "source dimension": "0",
-            "source sizes": "",
-            "target dimension": "2",
-            "target sizes": [
-                "50",
-                "50"
-            ],
-            "learning rate": "0.01",
-            "f": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0.5"
-            },
-            "g": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0.5"
-            },
-            "h": {
-                "type": "cedar.aux.math.LinearTransferFunction",
-                "factor": "1",
-                "offset": "0"
-            },
-            "fixed reward duration": "false",
-            "reward duration": "200",
-            "manual weights": "false",
-            "weight centers": [
-                "3",
-                "3"
-            ],
-            "weight sigmas": [
-                "3",
-                "3"
-            ],
-            "weight amplitude": "6",
-            "weight init value": "0",
-            "weight init noise": "0.001",
-            "comments": ""
-        },
-        "cedar.dynamics.HebbianConnection": {
-            "name": "Hebbian Connection 2",
-            "source dimension": "0",
-            "source sizes": "",
-            "target dimension": "2",
-            "target sizes": [
-                "50",
-                "50"
-            ],
-            "learning rate": "0.01",
-            "f": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0.5"
-            },
-            "g": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0.5"
-            },
-            "h": {
-                "type": "cedar.aux.math.LinearTransferFunction",
-                "factor": "1",
-                "offset": "0"
-            },
-            "fixed reward duration": "false",
-            "reward duration": "200",
-            "manual weights": "false",
-            "weight centers": [
-                "3",
-                "3"
-            ],
-            "weight sigmas": [
-                "3",
-                "3"
-            ],
-            "weight amplitude": "6",
-            "weight init value": "0",
-            "weight init noise": "0.001",
-            "comments": ""
-        },
-        "cedar.dynamics.HebbianConnection": {
-            "name": "Hebbian Connection 3",
-            "source dimension": "0",
-            "source sizes": "",
-            "target dimension": "2",
-            "target sizes": [
-                "50",
-                "50"
-            ],
-            "learning rate": "0.01",
-            "f": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0.5"
-            },
-            "g": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0.5"
-            },
-            "h": {
-                "type": "cedar.aux.math.LinearTransferFunction",
-                "factor": "1",
-                "offset": "0"
-            },
-            "fixed reward duration": "false",
-            "reward duration": "200",
-            "manual weights": "false",
-            "weight centers": [
-                "3",
-                "3"
-            ],
-            "weight sigmas": [
-                "3",
-                "3"
-            ],
-            "weight amplitude": "6",
-            "weight init value": "0",
-            "weight init noise": "0.001",
             "comments": ""
         },
         "cedar.dynamics.NeuralField": {
@@ -2708,11 +2947,7 @@
         },
         "cedar.processing.Projection": {
             "name": "Projection",
-            "dimension mapping": {
-                "0": "4294967295",
-                "1": "1",
-                "2": "0"
-            },
+            "dimension mapping": "",
             "output dimensionality": "2",
             "output dimension sizes": [
                 "50",
@@ -2729,9 +2964,29 @@
             },
             "output dimensionality": "1",
             "output dimension sizes": [
-                "100"
+                "50"
             ],
             "compression type": "SUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
+            "name": "Projection 3",
+            "dimension mapping": {
+                "0": "4294967295"
+            },
+            "output dimensionality": "0",
+            "output dimension sizes": "",
+            "compression type": "MAXIMUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
+            "name": "Projection 4",
+            "dimension mapping": {
+                "0": "4294967295"
+            },
+            "output dimensionality": "0",
+            "output dimension sizes": "",
+            "compression type": "MAXIMUM",
             "comments": ""
         },
         "cedar.dynamics.RateMatrixToSpaceCode": {
@@ -2739,6 +2994,75 @@
             "number of bins": "50",
             "lower limit": "0",
             "upper limit": "255",
+            "comments": ""
+        },
+        "cedar.proc.steps.RewardHebbTrace": {
+            "name": "Reward Hebb Trace",
+            "association dimension": "1",
+            "association sizes": [
+                "10"
+            ],
+            "learning rate": "0.001",
+            "fixed reward duration": "false",
+            "reward duration": "200",
+            "manual weights": "false",
+            "weight centers": [
+                "3"
+            ],
+            "weight sigmas": [
+                "3"
+            ],
+            "weight amplitude": "6",
+            "reward threshold": "0.5",
+            "reciprocal weight threshold": "0.5",
+            "require asso and trigger for learning": "false",
+            "comments": ""
+        },
+        "cedar.proc.steps.RewardHebbTrace": {
+            "name": "Reward Hebb Trace 2",
+            "association dimension": "1",
+            "association sizes": [
+                "50"
+            ],
+            "learning rate": "0.001",
+            "fixed reward duration": "false",
+            "reward duration": "200",
+            "manual weights": "false",
+            "weight centers": [
+                "3"
+            ],
+            "weight sigmas": [
+                "3"
+            ],
+            "weight amplitude": "6",
+            "reward threshold": "0.5",
+            "reciprocal weight threshold": "0.5",
+            "require asso and trigger for learning": "false",
+            "comments": ""
+        },
+        "cedar.proc.steps.RewardHebbTrace": {
+            "name": "Reward Hebb Trace 3",
+            "association dimension": "2",
+            "association sizes": [
+                "50",
+                "50"
+            ],
+            "learning rate": "0.001",
+            "fixed reward duration": "false",
+            "reward duration": "200",
+            "manual weights": "false",
+            "weight centers": [
+                "3",
+                "3"
+            ],
+            "weight sigmas": [
+                "3",
+                "3"
+            ],
+            "weight amplitude": "6",
+            "reward threshold": "0.5",
+            "reciprocal weight threshold": "0.5",
+            "require asso and trigger for learning": "false",
             "comments": ""
         },
         "cedar.dynamics.NeuralField": {
@@ -2805,17 +3129,17 @@
             "comments": ""
         },
         "cedar.dynamics.NeuralField": {
-            "name": "Sound-Belief-Field",
+            "name": "Sound-Attention-Field",
             "activation as output": "false",
             "discrete metric (workaround)": "false",
             "update stepIcon according to output": "true",
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "1",
             "sizes": [
-                "50"
+                "10"
             ],
-            "time scale": "100",
-            "resting level": "-5",
+            "time scale": "40",
+            "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -2824,7 +3148,70 @@
                 "threshold": "0",
                 "beta": "100"
             },
-            "global inhibition": "-0.01",
+            "global inhibition": "-0.10000000000000001",
+            "lateral kernels": {
+                "cedar.aux.kernel.Gauss": {
+                    "dimensionality": "1",
+                    "anchor": [
+                        "0"
+                    ],
+                    "amplitude": "1",
+                    "sigmas": [
+                        "3"
+                    ],
+                    "normalize": "true",
+                    "shifts": [
+                        "0"
+                    ],
+                    "limit": "5"
+                }
+            },
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Sound-Belief-Field",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "1",
+            "sizes": [
+                "10"
+            ],
+            "time scale": "40",
+            "resting level": "-1.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "-0.10000000000000001",
             "lateral kernels": {
                 "cedar.aux.kernel.Gauss": {
                     "dimensionality": "1",
@@ -3173,7 +3560,12 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 2",
-            "gain factor": "2",
+            "gain factor": "6",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 3",
+            "gain factor": "-1",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -3183,12 +3575,43 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 5",
-            "gain factor": "0.29999999999999999",
+            "gain factor": "-1",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 6",
-            "gain factor": "5",
+            "gain factor": "-1",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 7",
+            "gain factor": "-1",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 8",
+            "gain factor": "-1",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 9",
+            "gain factor": "-1",
+            "comments": ""
+        },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "3.5"
+            },
+            "comments": ""
+        },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function 2",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "1"
+            },
             "comments": ""
         },
         "cedar.dynamics.NeuralField": {
@@ -3596,15 +4019,10 @@
             "start with all": "true",
             "listeners": [
                 "Event-Detection",
-                "Sound-Belief-Field",
-                "Color-Belief-Field",
                 "Belief-Action1",
                 "Belief-Action2",
                 "Belief-Action3",
                 "Belief-Node",
-                "Hebbian Connection",
-                "Hebbian Connection 2",
-                "Hebbian Connection 3",
                 "Exploration-Goal-Node",
                 "Sound-Goal-Field",
                 "Sound-Action-Field",
@@ -3656,640 +4074,22 @@
                 "Transient-Node4",
                 "Camera TCP Reader",
                 "Microphone TCP Reader",
-                "Attention Space",
                 "Color-Space-Perception",
                 "Sound-Perception",
-                "Action Space"
+                "Color-Attention-Field",
+                "Sound-Attention-Field",
+                "Action-Introception-1",
+                "Action-Introception-2",
+                "Action-Introception-3",
+                "Action-Attention-1",
+                "Action-Attention-2",
+                "Action-Attention-3",
+                "Reward Hebb Trace",
+                "Reward Hebb Trace 2",
+                "Reward Hebb Trace 3",
+                "Sound-Belief-Field",
+                "Color-Belief-Field"
             ]
-        }
-    },
-    "groups": {
-        "Action Space": {
-            "meta": {
-                "format": "1"
-            },
-            "steps": {
-                "cedar.dynamics.NeuralField": {
-                    "name": "Perception-Action1",
-                    "activation as output": "false",
-                    "discrete metric (workaround)": "false",
-                    "update stepIcon according to output": "true",
-                    "threshold for updating the stepIcon": "0.80000000000000004",
-                    "dimensionality": "0",
-                    "sizes": "",
-                    "time scale": "100",
-                    "resting level": "-5",
-                    "input noise gain": "0.10000000000000001",
-                    "multiplicative noise (input)": "false",
-                    "multiplicative noise (activation)": "false",
-                    "sigmoid": {
-                        "type": "cedar.aux.math.AbsSigmoid",
-                        "threshold": "0",
-                        "beta": "100"
-                    },
-                    "global inhibition": "0",
-                    "lateral kernels": {
-                        "cedar.aux.kernel.Box": {
-                            "dimensionality": "1",
-                            "anchor": [
-                                "0"
-                            ],
-                            "amplitude": "1",
-                            "widths": [
-                                "1"
-                            ]
-                        }
-                    },
-                    "lateral kernel convolution": {
-                        "borderType": "Zero",
-                        "mode": "Same",
-                        "engine": {
-                            "type": "cedar.aux.conv.OpenCV"
-                        },
-                        "alternate even kernel center": "false"
-                    },
-                    "noise correlation kernel": {
-                        "dimensionality": "1",
-                        "anchor": [
-                            "0"
-                        ],
-                        "amplitude": "0",
-                        "sigmas": [
-                            "3"
-                        ],
-                        "normalize": "true",
-                        "shifts": [
-                            "0"
-                        ],
-                        "limit": "5"
-                    },
-                    "comments": ""
-                },
-                "cedar.dynamics.NeuralField": {
-                    "name": "Perception-Action2",
-                    "activation as output": "false",
-                    "discrete metric (workaround)": "false",
-                    "update stepIcon according to output": "true",
-                    "threshold for updating the stepIcon": "0.80000000000000004",
-                    "dimensionality": "0",
-                    "sizes": "",
-                    "time scale": "100",
-                    "resting level": "-5",
-                    "input noise gain": "0.10000000000000001",
-                    "multiplicative noise (input)": "false",
-                    "multiplicative noise (activation)": "false",
-                    "sigmoid": {
-                        "type": "cedar.aux.math.AbsSigmoid",
-                        "threshold": "0",
-                        "beta": "100"
-                    },
-                    "global inhibition": "0",
-                    "lateral kernels": {
-                        "cedar.aux.kernel.Box": {
-                            "dimensionality": "1",
-                            "anchor": [
-                                "0"
-                            ],
-                            "amplitude": "1",
-                            "widths": [
-                                "1"
-                            ]
-                        }
-                    },
-                    "lateral kernel convolution": {
-                        "borderType": "Zero",
-                        "mode": "Same",
-                        "engine": {
-                            "type": "cedar.aux.conv.OpenCV"
-                        },
-                        "alternate even kernel center": "false"
-                    },
-                    "noise correlation kernel": {
-                        "dimensionality": "1",
-                        "anchor": [
-                            "0"
-                        ],
-                        "amplitude": "0",
-                        "sigmas": [
-                            "3"
-                        ],
-                        "normalize": "true",
-                        "shifts": [
-                            "0"
-                        ],
-                        "limit": "5"
-                    },
-                    "comments": ""
-                },
-                "cedar.dynamics.NeuralField": {
-                    "name": "Perception-Action3",
-                    "activation as output": "false",
-                    "discrete metric (workaround)": "false",
-                    "update stepIcon according to output": "true",
-                    "threshold for updating the stepIcon": "0.80000000000000004",
-                    "dimensionality": "0",
-                    "sizes": "",
-                    "time scale": "100",
-                    "resting level": "-5",
-                    "input noise gain": "0.10000000000000001",
-                    "multiplicative noise (input)": "false",
-                    "multiplicative noise (activation)": "false",
-                    "sigmoid": {
-                        "type": "cedar.aux.math.AbsSigmoid",
-                        "threshold": "0",
-                        "beta": "100"
-                    },
-                    "global inhibition": "0",
-                    "lateral kernels": {
-                        "cedar.aux.kernel.Box": {
-                            "dimensionality": "1",
-                            "anchor": [
-                                "0"
-                            ],
-                            "amplitude": "1",
-                            "widths": [
-                                "1"
-                            ]
-                        }
-                    },
-                    "lateral kernel convolution": {
-                        "borderType": "Zero",
-                        "mode": "Same",
-                        "engine": {
-                            "type": "cedar.aux.conv.OpenCV"
-                        },
-                        "alternate even kernel center": "false"
-                    },
-                    "noise correlation kernel": {
-                        "dimensionality": "1",
-                        "anchor": [
-                            "0"
-                        ],
-                        "amplitude": "0",
-                        "sigmas": [
-                            "3"
-                        ],
-                        "normalize": "true",
-                        "shifts": [
-                            "0"
-                        ],
-                        "limit": "5"
-                    },
-                    "comments": ""
-                }
-            },
-            "name": "Action Space",
-            "connectors": "",
-            "is looped": "true",
-            "time factor": "1",
-            "ui": [
-                {
-                    "type": "step",
-                    "step": "Perception-Action1",
-                    "display style": "ICON_AND_TEXT",
-                    "width": "124",
-                    "height": "40",
-                    "positionX": "24.648993618065674",
-                    "positionY": "40.315169366715963"
-                },
-                {
-                    "type": "step",
-                    "step": "Perception-Action2",
-                    "display style": "ICON_AND_TEXT",
-                    "width": "124",
-                    "height": "40",
-                    "positionX": "25.679921453117345",
-                    "positionY": "94.253313696613077"
-                },
-                {
-                    "type": "step",
-                    "step": "Perception-Action3",
-                    "display style": "ICON_AND_TEXT",
-                    "width": "124",
-                    "height": "40",
-                    "positionX": "23.618065783014146",
-                    "positionY": "148.19145802651042"
-                }
-            ],
-            "ui generic": {
-                "group": "Action Space",
-                "architecture widgets": "",
-                "width": "179.38144329896909",
-                "height": "212.88659793814486",
-                "smart mode": "false",
-                "collapsed": "false",
-                "lock geometry": "false",
-                "uncollapsed width": "179.38144329896909",
-                "uncollapsed height": "212.88659793814486",
-                "positionX": "364",
-                "positionY": "966"
-            }
-        },
-        "Attention Space": {
-            "meta": {
-                "format": "1"
-            },
-            "steps": {
-                "cedar.dynamics.NeuralField": {
-                    "name": "Color-Atention-Field",
-                    "activation as output": "false",
-                    "discrete metric (workaround)": "false",
-                    "update stepIcon according to output": "true",
-                    "threshold for updating the stepIcon": "0.80000000000000004",
-                    "dimensionality": "1",
-                    "sizes": [
-                        "100"
-                    ],
-                    "time scale": "100",
-                    "resting level": "-5",
-                    "input noise gain": "0.10000000000000001",
-                    "multiplicative noise (input)": "false",
-                    "multiplicative noise (activation)": "false",
-                    "sigmoid": {
-                        "type": "cedar.aux.math.AbsSigmoid",
-                        "threshold": "0",
-                        "beta": "100"
-                    },
-                    "global inhibition": "-0.10000000000000001",
-                    "lateral kernels": {
-                        "cedar.aux.kernel.Gauss": {
-                            "dimensionality": "1",
-                            "anchor": [
-                                "0"
-                            ],
-                            "amplitude": "1",
-                            "sigmas": [
-                                "1"
-                            ],
-                            "normalize": "true",
-                            "shifts": [
-                                "0"
-                            ],
-                            "limit": "5"
-                        }
-                    },
-                    "lateral kernel convolution": {
-                        "borderType": "Zero",
-                        "mode": "Same",
-                        "engine": {
-                            "type": "cedar.aux.conv.OpenCV"
-                        },
-                        "alternate even kernel center": "false"
-                    },
-                    "noise correlation kernel": {
-                        "dimensionality": "1",
-                        "anchor": [
-                            "0"
-                        ],
-                        "amplitude": "0",
-                        "sigmas": [
-                            "3"
-                        ],
-                        "normalize": "true",
-                        "shifts": [
-                            "0"
-                        ],
-                        "limit": "5"
-                    },
-                    "comments": ""
-                },
-                "cedar.dynamics.NeuralField": {
-                    "name": "Sound-Attention-Field",
-                    "activation as output": "false",
-                    "discrete metric (workaround)": "false",
-                    "update stepIcon according to output": "true",
-                    "threshold for updating the stepIcon": "0.80000000000000004",
-                    "dimensionality": "1",
-                    "sizes": [
-                        "10"
-                    ],
-                    "time scale": "100",
-                    "resting level": "-5",
-                    "input noise gain": "0.10000000000000001",
-                    "multiplicative noise (input)": "false",
-                    "multiplicative noise (activation)": "false",
-                    "sigmoid": {
-                        "type": "cedar.aux.math.AbsSigmoid",
-                        "threshold": "0",
-                        "beta": "100"
-                    },
-                    "global inhibition": "-0.01",
-                    "lateral kernels": {
-                        "cedar.aux.kernel.Gauss": {
-                            "dimensionality": "1",
-                            "anchor": [
-                                "0"
-                            ],
-                            "amplitude": "1",
-                            "sigmas": [
-                                "3"
-                            ],
-                            "normalize": "true",
-                            "shifts": [
-                                "0"
-                            ],
-                            "limit": "5"
-                        }
-                    },
-                    "lateral kernel convolution": {
-                        "borderType": "Zero",
-                        "mode": "Same",
-                        "engine": {
-                            "type": "cedar.aux.conv.OpenCV"
-                        },
-                        "alternate even kernel center": "false"
-                    },
-                    "noise correlation kernel": {
-                        "dimensionality": "1",
-                        "anchor": [
-                            "0"
-                        ],
-                        "amplitude": "0",
-                        "sigmas": [
-                            "3"
-                        ],
-                        "normalize": "true",
-                        "shifts": [
-                            "0"
-                        ],
-                        "limit": "5"
-                    },
-                    "comments": ""
-                }
-            },
-            "groups": {
-                "Action Space": {
-                    "meta": {
-                        "format": "1"
-                    },
-                    "steps": {
-                        "cedar.dynamics.NeuralField": {
-                            "name": "Attention-Action1",
-                            "activation as output": "false",
-                            "discrete metric (workaround)": "false",
-                            "update stepIcon according to output": "true",
-                            "threshold for updating the stepIcon": "0.80000000000000004",
-                            "dimensionality": "0",
-                            "sizes": "",
-                            "time scale": "100",
-                            "resting level": "-5",
-                            "input noise gain": "0.10000000000000001",
-                            "multiplicative noise (input)": "false",
-                            "multiplicative noise (activation)": "false",
-                            "sigmoid": {
-                                "type": "cedar.aux.math.AbsSigmoid",
-                                "threshold": "0",
-                                "beta": "100"
-                            },
-                            "global inhibition": "0",
-                            "lateral kernels": {
-                                "cedar.aux.kernel.Box": {
-                                    "dimensionality": "1",
-                                    "anchor": [
-                                        "0"
-                                    ],
-                                    "amplitude": "1",
-                                    "widths": [
-                                        "1"
-                                    ]
-                                }
-                            },
-                            "lateral kernel convolution": {
-                                "borderType": "Zero",
-                                "mode": "Same",
-                                "engine": {
-                                    "type": "cedar.aux.conv.OpenCV"
-                                },
-                                "alternate even kernel center": "false"
-                            },
-                            "noise correlation kernel": {
-                                "dimensionality": "1",
-                                "anchor": [
-                                    "0"
-                                ],
-                                "amplitude": "0",
-                                "sigmas": [
-                                    "3"
-                                ],
-                                "normalize": "true",
-                                "shifts": [
-                                    "0"
-                                ],
-                                "limit": "5"
-                            },
-                            "comments": ""
-                        },
-                        "cedar.dynamics.NeuralField": {
-                            "name": "Attention-Action2",
-                            "activation as output": "false",
-                            "discrete metric (workaround)": "false",
-                            "update stepIcon according to output": "true",
-                            "threshold for updating the stepIcon": "0.80000000000000004",
-                            "dimensionality": "0",
-                            "sizes": "",
-                            "time scale": "100",
-                            "resting level": "-5",
-                            "input noise gain": "0.10000000000000001",
-                            "multiplicative noise (input)": "false",
-                            "multiplicative noise (activation)": "false",
-                            "sigmoid": {
-                                "type": "cedar.aux.math.AbsSigmoid",
-                                "threshold": "0",
-                                "beta": "100"
-                            },
-                            "global inhibition": "0",
-                            "lateral kernels": {
-                                "cedar.aux.kernel.Box": {
-                                    "dimensionality": "1",
-                                    "anchor": [
-                                        "0"
-                                    ],
-                                    "amplitude": "1",
-                                    "widths": [
-                                        "1"
-                                    ]
-                                }
-                            },
-                            "lateral kernel convolution": {
-                                "borderType": "Zero",
-                                "mode": "Same",
-                                "engine": {
-                                    "type": "cedar.aux.conv.OpenCV"
-                                },
-                                "alternate even kernel center": "false"
-                            },
-                            "noise correlation kernel": {
-                                "dimensionality": "1",
-                                "anchor": [
-                                    "0"
-                                ],
-                                "amplitude": "0",
-                                "sigmas": [
-                                    "3"
-                                ],
-                                "normalize": "true",
-                                "shifts": [
-                                    "0"
-                                ],
-                                "limit": "5"
-                            },
-                            "comments": ""
-                        },
-                        "cedar.dynamics.NeuralField": {
-                            "name": "Attention-Action3",
-                            "activation as output": "false",
-                            "discrete metric (workaround)": "false",
-                            "update stepIcon according to output": "true",
-                            "threshold for updating the stepIcon": "0.80000000000000004",
-                            "dimensionality": "0",
-                            "sizes": "",
-                            "time scale": "100",
-                            "resting level": "-5",
-                            "input noise gain": "0.10000000000000001",
-                            "multiplicative noise (input)": "false",
-                            "multiplicative noise (activation)": "false",
-                            "sigmoid": {
-                                "type": "cedar.aux.math.AbsSigmoid",
-                                "threshold": "0",
-                                "beta": "100"
-                            },
-                            "global inhibition": "0",
-                            "lateral kernels": {
-                                "cedar.aux.kernel.Box": {
-                                    "dimensionality": "1",
-                                    "anchor": [
-                                        "0"
-                                    ],
-                                    "amplitude": "1",
-                                    "widths": [
-                                        "1"
-                                    ]
-                                }
-                            },
-                            "lateral kernel convolution": {
-                                "borderType": "Zero",
-                                "mode": "Same",
-                                "engine": {
-                                    "type": "cedar.aux.conv.OpenCV"
-                                },
-                                "alternate even kernel center": "false"
-                            },
-                            "noise correlation kernel": {
-                                "dimensionality": "1",
-                                "anchor": [
-                                    "0"
-                                ],
-                                "amplitude": "0",
-                                "sigmas": [
-                                    "3"
-                                ],
-                                "normalize": "true",
-                                "shifts": [
-                                    "0"
-                                ],
-                                "limit": "5"
-                            },
-                            "comments": ""
-                        }
-                    },
-                    "name": "Action Space",
-                    "connectors": "",
-                    "is looped": "true",
-                    "time factor": "1",
-                    "ui": [
-                        {
-                            "type": "step",
-                            "step": "Attention-Action1",
-                            "display style": "ICON_AND_TEXT",
-                            "width": "124",
-                            "height": "40",
-                            "positionX": "28",
-                            "positionY": "28"
-                        },
-                        {
-                            "type": "step",
-                            "step": "Attention-Action2",
-                            "display style": "ICON_AND_TEXT",
-                            "width": "124",
-                            "height": "40",
-                            "positionX": "28",
-                            "positionY": "84"
-                        },
-                        {
-                            "type": "step",
-                            "step": "Attention-Action3",
-                            "display style": "ICON_AND_TEXT",
-                            "width": "124",
-                            "height": "40",
-                            "positionX": "28",
-                            "positionY": "140"
-                        }
-                    ],
-                    "ui generic": {
-                        "group": "Action Space",
-                        "architecture widgets": "",
-                        "width": "182",
-                        "height": "196",
-                        "smart mode": "false",
-                        "collapsed": "false",
-                        "lock geometry": "false",
-                        "uncollapsed width": "182",
-                        "uncollapsed height": "196",
-                        "positionX": "448",
-                        "positionY": "56"
-                    }
-                }
-            },
-            "connections": [
-                {
-                    "source": "external input 5.output",
-                    "target": "Color-Atention-Field.input"
-                },
-                {
-                    "source": "external input 6.output",
-                    "target": "Sound-Attention-Field.input"
-                }
-            ],
-            "name": "Attention Space",
-            "connectors": {
-                "external input 5": "true",
-                "external input 6": "true"
-            },
-            "is looped": "true",
-            "time factor": "1",
-            "ui": [
-                {
-                    "type": "step",
-                    "step": "Color-Atention-Field",
-                    "display style": "ICON_AND_TEXT",
-                    "width": "124",
-                    "height": "40",
-                    "positionX": "56",
-                    "positionY": "56"
-                },
-                {
-                    "type": "step",
-                    "step": "Sound-Attention-Field",
-                    "display style": "ICON_AND_TEXT",
-                    "width": "124",
-                    "height": "40",
-                    "positionX": "252",
-                    "positionY": "56"
-                }
-            ],
-            "ui generic": {
-                "group": "Attention Space",
-                "architecture widgets": "",
-                "width": "658",
-                "height": "280",
-                "smart mode": "false",
-                "collapsed": "false",
-                "lock geometry": "false",
-                "uncollapsed width": "658",
-                "uncollapsed height": "280",
-                "positionX": "-462",
-                "positionY": "294"
-            }
         }
     },
     "connections": [
@@ -4298,28 +4098,12 @@
             "target": "Static Gain 4.input"
         },
         {
-            "source": "Projection 2.output",
-            "target": "Static Gain 5.input"
-        },
-        {
-            "source": "Static Gain 5.output",
-            "target": "Attention Space.external input 5"
-        },
-        {
-            "source": "Static Gain 6.output",
-            "target": "Attention Space.external input 6"
-        },
-        {
             "source": "Rate Matrix To Space Code.output",
             "target": "Static Gain.input"
         },
         {
             "source": "Static Gain.output",
             "target": "Convolution.matrix"
-        },
-        {
-            "source": "Projection.output",
-            "target": "Static Gain 2.input"
         },
         {
             "source": "Color Conversion.converted image",
@@ -4354,12 +4138,228 @@
             "target": "Sound-Perception.input"
         },
         {
+            "source": "Convolution.result",
+            "target": "Projection.input"
+        },
+        {
+            "source": "Projection.output",
+            "target": "Transfer Function.input"
+        },
+        {
+            "source": "Transfer Function.sigmoided output",
+            "target": "Static Gain 2.input"
+        },
+        {
+            "source": "Projection 2.output",
+            "target": "Transfer Function 2.input"
+        },
+        {
             "source": "Sound-Perception.sigmoided activation",
+            "target": "Sound-Attention-Field.input"
+        },
+        {
+            "source": "Transfer Function 2.sigmoided output",
+            "target": "Color-Attention-Field.input"
+        },
+        {
+            "source": "Action-Introception-1.sigmoided activation",
+            "target": "Action-Attention-1.input"
+        },
+        {
+            "source": "Action-Introception-2.sigmoided activation",
+            "target": "Action-Attention-2.input"
+        },
+        {
+            "source": "Action-Introception-3.sigmoided activation",
+            "target": "Action-Attention-3.input"
+        },
+        {
+            "source": "Boost.boost",
+            "target": "Action-Introception-2.input"
+        },
+        {
+            "source": "Action-Attention-1.sigmoided activation",
+            "target": "Static Gain 3.input"
+        },
+        {
+            "source": "Action-Attention-2.sigmoided activation",
+            "target": "Static Gain 5.input"
+        },
+        {
+            "source": "Action-Attention-3.sigmoided activation",
             "target": "Static Gain 6.input"
         },
         {
-            "source": "Convolution.result",
-            "target": "Projection.input"
+            "source": "Static Gain 3.output",
+            "target": "Action-Attention-2.input"
+        },
+        {
+            "source": "Static Gain 3.output",
+            "target": "Action-Attention-3.input"
+        },
+        {
+            "source": "Static Gain 5.output",
+            "target": "Action-Attention-1.input"
+        },
+        {
+            "source": "Static Gain 5.output",
+            "target": "Action-Attention-3.input"
+        },
+        {
+            "source": "Static Gain 6.output",
+            "target": "Action-Attention-2.input"
+        },
+        {
+            "source": "Static Gain 6.output",
+            "target": "Action-Attention-1.input"
+        },
+        {
+            "source": "Color-Attention-Field.sigmoided activation",
+            "target": "Projection 3.input"
+        },
+        {
+            "source": "Sound-Attention-Field.sigmoided activation",
+            "target": "Projection 4.input"
+        },
+        {
+            "source": "Projection 3.output",
+            "target": "Event-Detection.input"
+        },
+        {
+            "source": "Projection 4.output",
+            "target": "Event-Detection.input"
+        },
+        {
+            "source": "Action-Attention-1.sigmoided activation",
+            "target": "Event-Detection.input"
+        },
+        {
+            "source": "Action-Attention-2.sigmoided activation",
+            "target": "Event-Detection.input"
+        },
+        {
+            "source": "Action-Attention-3.sigmoided activation",
+            "target": "Event-Detection.input"
+        },
+        {
+            "source": "Event-Detection.sigmoided activation",
+            "target": "Belief-Node.input"
+        },
+        {
+            "source": "Color-Attention-Field.sigmoided activation",
+            "target": "Color-Belief-Field.input"
+        },
+        {
+            "source": "Sound-Attention-Field.sigmoided activation",
+            "target": "Sound-Belief-Field.input"
+        },
+        {
+            "source": "Belief-Action1.sigmoided activation",
+            "target": "Static Gain 7.input"
+        },
+        {
+            "source": "Static Gain 7.output",
+            "target": "Belief-Action2.input"
+        },
+        {
+            "source": "Static Gain 7.output",
+            "target": "Belief-Action3.input"
+        },
+        {
+            "source": "Belief-Action2.sigmoided activation",
+            "target": "Static Gain 8.input"
+        },
+        {
+            "source": "Static Gain 8.output",
+            "target": "Belief-Action1.input"
+        },
+        {
+            "source": "Static Gain 8.output",
+            "target": "Belief-Action3.input"
+        },
+        {
+            "source": "Belief-Action3.sigmoided activation",
+            "target": "Static Gain 9.input"
+        },
+        {
+            "source": "Static Gain 9.output",
+            "target": "Belief-Action2.input"
+        },
+        {
+            "source": "Static Gain 9.output",
+            "target": "Belief-Action1.input"
+        },
+        {
+            "source": "Action-Attention-1.sigmoided activation",
+            "target": "Belief-Action1.input"
+        },
+        {
+            "source": "Action-Attention-2.sigmoided activation",
+            "target": "Belief-Action2.input"
+        },
+        {
+            "source": "Action-Attention-3.sigmoided activation",
+            "target": "Belief-Action3.input"
+        },
+        {
+            "source": "Event-Detection.sigmoided activation",
+            "target": "Belief-Action3.input"
+        },
+        {
+            "source": "Event-Detection.sigmoided activation",
+            "target": "Belief-Action2.input"
+        },
+        {
+            "source": "Event-Detection.sigmoided activation",
+            "target": "Belief-Action1.input"
+        },
+        {
+            "source": "Event-Detection.sigmoided activation",
+            "target": "Color-Belief-Field.input"
+        },
+        {
+            "source": "Event-Detection.sigmoided activation",
+            "target": "Sound-Belief-Field.input"
+        },
+        {
+            "source": "Color-Belief-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 2.association input"
+        },
+        {
+            "source": "Belief-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 2.read out trigger"
+        },
+        {
+            "source": "Event-Detection.sigmoided activation",
+            "target": "Reward Hebb Trace 2.reward signal"
+        },
+        {
+            "source": "Reward Hebb Trace 2.trigger output",
+            "target": "Color-Belief-Field.input"
+        },
+        {
+            "source": "Reward Hebb Trace 2.reciprocal output",
+            "target": "Belief-Node.input"
+        },
+        {
+            "source": "Sound-Belief-Field.sigmoided activation",
+            "target": "Reward Hebb Trace.association input"
+        },
+        {
+            "source": "Belief-Node.sigmoided activation",
+            "target": "Reward Hebb Trace.read out trigger"
+        },
+        {
+            "source": "Event-Detection.sigmoided activation",
+            "target": "Reward Hebb Trace.reward signal"
+        },
+        {
+            "source": "Reward Hebb Trace.trigger output",
+            "target": "Sound-Belief-Field.input"
+        },
+        {
+            "source": "Reward Hebb Trace.reciprocal output",
+            "target": "Belief-Node.input"
         }
     ],
     "name": "element",
@@ -4370,6 +4370,60 @@
         {
             "type": "connections",
             "connections": ""
+        },
+        {
+            "type": "step",
+            "step": "Action-Attention-1",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "705.47945205479436",
+            "positionY": "490.41095890410975"
+        },
+        {
+            "type": "step",
+            "step": "Action-Attention-2",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "706.8493150684933",
+            "positionY": "545.20547945205476"
+        },
+        {
+            "type": "step",
+            "step": "Action-Attention-3",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "705.47945205479425",
+            "positionY": "605.47945205479448"
+        },
+        {
+            "type": "step",
+            "step": "Action-Introception-1",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "664.38356164383561",
+            "positionY": "971.23287671232856"
+        },
+        {
+            "type": "step",
+            "step": "Action-Introception-2",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "663.0136986301369",
+            "positionY": "1034.2465753424658"
+        },
+        {
+            "type": "step",
+            "step": "Action-Introception-3",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "661.6438356164382",
+            "positionY": "1101.3698630136983"
         },
         {
             "type": "step",
@@ -4467,7 +4521,7 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-462",
+            "positionX": "0",
             "positionY": "-322"
         },
         {
@@ -4476,7 +4530,7 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-462",
+            "positionX": "0",
             "positionY": "-266"
         },
         {
@@ -4485,7 +4539,7 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-462",
+            "positionX": "0",
             "positionY": "-210"
         },
         {
@@ -4494,8 +4548,17 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "42",
-            "positionY": "-322"
+            "positionX": "672",
+            "positionY": "-294"
+        },
+        {
+            "type": "step",
+            "step": "Boost",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "539.7260273972604",
+            "positionY": "1034.2465753424658"
         },
         {
             "type": "step",
@@ -4607,11 +4670,20 @@
         },
         {
             "type": "step",
+            "step": "Color-Attention-Field",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "264.38356164383544",
+            "positionY": "542.46575342465769"
+        },
+        {
+            "type": "step",
             "step": "Color-Belief-Field",
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-462",
+            "positionX": "168",
             "positionY": "-378"
         },
         {
@@ -4620,8 +4692,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "28",
-            "positionY": "966"
+            "positionX": "11.561643835616437",
+            "positionY": "963.2602739726027"
         },
         {
             "type": "step",
@@ -4656,8 +4728,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-196",
-            "positionY": "-56"
+            "positionX": "476",
+            "positionY": "84"
         },
         {
             "type": "step",
@@ -4674,8 +4746,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "28",
-            "positionY": "1316"
+            "positionX": "36.219178082191803",
+            "positionY": "1240.6575342465751"
         },
         {
             "type": "step",
@@ -4685,33 +4757,6 @@
             "height": "40",
             "positionX": "-1246",
             "positionY": "-546"
-        },
-        {
-            "type": "step",
-            "step": "Hebbian Connection",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-196",
-            "positionY": "-406"
-        },
-        {
-            "type": "step",
-            "step": "Hebbian Connection 2",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-196",
-            "positionY": "-322"
-        },
-        {
-            "type": "step",
-            "step": "Hebbian Connection 3",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-196",
-            "positionY": "-224"
         },
         {
             "type": "step",
@@ -4800,8 +4845,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "42",
-            "positionY": "1540"
+            "positionX": "-25.123287671232873",
+            "positionY": "1581.0958904109591"
         },
         {
             "type": "step",
@@ -4881,8 +4926,26 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-294.00000000000006",
-            "positionY": "787.84615384615404"
+            "positionX": "153.94520547945197",
+            "positionY": "839.90094836670198"
+        },
+        {
+            "type": "step",
+            "step": "Projection 3",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "406",
+            "positionY": "448"
+        },
+        {
+            "type": "step",
+            "step": "Projection 4",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "602",
+            "positionY": "448"
         },
         {
             "type": "step",
@@ -4895,6 +4958,33 @@
         },
         {
             "type": "step",
+            "step": "Reward Hebb Trace",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "434",
+            "positionY": "-434"
+        },
+        {
+            "type": "step",
+            "step": "Reward Hebb Trace 2",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "434",
+            "positionY": "-378"
+        },
+        {
+            "type": "step",
+            "step": "Reward Hebb Trace 3",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "434",
+            "positionY": "-266"
+        },
+        {
+            "type": "step",
             "step": "Sound-Action-Field",
             "display style": "ICON_AND_TEXT",
             "width": "124",
@@ -4904,12 +4994,21 @@
         },
         {
             "type": "step",
+            "step": "Sound-Attention-Field",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "468.49315068493144",
+            "positionY": "546.57534246575335"
+        },
+        {
+            "type": "step",
             "step": "Sound-Belief-Field",
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-462",
-            "positionY": "-434"
+            "positionX": "168",
+            "positionY": "-448"
         },
         {
             "type": "step",
@@ -4971,8 +5070,17 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-252.99906279287723",
-            "positionY": "1246.7080599812559"
+            "positionX": "-42.040158683288176",
+            "positionY": "1245.3381969675572"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 3",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "882",
+            "positionY": "490"
         },
         {
             "type": "step",
@@ -4980,8 +5088,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-98",
-            "positionY": "1246"
+            "positionX": "144.46575342465755",
+            "positionY": "1243.2602739726028"
         },
         {
             "type": "step",
@@ -4989,8 +5097,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-406",
-            "positionY": "728"
+            "positionX": "882",
+            "positionY": "546"
         },
         {
             "type": "step",
@@ -4998,8 +5106,53 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "14",
-            "positionY": "728"
+            "positionX": "882",
+            "positionY": "602"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 7",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "168",
+            "positionY": "-322"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 8",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "168",
+            "positionY": "-266"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 9",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "168",
+            "positionY": "-210"
+        },
+        {
+            "type": "step",
+            "step": "Transfer Function",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-98.630136986301309",
+            "positionY": "1368.4931506849314"
+        },
+        {
+            "type": "step",
+            "step": "Transfer Function 2",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "206.84931506849318",
+            "positionY": "708.21917808219166"
         },
         {
             "type": "step",
@@ -5074,11 +5227,11 @@
         }
     ],
     "ui view": {
-        "ScrollBarX": "-990",
-        "ScrollBarY": "632",
-        "SliderPosX": "-990",
-        "SliderPosY": "632",
-        "Zoom": "0.72999999999999998"
+        "ScrollBarX": "-407",
+        "ScrollBarY": "28",
+        "SliderPosX": "-407",
+        "SliderPosY": "28",
+        "Zoom": "0.68999999999999995"
     },
     "ui generic": {
         "group": "element",
