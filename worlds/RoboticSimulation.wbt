@@ -5,8 +5,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.9995892184611176 -0.028581651721625707 0.002117432680355964 0.5946286711626951
-  position -0.07647913780923933 0.6318984588394017 0.9495181370149832
+  orientation -0.9996339622568143 0.020805107964771235 0.017294189351232638 0.5845091719263316
+  position -0.03843026775466743 0.6192381780912123 0.9619011581684311
 }
 TexturedBackground {
 }
@@ -20,5 +20,6 @@ E-puck {
   controller "E-puckController"
 }
 ColoredBoxRobot {
-  translation 0.16 0.07 -0.34
+  translation 0.16 0.05 -0.34
+  controller "ObjectController"
 }

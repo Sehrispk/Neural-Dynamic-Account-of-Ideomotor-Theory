@@ -10,7 +10,7 @@ TIME_STEP = 64;
 Object = ObjectClass();
 
 % set box color, transparency and cue status
-Object.set_color([1 0 1], 1.);
+Object.set_color([1 0 0], 1.);
 Object.sound = 'TestSound.wav';
 cue = 1;
 
