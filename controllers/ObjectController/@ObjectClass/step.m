@@ -15,7 +15,7 @@ function obj = step(obj)
     tic
   end
   if play
-    wb_emitter_send(obj.emitter, 2);
+    wb_emitter_send(obj.emitter, uint8('5'));
   end
   if listen
     wb_receiver_next_packet(obj.receiver);

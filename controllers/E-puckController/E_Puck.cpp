@@ -5,6 +5,7 @@
 #include <webots/Camera.hpp>
 #include <webots/Receiver.hpp>
 #include <webots/Emitter.hpp>
+#include <webots/LED.hpp>
 #include <opencv4/opencv2/core/core.hpp>
 #include <fstream>
 #include <iostream>
@@ -21,8 +22,6 @@ void E_Puck::update()
     readSensorValues();
     
     ComThreadUpdate();
-
-    getMotorCommands();
 
     applyMotorCommands();
 }
@@ -47,27 +46,8 @@ void E_Puck::ComThreadUpdate()
             comThread->setWriteMatrix(identifier, sensordata.receiverMat);
         }
     }
-
-    // send sensor readings
-    for (auto const& [identifier, sensor] : sensorMap)
-    {
-        if (comThread->doesWriteSocketExist(identifier))
-        {
-            comThread->setWriteMatrix(identifier, sensordata.psMat);
-        }
-    }
-
-    // send wheel position readings
-    for (auto const& [identifier, wheelsensor] : wheelsensorMap)
-    {
-        if (comThread->doesWriteSocketExist(identifier))
-        {
-            comThread->setWriteMatrix(identifier, sensordata.wheelMat);
-        }
-    }
  
 //////////////////////////////////receiveFromCedar/////////////////////////////////////////////////////
-cv::Mat motorAttractor;
     for (auto const& [identifier, motors] : motorMap)
     {
         if (comThread->doesReadSocketExist(identifier))
@@ -77,19 +57,38 @@ cv::Mat motorAttractor;
             {
                 for (std::vector<webots::Motor*>::size_type i = 0; i < motors.size(); i++)
                 {
-                    motorAttractor = commandMatrix;
+                    cedardata.motorMat = commandMatrix;
                 }
             }
-            else if (comThread->isReadSocketConnected(identifier) && commandMatrix.rows != 42) //I know this is kinda random, but I cannot init a Matrix with -1 and I also want to make sure that serializing went okay
-            {
-                std::cout << "Trying to get: " << identifier << "attractor, but read a Matrix with " << commandMatrix.rows << " entries and we have only " << 1 << " attracor." << std::endl;
-            }
-            else{motorAttractor = cv::Mat::zeros(1,1,CV_32F);}
+            else{cedardata.motorMat = cv::Mat::zeros(1,1,CV_32F);}
         }
     }
-    float LEDCommand=0;
-    cedardata.motorMat = motorAttractor;
-    cedardata.LEDMat = LEDCommand;
+    
+    if (comThread->doesReadSocketExist("break"))
+    {
+      cv::Mat commandMatrix = comThread->getReadCommandMatrix("break");
+      if (commandMatrix.rows == 1)
+      {
+        cedardata.breakMat = commandMatrix;
+      }
+      else{cedardata.breakMat = cv::Mat::zeros(1,1,CV_32F);}
+    }
+    
+    for (auto const& [identifier, LEDs] : LEDMap)
+    {
+      if (comThread->doesReadSocketExist(identifier))
+      {
+        cv::Mat commandMatrix = comThread->getReadCommandMatrix(identifier);
+        if (commandMatrix.rows == 4)
+        {
+          for (std::vector<webots::LED*>::size_type i = 0; i < LEDs.size(); i++)
+          {
+            cedardata.LEDMat = commandMatrix;
+          }
+        }
+        else{cedardata.LEDMat = cv::Mat::zeros(8,1,CV_32F);}
+       }
+      }
 }
 
 
@@ -109,17 +108,6 @@ void E_Puck::readSensorValues()
         cv::mixChannels(&pictureMat, 1, &cameraPicture, 1, from_to, 3); // kill the alpha channel
     }
     sensordata.cameraMat = cameraPicture;
-
-    // read receiver value
-    //const void* receiverReading;
-    //for (auto const& [identifier, receiver] : recMap)
-    //{
-    //    receiverReading = receiver->getData();
-    //    receiver->nextPacket();
-    //}
-    float receiverReading = 0.0;
-    cv::Mat recMat(1, 1, CV_32F, receiverReading);
-    sensordata.receiverMat = recMat;
     
     // read distance sensor value
     std::vector<float> sensorReadings;
@@ -135,21 +123,24 @@ void E_Puck::readSensorValues()
     {
       sensordata.psMat.at<float>(i) = sensorReadings[i];
     }
+    
 
-    //read wheel position value
-    std::vector<float> wheelPosition;
-    for (auto const& [identifier, sensor] : wheelsensorMap)
+    // read receiver value
+    for (auto const& [identifier, receiver] : recMap)
     {
-      for (std::vector<webots::PositionSensor*>::size_type i=0; i< sensor.size(); i++)
-      {
-        wheelPosition.push_back(sensor[i]->getValue());
-      }
+        sensordata.receiverMat = cv::Mat::zeros(10,1,CV_32F);
+        if (receiver->getQueueLength() > 0)
+        {
+          std::string packet((const char *)receiver->getData());
+          float pitch(std::stof(packet));
+          sensordata.receiverMat.at<float>((int)pitch) = 1.;
+          receiver->nextPacket();
+        }
+        std::cout << sensordata.receiverMat << std::endl;
     }
-    cv::Mat wheelMat(wheelPosition);
-    sensordata.wheelMat = wheelMat;
 }
 
-void E_Puck::getMotorCommands()
+void E_Puck::applyMotorCommands()
 {
     int width = 0;
     float fov = 0;
@@ -158,16 +149,20 @@ void E_Puck::getMotorCommands()
         width = camera->getWidth();
         fov = camera->getFov();
     }
-    //float psi_target = ((float)width / 2 - cedardata.motorMat.at<float>(0)) * 2 * fov / width;
-    float psi_target = 0;
-    //std::cout << psi_target/M_PI*360 << std::endl;
-    motordata.psi_targetMat = psi_target;
-}
-
-void E_Puck::applyMotorCommands()
-{
+    
+    float psi_target = ((float)width / 2 - cedardata.motorMat.at<float>(0)) * 2 * fov / width;
     float v[2] = {0, 0};
-    MovementAttractor(E_Puck::sensordata.psMat, motordata.psi_targetMat, v);
+    
+    if (cedardata.breakMat.at<float>(0) >= 0.75)
+    {
+      v[0] = 0;
+      v[1] =0;
+    }
+    else if (cedardata.breakMat.at<float>(0) < 0.75)
+    {
+      MovementAttractor(E_Puck::sensordata.psMat, psi_target, v);
+    }
+    
     for (auto const& [identifier, motor] : motorMap)
     {
       for (std::vector<webots::DistanceSensor*>::size_type i=0; i<motor.size(); i++)
@@ -176,13 +171,42 @@ void E_Puck::applyMotorCommands()
         motor[i]->setVelocity(v[i]);
       }
     }
+    
+    for (auto const& [identifier, led] : LEDMap)
+    {
+      for (std::vector<webots::LED*>::size_type i=0; i<led.size()/2; i++)
+      {
+        led[2*i]->set(cedardata.LEDMat.at<float>(i) >= 0.75);
+        led[2*i+1]->set(cedardata.LEDMat.at<float>(i) >= 0.75);
+      }
+    }
 }
 
 void E_Puck::initFromConfig()
 {
-    // init distance sensors
-        std::cout << "Initialize distance Sensors!" << std::endl;
+    // init LEDs
+        std::cout << "Initialize LEDs!" << std::endl;
         // get sensors from webots
+        std::vector<webots::LED*> LEDs;
+        LEDs.push_back(getLED("led0"));
+        LEDs.push_back(getLED("led1"));
+        LEDs.push_back(getLED("led2"));
+        LEDs.push_back(getLED("led3"));
+        LEDs.push_back(getLED("led4"));
+        LEDs.push_back(getLED("led5"));
+        LEDs.push_back(getLED("led6"));
+        LEDs.push_back(getLED("led7"));
+        
+        std::string LEDIdentifier = "LED";
+        LEDMap[LEDIdentifier] = LEDs;
+        if (configMap.find("LED_port_rcv") != configMap.end())
+        {
+            comThread->addReadSocket(LEDIdentifier, std::stoi(configMap["LED_port_rcv"]), std::stoi(configMap["read_buffer_size"]));
+        }
+        
+    // init distance Sensors
+        std::cout << "Initialize distance Sensors!" << std::endl;
+        // get LEDs from webots
         std::vector<webots::DistanceSensor*> distance_sensors;
         distance_sensors.push_back(getDistanceSensor("ps0"));
         distance_sensors.push_back(getDistanceSensor("ps1"));
@@ -203,7 +227,6 @@ void E_Puck::initFromConfig()
           }
         }
 
-
     // init motors 
         std::cout << "Initialize Motors!" << std::endl;
         // get motors from webots
@@ -218,21 +241,10 @@ void E_Puck::initFromConfig()
         {
             comThread->addReadSocket(MotorIdentifier, std::stoi(configMap["motor_port_rcv"]), std::stoi(configMap["read_buffer_size"]));
         }
-        // get motor sensors from webots
-        std::vector<webots::PositionSensor*> motorsensors;
-        motorsensors.push_back(getPositionSensor("left wheel sensor"));
-        motorsensors.push_back(getPositionSensor("right wheel sensor"));
-        // add to motor sensor map
-        std::string WheelSensorIdentifier = "wheelsensors";
-        wheelsensorMap[WheelSensorIdentifier] = motorsensors;
-        for (auto const& [identifier, sensor] : wheelsensorMap)
+        if (configMap.find("break_port_rcv") != configMap.end())
         {
-          for (std::vector<webots::DistanceSensor*>::size_type i=0; i < sensor.size(); i++)
-          {
-            sensor[i]->enable(this->getBasicTimeStep());
-          }
+          comThread->addReadSocket("break", std::stoi(configMap["break_port_rcv"]), std::stoi(configMap["read_buffer_size"]));
         }
-
 
     // init camera
         std::cout << "Initialize Camera!" << std::endl;
@@ -259,6 +271,11 @@ void E_Puck::initFromConfig()
         if (configMap.find("mic_port_snd") != configMap.end())
         {
             comThread->addWriteSocket(micIdentifier, std::stoi(configMap["mic_port_snd"]), configMap["cedar_ip"]);
+        }
+        for (auto const& [identifier, rec] : recMap)
+        {
+          rec->setChannel(2);
+          rec->enable(this->getBasicTimeStep());
         }
         // get emitter from webots and add to emitter map
         std::string emIdentifier = "emitter";

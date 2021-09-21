@@ -25,7 +25,7 @@ void transform2Distance(std::vector<float>& sensorReadings)
 float f_target(float psi_target)
 {
     // forcelet parameter
-    float lambda = 5.;
+    float lambda = 2.;
 
     return -lambda * sin(psi_target);
 }

@@ -1550,7 +1550,7 @@
             "sizes": [
                 "52"
             ],
-            "amplitude": "0.040000000000000001",
+            "amplitude": "0.025000000000000001",
             "centers": [
                 "26"
             ],
@@ -1580,8 +1580,24 @@
                 "threshold": "0",
                 "beta": "100"
             },
-            "global inhibition": "0",
-            "lateral kernels": "",
+            "global inhibition": "-0.01",
+            "lateral kernels": {
+                "cedar.aux.kernel.Gauss": {
+                    "dimensionality": "1",
+                    "anchor": [
+                        "0"
+                    ],
+                    "amplitude": "1",
+                    "sigmas": [
+                        "3"
+                    ],
+                    "normalize": "true",
+                    "shifts": [
+                        "0"
+                    ],
+                    "limit": "5"
+                }
+            },
             "lateral kernel convolution": {
                 "borderType": "Zero",
                 "mode": "Same",
@@ -2576,7 +2592,7 @@
         "cedar.processing.sources.TCPReader": {
             "name": "Microphone TCP Reader",
             "buffer size": "32768",
-            "port": "50000",
+            "port": "50021",
             "packet timeout (ms)": "500",
             "message timeout (ms)": "50",
             "accept interval (steps)": "30",
@@ -2989,16 +3005,6 @@
         },
         "cedar.processing.Projection": {
             "name": "Projection 14",
-            "dimension mapping": {
-                "0": "4294967295"
-            },
-            "output dimensionality": "0",
-            "output dimension sizes": "",
-            "compression type": "MAXIMUM",
-            "comments": ""
-        },
-        "cedar.processing.Projection": {
-            "name": "Projection 15",
             "dimension mapping": {
                 "0": "4294967295"
             },
@@ -3519,7 +3525,7 @@
             "name": "Space To Rate Code",
             "tau": "0.1 s",
             "lowerLimit": "0",
-            "upperLimit": "50",
+            "upperLimit": "52",
             "jump to fixed point": "false",
             "use cyclic mean": "false",
             "comments": ""
@@ -3618,6 +3624,21 @@
             "comments": ""
         },
         "cedar.processing.StaticGain": {
+            "name": "Static Gain 15",
+            "gain factor": "-1",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 16",
+            "gain factor": "-1",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 17",
+            "gain factor": "-1",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
             "name": "Static Gain 2",
             "gain factor": "6",
             "comments": ""
@@ -3660,7 +3681,7 @@
         "cedar.processing.sinks.TCPWriter": {
             "name": "TCP-Break-Writer",
             "port": "50031",
-            "ip_adress": "127.0.0.1",
+            "ip_adress": "134.147.176.105",
             "timeout (ms)": "3000",
             "max timeouts": "50",
             "send interval (timesteps)": "1",
@@ -3669,7 +3690,7 @@
         "cedar.processing.sinks.TCPWriter": {
             "name": "TCP-LED-Writer",
             "port": "50032",
-            "ip_adress": "127.0.0.1",
+            "ip_adress": "134.147.176.105",
             "timeout (ms)": "3000",
             "max timeouts": "50",
             "send interval (timesteps)": "1",
@@ -3678,7 +3699,7 @@
         "cedar.processing.sinks.TCPWriter": {
             "name": "TCP-Motor-Writer",
             "port": "50030",
-            "ip_adress": "127.0.0.1",
+            "ip_adress": "134.147.176.105",
             "timeout (ms)": "3000",
             "max timeouts": "50",
             "send interval (timesteps)": "1",
@@ -5172,14 +5193,6 @@
             "target": "TCP-Motor-Writer.input"
         },
         {
-            "source": "Distance-matching-Field.sigmoided activation",
-            "target": "Projection 15.input"
-        },
-        {
-            "source": "Projection 15.output",
-            "target": "TCP-Break-Writer.input"
-        },
-        {
             "source": "LED-Field.sigmoided activation",
             "target": "TCP-LED-Writer.input"
         },
@@ -5282,6 +5295,34 @@
         {
             "source": "Microphone TCP Reader.output",
             "target": "Static Gain 4.input"
+        },
+        {
+            "source": "Projection 10.output",
+            "target": "TCP-Break-Writer.input"
+        },
+        {
+            "source": "CoS-Node9.sigmoided activation",
+            "target": "Static Gain 15.input"
+        },
+        {
+            "source": "Static Gain 15.output",
+            "target": "Action-Intention-Field.input"
+        },
+        {
+            "source": "CoS-Node10.sigmoided activation",
+            "target": "Static Gain 16.input"
+        },
+        {
+            "source": "Static Gain 16.output",
+            "target": "Action-Intention-Field.input"
+        },
+        {
+            "source": "CoS-Node11.sigmoided activation",
+            "target": "Static Gain 17.input"
+        },
+        {
+            "source": "Static Gain 17.output",
+            "target": "Action-Intention-Field.input"
         }
     ],
     "name": "element",
@@ -5988,15 +6029,6 @@
         },
         {
             "type": "step",
-            "step": "Projection 15",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "-2954",
-            "positionY": "1232"
-        },
-        {
-            "type": "step",
             "step": "Projection 2",
             "display style": "ICON_ONLY",
             "width": "40",
@@ -6240,6 +6272,33 @@
         },
         {
             "type": "step",
+            "step": "Static Gain 15",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-2184",
+            "positionY": "1162"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 16",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-1750",
+            "positionY": "1162"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 17",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-1302",
+            "positionY": "1162"
+        },
+        {
+            "type": "step",
             "step": "Static Gain 2",
             "display style": "ICON_ONLY",
             "width": "40",
@@ -6365,11 +6424,11 @@
         }
     ],
     "ui view": {
-        "ScrollBarX": "-806",
-        "ScrollBarY": "257",
-        "SliderPosX": "-806",
-        "SliderPosY": "257",
-        "Zoom": "0.40000000000000002"
+        "ScrollBarX": "-2062",
+        "ScrollBarY": "573",
+        "SliderPosX": "-2062",
+        "SliderPosY": "573",
+        "Zoom": "0.66000000000000003"
     },
     "ui generic": {
         "group": "element",
