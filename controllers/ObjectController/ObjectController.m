@@ -12,13 +12,15 @@ Object = ObjectClass();
 % set box color, transparency and cue status
 Object.set_color([1 0 0], 1.);
 Object.sound = 'TestSound.wav';
-cue = 1;
+cue = 0;
 
 while wb_robot_step(TIME_STEP) ~= -1
-  if cue 
-  cue = 0;
-  wb_speaker_play_sound(Object.speaker, Object.speaker, Object.sound, 1, 1, 0, 0);
   tic
+  if cue 
+    cue = 0;
+    toc
+    wb_speaker_play_sound(Object.speaker, Object.speaker, Object.sound, 1, 1, 0, 0);
+    tic
   end
   Object.step();
 end

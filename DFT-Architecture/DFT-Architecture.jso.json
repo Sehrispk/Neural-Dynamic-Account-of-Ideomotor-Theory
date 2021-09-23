@@ -1550,7 +1550,7 @@
             "sizes": [
                 "52"
             ],
-            "amplitude": "0.025000000000000001",
+            "amplitude": "0.029999999999999999",
             "centers": [
                 "26"
             ],
@@ -2355,12 +2355,13 @@
             "discrete metric (workaround)": "false",
             "update stepIcon according to output": "true",
             "threshold for updating the stepIcon": "0.80000000000000004",
-            "dimensionality": "1",
+            "dimensionality": "2",
             "sizes": [
-                "4"
+                "4",
+                "3"
             ],
             "time scale": "40",
-            "resting level": "-0.75",
+            "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -2380,16 +2381,19 @@
                 "alternate even kernel center": "false"
             },
             "noise correlation kernel": {
-                "dimensionality": "1",
+                "dimensionality": "2",
                 "anchor": [
+                    "0",
                     "0"
                 ],
                 "amplitude": "0",
                 "sigmas": [
+                    "3",
                     "3"
                 ],
                 "normalize": "true",
                 "shifts": [
+                    "0",
                     "0"
                 ],
                 "limit": "5"
@@ -2976,11 +2980,14 @@
         "cedar.processing.Projection": {
             "name": "Projection 11",
             "dimension mapping": {
-                "0": "4294967295"
+                "0": "1"
             },
-            "output dimensionality": "0",
-            "output dimension sizes": "",
-            "compression type": "MAXIMUM",
+            "output dimensionality": "2",
+            "output dimension sizes": [
+                "4",
+                "3"
+            ],
+            "compression type": "SUM",
             "comments": ""
         },
         "cedar.processing.Projection": {
@@ -3011,6 +3018,58 @@
             "output dimensionality": "0",
             "output dimension sizes": "",
             "compression type": "MAXIMUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
+            "name": "Projection 15",
+            "dimension mapping": {
+                "0": "0"
+            },
+            "output dimensionality": "2",
+            "output dimension sizes": [
+                "4",
+                "3"
+            ],
+            "compression type": "SUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
+            "name": "Projection 16",
+            "dimension mapping": {
+                "0": "0"
+            },
+            "output dimensionality": "2",
+            "output dimension sizes": [
+                "4",
+                "3"
+            ],
+            "compression type": "SUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
+            "name": "Projection 17",
+            "dimension mapping": {
+                "0": "0"
+            },
+            "output dimensionality": "2",
+            "output dimension sizes": [
+                "4",
+                "3"
+            ],
+            "compression type": "SUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
+            "name": "Projection 18",
+            "dimension mapping": {
+                "0": "0"
+            },
+            "output dimensionality": "2",
+            "output dimension sizes": [
+                "4",
+                "3"
+            ],
+            "compression type": "SUM",
             "comments": ""
         },
         "cedar.processing.Projection": {
@@ -3681,7 +3740,7 @@
         "cedar.processing.sinks.TCPWriter": {
             "name": "TCP-Break-Writer",
             "port": "50031",
-            "ip_adress": "134.147.176.105",
+            "ip_adress": "10.0.2.15",
             "timeout (ms)": "3000",
             "max timeouts": "50",
             "send interval (timesteps)": "1",
@@ -3690,7 +3749,7 @@
         "cedar.processing.sinks.TCPWriter": {
             "name": "TCP-LED-Writer",
             "port": "50032",
-            "ip_adress": "134.147.176.105",
+            "ip_adress": "10.0.2.15",
             "timeout (ms)": "3000",
             "max timeouts": "50",
             "send interval (timesteps)": "1",
@@ -3699,7 +3758,7 @@
         "cedar.processing.sinks.TCPWriter": {
             "name": "TCP-Motor-Writer",
             "port": "50030",
-            "ip_adress": "134.147.176.105",
+            "ip_adress": "10.0.2.15",
             "timeout (ms)": "3000",
             "max timeouts": "50",
             "send interval (timesteps)": "1",
@@ -5077,34 +5136,6 @@
             "target": "Static Gain 14.input"
         },
         {
-            "source": "Action-Intention-Field.sigmoided activation",
-            "target": "Projection 11.input"
-        },
-        {
-            "source": "Projection 11.output",
-            "target": "Intention-In-Action-Node1.input"
-        },
-        {
-            "source": "Projection 11.output",
-            "target": "Precondition-Node4.input"
-        },
-        {
-            "source": "Projection 11.output",
-            "target": "Intention-In-Action-Node2.input"
-        },
-        {
-            "source": "Projection 11.output",
-            "target": "Precondition-Node5.input"
-        },
-        {
-            "source": "Projection 11.output",
-            "target": "Intention-In-Action-Node3.input"
-        },
-        {
-            "source": "Projection 11.output",
-            "target": "Precondition-Node6.input"
-        },
-        {
             "source": "Static Gain 14.output",
             "target": "Intention-In-Action-Node4.input"
         },
@@ -5265,22 +5296,6 @@
             "target": "LEDs3u4.input"
         },
         {
-            "source": "LEDs1u2.sigmoided activation",
-            "target": "LED-Field.input"
-        },
-        {
-            "source": "LEDs5u6.sigmoided activation",
-            "target": "LED-Field.input"
-        },
-        {
-            "source": "LEDs3u4.sigmoided activation",
-            "target": "LED-Field.input"
-        },
-        {
-            "source": "LEDs7u8.sigmoided activation",
-            "target": "LED-Field.input"
-        },
-        {
             "source": "Distance-Matching-Field.Gauss input",
             "target": "Convolution 2.matrix"
         },
@@ -5323,11 +5338,123 @@
         {
             "source": "Static Gain 17.output",
             "target": "Action-Intention-Field.input"
+        },
+        {
+            "source": "Projection 12.output",
+            "target": "Intention-In-Action-Node2.input"
+        },
+        {
+            "source": "Projection 12.output",
+            "target": "Intention-In-Action-Node3.input"
+        },
+        {
+            "source": "Projection 13.output",
+            "target": "Intention-In-Action-Node2.input"
+        },
+        {
+            "source": "Projection 13.output",
+            "target": "Intention-In-Action-Node3.input"
+        },
+        {
+            "source": "Projection 14.output",
+            "target": "Intention-In-Action-Node2.input"
+        },
+        {
+            "source": "Projection 14.output",
+            "target": "Intention-In-Action-Node3.input"
+        },
+        {
+            "source": "Projection 12.output",
+            "target": "Precondition-Node4.input"
+        },
+        {
+            "source": "Projection 12.output",
+            "target": "Precondition-Node5.input"
+        },
+        {
+            "source": "Projection 12.output",
+            "target": "Precondition-Node6.input"
+        },
+        {
+            "source": "Projection 13.output",
+            "target": "Precondition-Node4.input"
+        },
+        {
+            "source": "Projection 13.output",
+            "target": "Precondition-Node5.input"
+        },
+        {
+            "source": "Projection 13.output",
+            "target": "Precondition-Node6.input"
+        },
+        {
+            "source": "Projection 14.output",
+            "target": "Precondition-Node4.input"
+        },
+        {
+            "source": "Projection 14.output",
+            "target": "Precondition-Node5.input"
+        },
+        {
+            "source": "Projection 14.output",
+            "target": "Precondition-Node6.input"
+        },
+        {
+            "source": "Projection 12.output",
+            "target": "Intention-In-Action-Node1.input"
+        },
+        {
+            "source": "Projection 13.output",
+            "target": "Intention-In-Action-Node1.input"
+        },
+        {
+            "source": "Projection 14.output",
+            "target": "Intention-In-Action-Node1.input"
+        },
+        {
+            "source": "Action-Intention-Field.sigmoided activation",
+            "target": "Projection 11.input"
+        },
+        {
+            "source": "Projection 11.output",
+            "target": "LED-Field.input"
+        },
+        {
+            "source": "LEDs1u2.sigmoided activation",
+            "target": "Projection 15.input"
+        },
+        {
+            "source": "Projection 15.output",
+            "target": "LED-Field.input"
+        },
+        {
+            "source": "LEDs3u4.sigmoided activation",
+            "target": "Projection 16.input"
+        },
+        {
+            "source": "LEDs5u6.sigmoided activation",
+            "target": "Projection 17.input"
+        },
+        {
+            "source": "LEDs7u8.sigmoided activation",
+            "target": "Projection 18.input"
+        },
+        {
+            "source": "Projection 16.output",
+            "target": "LED-Field.input"
+        },
+        {
+            "source": "Projection 17.output",
+            "target": "LED-Field.input"
+        },
+        {
+            "source": "Projection 18.output",
+            "target": "LED-Field.input"
         }
     ],
     "name": "element",
     "connectors": "",
-    "is looped": "true",
+    "is looped": "false",
     "time factor": "1",
     "ui": [
         {
@@ -5358,8 +5485,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-2604",
-            "positionY": "644"
+            "positionX": "-2086",
+            "positionY": "448"
         },
         {
             "type": "step",
@@ -5367,8 +5494,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "658",
-            "positionY": "1050"
+            "positionX": "518",
+            "positionY": "966"
         },
         {
             "type": "step",
@@ -5997,8 +6124,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-2464",
-            "positionY": "728"
+            "positionX": "-2100",
+            "positionY": "1736"
         },
         {
             "type": "step",
@@ -6029,12 +6156,48 @@
         },
         {
             "type": "step",
+            "step": "Projection 15",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-2100",
+            "positionY": "1792"
+        },
+        {
+            "type": "step",
+            "step": "Projection 16",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-2100",
+            "positionY": "1848"
+        },
+        {
+            "type": "step",
+            "step": "Projection 17",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-2100",
+            "positionY": "1904"
+        },
+        {
+            "type": "step",
+            "step": "Projection 18",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-2100",
+            "positionY": "1960"
+        },
+        {
+            "type": "step",
             "step": "Projection 2",
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "84",
-            "positionY": "882"
+            "positionX": "140",
+            "positionY": "868"
         },
         {
             "type": "step",
@@ -6312,7 +6475,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "210",
+            "positionX": "252",
             "positionY": "644"
         },
         {
@@ -6357,8 +6520,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "560",
-            "positionY": "1050"
+            "positionX": "434",
+            "positionY": "966"
         },
         {
             "type": "step",
@@ -6411,7 +6574,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "154",
+            "positionX": "196",
             "positionY": "714"
         },
         {
@@ -6424,11 +6587,11 @@
         }
     ],
     "ui view": {
-        "ScrollBarX": "-2062",
-        "ScrollBarY": "573",
-        "SliderPosX": "-2062",
-        "SliderPosY": "573",
-        "Zoom": "0.66000000000000003"
+        "ScrollBarX": "0",
+        "ScrollBarY": "-104",
+        "SliderPosX": "0",
+        "SliderPosY": "-104",
+        "Zoom": "0.19"
     },
     "ui generic": {
         "group": "element",

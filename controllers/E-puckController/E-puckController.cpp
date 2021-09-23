@@ -22,26 +22,27 @@ using namespace webots;
 
 
 int main(int argc, char **argv) {
-    // load configuration file
-    std::string configFileName = "default_config";
-    if (argc > 1) //read configuration
-    {
+  // load configuration file
+  std::string configFileName = "default_config";
+  if (argc > 1) //read configuration
+  {
     configFileName = std::string(argv[1]);
-    }
+  }
 
-    // create E_Puck instance
-    E_Puck* epuck = new E_Puck(configFileName);
+  // create E_Puck instance
+  E_Puck* epuck = new E_Puck(configFileName);
 
-    // get the time step of the current world.
-    int timeStep = (int)epuck->getBasicTimeStep();
+  // get the time step of the current world.
+  int timeStep = (int)epuck->getBasicTimeStep();
 
-    // main loop
-    while (epuck->step(timeStep) != -1) {
-        epuck->update();
-    }
+  // main loop
+  while (epuck->step(timeStep) != -1) 
+  {
+    epuck->update();
+  }
 
-    // clean up
-    delete epuck;
+  // clean up
+  delete epuck;
 
-    return 0;
+  return 0;
 }
