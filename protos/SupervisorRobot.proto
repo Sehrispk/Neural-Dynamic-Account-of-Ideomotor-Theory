@@ -1,0 +1,29 @@
+#VRML_SIM R2021b utf8
+#Supervisor Proto
+
+PROTO SupervisorRobot [
+   field SFVec3f    translation 0 0.4 0
+   field SFString name	"Supervisor"
+   field SFBool supervisor TRUE
+   field SFString controller "SupervisorController"
+]
+{
+   Robot {
+    translation IS translation
+      children [
+         Shape {
+            appearance PBRAppearance {
+	       baseColor 0.333333 0.341176 0.32549
+	       roughness 1
+            }
+            geometry Sphere {
+	    radius 0.01
+	    subdivision 2
+      }
+    }
+  ]
+  controller IS controller
+  supervisor IS supervisor
+  name IS name
+  }
+}

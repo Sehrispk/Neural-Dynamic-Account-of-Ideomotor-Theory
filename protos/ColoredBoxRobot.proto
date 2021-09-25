@@ -1,11 +1,12 @@
 #VRML_SIM R2021a utf8
-#box robot für ideomotor inversion scenarion
-#kann sound abspielen und verschwinden
+#box robot for ideomotor inversion scenarion
 
 PROTO ColoredBoxRobot [
   field SFVec3f    translation  0 0 0
   field SFRotation rotation     0 1 0 0
-  field SFString controller "void"
+  field SFString controller "ObjectController"
+  field MFString           controllerArgs               []
+  field SFString name "ColoredObject"
 ]
 {
   Robot {
@@ -71,5 +72,7 @@ PROTO ColoredBoxRobot [
     ]
     boundingObject USE back
     controller IS controller
+    controllerArgs IS controllerArgs
+    name IS name
   }
 }
