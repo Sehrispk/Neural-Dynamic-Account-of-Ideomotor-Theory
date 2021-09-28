@@ -9,14 +9,14 @@
         "cedar.dynamics.NeuralField": {
             "name": "Action-Attention-Field",
             "activation as output": "false",
-            "discrete metric (workaround)": "false",
+            "discrete metric (workaround)": "true",
             "update stepIcon according to output": "true",
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "1",
             "sizes": [
                 "3"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-2.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -72,14 +72,14 @@
         "cedar.dynamics.NeuralField": {
             "name": "Action-Belief-Field",
             "activation as output": "false",
-            "discrete metric (workaround)": "false",
+            "discrete metric (workaround)": "true",
             "update stepIcon according to output": "true",
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "1",
             "sizes": [
                 "3"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -135,7 +135,7 @@
         "cedar.dynamics.NeuralField": {
             "name": "Action-Intention-Field",
             "activation as output": "false",
-            "discrete metric (workaround)": "false",
+            "discrete metric (workaround)": "true",
             "update stepIcon according to output": "true",
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "1",
@@ -193,14 +193,14 @@
         "cedar.dynamics.NeuralField": {
             "name": "Action-Introception-Field",
             "activation as output": "false",
-            "discrete metric (workaround)": "false",
+            "discrete metric (workaround)": "true",
             "update stepIcon according to output": "true",
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "1",
             "sizes": [
                 "3"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-5",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -240,7 +240,7 @@
         "cedar.dynamics.NeuralField": {
             "name": "Action-Selection-Field",
             "activation as output": "false",
-            "discrete metric (workaround)": "false",
+            "discrete metric (workaround)": "true",
             "update stepIcon according to output": "true",
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "1",
@@ -478,7 +478,7 @@
             "sizes": [
                 "3"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -525,7 +525,7 @@
             "sizes": [
                 "3"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -572,7 +572,7 @@
             "sizes": [
                 "3"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -620,7 +620,7 @@
                 "50",
                 "52"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -668,7 +668,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -782,7 +782,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -827,7 +827,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -1040,7 +1040,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -1085,7 +1085,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -1130,7 +1130,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -1175,7 +1175,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -1291,7 +1291,7 @@
             "sizes": [
                 "50"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-2.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -1354,7 +1354,7 @@
             "sizes": [
                 "50"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -1418,7 +1418,7 @@
                 "50",
                 "52"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-5",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -1481,7 +1481,7 @@
             "sizes": [
                 "50"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-2.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -1570,7 +1570,7 @@
             "sizes": [
                 "52"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -1623,51 +1623,6 @@
             },
             "comments": ""
         },
-        "cedar.dynamics.NeuralField": {
-            "name": "Event-Detection",
-            "activation as output": "false",
-            "discrete metric (workaround)": "false",
-            "update stepIcon according to output": "true",
-            "threshold for updating the stepIcon": "0.80000000000000004",
-            "dimensionality": "0",
-            "sizes": "",
-            "time scale": "40",
-            "resting level": "-2.75",
-            "input noise gain": "0.10000000000000001",
-            "multiplicative noise (input)": "false",
-            "multiplicative noise (activation)": "false",
-            "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
-            },
-            "global inhibition": "0",
-            "lateral kernels": "",
-            "lateral kernel convolution": {
-                "borderType": "Zero",
-                "mode": "Same",
-                "engine": {
-                    "type": "cedar.aux.conv.OpenCV"
-                },
-                "alternate even kernel center": "false"
-            },
-            "noise correlation kernel": {
-                "dimensionality": "1",
-                "anchor": [
-                    "0"
-                ],
-                "amplitude": "0",
-                "sigmas": [
-                    "3"
-                ],
-                "normalize": "true",
-                "shifts": [
-                    "0"
-                ],
-                "limit": "5"
-            },
-            "comments": ""
-        },
         "cedar.processing.sources.Boost": {
             "name": "Exploration-Boost",
             "strength": "6",
@@ -1683,7 +1638,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-5",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -1863,7 +1818,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -1908,7 +1863,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -1953,7 +1908,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -1998,7 +1953,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -2043,7 +1998,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -2088,7 +2043,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -2360,7 +2315,7 @@
                 "4",
                 "3"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -2410,7 +2365,7 @@
             "sizes": [
                 "4"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -2457,7 +2412,7 @@
             "sizes": [
                 "4"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -2504,7 +2459,7 @@
             "sizes": [
                 "4"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -2551,7 +2506,7 @@
             "sizes": [
                 "4"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -2612,7 +2567,7 @@
             "sizes": [
                 "52"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -2825,7 +2780,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -2870,7 +2825,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -2915,7 +2870,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -3083,36 +3038,6 @@
                 "50"
             ],
             "compression type": "SUM",
-            "comments": ""
-        },
-        "cedar.processing.Projection": {
-            "name": "Projection 3",
-            "dimension mapping": {
-                "0": "4294967295"
-            },
-            "output dimensionality": "0",
-            "output dimension sizes": "",
-            "compression type": "MAXIMUM",
-            "comments": ""
-        },
-        "cedar.processing.Projection": {
-            "name": "Projection 4",
-            "dimension mapping": {
-                "0": "4294967295"
-            },
-            "output dimensionality": "0",
-            "output dimension sizes": "",
-            "compression type": "MAXIMUM",
-            "comments": ""
-        },
-        "cedar.processing.Projection": {
-            "name": "Projection 5",
-            "dimension mapping": {
-                "0": "4294967295"
-            },
-            "output dimensionality": "0",
-            "output dimension sizes": "",
-            "compression type": "MAXIMUM",
             "comments": ""
         },
         "cedar.processing.Projection": {
@@ -3307,7 +3232,7 @@
             "sizes": [
                 "10"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-2.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -3370,7 +3295,7 @@
             "sizes": [
                 "10"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -3433,7 +3358,7 @@
             "sizes": [
                 "10"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-5",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -3480,7 +3405,7 @@
             "sizes": [
                 "10"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-5",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -3615,7 +3540,7 @@
             "sizes": [
                 "52"
             ],
-            "time scale": "40",
+            "time scale": "100",
             "resting level": "-2.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -3740,7 +3665,7 @@
         "cedar.processing.sinks.TCPWriter": {
             "name": "TCP-Break-Writer",
             "port": "50031",
-            "ip_adress": "10.0.2.15",
+            "ip_adress": "134.147.176.105",
             "timeout (ms)": "3000",
             "max timeouts": "50",
             "send interval (timesteps)": "1",
@@ -3749,7 +3674,7 @@
         "cedar.processing.sinks.TCPWriter": {
             "name": "TCP-LED-Writer",
             "port": "50032",
-            "ip_adress": "10.0.2.15",
+            "ip_adress": "134.147.176.105",
             "timeout (ms)": "3000",
             "max timeouts": "50",
             "send interval (timesteps)": "1",
@@ -3758,18 +3683,10 @@
         "cedar.processing.sinks.TCPWriter": {
             "name": "TCP-Motor-Writer",
             "port": "50030",
-            "ip_adress": "10.0.2.15",
+            "ip_adress": "134.147.176.105",
             "timeout (ms)": "3000",
             "max timeouts": "50",
             "send interval (timesteps)": "1",
-            "comments": ""
-        },
-        "cedar.processing.TransferFunction": {
-            "name": "Transfer Function",
-            "function": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "3.5"
-            },
             "comments": ""
         },
         "cedar.processing.TransferFunction": {
@@ -3777,6 +3694,14 @@
             "function": {
                 "type": "cedar.aux.math.HeavisideSigmoid",
                 "threshold": "1"
+            },
+            "comments": ""
+        },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function 3",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "4"
             },
             "comments": ""
         }
@@ -3792,7 +3717,6 @@
             "loop mode": "real deltaT",
             "start with all": "true",
             "listeners": [
-                "Event-Detection",
                 "Belief-Node",
                 "Exploration-Goal-Node",
                 "Sound-Goal-Field",
@@ -4776,52 +4700,8 @@
             "target": "Projection.input"
         },
         {
-            "source": "Projection.output",
-            "target": "Transfer Function.input"
-        },
-        {
-            "source": "Transfer Function.sigmoided output",
-            "target": "Static Gain 2.input"
-        },
-        {
             "source": "Projection 2.output",
             "target": "Transfer Function 2.input"
-        },
-        {
-            "source": "Color-Attention-Field.sigmoided activation",
-            "target": "Projection 3.input"
-        },
-        {
-            "source": "Sound-Attention-Field.sigmoided activation",
-            "target": "Projection 4.input"
-        },
-        {
-            "source": "Projection 3.output",
-            "target": "Event-Detection.input"
-        },
-        {
-            "source": "Projection 4.output",
-            "target": "Event-Detection.input"
-        },
-        {
-            "source": "Event-Detection.sigmoided activation",
-            "target": "Belief-Node.input"
-        },
-        {
-            "source": "Color-Attention-Field.sigmoided activation",
-            "target": "Color-Belief-Field.input"
-        },
-        {
-            "source": "Sound-Attention-Field.sigmoided activation",
-            "target": "Sound-Belief-Field.input"
-        },
-        {
-            "source": "Event-Detection.sigmoided activation",
-            "target": "Color-Belief-Field.input"
-        },
-        {
-            "source": "Event-Detection.sigmoided activation",
-            "target": "Sound-Belief-Field.input"
         },
         {
             "source": "Color-Belief-Field.sigmoided activation",
@@ -4830,10 +4710,6 @@
         {
             "source": "Belief-Node.sigmoided activation",
             "target": "Reward Hebb Trace 2.read out trigger"
-        },
-        {
-            "source": "Event-Detection.sigmoided activation",
-            "target": "Reward Hebb Trace 2.reward signal"
         },
         {
             "source": "Reward Hebb Trace 2.trigger output",
@@ -4852,10 +4728,6 @@
             "target": "Reward Hebb Trace.read out trigger"
         },
         {
-            "source": "Event-Detection.sigmoided activation",
-            "target": "Reward Hebb Trace.reward signal"
-        },
-        {
             "source": "Reward Hebb Trace.trigger output",
             "target": "Sound-Belief-Field.input"
         },
@@ -4864,24 +4736,8 @@
             "target": "Belief-Node.input"
         },
         {
-            "source": "Action-Attention-Field.sigmoided activation",
-            "target": "Projection 5.input"
-        },
-        {
-            "source": "Projection 5.output",
-            "target": "Event-Detection.input"
-        },
-        {
-            "source": "Action-Attention-Field.sigmoided activation",
-            "target": "Action-Belief-Field.input"
-        },
-        {
             "source": "Action-Belief-Field.sigmoided activation",
             "target": "Reward Hebb Trace 3.association input"
-        },
-        {
-            "source": "Event-Detection.sigmoided activation",
-            "target": "Reward Hebb Trace 3.reward signal"
         },
         {
             "source": "Belief-Node.sigmoided activation",
@@ -4894,14 +4750,6 @@
         {
             "source": "Reward Hebb Trace 3.reciprocal output",
             "target": "Belief-Node.input"
-        },
-        {
-            "source": "Event-Detection.sigmoided activation",
-            "target": "Action-Belief-Field.input"
-        },
-        {
-            "source": "Sound-Goal-Field.sigmoided activation",
-            "target": "Sound-Belief-Field.input"
         },
         {
             "source": "Goal-Boost.Gauss input",
@@ -4950,18 +4798,6 @@
         {
             "source": "Action-Selection-Field.sigmoided activation",
             "target": "Action-Attention-Field.input"
-        },
-        {
-            "source": "Sound-Belief-Field.sigmoided activation",
-            "target": "Sound-Action-Field.input"
-        },
-        {
-            "source": "Color-Belief-Field.sigmoided activation",
-            "target": "Color-Action-Field.input"
-        },
-        {
-            "source": "Action-Belief-Field.sigmoided activation",
-            "target": "Action-Selection-Field.input"
         },
         {
             "source": "Exploration-Goal-Node.sigmoided activation",
@@ -5450,11 +5286,19 @@
         {
             "source": "Projection 18.output",
             "target": "LED-Field.input"
+        },
+        {
+            "source": "Projection.output",
+            "target": "Transfer Function 3.input"
+        },
+        {
+            "source": "Transfer Function 3.sigmoided output",
+            "target": "Static Gain 2.input"
         }
     ],
     "name": "element",
     "connectors": "",
-    "is looped": "false",
+    "is looped": "true",
     "time factor": "1",
     "ui": [
         {
@@ -5467,7 +5311,7 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "756",
+            "positionX": "658",
             "positionY": "546"
         },
         {
@@ -5576,7 +5420,7 @@
             "width": "124",
             "height": "40",
             "positionX": "686",
-            "positionY": "-350"
+            "positionY": "-336"
         },
         {
             "type": "step",
@@ -5775,15 +5619,6 @@
             "height": "40",
             "positionX": "-3094",
             "positionY": "1092"
-        },
-        {
-            "type": "step",
-            "step": "Event-Detection",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "476",
-            "positionY": "84"
         },
         {
             "type": "step",
@@ -6201,33 +6036,6 @@
         },
         {
             "type": "step",
-            "step": "Projection 3",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "406",
-            "positionY": "448"
-        },
-        {
-            "type": "step",
-            "step": "Projection 4",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "602",
-            "positionY": "448"
-        },
-        {
-            "type": "step",
-            "step": "Projection 5",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "896",
-            "positionY": "462"
-        },
-        {
-            "type": "step",
             "step": "Projection 6",
             "display style": "ICON_ONLY",
             "width": "40",
@@ -6313,8 +6121,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "468.49315068493144",
-            "positionY": "546.57534246575335"
+            "positionX": "462",
+            "positionY": "546"
         },
         {
             "type": "step",
@@ -6323,7 +6131,7 @@
             "width": "124",
             "height": "40",
             "positionX": "168",
-            "positionY": "-448"
+            "positionY": "-434"
         },
         {
             "type": "step",
@@ -6502,7 +6310,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "700",
+            "positionX": "602",
             "positionY": "644"
         },
         {
@@ -6561,21 +6369,21 @@
         },
         {
             "type": "step",
-            "step": "Transfer Function",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "-98.630136986301309",
-            "positionY": "1368.4931506849314"
-        },
-        {
-            "type": "step",
             "step": "Transfer Function 2",
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
             "positionX": "196",
             "positionY": "714"
+        },
+        {
+            "type": "step",
+            "step": "Transfer Function 3",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-98",
+            "positionY": "1372"
         },
         {
             "type": "trigger",
@@ -6587,11 +6395,11 @@
         }
     ],
     "ui view": {
-        "ScrollBarX": "0",
-        "ScrollBarY": "-104",
-        "SliderPosX": "0",
-        "SliderPosY": "-104",
-        "Zoom": "0.19"
+        "ScrollBarX": "-931",
+        "ScrollBarY": "-266",
+        "SliderPosX": "-931",
+        "SliderPosY": "-266",
+        "Zoom": "0.48999999999999999"
     },
     "ui generic": {
         "group": "element",

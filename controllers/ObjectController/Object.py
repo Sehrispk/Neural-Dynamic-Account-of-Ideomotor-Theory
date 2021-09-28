@@ -6,6 +6,7 @@ from controller import Emitter
 class Object(Robot):
     def __init__(self, contingencies):
         self.color = [0, 0, 0]
+        self.sound = ""
         self.contingencies = contingencies
         
         super().__init__()
