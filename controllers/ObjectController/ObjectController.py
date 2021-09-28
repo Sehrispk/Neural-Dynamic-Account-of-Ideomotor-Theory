@@ -4,9 +4,11 @@
 #  from controller import Robot, Motor, DistanceSensor
 from Object import Object
 import sys
-
+import json
 # create the Robot instance.
-object = Object(sys.argv)
+f = open('../../worlds/world-config.json')
+config = json.load(f)
+object = Object(config['Contingencies'][sys.argv[4]])
 
 # get the time step of the current world.
 timestep = int(object.getBasicTimeStep())

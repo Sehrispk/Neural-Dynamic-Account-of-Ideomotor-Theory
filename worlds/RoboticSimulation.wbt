@@ -14,10 +14,5 @@ TexturedBackgroundLight {
 }
 RectangleArena {
 }
-E-puck {
-  translation -0.0146166 0 0.25272
-  rotation 0 1 0 -0.261795307179586
-  controller "E-puckController"
-}
 SupervisorRobot {
 }

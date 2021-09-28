@@ -2,29 +2,34 @@
 
 # You may need to import some classes of the controller module. Ex:
 #  from controller import Robot, Motor, DistanceSensor
+import json
 from controller import Robot
 from controller import Supervisor
 # create the Robot instance.
 #robot = Robot()
 
 # get the time step of the current world.
-#timestep = int(robot.getBasicTimeStep())
 supervisor = Supervisor()
+timestep = int(supervisor.getBasicTimeStep())
 children = supervisor.getRoot().getField('children')
 
-position = '0.16 0.05 -0.34'
-name = "\"box1\""
-controllerArgs = '["255", "0", "0", "contingency 1"]'
-args = 'translation {}, name {}, controllerArgs {}'.format(position, name, controllerArgs)
-RobotString1 = 'ColoredBoxRobot {{{}}}'.format(args)
-children.importMFNodeFromString(-1, RobotString1)
+f = open('../../worlds/world-config.json')
+config = json.load(f)
 
-position = '0.1 0.05 -0.34'
-name = "\"box2\""
-controllerArgs = '["0", "255", "0", "contingency 1"]'
-args = 'translation {}, name {}, controllerArgs {}'.format(position, name, controllerArgs)
-RobotString2 = 'ColoredBoxRobot {{{}}}'.format(args)
-children.importMFNodeFromString(-1, RobotString2)
+for robot in config['Robots']:
+    controllerArgs = '['
+    args = ''
+    for key,value in robot['controllerArgs'].items():
+        controllerArgs += '\"{}\", '.format(value)
+    controllerArgs += ']'
+    for key,value in robot.items():
+        if key != 'controllerArgs' and key != 'type':
+            args += key + ' ' + value + ', '
+    args += 'controllerArgs ' + str(controllerArgs)
+    
+    robotString = '{0} {{{1}}}'.format(robot['type'], args)
+    children.importMFNodeFromString(-1, robotString)
+    
 # You should insert a getDevice-like function in order to get the
 # instance of a device of the robot. Something like:
 #  motor = robot.getDevice('motorname')
