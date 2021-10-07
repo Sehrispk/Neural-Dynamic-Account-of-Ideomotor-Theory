@@ -25,7 +25,7 @@ void transform2Distance(cv::Mat sensorReadings)
 float f_target(float psi_target)
 {
   // target forcelet
-  float lambda = 2.;
+  float lambda = 1.;
   return -lambda * sin(psi_target);
 }
 

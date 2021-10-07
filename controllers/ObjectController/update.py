@@ -8,7 +8,8 @@ def update(self):
             action = str(list(self.receiver.getData())[0])
             if self.contingencies[action] != "0":
                 self.sound = self.contingencies[action]
-                self.speaker.playSound(self.speaker, self.speaker, self.sound+"Hz.wav", 1, 1, 0, False)
+                if not self.speaker.isSoundPlaying(""):
+                    self.speaker.playSound(self.speaker, self.speaker, self.sound+"Hz.wav", 1, 1, 0, False)
                 
         self.receiver.nextPacket()
         

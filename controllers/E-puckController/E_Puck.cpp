@@ -68,11 +68,11 @@ void E_Puck::ComThreadUpdate()
   if (comThread->doesReadSocketExist("LEDs"))
   {
     cv::Mat commandMatrix = comThread->getReadCommandMatrix("LEDs");
-    if (commandMatrix.rows == 4 && commandMatrix.cols == 3)
+    if (commandMatrix.rows == 3)
     {
         cedardata.LEDMat = commandMatrix;
     }
-    else{cedardata.LEDMat = cv::Mat::zeros(4, 3,CV_32F);}
+    else{cedardata.LEDMat = cv::Mat::zeros(3, 1,CV_32F);}
   }
 }
 
@@ -102,7 +102,7 @@ void E_Puck::readSensorValues()
     std::string packet((const char *)rec->getData());
     float pitch(std::stof(packet));
     std::cout << pitch << " Hz" << std::endl;
-    sensordata.receiverMat.at<float>((int)(pitch/100)) = 1.;
+    sensordata.receiverMat.at<float>((int)(pitch/100)-1) = 1.;
     rec->nextPacket();
   }
 }
@@ -115,8 +115,6 @@ void E_Puck::applyMotorCommands()
   float psi_target = ((float)width / 2 - cedardata.motorMat.at<float>(0)) * 2 * fov / width;
   
   float v[2] = {0, 0};
-  float LED_status[4] = {0, 0, 0, 0};
-  float action_status[3] = {0, 0, 0};
   
   if (cedardata.breakMat.at<float>(0) < 0.75)
   {
@@ -127,29 +125,19 @@ void E_Puck::applyMotorCommands()
   {
     motors[i]->setVelocity(v[i]);
   }
-  
-  for (int col = 0; col < cedardata.LEDMat.cols; col++)
-  {
-    for (int row = 0; row < cedardata.LEDMat.rows; row++)
-    {
-      LED_status[row] += cedardata.LEDMat.at<float>(row, col);
-      action_status[col] += cedardata.LEDMat.at<float>(row, col);
-    }
-  }
 
   for (int i = 0; i < cedardata.LEDMat.rows; i++)
   {
-      LEDs[2*i]->set((LED_status[i]>=0.75));
-      LEDs[2*i+1]->set((LED_status[i]>=0.75));
-  }
-
-  for (int i = 0; i < cedardata.LEDMat.cols; i++)
-  {
-    if (action_status[i] >= 4 * 0.75)
+    if (cedardata.LEDMat.at<float>(i) >= 0.6)
     {
       int msg[1] = {i};
       em->send((const int *)msg, 4);
     }
+  }
+  
+  for (std::vector<webots::LED*>::size_type i = 0; i < LEDs.size(); i++)
+  {
+    LEDs[i]->set((int)(2*cedardata.LEDMat.at<float>(i*cedardata.LEDMat.rows / LEDs.size())));
   }
 }
 
