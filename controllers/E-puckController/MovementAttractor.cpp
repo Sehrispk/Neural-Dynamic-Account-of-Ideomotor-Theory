@@ -11,7 +11,7 @@ void transform2Distance(cv::Mat sensorReadings)
   {
     sensorReadings.at<float>(i) = (sensorReadings.at<float>(i) - min_mean[i]) / (max_mean - min_mean[i]);
     sensorReadings.at<float>(i) = std::min(std::max(sensorReadings.at<float>(i), 0.0f),1.0f);
-    if (sensorReadings.at<float>(i) <= 0)
+    if (sensorReadings.at<float>(i) == 0)
     {
       sensorReadings.at<float>(i) = 70;
     }
@@ -25,7 +25,7 @@ void transform2Distance(cv::Mat sensorReadings)
 float f_target(float psi_target)
 {
   // target forcelet
-  float lambda = 1.;
+  float lambda = 0.8;
   return -lambda * sin(psi_target);
 }
 
@@ -51,22 +51,23 @@ void MovementAttractor(cv::Mat ps_distance, float psi_target, float v[])
   float f_obs[8];
   // parameter
   float max_v = 6.279;
-  float v_0 = 0.2 * max_v;
+  float v_0 = 0.25* max_v;
 
   // berechne forcelets
   f_obstacle(ps_distance, f_obs);
   float f_sum = 0;
   for (int i=0; i<8; i++)
   {
-    f_sum += f_obs[i];
+    f_sum += f_obs[i];  
+    std::cout << M_PI  << std::endl;
   }
-  float orientation_change = (f_target(psi_target)) + f_sum;
+  float orientation_change = f_target(psi_target) + f_sum;
   orientation_change = std::min(std::max(orientation_change, -max_v), max_v);
 
   // beschr�nke �nderung auf m�gliche geschwindigkeiten
   if (abs(v_0 - orientation_change) > max_v || abs(v_0 + orientation_change) > max_v)
   {
-    v[0] = ((orientation_change > 0) - (orientation_change < 0)) * max_v;
+    v[0] = ((orientation_change > 0) - (orientation_change < 0)) * max_v/2;
     v[1] = -v[0];
   }
   else
