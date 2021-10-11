@@ -718,20 +718,6 @@
             },
             "comments": ""
         },
-        "cedar.processing.sources.Boost": {
-            "name": "Boost",
-            "strength": "1",
-            "active": "false",
-            "deactivate on reset": "false",
-            "comments": ""
-        },
-        "cedar.processing.sources.Boost": {
-            "name": "Boost 2",
-            "strength": "1",
-            "active": "true",
-            "deactivate on reset": "false",
-            "comments": ""
-        },
         "cedar.processing.sources.TCPReader": {
             "name": "Camera TCP Reader",
             "buffer size": "32768",
@@ -1381,7 +1367,7 @@
             "global inhibition": "0",
             "lateral kernels": "",
             "lateral kernel convolution": {
-                "borderType": "Zero",
+                "borderType": "Cyclic",
                 "mode": "Same",
                 "engine": {
                     "type": "cedar.aux.conv.OpenCV"
@@ -2041,12 +2027,12 @@
             "sizes": [
                 "50"
             ],
-            "amplitude": "3",
+            "amplitude": "12",
             "centers": [
-                "44"
+                "45"
             ],
             "sigma": [
-                "0.10000000000000001"
+                "1"
             ],
             "cyclic": "false",
             "comments": ""
@@ -4191,6 +4177,30 @@
             },
             "comments": ""
         },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function 7",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0.90000000000000002"
+            },
+            "comments": ""
+        },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function 8",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0.90000000000000002"
+            },
+            "comments": ""
+        },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function 9",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0.90000000000000002"
+            },
+            "comments": ""
+        },
         "cedar.processing.VectorToScalars": {
             "name": "Vector To Scalars",
             "number of vector entries": "5",
@@ -5125,10 +5135,6 @@
             "target": "Transfer Function 5.input"
         },
         {
-            "source": "Transfer Function 2.sigmoided output",
-            "target": "Reward Hebb Trace 16.association input"
-        },
-        {
             "source": "Reward Hebb Trace 16.trigger output",
             "target": "Color-Role-Field.input"
         },
@@ -5149,18 +5155,6 @@
             "target": "Component Multiply.operands"
         },
         {
-            "source": "k.sum",
-            "target": "Component Multiply 2.operands"
-        },
-        {
-            "source": "sum.sum",
-            "target": "Component Multiply 2.operands"
-        },
-        {
-            "source": "Reward Hebb Trace 16.reciprocal output",
-            "target": "Component Multiply 2.operands"
-        },
-        {
             "source": "Component Multiply 2.product",
             "target": "Belief-Node 6.input"
         },
@@ -5171,30 +5165,6 @@
         {
             "source": "Static Gain 34.output",
             "target": "Belief-Node 6.input"
-        },
-        {
-            "source": "Reward Hebb Trace 18.reciprocal output",
-            "target": "Component Multiply 3.operands"
-        },
-        {
-            "source": "Reward Hebb Trace 17.reciprocal output",
-            "target": "Component Multiply 4.operands"
-        },
-        {
-            "source": "k.sum",
-            "target": "Component Multiply 3.operands"
-        },
-        {
-            "source": "k.sum",
-            "target": "Component Multiply 4.operands"
-        },
-        {
-            "source": "sum.sum",
-            "target": "Component Multiply 3.operands"
-        },
-        {
-            "source": "sum.sum",
-            "target": "Component Multiply 4.operands"
         },
         {
             "source": "Component Multiply 3.product",
@@ -5273,20 +5243,44 @@
             "target": "Belief-Node 6.input"
         },
         {
-            "source": "Boost.boost",
-            "target": "Reward Hebb Trace 16.reward signal"
+            "source": "sum.sum",
+            "target": "Component Multiply 2.operands"
         },
         {
-            "source": "Boost.boost",
-            "target": "Reward Hebb Trace 18.reward signal"
+            "source": "sum.sum",
+            "target": "Component Multiply 3.operands"
         },
         {
-            "source": "Boost.boost",
-            "target": "Reward Hebb Trace 17.reward signal"
+            "source": "sum.sum",
+            "target": "Component Multiply 4.operands"
         },
         {
-            "source": "Boost 2.boost",
-            "target": "Commit-Node 6.input"
+            "source": "Transfer Function 2.sigmoided output",
+            "target": "Reward Hebb Trace 16.association input"
+        },
+        {
+            "source": "Reward Hebb Trace 16.reciprocal output",
+            "target": "Transfer Function 7.input"
+        },
+        {
+            "source": "Transfer Function 7.sigmoided output",
+            "target": "Component Multiply 2.operands"
+        },
+        {
+            "source": "Reward Hebb Trace 17.reciprocal output",
+            "target": "Transfer Function 9.input"
+        },
+        {
+            "source": "Transfer Function 9.sigmoided output",
+            "target": "Component Multiply 4.operands"
+        },
+        {
+            "source": "Reward Hebb Trace 18.reciprocal output",
+            "target": "Transfer Function 8.input"
+        },
+        {
+            "source": "Transfer Function 8.sigmoided output",
+            "target": "Component Multiply 3.operands"
         }
     ],
     "name": "element",
@@ -5423,24 +5417,6 @@
             "height": "40",
             "positionX": "1064",
             "positionY": "-1456"
-        },
-        {
-            "type": "step",
-            "step": "Boost",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "406",
-            "positionY": "-1456"
-        },
-        {
-            "type": "step",
-            "step": "Boost 2",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "1526",
-            "positionY": "-1582"
         },
         {
             "type": "step",
@@ -5691,7 +5667,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "840",
+            "positionX": "896",
             "positionY": "-1526"
         },
         {
@@ -5700,7 +5676,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "840",
+            "positionX": "896",
             "positionY": "-1456"
         },
         {
@@ -5709,7 +5685,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "840",
+            "positionX": "896",
             "positionY": "-1386"
         },
         {
@@ -5871,7 +5847,7 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1274",
+            "positionX": "1288",
             "positionY": "-1176"
         },
         {
@@ -6893,6 +6869,33 @@
         },
         {
             "type": "step",
+            "step": "Transfer Function 7",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "826",
+            "positionY": "-1526"
+        },
+        {
+            "type": "step",
+            "step": "Transfer Function 8",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "826",
+            "positionY": "-1456"
+        },
+        {
+            "type": "step",
+            "step": "Transfer Function 9",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "826",
+            "positionY": "-1386"
+        },
+        {
+            "type": "step",
             "step": "Vector To Scalars",
             "display style": "ICON_ONLY",
             "width": "40",
@@ -6955,11 +6958,11 @@
         }
     ],
     "ui view": {
-        "ScrollBarX": "278",
-        "ScrollBarY": "-1508",
-        "SliderPosX": "278",
-        "SliderPosY": "-1508",
-        "Zoom": "0.87"
+        "ScrollBarX": "-547",
+        "ScrollBarY": "-483",
+        "SliderPosX": "-547",
+        "SliderPosY": "-483",
+        "Zoom": "0.5"
     },
     "ui generic": {
         "group": "element",
