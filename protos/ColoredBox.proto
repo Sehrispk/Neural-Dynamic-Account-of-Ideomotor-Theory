@@ -28,7 +28,7 @@ Robot {
           }
           geometry Cylinder {
             height 0.1
-            radius 0.08
+            radius 0.05
           }
         }
       ]

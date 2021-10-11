@@ -1,5 +1,7 @@
 dir
-.cache
 __pycache__
-.bak
-.data
+*.bak*
+*.data
+*.cache
+*.wbproj
+

@@ -16,39 +16,3 @@ RectangleArena {
 }
 SupervisorRobot {
 }
-Robot {
-  translation 0.673589 0.05 -1.51188
-  children [
-    Display {
-      children [
-        DEF disp Shape {
-          appearance Appearance {
-            material Material {
-              diffuseColor 0 0 0
-              emissiveColor 1 1 1
-              shininess 0
-            }
-            texture ImageTexture {
-              url [
-                "/local/webots/resources/images/missing_texture.png"
-              ]
-              filtering 0
-            }
-          }
-          geometry Cylinder {
-            height 0.1
-            radius 0.08
-          }
-        }
-      ]
-    }
-    Emitter {
-    }
-    Receiver {
-    }
-    Speaker {
-    }
-  ]
-  name "ColoredBox"
-  boundingObject USE disp
-}

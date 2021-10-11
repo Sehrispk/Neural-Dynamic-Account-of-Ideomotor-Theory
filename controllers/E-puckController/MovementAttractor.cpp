@@ -11,7 +11,7 @@ void transform2Distance(cv::Mat sensorReadings)
   {
     sensorReadings.at<float>(i) = (sensorReadings.at<float>(i) - min_mean[i]) / (max_mean - min_mean[i]);
     sensorReadings.at<float>(i) = std::min(std::max(sensorReadings.at<float>(i), 0.0f),1.0f);
-    if (sensorReadings.at<float>(i) == 0)
+    if (sensorReadings.at<float>(i) <= 0)
     {
       sensorReadings.at<float>(i) = 70;
     }
@@ -34,10 +34,10 @@ void f_obstacle(cv::Mat ps_distance, float forcelets[])
   // forcelet parameter
   float sigma = M_PI / 3;
   float beta_1 = 15.;
-  float beta_2 = 10.;
+  float beta_2 = 12.;
   // [psi0, psi1, psi2, ...]
   float psi_obs[8] = {1.27 - M_PI / 2, 0.77 - M_PI / 2, 0. - M_PI / 2, 5.21 - M_PI / 2, 4.21 - M_PI / 2, M_PI - M_PI / 2, 2.37 - M_PI / 2, 1.87 - M_PI / 2};
-
+  
   float lambda[8];
   for (int i = 0; i<8; i++)
   {
@@ -59,7 +59,6 @@ void MovementAttractor(cv::Mat ps_distance, float psi_target, float v[])
   for (int i=0; i<8; i++)
   {
     f_sum += f_obs[i];  
-    std::cout << M_PI  << std::endl;
   }
   float orientation_change = f_target(psi_target) + f_sum;
   orientation_change = std::min(std::max(orientation_change, -max_v), max_v);
