@@ -449,6 +449,62 @@
             "comments": ""
         },
         "cedar.dynamics.NeuralField": {
+            "name": "Belief-Network-Node",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "0",
+            "sizes": "",
+            "time scale": "100",
+            "resting level": "-0.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": {
+                "cedar.aux.kernel.Box": {
+                    "dimensionality": "1",
+                    "anchor": [
+                        "0"
+                    ],
+                    "amplitude": "1",
+                    "widths": [
+                        "1"
+                    ]
+                }
+            },
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
             "name": "Belief-Node 1",
             "activation as output": "false",
             "discrete metric (workaround)": "false",
@@ -462,9 +518,8 @@
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0"
             },
             "global inhibition": "0",
             "lateral kernels": "",
@@ -507,9 +562,8 @@
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0"
             },
             "global inhibition": "0",
             "lateral kernels": "",
@@ -552,9 +606,8 @@
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0"
             },
             "global inhibition": "0",
             "lateral kernels": "",
@@ -597,9 +650,8 @@
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0"
             },
             "global inhibition": "0",
             "lateral kernels": "",
@@ -642,9 +694,8 @@
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0"
             },
             "global inhibition": "0",
             "lateral kernels": "",
@@ -687,9 +738,8 @@
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0"
             },
             "global inhibition": "0",
             "lateral kernels": "",
@@ -716,6 +766,13 @@
                 ],
                 "limit": "5"
             },
+            "comments": ""
+        },
+        "cedar.processing.sources.Boost": {
+            "name": "Boost",
+            "strength": "1",
+            "active": "true",
+            "deactivate on reset": "false",
             "comments": ""
         },
         "cedar.processing.sources.TCPReader": {
@@ -1509,6 +1566,51 @@
             "comments": ""
         },
         "cedar.dynamics.NeuralField": {
+            "name": "Commit Boost",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "0",
+            "sizes": "",
+            "time scale": "100",
+            "resting level": "-0.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
             "name": "Commit-Node 1",
             "activation as output": "false",
             "discrete metric (workaround)": "false",
@@ -1522,23 +1624,11 @@
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0"
             },
             "global inhibition": "0",
-            "lateral kernels": {
-                "cedar.aux.kernel.Box": {
-                    "dimensionality": "1",
-                    "anchor": [
-                        "0"
-                    ],
-                    "amplitude": "1",
-                    "widths": [
-                        "1"
-                    ]
-                }
-            },
+            "lateral kernels": "",
             "lateral kernel convolution": {
                 "borderType": "Zero",
                 "mode": "Same",
@@ -1578,23 +1668,11 @@
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0"
             },
             "global inhibition": "0",
-            "lateral kernels": {
-                "cedar.aux.kernel.Box": {
-                    "dimensionality": "1",
-                    "anchor": [
-                        "0"
-                    ],
-                    "amplitude": "1",
-                    "widths": [
-                        "1"
-                    ]
-                }
-            },
+            "lateral kernels": "",
             "lateral kernel convolution": {
                 "borderType": "Zero",
                 "mode": "Same",
@@ -1634,23 +1712,11 @@
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0"
             },
             "global inhibition": "0",
-            "lateral kernels": {
-                "cedar.aux.kernel.Box": {
-                    "dimensionality": "1",
-                    "anchor": [
-                        "0"
-                    ],
-                    "amplitude": "1",
-                    "widths": [
-                        "1"
-                    ]
-                }
-            },
+            "lateral kernels": "",
             "lateral kernel convolution": {
                 "borderType": "Zero",
                 "mode": "Same",
@@ -1690,23 +1756,11 @@
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0"
             },
             "global inhibition": "0",
-            "lateral kernels": {
-                "cedar.aux.kernel.Box": {
-                    "dimensionality": "1",
-                    "anchor": [
-                        "0"
-                    ],
-                    "amplitude": "1",
-                    "widths": [
-                        "1"
-                    ]
-                }
-            },
+            "lateral kernels": "",
             "lateral kernel convolution": {
                 "borderType": "Zero",
                 "mode": "Same",
@@ -1746,23 +1800,11 @@
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0"
             },
             "global inhibition": "0",
-            "lateral kernels": {
-                "cedar.aux.kernel.Box": {
-                    "dimensionality": "1",
-                    "anchor": [
-                        "0"
-                    ],
-                    "amplitude": "1",
-                    "widths": [
-                        "1"
-                    ]
-                }
-            },
+            "lateral kernels": "",
             "lateral kernel convolution": {
                 "borderType": "Zero",
                 "mode": "Same",
@@ -1802,23 +1844,11 @@
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0"
             },
             "global inhibition": "0",
-            "lateral kernels": {
-                "cedar.aux.kernel.Box": {
-                    "dimensionality": "1",
-                    "anchor": [
-                        "0"
-                    ],
-                    "amplitude": "1",
-                    "widths": [
-                        "1"
-                    ]
-                }
-            },
+            "lateral kernels": "",
             "lateral kernel convolution": {
                 "borderType": "Zero",
                 "mode": "Same",
@@ -1849,11 +1879,103 @@
             "comments": ""
         },
         "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 10",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 11",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 12",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 13",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 14",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 15",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 16",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 17",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 18",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 19",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
             "name": "Component Multiply 2",
             "comments": ""
         },
         "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 20",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 21",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 22",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 23",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 24",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 25",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 26",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 27",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 28",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 29",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
             "name": "Component Multiply 3",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 30",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 31",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 32",
             "comments": ""
         },
         "cedar.processing.ComponentMultiply": {
@@ -1862,6 +1984,22 @@
         },
         "cedar.processing.ComponentMultiply": {
             "name": "Component Multiply 5",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 6",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 7",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 8",
+            "comments": ""
+        },
+        "cedar.processing.ComponentMultiply": {
+            "name": "Component Multiply 9",
             "comments": ""
         },
         "cedar.processing.steps.Convolution": {
@@ -2022,54 +2160,6 @@
             "comments": ""
         },
         "cedar.processing.sources.GaussInput": {
-            "name": "Gauss Input",
-            "dimensionality": "1",
-            "sizes": [
-                "50"
-            ],
-            "amplitude": "12",
-            "centers": [
-                "45"
-            ],
-            "sigma": [
-                "1"
-            ],
-            "cyclic": "false",
-            "comments": ""
-        },
-        "cedar.processing.sources.GaussInput": {
-            "name": "Gauss Input 2",
-            "dimensionality": "1",
-            "sizes": [
-                "10"
-            ],
-            "amplitude": "3",
-            "centers": [
-                "9"
-            ],
-            "sigma": [
-                "0.10000000000000001"
-            ],
-            "cyclic": "false",
-            "comments": ""
-        },
-        "cedar.processing.sources.GaussInput": {
-            "name": "Gauss Input 3",
-            "dimensionality": "1",
-            "sizes": [
-                "5"
-            ],
-            "amplitude": "3",
-            "centers": [
-                "1"
-            ],
-            "sigma": [
-                "0.10000000000000001"
-            ],
-            "cyclic": "false",
-            "comments": ""
-        },
-        "cedar.processing.sources.GaussInput": {
             "name": "Goal-Boost",
             "dimensionality": "1",
             "sizes": [
@@ -2090,195 +2180,6 @@
             "strength": "5",
             "active": "false",
             "deactivate on reset": "false",
-            "comments": ""
-        },
-        "cedar.dynamics.HebbianConnection": {
-            "name": "Hebbian Connection",
-            "source dimension": "0",
-            "source sizes": "",
-            "target dimension": "0",
-            "target sizes": "",
-            "learning rate": "0.01",
-            "f": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0.5"
-            },
-            "g": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0.5"
-            },
-            "h": {
-                "type": "cedar.aux.math.LinearTransferFunction",
-                "factor": "1",
-                "offset": "0"
-            },
-            "fixed reward duration": "false",
-            "reward duration": "200",
-            "manual weights": "false",
-            "weight centers": "",
-            "weight sigmas": "",
-            "weight amplitude": "6",
-            "weight init value": "0",
-            "weight init noise": "0.001",
-            "comments": ""
-        },
-        "cedar.dynamics.HebbianConnection": {
-            "name": "Hebbian Connection 2",
-            "source dimension": "0",
-            "source sizes": "",
-            "target dimension": "2",
-            "target sizes": [
-                "50",
-                "50"
-            ],
-            "learning rate": "0.01",
-            "f": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0.5"
-            },
-            "g": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0.5"
-            },
-            "h": {
-                "type": "cedar.aux.math.LinearTransferFunction",
-                "factor": "1",
-                "offset": "0"
-            },
-            "fixed reward duration": "false",
-            "reward duration": "200",
-            "manual weights": "false",
-            "weight centers": [
-                "3",
-                "3"
-            ],
-            "weight sigmas": [
-                "3",
-                "3"
-            ],
-            "weight amplitude": "6",
-            "weight init value": "0",
-            "weight init noise": "0.001",
-            "comments": ""
-        },
-        "cedar.dynamics.HebbianConnection": {
-            "name": "Hebbian Connection 3",
-            "source dimension": "0",
-            "source sizes": "",
-            "target dimension": "0",
-            "target sizes": "",
-            "learning rate": "0.01",
-            "f": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0.5"
-            },
-            "g": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0.5"
-            },
-            "h": {
-                "type": "cedar.aux.math.LinearTransferFunction",
-                "factor": "1",
-                "offset": "0"
-            },
-            "fixed reward duration": "false",
-            "reward duration": "200",
-            "manual weights": "false",
-            "weight centers": "",
-            "weight sigmas": "",
-            "weight amplitude": "6",
-            "weight init value": "0",
-            "weight init noise": "0.001",
-            "comments": ""
-        },
-        "cedar.dynamics.HebbianConnection": {
-            "name": "Hebbian Connection 4",
-            "source dimension": "0",
-            "source sizes": "",
-            "target dimension": "0",
-            "target sizes": "",
-            "learning rate": "0.01",
-            "f": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0.5"
-            },
-            "g": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0.5"
-            },
-            "h": {
-                "type": "cedar.aux.math.LinearTransferFunction",
-                "factor": "1",
-                "offset": "0"
-            },
-            "fixed reward duration": "false",
-            "reward duration": "200",
-            "manual weights": "false",
-            "weight centers": "",
-            "weight sigmas": "",
-            "weight amplitude": "6",
-            "weight init value": "0",
-            "weight init noise": "0.001",
-            "comments": ""
-        },
-        "cedar.dynamics.HebbianConnection": {
-            "name": "Hebbian Connection 5",
-            "source dimension": "0",
-            "source sizes": "",
-            "target dimension": "0",
-            "target sizes": "",
-            "learning rate": "0.01",
-            "f": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0.5"
-            },
-            "g": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0.5"
-            },
-            "h": {
-                "type": "cedar.aux.math.LinearTransferFunction",
-                "factor": "1",
-                "offset": "0"
-            },
-            "fixed reward duration": "false",
-            "reward duration": "200",
-            "manual weights": "false",
-            "weight centers": "",
-            "weight sigmas": "",
-            "weight amplitude": "6",
-            "weight init value": "0",
-            "weight init noise": "0.001",
-            "comments": ""
-        },
-        "cedar.dynamics.HebbianConnection": {
-            "name": "Hebbian Connection 6",
-            "source dimension": "0",
-            "source sizes": "",
-            "target dimension": "0",
-            "target sizes": "",
-            "learning rate": "0.01",
-            "f": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0.5"
-            },
-            "g": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0.5"
-            },
-            "h": {
-                "type": "cedar.aux.math.LinearTransferFunction",
-                "factor": "1",
-                "offset": "0"
-            },
-            "fixed reward duration": "false",
-            "reward duration": "200",
-            "manual weights": "false",
-            "weight centers": "",
-            "weight sigmas": "",
-            "weight amplitude": "6",
-            "weight init value": "0",
-            "weight init noise": "0.001",
             "comments": ""
         },
         "cedar.processing.steps.HopfOscillatorRHS": {
@@ -2954,22 +2855,61 @@
             "upper limit": "255",
             "comments": ""
         },
+        "cedar.dynamics.NeuralField": {
+            "name": "Recruitment Boost",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "0",
+            "sizes": "",
+            "time scale": "600",
+            "resting level": "-0.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
         "cedar.proc.steps.RewardHebbTrace": {
             "name": "Reward Hebb Trace",
-            "association dimension": "1",
-            "association sizes": [
-                "50"
-            ],
+            "association dimension": "0",
+            "association sizes": "",
             "learning rate": "0.001",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
-            "weight centers": [
-                "3"
-            ],
-            "weight sigmas": [
-                "3"
-            ],
+            "weight centers": "",
+            "weight sigmas": "",
             "weight amplitude": "6",
             "reward threshold": "0.5",
             "reciprocal weight threshold": "0.5",
@@ -3175,6 +3115,28 @@
             "comments": ""
         },
         "cedar.proc.steps.RewardHebbTrace": {
+            "name": "Reward Hebb Trace 19",
+            "association dimension": "1",
+            "association sizes": [
+                "50"
+            ],
+            "learning rate": "0.001",
+            "fixed reward duration": "false",
+            "reward duration": "200",
+            "manual weights": "false",
+            "weight centers": [
+                "3"
+            ],
+            "weight sigmas": [
+                "3"
+            ],
+            "weight amplitude": "6",
+            "reward threshold": "0.5",
+            "reciprocal weight threshold": "0.5",
+            "require asso and trigger for learning": "false",
+            "comments": ""
+        },
+        "cedar.proc.steps.RewardHebbTrace": {
             "name": "Reward Hebb Trace 2",
             "association dimension": "1",
             "association sizes": [
@@ -3190,6 +3152,86 @@
             "weight sigmas": [
                 "3"
             ],
+            "weight amplitude": "6",
+            "reward threshold": "0.5",
+            "reciprocal weight threshold": "0.5",
+            "require asso and trigger for learning": "false",
+            "comments": ""
+        },
+        "cedar.proc.steps.RewardHebbTrace": {
+            "name": "Reward Hebb Trace 20",
+            "association dimension": "0",
+            "association sizes": "",
+            "learning rate": "0.001",
+            "fixed reward duration": "false",
+            "reward duration": "200",
+            "manual weights": "false",
+            "weight centers": "",
+            "weight sigmas": "",
+            "weight amplitude": "6",
+            "reward threshold": "0.5",
+            "reciprocal weight threshold": "0.5",
+            "require asso and trigger for learning": "false",
+            "comments": ""
+        },
+        "cedar.proc.steps.RewardHebbTrace": {
+            "name": "Reward Hebb Trace 21",
+            "association dimension": "0",
+            "association sizes": "",
+            "learning rate": "0.001",
+            "fixed reward duration": "false",
+            "reward duration": "200",
+            "manual weights": "false",
+            "weight centers": "",
+            "weight sigmas": "",
+            "weight amplitude": "6",
+            "reward threshold": "0.5",
+            "reciprocal weight threshold": "0.5",
+            "require asso and trigger for learning": "false",
+            "comments": ""
+        },
+        "cedar.proc.steps.RewardHebbTrace": {
+            "name": "Reward Hebb Trace 22",
+            "association dimension": "0",
+            "association sizes": "",
+            "learning rate": "0.001",
+            "fixed reward duration": "false",
+            "reward duration": "200",
+            "manual weights": "false",
+            "weight centers": "",
+            "weight sigmas": "",
+            "weight amplitude": "6",
+            "reward threshold": "0.5",
+            "reciprocal weight threshold": "0.5",
+            "require asso and trigger for learning": "false",
+            "comments": ""
+        },
+        "cedar.proc.steps.RewardHebbTrace": {
+            "name": "Reward Hebb Trace 23",
+            "association dimension": "0",
+            "association sizes": "",
+            "learning rate": "0.001",
+            "fixed reward duration": "false",
+            "reward duration": "200",
+            "manual weights": "false",
+            "weight centers": "",
+            "weight sigmas": "",
+            "weight amplitude": "6",
+            "reward threshold": "0.5",
+            "reciprocal weight threshold": "0.5",
+            "require asso and trigger for learning": "false",
+            "comments": ""
+        },
+        "cedar.proc.steps.RewardHebbTrace": {
+            "name": "Reward Hebb Trace 24",
+            "association dimension": "0",
+            "association sizes": "",
+            "learning rate": "0.001",
+            "fixed reward duration": "false",
+            "reward duration": "200",
+            "manual weights": "false",
+            "weight centers": "",
+            "weight sigmas": "",
             "weight amplitude": "6",
             "reward threshold": "0.5",
             "reciprocal weight threshold": "0.5",
@@ -3222,7 +3264,7 @@
             "name": "Reward Hebb Trace 4",
             "association dimension": "1",
             "association sizes": [
-                "10"
+                "50"
             ],
             "learning rate": "0.001",
             "fixed reward duration": "false",
@@ -3244,7 +3286,7 @@
             "name": "Reward Hebb Trace 5",
             "association dimension": "1",
             "association sizes": [
-                "50"
+                "10"
             ],
             "learning rate": "0.001",
             "fixed reward duration": "false",
@@ -3348,6 +3390,51 @@
             "reward threshold": "0.5",
             "reciprocal weight threshold": "0.5",
             "require asso and trigger for learning": "false",
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Reward-Node",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "0",
+            "sizes": "",
+            "time scale": "100",
+            "resting level": "-1.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
             "comments": ""
         },
         "cedar.processing.ScalarsToVector": {
@@ -3958,7 +4045,7 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 24",
-            "gain factor": "-1",
+            "gain factor": "-1.5",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -3968,7 +4055,7 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 26",
-            "gain factor": "-1",
+            "gain factor": "-1.5",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -3978,7 +4065,7 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 28",
-            "gain factor": "-1",
+            "gain factor": "-1.5",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -3988,12 +4075,12 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 3",
-            "gain factor": "-1",
+            "gain factor": "-1.5",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 30",
-            "gain factor": "-1",
+            "gain factor": "-1.5",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -4007,8 +4094,38 @@
             "comments": ""
         },
         "cedar.processing.StaticGain": {
+            "name": "Static Gain 33",
+            "gain factor": "-1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
             "name": "Static Gain 34",
             "gain factor": "-1",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 35",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 36",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 37",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 38",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 39",
+            "gain factor": "1.5",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -4017,13 +4134,148 @@
             "comments": ""
         },
         "cedar.processing.StaticGain": {
+            "name": "Static Gain 40",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 41",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 42",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 43",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 44",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 45",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 46",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 47",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 48",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 49",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
             "name": "Static Gain 5",
             "gain factor": "2",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
+            "name": "Static Gain 50",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 51",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 52",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 53",
+            "gain factor": "0.29999999999999999",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 54",
+            "gain factor": "0.29999999999999999",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 55",
+            "gain factor": "0.29999999999999999",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 56",
+            "gain factor": "0.29999999999999999",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 57",
+            "gain factor": "0.29999999999999999",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 58",
+            "gain factor": "0.29999999999999999",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 59",
+            "gain factor": "0.80000000000000004",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
             "name": "Static Gain 6",
             "gain factor": "2",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 60",
+            "gain factor": "2",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 61",
+            "gain factor": "0.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 62",
+            "gain factor": "0.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 63",
+            "gain factor": "0.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 64",
+            "gain factor": "0.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 65",
+            "gain factor": "0.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 66",
+            "gain factor": "0.5",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -4068,62 +4320,6 @@
             "send interval (timesteps)": "1",
             "comments": ""
         },
-        "cedar.dynamics.NeuralField": {
-            "name": "Task-Node",
-            "activation as output": "false",
-            "discrete metric (workaround)": "false",
-            "update stepIcon according to output": "true",
-            "threshold for updating the stepIcon": "0.80000000000000004",
-            "dimensionality": "0",
-            "sizes": "",
-            "time scale": "100",
-            "resting level": "-5",
-            "input noise gain": "0.10000000000000001",
-            "multiplicative noise (input)": "false",
-            "multiplicative noise (activation)": "false",
-            "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
-            },
-            "global inhibition": "0",
-            "lateral kernels": {
-                "cedar.aux.kernel.Box": {
-                    "dimensionality": "1",
-                    "anchor": [
-                        "0"
-                    ],
-                    "amplitude": "1",
-                    "widths": [
-                        "1"
-                    ]
-                }
-            },
-            "lateral kernel convolution": {
-                "borderType": "Zero",
-                "mode": "Same",
-                "engine": {
-                    "type": "cedar.aux.conv.OpenCV"
-                },
-                "alternate even kernel center": "false"
-            },
-            "noise correlation kernel": {
-                "dimensionality": "1",
-                "anchor": [
-                    "0"
-                ],
-                "amplitude": "0",
-                "sigmas": [
-                    "3"
-                ],
-                "normalize": "true",
-                "shifts": [
-                    "0"
-                ],
-                "limit": "5"
-            },
-            "comments": ""
-        },
         "cedar.processing.TransferFunction": {
             "name": "Transfer Function",
             "function": {
@@ -4134,11 +4330,122 @@
             "comments": ""
         },
         "cedar.processing.TransferFunction": {
-            "name": "Transfer Function 2",
+            "name": "Transfer Function 10",
             "function": {
-                "type": "cedar.aux.math.LinearTransferFunction",
-                "factor": "1.5",
-                "offset": "0"
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0.90000000000000002"
+            },
+            "comments": ""
+        },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function 11",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0.90000000000000002"
+            },
+            "comments": ""
+        },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function 12",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0.90000000000000002"
+            },
+            "comments": ""
+        },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function 14",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0.90000000000000002"
+            },
+            "comments": ""
+        },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function 15",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0.90000000000000002"
+            },
+            "comments": ""
+        },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function 16",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0.90000000000000002"
+            },
+            "comments": ""
+        },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function 18",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0.90000000000000002"
+            },
+            "comments": ""
+        },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function 19",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0.90000000000000002"
+            },
+            "comments": ""
+        },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function 20",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0.90000000000000002"
+            },
+            "comments": ""
+        },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function 22",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0.90000000000000002"
+            },
+            "comments": ""
+        },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function 23",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0.90000000000000002"
+            },
+            "comments": ""
+        },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function 24",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0.90000000000000002"
+            },
+            "comments": ""
+        },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function 26",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0.90000000000000002"
+            },
+            "comments": ""
+        },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function 27",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0.90000000000000002"
+            },
+            "comments": ""
+        },
+        "cedar.processing.TransferFunction": {
+            "name": "Transfer Function 28",
+            "function": {
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0.90000000000000002"
             },
             "comments": ""
         },
@@ -4147,33 +4454,6 @@
             "function": {
                 "type": "cedar.aux.math.HeavisideSigmoid",
                 "threshold": "4"
-            },
-            "comments": ""
-        },
-        "cedar.processing.TransferFunction": {
-            "name": "Transfer Function 4",
-            "function": {
-                "type": "cedar.aux.math.LinearTransferFunction",
-                "factor": "1.5",
-                "offset": "0"
-            },
-            "comments": ""
-        },
-        "cedar.processing.TransferFunction": {
-            "name": "Transfer Function 5",
-            "function": {
-                "type": "cedar.aux.math.LinearTransferFunction",
-                "factor": "1.5",
-                "offset": "0"
-            },
-            "comments": ""
-        },
-        "cedar.processing.TransferFunction": {
-            "name": "Transfer Function 6",
-            "function": {
-                "type": "cedar.aux.math.LinearTransferFunction",
-                "factor": "0.29999999999999999",
-                "offset": "0"
             },
             "comments": ""
         },
@@ -4303,31 +4583,21 @@
                 "Color-Change-Inhibition",
                 "Sound-Change-Inhibition",
                 "Action-Change-Inhibition",
-                "Reward Hebb Trace",
-                "Reward Hebb Trace 2",
-                "Reward Hebb Trace 3",
-                "Reward Hebb Trace 4",
                 "Belief-Node 2",
-                "Reward Hebb Trace 6",
                 "Commit-Node 2",
                 "Commit-Node 1",
-                "Task-Node",
-                "Hebbian Connection",
+                "Belief-Network-Node",
                 "Color-Role-Field",
                 "Sound-Role-Field",
                 "Action-Role-Field",
-                "Hebbian Connection 2",
-                "Reward Hebb Trace 5",
                 "Belief-Node 3",
                 "Reward Hebb Trace 7",
                 "Reward Hebb Trace 8",
                 "Commit-Node 3",
                 "Reward Hebb Trace 10",
-                "Hebbian Connection 3",
                 "Reward Hebb Trace 11",
                 "Reward Hebb Trace 12",
                 "Belief-Node 4",
-                "Hebbian Connection 4",
                 "Reward Hebb Trace 13",
                 "Commit-Node 4",
                 "Reward Hebb Trace 9",
@@ -4335,13 +4605,26 @@
                 "Commit-Node 5",
                 "Belief-Node 5",
                 "Reward Hebb Trace 15",
-                "Hebbian Connection 6",
-                "Hebbian Connection 5",
                 "Commit-Node 6",
                 "Belief-Node 6",
                 "Reward Hebb Trace 16",
                 "Reward Hebb Trace 17",
-                "Reward Hebb Trace 18"
+                "Reward Hebb Trace 18",
+                "Reward Hebb Trace 4",
+                "Reward Hebb Trace 5",
+                "Reward Hebb Trace 6",
+                "Reward Hebb Trace 19",
+                "Reward Hebb Trace 2",
+                "Reward Hebb Trace 3",
+                "Recruitment Boost",
+                "Commit Boost",
+                "Reward-Node",
+                "Reward Hebb Trace",
+                "Reward Hebb Trace 20",
+                "Reward Hebb Trace 21",
+                "Reward Hebb Trace 22",
+                "Reward Hebb Trace 23",
+                "Reward Hebb Trace 24"
             ]
         }
     },
@@ -5123,22 +5406,6 @@
             "target": "k.terms"
         },
         {
-            "source": "Color-Role-Field.sigmoided activation",
-            "target": "Transfer Function 2.input"
-        },
-        {
-            "source": "Sound-Role-Field.sigmoided activation",
-            "target": "Transfer Function 4.input"
-        },
-        {
-            "source": "Action-Role-Field.sigmoided activation",
-            "target": "Transfer Function 5.input"
-        },
-        {
-            "source": "Reward Hebb Trace 16.trigger output",
-            "target": "Color-Role-Field.input"
-        },
-        {
             "source": "x.vector",
             "target": "sum.terms"
         },
@@ -5175,30 +5442,6 @@
             "target": "Belief-Node 6.input"
         },
         {
-            "source": "Reward Hebb Trace 18.trigger output",
-            "target": "Sound-Role-Field.input"
-        },
-        {
-            "source": "Reward Hebb Trace 17.trigger output",
-            "target": "Action-Role-Field.input"
-        },
-        {
-            "source": "Transfer Function 4.sigmoided output",
-            "target": "Reward Hebb Trace 18.association input"
-        },
-        {
-            "source": "Transfer Function 5.sigmoided output",
-            "target": "Reward Hebb Trace 17.association input"
-        },
-        {
-            "source": "Gauss Input 2.Gauss input",
-            "target": "Sound-Role-Field.input"
-        },
-        {
-            "source": "Gauss Input 3.Gauss input",
-            "target": "Action-Role-Field.input"
-        },
-        {
             "source": "Belief-Node 6.sigmoided activation",
             "target": "Reward Hebb Trace 16.read out trigger"
         },
@@ -5209,18 +5452,6 @@
         {
             "source": "Belief-Node 6.sigmoided activation",
             "target": "Reward Hebb Trace 17.read out trigger"
-        },
-        {
-            "source": "Gauss Input.Gauss input",
-            "target": "Color-Role-Field.input"
-        },
-        {
-            "source": "Belief-Node 6.sigmoided activation",
-            "target": "Transfer Function 6.input"
-        },
-        {
-            "source": "Transfer Function 6.sigmoided output",
-            "target": "Commit-Node 6.input"
         },
         {
             "source": "Commit-Node 6.sigmoided activation",
@@ -5255,10 +5486,6 @@
             "target": "Component Multiply 4.operands"
         },
         {
-            "source": "Transfer Function 2.sigmoided output",
-            "target": "Reward Hebb Trace 16.association input"
-        },
-        {
             "source": "Reward Hebb Trace 16.reciprocal output",
             "target": "Transfer Function 7.input"
         },
@@ -5281,6 +5508,1206 @@
         {
             "source": "Transfer Function 8.sigmoided output",
             "target": "Component Multiply 3.operands"
+        },
+        {
+            "source": "Reward Hebb Trace 15.reciprocal output",
+            "target": "Transfer Function 10.input"
+        },
+        {
+            "source": "Reward Hebb Trace 9.reciprocal output",
+            "target": "Transfer Function 11.input"
+        },
+        {
+            "source": "Reward Hebb Trace 14.reciprocal output",
+            "target": "Transfer Function 12.input"
+        },
+        {
+            "source": "Transfer Function 12.sigmoided output",
+            "target": "Component Multiply 8.operands"
+        },
+        {
+            "source": "Transfer Function 11.sigmoided output",
+            "target": "Component Multiply 7.operands"
+        },
+        {
+            "source": "Transfer Function 10.sigmoided output",
+            "target": "Component Multiply 6.operands"
+        },
+        {
+            "source": "Component Multiply 6.product",
+            "target": "Belief-Node 5.input"
+        },
+        {
+            "source": "Component Multiply 7.product",
+            "target": "Belief-Node 5.input"
+        },
+        {
+            "source": "Component Multiply 8.product",
+            "target": "Belief-Node 5.input"
+        },
+        {
+            "source": "Belief-Node 5.sigmoided activation",
+            "target": "Reward Hebb Trace 9.read out trigger"
+        },
+        {
+            "source": "Belief-Node 5.sigmoided activation",
+            "target": "Reward Hebb Trace 15.read out trigger"
+        },
+        {
+            "source": "Belief-Node 5.sigmoided activation",
+            "target": "Reward Hebb Trace 14.read out trigger"
+        },
+        {
+            "source": "Commit-Node 5.sigmoided activation",
+            "target": "Component Multiply 9.operands"
+        },
+        {
+            "source": "j.vector",
+            "target": "Component Multiply 9.operands"
+        },
+        {
+            "source": "x.vector",
+            "target": "Component Multiply 9.operands"
+        },
+        {
+            "source": "Component Multiply 9.product",
+            "target": "Static Gain 31.input"
+        },
+        {
+            "source": "Static Gain 31.output",
+            "target": "Belief-Node 5.input"
+        },
+        {
+            "source": "Belief-Node 6.sigmoided activation",
+            "target": "Component Multiply 10.operands"
+        },
+        {
+            "source": "j.vector",
+            "target": "Component Multiply 10.operands"
+        },
+        {
+            "source": "Component Multiply 10.product",
+            "target": "Static Gain 30.input"
+        },
+        {
+            "source": "Static Gain 30.output",
+            "target": "Belief-Node 5.input"
+        },
+        {
+            "source": "Belief-Node 5.sigmoided activation",
+            "target": "Component Multiply 11.operands"
+        },
+        {
+            "source": "Component Multiply 11.product",
+            "target": "Static Gain 33.input"
+        },
+        {
+            "source": "Static Gain 33.output",
+            "target": "Belief-Node 6.input"
+        },
+        {
+            "source": "j.vector",
+            "target": "Component Multiply 11.operands"
+        },
+        {
+            "source": "Static Gain 34.output",
+            "target": "Belief-Node 5.input"
+        },
+        {
+            "source": "sum.sum",
+            "target": "Component Multiply 6.operands"
+        },
+        {
+            "source": "sum.sum",
+            "target": "Component Multiply 7.operands"
+        },
+        {
+            "source": "sum.sum",
+            "target": "Component Multiply 8.operands"
+        },
+        {
+            "source": "Reward Hebb Trace 13.reciprocal output",
+            "target": "Transfer Function 14.input"
+        },
+        {
+            "source": "Reward Hebb Trace 11.reciprocal output",
+            "target": "Transfer Function 15.input"
+        },
+        {
+            "source": "Reward Hebb Trace 12.reciprocal output",
+            "target": "Transfer Function 16.input"
+        },
+        {
+            "source": "Transfer Function 14.sigmoided output",
+            "target": "Component Multiply 12.operands"
+        },
+        {
+            "source": "Transfer Function 15.sigmoided output",
+            "target": "Component Multiply 13.operands"
+        },
+        {
+            "source": "Transfer Function 16.sigmoided output",
+            "target": "Component Multiply 14.operands"
+        },
+        {
+            "source": "sum.sum",
+            "target": "Component Multiply 12.operands"
+        },
+        {
+            "source": "sum.sum",
+            "target": "Component Multiply 13.operands"
+        },
+        {
+            "source": "sum.sum",
+            "target": "Component Multiply 14.operands"
+        },
+        {
+            "source": "Component Multiply 12.product",
+            "target": "Belief-Node 4.input"
+        },
+        {
+            "source": "Component Multiply 13.product",
+            "target": "Belief-Node 4.input"
+        },
+        {
+            "source": "Component Multiply 14.product",
+            "target": "Belief-Node 4.input"
+        },
+        {
+            "source": "Static Gain 34.output",
+            "target": "Belief-Node 4.input"
+        },
+        {
+            "source": "Belief-Node 4.sigmoided activation",
+            "target": "Component Multiply 15.operands"
+        },
+        {
+            "source": "Component Multiply 15.product",
+            "target": "Static Gain 28.input"
+        },
+        {
+            "source": "Static Gain 33.output",
+            "target": "Belief-Node 4.input"
+        },
+        {
+            "source": "Static Gain 30.output",
+            "target": "Belief-Node 4.input"
+        },
+        {
+            "source": "Static Gain 28.output",
+            "target": "Belief-Node 5.input"
+        },
+        {
+            "source": "Static Gain 28.output",
+            "target": "Belief-Node 6.input"
+        },
+        {
+            "source": "j.vector",
+            "target": "Component Multiply 15.operands"
+        },
+        {
+            "source": "Belief-Node 4.sigmoided activation",
+            "target": "Reward Hebb Trace 13.read out trigger"
+        },
+        {
+            "source": "Belief-Node 4.sigmoided activation",
+            "target": "Reward Hebb Trace 11.read out trigger"
+        },
+        {
+            "source": "Belief-Node 4.sigmoided activation",
+            "target": "Reward Hebb Trace 12.read out trigger"
+        },
+        {
+            "source": "Commit-Node 4.sigmoided activation",
+            "target": "Component Multiply 16.operands"
+        },
+        {
+            "source": "x.vector",
+            "target": "Component Multiply 16.operands"
+        },
+        {
+            "source": "j.vector",
+            "target": "Component Multiply 16.operands"
+        },
+        {
+            "source": "Component Multiply 16.product",
+            "target": "Static Gain 29.input"
+        },
+        {
+            "source": "Static Gain 29.output",
+            "target": "Belief-Node 4.input"
+        },
+        {
+            "source": "Reward Hebb Trace 7.reciprocal output",
+            "target": "Transfer Function 18.input"
+        },
+        {
+            "source": "Reward Hebb Trace 8.reciprocal output",
+            "target": "Transfer Function 19.input"
+        },
+        {
+            "source": "Reward Hebb Trace 10.reciprocal output",
+            "target": "Transfer Function 20.input"
+        },
+        {
+            "source": "Transfer Function 20.sigmoided output",
+            "target": "Component Multiply 19.operands"
+        },
+        {
+            "source": "Transfer Function 19.sigmoided output",
+            "target": "Component Multiply 18.operands"
+        },
+        {
+            "source": "Transfer Function 18.sigmoided output",
+            "target": "Component Multiply 17.operands"
+        },
+        {
+            "source": "Component Multiply 17.product",
+            "target": "Belief-Node 3.input"
+        },
+        {
+            "source": "Component Multiply 18.product",
+            "target": "Belief-Node 3.input"
+        },
+        {
+            "source": "Component Multiply 19.product",
+            "target": "Belief-Node 3.input"
+        },
+        {
+            "source": "Static Gain 34.output",
+            "target": "Belief-Node 3.input"
+        },
+        {
+            "source": "Belief-Node 3.sigmoided activation",
+            "target": "Component Multiply 20.operands"
+        },
+        {
+            "source": "j.vector",
+            "target": "Component Multiply 20.operands"
+        },
+        {
+            "source": "Component Multiply 20.product",
+            "target": "Static Gain 26.input"
+        },
+        {
+            "source": "Static Gain 26.output",
+            "target": "Belief-Node 4.input"
+        },
+        {
+            "source": "Static Gain 26.output",
+            "target": "Belief-Node 5.input"
+        },
+        {
+            "source": "Static Gain 26.output",
+            "target": "Belief-Node 6.input"
+        },
+        {
+            "source": "Static Gain 30.output",
+            "target": "Belief-Node 3.input"
+        },
+        {
+            "source": "Static Gain 33.output",
+            "target": "Belief-Node 3.input"
+        },
+        {
+            "source": "Static Gain 28.output",
+            "target": "Belief-Node 3.input"
+        },
+        {
+            "source": "x.vector",
+            "target": "Component Multiply 21.operands"
+        },
+        {
+            "source": "Commit-Node 3.sigmoided activation",
+            "target": "Component Multiply 21.operands"
+        },
+        {
+            "source": "j.vector",
+            "target": "Component Multiply 21.operands"
+        },
+        {
+            "source": "Component Multiply 21.product",
+            "target": "Static Gain 27.input"
+        },
+        {
+            "source": "Static Gain 27.output",
+            "target": "Belief-Node 3.input"
+        },
+        {
+            "source": "Belief-Node 3.sigmoided activation",
+            "target": "Reward Hebb Trace 7.read out trigger"
+        },
+        {
+            "source": "Belief-Node 3.sigmoided activation",
+            "target": "Reward Hebb Trace 8.read out trigger"
+        },
+        {
+            "source": "Belief-Node 3.sigmoided activation",
+            "target": "Reward Hebb Trace 10.read out trigger"
+        },
+        {
+            "source": "sum.sum",
+            "target": "Component Multiply 17.operands"
+        },
+        {
+            "source": "sum.sum",
+            "target": "Component Multiply 18.operands"
+        },
+        {
+            "source": "sum.sum",
+            "target": "Component Multiply 19.operands"
+        },
+        {
+            "source": "Transfer Function 22.sigmoided output",
+            "target": "Component Multiply 22.operands"
+        },
+        {
+            "source": "Transfer Function 23.sigmoided output",
+            "target": "Component Multiply 23.operands"
+        },
+        {
+            "source": "Transfer Function 24.sigmoided output",
+            "target": "Component Multiply 24.operands"
+        },
+        {
+            "source": "sum.sum",
+            "target": "Component Multiply 22.operands"
+        },
+        {
+            "source": "sum.sum",
+            "target": "Component Multiply 23.operands"
+        },
+        {
+            "source": "sum.sum",
+            "target": "Component Multiply 24.operands"
+        },
+        {
+            "source": "Component Multiply 24.product",
+            "target": "Belief-Node 2.input"
+        },
+        {
+            "source": "Component Multiply 23.product",
+            "target": "Belief-Node 2.input"
+        },
+        {
+            "source": "Component Multiply 22.product",
+            "target": "Belief-Node 2.input"
+        },
+        {
+            "source": "Belief-Node 2.sigmoided activation",
+            "target": "Component Multiply 25.operands"
+        },
+        {
+            "source": "j.vector",
+            "target": "Component Multiply 25.operands"
+        },
+        {
+            "source": "Component Multiply 25.product",
+            "target": "Static Gain 3.input"
+        },
+        {
+            "source": "Static Gain 3.output",
+            "target": "Belief-Node 3.input"
+        },
+        {
+            "source": "Static Gain 3.output",
+            "target": "Belief-Node 4.input"
+        },
+        {
+            "source": "Static Gain 3.output",
+            "target": "Belief-Node 5.input"
+        },
+        {
+            "source": "Static Gain 3.output",
+            "target": "Belief-Node 6.input"
+        },
+        {
+            "source": "Static Gain 30.output",
+            "target": "Belief-Node 2.input"
+        },
+        {
+            "source": "Static Gain 33.output",
+            "target": "Belief-Node 2.input"
+        },
+        {
+            "source": "Static Gain 28.output",
+            "target": "Belief-Node 2.input"
+        },
+        {
+            "source": "x.vector",
+            "target": "Component Multiply 26.operands"
+        },
+        {
+            "source": "j.vector",
+            "target": "Component Multiply 26.operands"
+        },
+        {
+            "source": "Commit-Node 2.sigmoided activation",
+            "target": "Component Multiply 26.operands"
+        },
+        {
+            "source": "Component Multiply 26.product",
+            "target": "Static Gain 4.input"
+        },
+        {
+            "source": "Static Gain 4.output",
+            "target": "Belief-Node 2.input"
+        },
+        {
+            "source": "Static Gain 26.output",
+            "target": "Belief-Node 2.input"
+        },
+        {
+            "source": "Reward Hebb Trace 5.reciprocal output",
+            "target": "Transfer Function 23.input"
+        },
+        {
+            "source": "Reward Hebb Trace 4.reciprocal output",
+            "target": "Transfer Function 22.input"
+        },
+        {
+            "source": "Reward Hebb Trace 6.reciprocal output",
+            "target": "Transfer Function 24.input"
+        },
+        {
+            "source": "Belief-Node 2.sigmoided activation",
+            "target": "Reward Hebb Trace 4.read out trigger"
+        },
+        {
+            "source": "Belief-Node 2.sigmoided activation",
+            "target": "Reward Hebb Trace 5.read out trigger"
+        },
+        {
+            "source": "Belief-Node 2.sigmoided activation",
+            "target": "Reward Hebb Trace 6.read out trigger"
+        },
+        {
+            "source": "Static Gain 34.output",
+            "target": "Belief-Node 2.input"
+        },
+        {
+            "source": "Transfer Function 26.sigmoided output",
+            "target": "Component Multiply 27.operands"
+        },
+        {
+            "source": "Transfer Function 27.sigmoided output",
+            "target": "Component Multiply 28.operands"
+        },
+        {
+            "source": "Transfer Function 28.sigmoided output",
+            "target": "Component Multiply 29.operands"
+        },
+        {
+            "source": "sum.sum",
+            "target": "Component Multiply 27.operands"
+        },
+        {
+            "source": "sum.sum",
+            "target": "Component Multiply 28.operands"
+        },
+        {
+            "source": "sum.sum",
+            "target": "Component Multiply 29.operands"
+        },
+        {
+            "source": "Belief-Node 1.sigmoided activation",
+            "target": "Component Multiply 30.operands"
+        },
+        {
+            "source": "Component Multiply 30.product",
+            "target": "Static Gain 24.input"
+        },
+        {
+            "source": "Component Multiply 27.product",
+            "target": "Belief-Node 1.input"
+        },
+        {
+            "source": "Component Multiply 28.product",
+            "target": "Belief-Node 1.input"
+        },
+        {
+            "source": "Component Multiply 29.product",
+            "target": "Belief-Node 1.input"
+        },
+        {
+            "source": "j.vector",
+            "target": "Component Multiply 30.operands"
+        },
+        {
+            "source": "Static Gain 24.output",
+            "target": "Belief-Node 2.input"
+        },
+        {
+            "source": "Static Gain 24.output",
+            "target": "Belief-Node 3.input"
+        },
+        {
+            "source": "Static Gain 24.output",
+            "target": "Belief-Node 4.input"
+        },
+        {
+            "source": "Static Gain 24.output",
+            "target": "Belief-Node 5.input"
+        },
+        {
+            "source": "Static Gain 24.output",
+            "target": "Belief-Node 6.input"
+        },
+        {
+            "source": "Static Gain 3.output",
+            "target": "Belief-Node 1.input"
+        },
+        {
+            "source": "Static Gain 26.output",
+            "target": "Belief-Node 1.input"
+        },
+        {
+            "source": "Static Gain 28.output",
+            "target": "Belief-Node 1.input"
+        },
+        {
+            "source": "Static Gain 33.output",
+            "target": "Belief-Node 1.input"
+        },
+        {
+            "source": "Static Gain 30.output",
+            "target": "Belief-Node 1.input"
+        },
+        {
+            "source": "Commit-Node 1.sigmoided activation",
+            "target": "Component Multiply 31.operands"
+        },
+        {
+            "source": "j.vector",
+            "target": "Component Multiply 31.operands"
+        },
+        {
+            "source": "x.vector",
+            "target": "Component Multiply 31.operands"
+        },
+        {
+            "source": "Component Multiply 31.product",
+            "target": "Static Gain 25.input"
+        },
+        {
+            "source": "Static Gain 25.output",
+            "target": "Belief-Node 1.input"
+        },
+        {
+            "source": "Static Gain 34.output",
+            "target": "Belief-Node 1.input"
+        },
+        {
+            "source": "Reward Hebb Trace 19.reciprocal output",
+            "target": "Transfer Function 26.input"
+        },
+        {
+            "source": "Reward Hebb Trace 2.reciprocal output",
+            "target": "Transfer Function 27.input"
+        },
+        {
+            "source": "Reward Hebb Trace 3.reciprocal output",
+            "target": "Transfer Function 28.input"
+        },
+        {
+            "source": "Belief-Node 1.sigmoided activation",
+            "target": "Reward Hebb Trace 19.read out trigger"
+        },
+        {
+            "source": "Belief-Node 1.sigmoided activation",
+            "target": "Reward Hebb Trace 2.read out trigger"
+        },
+        {
+            "source": "Belief-Node 1.sigmoided activation",
+            "target": "Reward Hebb Trace 3.read out trigger"
+        },
+        {
+            "source": "Color-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 16.association input"
+        },
+        {
+            "source": "Color-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 15.association input"
+        },
+        {
+            "source": "Color-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 13.association input"
+        },
+        {
+            "source": "Color-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 7.association input"
+        },
+        {
+            "source": "Color-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 4.association input"
+        },
+        {
+            "source": "Color-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 19.association input"
+        },
+        {
+            "source": "Sound-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 18.association input"
+        },
+        {
+            "source": "Sound-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 9.association input"
+        },
+        {
+            "source": "Sound-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 11.association input"
+        },
+        {
+            "source": "Sound-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 8.association input"
+        },
+        {
+            "source": "Sound-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 5.association input"
+        },
+        {
+            "source": "Sound-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 2.association input"
+        },
+        {
+            "source": "Action-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 17.association input"
+        },
+        {
+            "source": "Action-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 14.association input"
+        },
+        {
+            "source": "Action-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 12.association input"
+        },
+        {
+            "source": "Action-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 10.association input"
+        },
+        {
+            "source": "Action-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 6.association input"
+        },
+        {
+            "source": "Action-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 3.association input"
+        },
+        {
+            "source": "Reward Hebb Trace 16.trigger output",
+            "target": "Static Gain 37.input"
+        },
+        {
+            "source": "Reward Hebb Trace 18.trigger output",
+            "target": "Static Gain 36.input"
+        },
+        {
+            "source": "Reward Hebb Trace 17.trigger output",
+            "target": "Static Gain 35.input"
+        },
+        {
+            "source": "Static Gain 37.output",
+            "target": "Color-Role-Field.input"
+        },
+        {
+            "source": "Static Gain 36.output",
+            "target": "Sound-Role-Field.input"
+        },
+        {
+            "source": "Static Gain 35.output",
+            "target": "Action-Role-Field.input"
+        },
+        {
+            "source": "Reward Hebb Trace 15.trigger output",
+            "target": "Static Gain 38.input"
+        },
+        {
+            "source": "Reward Hebb Trace 9.trigger output",
+            "target": "Static Gain 39.input"
+        },
+        {
+            "source": "Reward Hebb Trace 14.trigger output",
+            "target": "Static Gain 40.input"
+        },
+        {
+            "source": "Static Gain 38.output",
+            "target": "Color-Role-Field.input"
+        },
+        {
+            "source": "Static Gain 39.output",
+            "target": "Sound-Role-Field.input"
+        },
+        {
+            "source": "Static Gain 40.output",
+            "target": "Action-Role-Field.input"
+        },
+        {
+            "source": "Reward Hebb Trace 13.trigger output",
+            "target": "Static Gain 41.input"
+        },
+        {
+            "source": "Reward Hebb Trace 11.trigger output",
+            "target": "Static Gain 42.input"
+        },
+        {
+            "source": "Reward Hebb Trace 12.trigger output",
+            "target": "Static Gain 43.input"
+        },
+        {
+            "source": "Static Gain 41.output",
+            "target": "Color-Role-Field.input"
+        },
+        {
+            "source": "Static Gain 42.output",
+            "target": "Sound-Role-Field.input"
+        },
+        {
+            "source": "Static Gain 43.output",
+            "target": "Action-Role-Field.input"
+        },
+        {
+            "source": "Reward Hebb Trace 7.trigger output",
+            "target": "Static Gain 44.input"
+        },
+        {
+            "source": "Reward Hebb Trace 8.trigger output",
+            "target": "Static Gain 45.input"
+        },
+        {
+            "source": "Reward Hebb Trace 10.trigger output",
+            "target": "Static Gain 46.input"
+        },
+        {
+            "source": "Static Gain 44.output",
+            "target": "Color-Role-Field.input"
+        },
+        {
+            "source": "Static Gain 45.output",
+            "target": "Sound-Role-Field.input"
+        },
+        {
+            "source": "Static Gain 46.output",
+            "target": "Action-Role-Field.input"
+        },
+        {
+            "source": "Reward Hebb Trace 4.trigger output",
+            "target": "Static Gain 47.input"
+        },
+        {
+            "source": "Reward Hebb Trace 5.trigger output",
+            "target": "Static Gain 48.input"
+        },
+        {
+            "source": "Reward Hebb Trace 6.trigger output",
+            "target": "Static Gain 49.input"
+        },
+        {
+            "source": "Reward Hebb Trace 19.trigger output",
+            "target": "Static Gain 50.input"
+        },
+        {
+            "source": "Reward Hebb Trace 2.trigger output",
+            "target": "Static Gain 51.input"
+        },
+        {
+            "source": "Reward Hebb Trace 3.trigger output",
+            "target": "Static Gain 52.input"
+        },
+        {
+            "source": "Static Gain 47.output",
+            "target": "Color-Role-Field.input"
+        },
+        {
+            "source": "Static Gain 48.output",
+            "target": "Sound-Role-Field.input"
+        },
+        {
+            "source": "Static Gain 49.output",
+            "target": "Action-Role-Field.input"
+        },
+        {
+            "source": "Static Gain 50.output",
+            "target": "Color-Role-Field.input"
+        },
+        {
+            "source": "Static Gain 51.output",
+            "target": "Sound-Role-Field.input"
+        },
+        {
+            "source": "Static Gain 52.output",
+            "target": "Action-Role-Field.input"
+        },
+        {
+            "source": "Belief-Node 6.sigmoided activation",
+            "target": "Static Gain 53.input"
+        },
+        {
+            "source": "Static Gain 53.output",
+            "target": "Commit-Node 6.input"
+        },
+        {
+            "source": "Belief-Node 5.sigmoided activation",
+            "target": "Static Gain 54.input"
+        },
+        {
+            "source": "Static Gain 54.output",
+            "target": "Commit-Node 5.input"
+        },
+        {
+            "source": "Belief-Node 4.sigmoided activation",
+            "target": "Static Gain 55.input"
+        },
+        {
+            "source": "Static Gain 55.output",
+            "target": "Commit-Node 4.input"
+        },
+        {
+            "source": "Belief-Node 3.sigmoided activation",
+            "target": "Static Gain 56.input"
+        },
+        {
+            "source": "Static Gain 56.output",
+            "target": "Commit-Node 3.input"
+        },
+        {
+            "source": "Belief-Node 2.sigmoided activation",
+            "target": "Static Gain 57.input"
+        },
+        {
+            "source": "Static Gain 57.output",
+            "target": "Commit-Node 2.input"
+        },
+        {
+            "source": "Belief-Node 1.sigmoided activation",
+            "target": "Static Gain 58.input"
+        },
+        {
+            "source": "Static Gain 58.output",
+            "target": "Commit-Node 1.input"
+        },
+        {
+            "source": "Commit Boost.sigmoided activation",
+            "target": "Static Gain 59.input"
+        },
+        {
+            "source": "Static Gain 59.output",
+            "target": "Commit-Node 1.input"
+        },
+        {
+            "source": "Static Gain 59.output",
+            "target": "Commit-Node 2.input"
+        },
+        {
+            "source": "Static Gain 59.output",
+            "target": "Commit-Node 3.input"
+        },
+        {
+            "source": "Static Gain 59.output",
+            "target": "Commit-Node 4.input"
+        },
+        {
+            "source": "Static Gain 59.output",
+            "target": "Commit-Node 5.input"
+        },
+        {
+            "source": "Static Gain 59.output",
+            "target": "Commit-Node 6.input"
+        },
+        {
+            "source": "Recruitment Boost.sigmoided activation",
+            "target": "Static Gain 60.input"
+        },
+        {
+            "source": "Static Gain 60.output",
+            "target": "Component Multiply 32.operands"
+        },
+        {
+            "source": "j.vector",
+            "target": "Component Multiply 32.operands"
+        },
+        {
+            "source": "x.vector",
+            "target": "Component Multiply 32.operands"
+        },
+        {
+            "source": "Component Multiply 32.product",
+            "target": "Belief-Node 1.input"
+        },
+        {
+            "source": "Component Multiply 32.product",
+            "target": "Belief-Node 2.input"
+        },
+        {
+            "source": "Component Multiply 32.product",
+            "target": "Belief-Node 3.input"
+        },
+        {
+            "source": "Component Multiply 32.product",
+            "target": "Belief-Node 4.input"
+        },
+        {
+            "source": "Component Multiply 32.product",
+            "target": "Belief-Node 5.input"
+        },
+        {
+            "source": "Component Multiply 32.product",
+            "target": "Belief-Node 6.input"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 3.reward signal"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 2.reward signal"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 19.reward signal"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 6.reward signal"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 5.reward signal"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 4.reward signal"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 10.reward signal"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 8.reward signal"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 7.reward signal"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 12.reward signal"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 11.reward signal"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 13.reward signal"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 14.reward signal"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 9.reward signal"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 15.reward signal"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 17.reward signal"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 18.reward signal"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 16.reward signal"
+        },
+        {
+            "source": "ActionChange Detection.sigmoided activation",
+            "target": "Recruitment Boost.input"
+        },
+        {
+            "source": "ActionChange Detection.sigmoided activation",
+            "target": "Commit Boost.input"
+        },
+        {
+            "source": "ActionChange Detection.sigmoided activation",
+            "target": "Reward-Node.input"
+        },
+        {
+            "source": "Belief-Node 1.sigmoided activation",
+            "target": "Reward-Node.input"
+        },
+        {
+            "source": "Belief-Node 2.sigmoided activation",
+            "target": "Reward-Node.input"
+        },
+        {
+            "source": "Belief-Node 3.sigmoided activation",
+            "target": "Reward-Node.input"
+        },
+        {
+            "source": "Belief-Node 4.sigmoided activation",
+            "target": "Reward-Node.input"
+        },
+        {
+            "source": "Belief-Node 5.sigmoided activation",
+            "target": "Reward-Node.input"
+        },
+        {
+            "source": "Belief-Node 6.sigmoided activation",
+            "target": "Reward-Node.input"
+        },
+        {
+            "source": "Commit-Node 6.sigmoided activation",
+            "target": "Reward Hebb Trace.association input"
+        },
+        {
+            "source": "Commit-Node 5.sigmoided activation",
+            "target": "Reward Hebb Trace 20.association input"
+        },
+        {
+            "source": "Commit-Node 4.sigmoided activation",
+            "target": "Reward Hebb Trace 21.association input"
+        },
+        {
+            "source": "Commit-Node 3.sigmoided activation",
+            "target": "Reward Hebb Trace 22.association input"
+        },
+        {
+            "source": "Commit-Node 2.sigmoided activation",
+            "target": "Reward Hebb Trace 23.association input"
+        },
+        {
+            "source": "Commit-Node 1.sigmoided activation",
+            "target": "Reward Hebb Trace 24.association input"
+        },
+        {
+            "source": "Reward Hebb Trace.trigger output",
+            "target": "Static Gain 61.input"
+        },
+        {
+            "source": "Static Gain 61.output",
+            "target": "Commit-Node 6.input"
+        },
+        {
+            "source": "Reward Hebb Trace 20.trigger output",
+            "target": "Static Gain 62.input"
+        },
+        {
+            "source": "Reward Hebb Trace 21.trigger output",
+            "target": "Static Gain 63.input"
+        },
+        {
+            "source": "Reward Hebb Trace 22.trigger output",
+            "target": "Static Gain 64.input"
+        },
+        {
+            "source": "Reward Hebb Trace 23.trigger output",
+            "target": "Static Gain 65.input"
+        },
+        {
+            "source": "Reward Hebb Trace 24.trigger output",
+            "target": "Static Gain 66.input"
+        },
+        {
+            "source": "Static Gain 62.output",
+            "target": "Commit-Node 5.input"
+        },
+        {
+            "source": "Static Gain 63.output",
+            "target": "Commit-Node 4.input"
+        },
+        {
+            "source": "Static Gain 64.output",
+            "target": "Commit-Node 3.input"
+        },
+        {
+            "source": "Static Gain 65.output",
+            "target": "Commit-Node 2.input"
+        },
+        {
+            "source": "Static Gain 66.output",
+            "target": "Commit-Node 1.input"
+        },
+        {
+            "source": "Belief-Network-Node.sigmoided activation",
+            "target": "Reward Hebb Trace.read out trigger"
+        },
+        {
+            "source": "Belief-Network-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 20.read out trigger"
+        },
+        {
+            "source": "Belief-Network-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 21.read out trigger"
+        },
+        {
+            "source": "Belief-Network-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 22.read out trigger"
+        },
+        {
+            "source": "Belief-Network-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 23.read out trigger"
+        },
+        {
+            "source": "Belief-Network-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 24.read out trigger"
+        },
+        {
+            "source": "Boost.boost",
+            "target": "Belief-Network-Node.input"
+        },
+        {
+            "source": "Recruitment Boost.sigmoided activation",
+            "target": "Reward Hebb Trace 24.reward signal"
+        },
+        {
+            "source": "Recruitment Boost.sigmoided activation",
+            "target": "Reward Hebb Trace 23.reward signal"
+        },
+        {
+            "source": "Recruitment Boost.sigmoided activation",
+            "target": "Reward Hebb Trace 22.reward signal"
+        },
+        {
+            "source": "Recruitment Boost.sigmoided activation",
+            "target": "Reward Hebb Trace 21.reward signal"
+        },
+        {
+            "source": "Recruitment Boost.sigmoided activation",
+            "target": "Reward Hebb Trace 20.reward signal"
+        },
+        {
+            "source": "Recruitment Boost.sigmoided activation",
+            "target": "Reward Hebb Trace.reward signal"
+        },
+        {
+            "source": "ActionChange Detection.sigmoided activation",
+            "target": "Action-Role-Field.input"
+        },
+        {
+            "source": "ActionChange Detection.sigmoided activation",
+            "target": "Sound-Role-Field.input"
+        },
+        {
+            "source": "ActionChange Detection.sigmoided activation",
+            "target": "Color-Role-Field.input"
+        },
+        {
+            "source": "Color-Attention-Field.sigmoided activation",
+            "target": "Color-Role-Field.input"
+        },
+        {
+            "source": "Sound-Attention-Field.sigmoided activation",
+            "target": "Sound-Role-Field.input"
+        },
+        {
+            "source": "Action-Attention-Field.sigmoided activation",
+            "target": "Action-Role-Field.input"
         }
     ],
     "name": "element",
@@ -5298,7 +6725,7 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "658",
+            "positionX": "728",
             "positionY": "546"
         },
         {
@@ -5316,7 +6743,7 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "490",
+            "positionX": "532",
             "positionY": "966"
         },
         {
@@ -5366,12 +6793,21 @@
         },
         {
             "type": "step",
+            "step": "Belief-Network-Node",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "2170",
+            "positionY": "-812"
+        },
+        {
+            "type": "step",
             "step": "Belief-Node 1",
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "854",
-            "positionY": "-196"
+            "positionX": "1064",
+            "positionY": "-168"
         },
         {
             "type": "step",
@@ -5379,8 +6815,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "854",
-            "positionY": "-448"
+            "positionX": "1064",
+            "positionY": "-420"
         },
         {
             "type": "step",
@@ -5388,8 +6824,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "854",
-            "positionY": "-700"
+            "positionX": "1064",
+            "positionY": "-672"
         },
         {
             "type": "step",
@@ -5397,8 +6833,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "854",
-            "positionY": "-952"
+            "positionX": "1064",
+            "positionY": "-924"
         },
         {
             "type": "step",
@@ -5406,8 +6842,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "854",
-            "positionY": "-1204"
+            "positionX": "1064",
+            "positionY": "-1176"
         },
         {
             "type": "step",
@@ -5416,7 +6852,16 @@
             "width": "124",
             "height": "40",
             "positionX": "1064",
-            "positionY": "-1456"
+            "positionY": "-1428"
+        },
+        {
+            "type": "step",
+            "step": "Boost",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "2338",
+            "positionY": "-812"
         },
         {
             "type": "step",
@@ -5424,7 +6869,7 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-938",
+            "positionX": "-882",
             "positionY": "1372"
         },
         {
@@ -5433,7 +6878,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-560",
+            "positionX": "-504",
             "positionY": "1372"
         },
         {
@@ -5532,8 +6977,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-756.54873477038439",
-            "positionY": "1375.3436426116848"
+            "positionX": "-700",
+            "positionY": "1372"
         },
         {
             "type": "step",
@@ -5586,8 +7031,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "11.561643835616437",
-            "positionY": "963.2602739726027"
+            "positionX": "14",
+            "positionY": "952"
         },
         {
             "type": "step",
@@ -5600,12 +7045,21 @@
         },
         {
             "type": "step",
+            "step": "Commit Boost",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "1176",
+            "positionY": "-14"
+        },
+        {
+            "type": "step",
             "step": "Commit-Node 1",
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1036",
-            "positionY": "-196"
+            "positionX": "1372",
+            "positionY": "-168"
         },
         {
             "type": "step",
@@ -5613,8 +7067,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1036",
-            "positionY": "-448"
+            "positionX": "1372",
+            "positionY": "-420"
         },
         {
             "type": "step",
@@ -5622,8 +7076,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1036",
-            "positionY": "-700"
+            "positionX": "1372",
+            "positionY": "-672"
         },
         {
             "type": "step",
@@ -5631,8 +7085,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1036",
-            "positionY": "-952"
+            "positionX": "1372",
+            "positionY": "-924"
         },
         {
             "type": "step",
@@ -5640,8 +7094,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1036",
-            "positionY": "-1204"
+            "positionX": "1372",
+            "positionY": "-1176"
         },
         {
             "type": "step",
@@ -5649,8 +7103,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1400",
-            "positionY": "-1456"
+            "positionX": "1372",
+            "positionY": "-1428"
         },
         {
             "type": "step",
@@ -5658,8 +7112,98 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "910",
+            "positionX": "840",
             "positionY": "-1638"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 10",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1218",
+            "positionY": "-1386"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 11",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1218",
+            "positionY": "-1134"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 12",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "896",
+            "positionY": "-994"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 13",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "896",
+            "positionY": "-924"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 14",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "896",
+            "positionY": "-854"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 15",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1218",
+            "positionY": "-882"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 16",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1512",
+            "positionY": "-910"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 17",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "896",
+            "positionY": "-742"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 18",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "896",
+            "positionY": "-672"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 19",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "896",
+            "positionY": "-602"
         },
         {
             "type": "step",
@@ -5668,7 +7212,97 @@
             "width": "40",
             "height": "40",
             "positionX": "896",
-            "positionY": "-1526"
+            "positionY": "-1498"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 20",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1218",
+            "positionY": "-630"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 21",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1512",
+            "positionY": "-658"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 22",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "896",
+            "positionY": "-490"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 23",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "896",
+            "positionY": "-420"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 24",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "896",
+            "positionY": "-350"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 25",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1218",
+            "positionY": "-378"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 26",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1512",
+            "positionY": "-406"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 27",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "896",
+            "positionY": "-238"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 28",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "896",
+            "positionY": "-168"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 29",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "896",
+            "positionY": "-98"
         },
         {
             "type": "step",
@@ -5677,7 +7311,34 @@
             "width": "40",
             "height": "40",
             "positionX": "896",
-            "positionY": "-1456"
+            "positionY": "-1428"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 30",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1218",
+            "positionY": "-126"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 31",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1512",
+            "positionY": "-154"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 32",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1008",
+            "positionY": "-28"
         },
         {
             "type": "step",
@@ -5686,7 +7347,7 @@
             "width": "40",
             "height": "40",
             "positionX": "896",
-            "positionY": "-1386"
+            "positionY": "-1358"
         },
         {
             "type": "step",
@@ -5694,8 +7355,44 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1484",
+            "positionX": "1512",
             "positionY": "-1414"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 6",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "896",
+            "positionY": "-1246"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 7",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "896",
+            "positionY": "-1176"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 8",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "896",
+            "positionY": "-1106"
+        },
+        {
+            "type": "step",
+            "step": "Component Multiply 9",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1512",
+            "positionY": "-1162"
         },
         {
             "type": "step",
@@ -5703,8 +7400,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-271.1834843278142",
-            "positionY": "1371.6625013016774"
+            "positionX": "-210",
+            "positionY": "1372"
         },
         {
             "type": "step",
@@ -5753,33 +7450,6 @@
         },
         {
             "type": "step",
-            "step": "Gauss Input",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "-14",
-            "positionY": "-896"
-        },
-        {
-            "type": "step",
-            "step": "Gauss Input 2",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "-14",
-            "positionY": "-812"
-        },
-        {
-            "type": "step",
-            "step": "Gauss Input 3",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "-14",
-            "positionY": "-728"
-        },
-        {
-            "type": "step",
             "step": "Goal-Boost",
             "display style": "ICON_ONLY",
             "width": "40",
@@ -5795,60 +7465,6 @@
             "height": "40",
             "positionX": "-1148",
             "positionY": "-546"
-        },
-        {
-            "type": "step",
-            "step": "Hebbian Connection",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "1274",
-            "positionY": "-420"
-        },
-        {
-            "type": "step",
-            "step": "Hebbian Connection 2",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "1274",
-            "positionY": "-168"
-        },
-        {
-            "type": "step",
-            "step": "Hebbian Connection 3",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "1274",
-            "positionY": "-672"
-        },
-        {
-            "type": "step",
-            "step": "Hebbian Connection 4",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "1274",
-            "positionY": "-924"
-        },
-        {
-            "type": "step",
-            "step": "Hebbian Connection 5",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "1638",
-            "positionY": "-1428"
-        },
-        {
-            "type": "step",
-            "step": "Hebbian Connection 6",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "1288",
-            "positionY": "-1176"
         },
         {
             "type": "step",
@@ -5928,8 +7544,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-644.00447776736428",
-            "positionY": "1374.186452150371"
+            "positionX": "-588",
+            "positionY": "1372"
         },
         {
             "type": "step",
@@ -5937,7 +7553,7 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "14",
+            "positionX": "168",
             "positionY": "1372"
         },
         {
@@ -6045,8 +7661,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-184.56341768197419",
-            "positionY": "1372.3992502343024"
+            "positionX": "-126",
+            "positionY": "1372"
         },
         {
             "type": "step",
@@ -6090,8 +7706,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "140",
-            "positionY": "868"
+            "positionX": "154",
+            "positionY": "924"
         },
         {
             "type": "step",
@@ -6162,8 +7778,17 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-448",
+            "positionX": "-392",
             "positionY": "1372"
+        },
+        {
+            "type": "step",
+            "step": "Recruitment Boost",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "798",
+            "positionY": "-14"
         },
         {
             "type": "step",
@@ -6171,8 +7796,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "672",
-            "positionY": "-266"
+            "positionX": "1722",
+            "positionY": "-1428"
         },
         {
             "type": "step",
@@ -6257,12 +7882,66 @@
         },
         {
             "type": "step",
+            "step": "Reward Hebb Trace 19",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "672",
+            "positionY": "-266"
+        },
+        {
+            "type": "step",
             "step": "Reward Hebb Trace 2",
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
             "positionX": "672",
             "positionY": "-196"
+        },
+        {
+            "type": "step",
+            "step": "Reward Hebb Trace 20",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "1722",
+            "positionY": "-1176"
+        },
+        {
+            "type": "step",
+            "step": "Reward Hebb Trace 21",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "1722",
+            "positionY": "-924"
+        },
+        {
+            "type": "step",
+            "step": "Reward Hebb Trace 22",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "1722",
+            "positionY": "-672"
+        },
+        {
+            "type": "step",
+            "step": "Reward Hebb Trace 23",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "1722",
+            "positionY": "-420"
+        },
+        {
+            "type": "step",
+            "step": "Reward Hebb Trace 24",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "1722",
+            "positionY": "-168"
         },
         {
             "type": "step",
@@ -6280,7 +7959,7 @@
             "width": "124",
             "height": "40",
             "positionX": "672",
-            "positionY": "-448"
+            "positionY": "-518"
         },
         {
             "type": "step",
@@ -6289,7 +7968,7 @@
             "width": "124",
             "height": "40",
             "positionX": "672",
-            "positionY": "-518"
+            "positionY": "-448"
         },
         {
             "type": "step",
@@ -6329,6 +8008,15 @@
         },
         {
             "type": "step",
+            "step": "Reward-Node",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "532",
+            "positionY": "-14"
+        },
+        {
+            "type": "step",
             "step": "Scalars To Vector",
             "display style": "ICON_ONLY",
             "width": "40",
@@ -6351,7 +8039,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "434",
+            "positionX": "476",
             "positionY": "1246"
         },
         {
@@ -6396,7 +8084,7 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "462",
+            "positionX": "504",
             "positionY": "546"
         },
         {
@@ -6432,7 +8120,7 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "196",
+            "positionX": "308",
             "positionY": "966"
         },
         {
@@ -6486,7 +8174,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-364",
+            "positionX": "-308",
             "positionY": "1372"
         },
         {
@@ -6567,7 +8255,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "812",
+            "positionX": "882",
             "positionY": "546"
         },
         {
@@ -6630,8 +8318,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "938",
-            "positionY": "-392"
+            "positionX": "1274",
+            "positionY": "-112"
         },
         {
             "type": "step",
@@ -6639,8 +8327,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "938",
-            "positionY": "-140"
+            "positionX": "1582",
+            "positionY": "-154"
         },
         {
             "type": "step",
@@ -6648,8 +8336,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1176",
-            "positionY": "-672"
+            "positionX": "1274",
+            "positionY": "-616"
         },
         {
             "type": "step",
@@ -6657,8 +8345,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "938",
-            "positionY": "-644"
+            "positionX": "1582",
+            "positionY": "-658"
         },
         {
             "type": "step",
@@ -6666,8 +8354,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "938",
-            "positionY": "-896"
+            "positionX": "1274",
+            "positionY": "-868"
         },
         {
             "type": "step",
@@ -6675,8 +8363,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1176",
-            "positionY": "-924"
+            "positionX": "1582",
+            "positionY": "-910"
         },
         {
             "type": "step",
@@ -6684,8 +8372,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1176",
-            "positionY": "-420"
+            "positionX": "1274",
+            "positionY": "-364"
         },
         {
             "type": "step",
@@ -6693,8 +8381,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "938",
-            "positionY": "-1148"
+            "positionX": "1274",
+            "positionY": "-1372"
         },
         {
             "type": "step",
@@ -6702,8 +8390,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1176",
-            "positionY": "-1176"
+            "positionX": "1582",
+            "positionY": "-1162"
         },
         {
             "type": "step",
@@ -6711,8 +8399,17 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1414",
+            "positionX": "1582",
             "positionY": "-1414"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 33",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1274",
+            "positionY": "-1120"
         },
         {
             "type": "step",
@@ -6725,12 +8422,147 @@
         },
         {
             "type": "step",
+            "step": "Static Gain 35",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "602",
+            "positionY": "-1372"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 36",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "602",
+            "positionY": "-1442"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 37",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "602",
+            "positionY": "-1512"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 38",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "602",
+            "positionY": "-1260"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 39",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "602",
+            "positionY": "-1190"
+        },
+        {
+            "type": "step",
             "step": "Static Gain 4",
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1176",
-            "positionY": "-168"
+            "positionX": "1582",
+            "positionY": "-406"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 40",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "602",
+            "positionY": "-1120"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 41",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "602",
+            "positionY": "-1008"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 42",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "602",
+            "positionY": "-938"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 43",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "602",
+            "positionY": "-868"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 44",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "602",
+            "positionY": "-756"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 45",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "602",
+            "positionY": "-686"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 46",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "602",
+            "positionY": "-616"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 47",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "602",
+            "positionY": "-504"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 48",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "602",
+            "positionY": "-434"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 49",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "602",
+            "positionY": "-364"
         },
         {
             "type": "step",
@@ -6738,8 +8570,98 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "406",
-            "positionY": "616"
+            "positionX": "448",
+            "positionY": "574"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 50",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "602",
+            "positionY": "-252"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 51",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "602",
+            "positionY": "-182"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 52",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "602",
+            "positionY": "-112"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 53",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1218",
+            "positionY": "-1428"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 54",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1218",
+            "positionY": "-1176"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 55",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1218",
+            "positionY": "-924"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 56",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1218",
+            "positionY": "-672"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 57",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1218",
+            "positionY": "-420"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 58",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1218",
+            "positionY": "-168"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 59",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1316",
+            "positionY": "-28"
         },
         {
             "type": "step",
@@ -6747,8 +8669,71 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "602",
-            "positionY": "616"
+            "positionX": "672",
+            "positionY": "574"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 60",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "952",
+            "positionY": "-14"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 61",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1876",
+            "positionY": "-1428"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 62",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1876",
+            "positionY": "-1176"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 63",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1876",
+            "positionY": "-924"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 64",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1876",
+            "positionY": "-672"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 65",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1876",
+            "positionY": "-420"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 66",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1876",
+            "positionY": "-168"
         },
         {
             "type": "step",
@@ -6784,7 +8769,7 @@
             "width": "124",
             "height": "40",
             "positionX": "-2464",
-            "positionY": "1106"
+            "positionY": "1176"
         },
         {
             "type": "step",
@@ -6806,30 +8791,147 @@
         },
         {
             "type": "step",
-            "step": "Task-Node",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "1568",
-            "positionY": "-812"
-        },
-        {
-            "type": "step",
             "step": "Transfer Function",
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "224",
-            "positionY": "658"
+            "positionX": "210",
+            "positionY": "574"
         },
         {
             "type": "step",
-            "step": "Transfer Function 2",
+            "step": "Transfer Function 10",
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "308",
-            "positionY": "-896"
+            "positionX": "826",
+            "positionY": "-1246"
+        },
+        {
+            "type": "step",
+            "step": "Transfer Function 11",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "826",
+            "positionY": "-1176"
+        },
+        {
+            "type": "step",
+            "step": "Transfer Function 12",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "826",
+            "positionY": "-1106"
+        },
+        {
+            "type": "step",
+            "step": "Transfer Function 14",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "826",
+            "positionY": "-994"
+        },
+        {
+            "type": "step",
+            "step": "Transfer Function 15",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "826",
+            "positionY": "-924"
+        },
+        {
+            "type": "step",
+            "step": "Transfer Function 16",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "826",
+            "positionY": "-854"
+        },
+        {
+            "type": "step",
+            "step": "Transfer Function 18",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "826",
+            "positionY": "-742"
+        },
+        {
+            "type": "step",
+            "step": "Transfer Function 19",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "826",
+            "positionY": "-672"
+        },
+        {
+            "type": "step",
+            "step": "Transfer Function 20",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "826",
+            "positionY": "-602"
+        },
+        {
+            "type": "step",
+            "step": "Transfer Function 22",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "826",
+            "positionY": "-490"
+        },
+        {
+            "type": "step",
+            "step": "Transfer Function 23",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "826",
+            "positionY": "-420"
+        },
+        {
+            "type": "step",
+            "step": "Transfer Function 24",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "826",
+            "positionY": "-350"
+        },
+        {
+            "type": "step",
+            "step": "Transfer Function 26",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "826",
+            "positionY": "-238"
+        },
+        {
+            "type": "step",
+            "step": "Transfer Function 27",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "826",
+            "positionY": "-168"
+        },
+        {
+            "type": "step",
+            "step": "Transfer Function 28",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "826",
+            "positionY": "-98"
         },
         {
             "type": "step",
@@ -6837,35 +8939,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-98",
+            "positionX": "-42",
             "positionY": "1372"
-        },
-        {
-            "type": "step",
-            "step": "Transfer Function 4",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "308",
-            "positionY": "-812"
-        },
-        {
-            "type": "step",
-            "step": "Transfer Function 5",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "308",
-            "positionY": "-728"
-        },
-        {
-            "type": "step",
-            "step": "Transfer Function 6",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "1232",
-            "positionY": "-1456"
         },
         {
             "type": "step",
@@ -6874,7 +8949,7 @@
             "width": "40",
             "height": "40",
             "positionX": "826",
-            "positionY": "-1526"
+            "positionY": "-1498"
         },
         {
             "type": "step",
@@ -6883,7 +8958,7 @@
             "width": "40",
             "height": "40",
             "positionX": "826",
-            "positionY": "-1456"
+            "positionY": "-1428"
         },
         {
             "type": "step",
@@ -6892,7 +8967,7 @@
             "width": "40",
             "height": "40",
             "positionX": "826",
-            "positionY": "-1386"
+            "positionY": "-1358"
         },
         {
             "type": "step",
@@ -6917,7 +8992,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "714",
+            "positionX": "784",
             "positionY": "-1764"
         },
         {
@@ -6926,8 +9001,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "714",
-            "positionY": "-1806"
+            "positionX": "1162",
+            "positionY": "-1764"
         },
         {
             "type": "step",
@@ -6935,7 +9010,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "784",
+            "positionX": "770",
             "positionY": "-1638"
         },
         {
@@ -6944,7 +9019,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "784",
+            "positionX": "840",
             "positionY": "-1722"
         },
         {
@@ -6953,20 +9028,56 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "714",
+            "positionX": "1456",
             "positionY": "-1722"
         }
     ],
     "ui view": {
-        "ScrollBarX": "-547",
-        "ScrollBarY": "-483",
-        "SliderPosX": "-547",
-        "SliderPosY": "-483",
-        "Zoom": "0.5"
+        "ScrollBarX": "-505",
+        "ScrollBarY": "-588",
+        "SliderPosX": "-505",
+        "SliderPosY": "-588",
+        "Zoom": "0.40999999999999998"
     },
     "ui generic": {
         "group": "element",
-        "open plots": "",
+        "open plots": {
+            "Belief-Node 1Widget0": {
+                "step": "Belief-Node 1",
+                "position_x": "339",
+                "position_y": "682",
+                "width": "206",
+                "height": "200",
+                "position_relative_x": "0.17656250000000001",
+                "position_relative_y": "0.6840521564694082",
+                "width_relative": "0.10729166666666666",
+                "height_relative": "0.20060180541624875",
+                "data_list": [
+                    {
+                        "id": "INPUT",
+                        "name": "input",
+                        "ignoreIfMissing": "false",
+                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                    }
+                ],
+                "plot configurations": [
+                    {
+                        "row": "1",
+                        "col": "0",
+                        "plot configuration": {
+                            "autoscaling": "true",
+                            "major grid visible": "false",
+                            "minor grid visible": "false",
+                            "y axis limits": {
+                                "lower limit": "0",
+                                "upper limit": "1"
+                            },
+                            "discrete plot": "false"
+                        }
+                    }
+                ]
+            }
+        },
         "plot groups": "",
         "architecture widgets": "",
         "robots": "",
