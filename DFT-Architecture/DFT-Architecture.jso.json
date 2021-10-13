@@ -190,7 +190,7 @@
                 "5"
             ],
             "time scale": "100",
-            "resting level": "-2",
+            "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -514,7 +514,7 @@
             "sizes": "",
             "time scale": "100",
             "resting level": "0",
-            "input noise gain": "0.10000000000000001",
+            "input noise gain": "0",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
@@ -558,7 +558,7 @@
             "sizes": "",
             "time scale": "100",
             "resting level": "0",
-            "input noise gain": "0.10000000000000001",
+            "input noise gain": "0",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
@@ -602,7 +602,7 @@
             "sizes": "",
             "time scale": "100",
             "resting level": "0",
-            "input noise gain": "0.10000000000000001",
+            "input noise gain": "0",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
@@ -646,7 +646,7 @@
             "sizes": "",
             "time scale": "100",
             "resting level": "0",
-            "input noise gain": "0.10000000000000001",
+            "input noise gain": "0",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
@@ -690,7 +690,7 @@
             "sizes": "",
             "time scale": "100",
             "resting level": "0",
-            "input noise gain": "0.10000000000000001",
+            "input noise gain": "0",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
@@ -734,7 +734,7 @@
             "sizes": "",
             "time scale": "100",
             "resting level": "0",
-            "input noise gain": "0.10000000000000001",
+            "input noise gain": "0",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
@@ -1141,7 +1141,7 @@
             "dimensionality": "0",
             "sizes": "",
             "time scale build up": "100",
-            "time scale decay": "8000",
+            "time scale decay": "4000",
             "sigmoid": {
                 "type": "cedar.aux.math.AbsSigmoid",
                 "threshold": "0.5",
@@ -1154,7 +1154,7 @@
             "dimensionality": "0",
             "sizes": "",
             "time scale build up": "100",
-            "time scale decay": "8000",
+            "time scale decay": "4000",
             "sigmoid": {
                 "type": "cedar.aux.math.AbsSigmoid",
                 "threshold": "0.5",
@@ -1167,7 +1167,7 @@
             "dimensionality": "0",
             "sizes": "",
             "time scale build up": "100",
-            "time scale decay": "8000",
+            "time scale decay": "4000",
             "sigmoid": {
                 "type": "cedar.aux.math.AbsSigmoid",
                 "threshold": "0.5",
@@ -1412,7 +1412,7 @@
                 "50"
             ],
             "time scale": "100",
-            "resting level": "-2",
+            "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -1579,9 +1579,8 @@
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0"
             },
             "global inhibition": "0",
             "lateral kernels": "",
@@ -2710,7 +2709,11 @@
         },
         "cedar.processing.Projection": {
             "name": "Projection",
-            "dimension mapping": "",
+            "dimension mapping": {
+                "0": "4294967295",
+                "1": "1",
+                "2": "0"
+            },
             "output dimensionality": "2",
             "output dimension sizes": [
                 "50",
@@ -2869,9 +2872,8 @@
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0"
             },
             "global inhibition": "0",
             "lateral kernels": "",
@@ -3406,9 +3408,8 @@
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
+                "type": "cedar.aux.math.HeavisideSigmoid",
+                "threshold": "0"
             },
             "global inhibition": "0",
             "lateral kernels": "",
@@ -3808,7 +3809,7 @@
                 "10"
             ],
             "time scale": "100",
-            "resting level": "-2",
+            "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -4296,7 +4297,7 @@
         "cedar.processing.sinks.TCPWriter": {
             "name": "TCP-Break-Writer",
             "port": "50031",
-            "ip_adress": "134.147.176.105",
+            "ip_adress": "10.0.2.15",
             "timeout (ms)": "3000",
             "max timeouts": "50",
             "send interval (timesteps)": "1",
@@ -4305,7 +4306,7 @@
         "cedar.processing.sinks.TCPWriter": {
             "name": "TCP-LED-Writer",
             "port": "50032",
-            "ip_adress": "134.147.176.105",
+            "ip_adress": "10.0.2.15",
             "timeout (ms)": "3000",
             "max timeouts": "50",
             "send interval (timesteps)": "1",
@@ -4314,7 +4315,7 @@
         "cedar.processing.sinks.TCPWriter": {
             "name": "TCP-Motor-Writer",
             "port": "50030",
-            "ip_adress": "134.147.176.105",
+            "ip_adress": "10.0.2.15",
             "timeout (ms)": "3000",
             "max timeouts": "50",
             "send interval (timesteps)": "1",
@@ -4610,8 +4611,6 @@
                 "Reward Hebb Trace 16",
                 "Reward Hebb Trace 17",
                 "Reward Hebb Trace 18",
-                "Reward Hebb Trace 4",
-                "Reward Hebb Trace 5",
                 "Reward Hebb Trace 6",
                 "Reward Hebb Trace 19",
                 "Reward Hebb Trace 2",
@@ -4619,12 +4618,14 @@
                 "Recruitment Boost",
                 "Commit Boost",
                 "Reward-Node",
-                "Reward Hebb Trace",
                 "Reward Hebb Trace 20",
                 "Reward Hebb Trace 21",
                 "Reward Hebb Trace 22",
                 "Reward Hebb Trace 23",
-                "Reward Hebb Trace 24"
+                "Reward Hebb Trace 24",
+                "Reward Hebb Trace",
+                "Reward Hebb Trace 4",
+                "Reward Hebb Trace 5"
             ]
         }
     },
@@ -5958,24 +5959,8 @@
             "target": "Belief-Node 2.input"
         },
         {
-            "source": "Reward Hebb Trace 5.reciprocal output",
-            "target": "Transfer Function 23.input"
-        },
-        {
-            "source": "Reward Hebb Trace 4.reciprocal output",
-            "target": "Transfer Function 22.input"
-        },
-        {
             "source": "Reward Hebb Trace 6.reciprocal output",
             "target": "Transfer Function 24.input"
-        },
-        {
-            "source": "Belief-Node 2.sigmoided activation",
-            "target": "Reward Hebb Trace 4.read out trigger"
-        },
-        {
-            "source": "Belief-Node 2.sigmoided activation",
-            "target": "Reward Hebb Trace 5.read out trigger"
         },
         {
             "source": "Belief-Node 2.sigmoided activation",
@@ -6139,10 +6124,6 @@
         },
         {
             "source": "Color-Role-Field.sigmoided activation",
-            "target": "Reward Hebb Trace 4.association input"
-        },
-        {
-            "source": "Color-Role-Field.sigmoided activation",
             "target": "Reward Hebb Trace 19.association input"
         },
         {
@@ -6160,10 +6141,6 @@
         {
             "source": "Sound-Role-Field.sigmoided activation",
             "target": "Reward Hebb Trace 8.association input"
-        },
-        {
-            "source": "Sound-Role-Field.sigmoided activation",
-            "target": "Reward Hebb Trace 5.association input"
         },
         {
             "source": "Sound-Role-Field.sigmoided activation",
@@ -6288,14 +6265,6 @@
         {
             "source": "Static Gain 46.output",
             "target": "Action-Role-Field.input"
-        },
-        {
-            "source": "Reward Hebb Trace 4.trigger output",
-            "target": "Static Gain 47.input"
-        },
-        {
-            "source": "Reward Hebb Trace 5.trigger output",
-            "target": "Static Gain 48.input"
         },
         {
             "source": "Reward Hebb Trace 6.trigger output",
@@ -6471,14 +6440,6 @@
         },
         {
             "source": "Reward-Node.sigmoided activation",
-            "target": "Reward Hebb Trace 5.reward signal"
-        },
-        {
-            "source": "Reward-Node.sigmoided activation",
-            "target": "Reward Hebb Trace 4.reward signal"
-        },
-        {
-            "source": "Reward-Node.sigmoided activation",
             "target": "Reward Hebb Trace 10.reward signal"
         },
         {
@@ -6562,10 +6523,6 @@
             "target": "Reward-Node.input"
         },
         {
-            "source": "Commit-Node 6.sigmoided activation",
-            "target": "Reward Hebb Trace.association input"
-        },
-        {
             "source": "Commit-Node 5.sigmoided activation",
             "target": "Reward Hebb Trace 20.association input"
         },
@@ -6584,10 +6541,6 @@
         {
             "source": "Commit-Node 1.sigmoided activation",
             "target": "Reward Hebb Trace 24.association input"
-        },
-        {
-            "source": "Reward Hebb Trace.trigger output",
-            "target": "Static Gain 61.input"
         },
         {
             "source": "Static Gain 61.output",
@@ -6635,10 +6588,6 @@
         },
         {
             "source": "Belief-Network-Node.sigmoided activation",
-            "target": "Reward Hebb Trace.read out trigger"
-        },
-        {
-            "source": "Belief-Network-Node.sigmoided activation",
             "target": "Reward Hebb Trace 20.read out trigger"
         },
         {
@@ -6682,22 +6631,6 @@
             "target": "Reward Hebb Trace 20.reward signal"
         },
         {
-            "source": "Recruitment Boost.sigmoided activation",
-            "target": "Reward Hebb Trace.reward signal"
-        },
-        {
-            "source": "ActionChange Detection.sigmoided activation",
-            "target": "Action-Role-Field.input"
-        },
-        {
-            "source": "ActionChange Detection.sigmoided activation",
-            "target": "Sound-Role-Field.input"
-        },
-        {
-            "source": "ActionChange Detection.sigmoided activation",
-            "target": "Color-Role-Field.input"
-        },
-        {
             "source": "Color-Attention-Field.sigmoided activation",
             "target": "Color-Role-Field.input"
         },
@@ -6708,11 +6641,79 @@
         {
             "source": "Action-Attention-Field.sigmoided activation",
             "target": "Action-Role-Field.input"
+        },
+        {
+            "source": "Commit-Node 6.sigmoided activation",
+            "target": "Reward Hebb Trace.association input"
+        },
+        {
+            "source": "Reward Hebb Trace.trigger output",
+            "target": "Static Gain 61.input"
+        },
+        {
+            "source": "Belief-Network-Node.sigmoided activation",
+            "target": "Reward Hebb Trace.read out trigger"
+        },
+        {
+            "source": "Recruitment Boost.sigmoided activation",
+            "target": "Reward Hebb Trace.reward signal"
+        },
+        {
+            "source": "Reward Hebb Trace 4.trigger output",
+            "target": "Static Gain 47.input"
+        },
+        {
+            "source": "Reward Hebb Trace 5.trigger output",
+            "target": "Static Gain 48.input"
+        },
+        {
+            "source": "Reward Hebb Trace 4.reciprocal output",
+            "target": "Transfer Function 22.input"
+        },
+        {
+            "source": "Reward Hebb Trace 5.reciprocal output",
+            "target": "Transfer Function 23.input"
+        },
+        {
+            "source": "Sound-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 5.association input"
+        },
+        {
+            "source": "Color-Role-Field.sigmoided activation",
+            "target": "Reward Hebb Trace 4.association input"
+        },
+        {
+            "source": "Belief-Node 2.sigmoided activation",
+            "target": "Reward Hebb Trace 5.read out trigger"
+        },
+        {
+            "source": "Belief-Node 2.sigmoided activation",
+            "target": "Reward Hebb Trace 4.read out trigger"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 5.reward signal"
+        },
+        {
+            "source": "Reward-Node.sigmoided activation",
+            "target": "Reward Hebb Trace 4.reward signal"
+        },
+        {
+            "source": "Recruitment Boost.sigmoided activation",
+            "target": "Color-Role-Field.input"
+        },
+        {
+            "source": "Recruitment Boost.sigmoided activation",
+            "target": "Sound-Role-Field.input"
+        },
+        {
+            "source": "Recruitment Boost.sigmoided activation",
+            "target": "Action-Role-Field.input"
         }
     ],
     "name": "element",
     "connectors": "",
-    "is looped": "false",
+    "is looped": "true",
     "time factor": "1",
     "ui": [
         {
@@ -7049,7 +7050,7 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1176",
+            "positionX": "1162",
             "positionY": "-14"
         },
         {
@@ -8661,7 +8662,7 @@
             "width": "40",
             "height": "40",
             "positionX": "1316",
-            "positionY": "-28"
+            "positionY": "-14"
         },
         {
             "type": "step",
@@ -9033,51 +9034,15 @@
         }
     ],
     "ui view": {
-        "ScrollBarX": "-505",
-        "ScrollBarY": "-588",
-        "SliderPosX": "-505",
-        "SliderPosY": "-588",
-        "Zoom": "0.40999999999999998"
+        "ScrollBarX": "-1004",
+        "ScrollBarY": "-275",
+        "SliderPosX": "-1004",
+        "SliderPosY": "-275",
+        "Zoom": "0.37"
     },
     "ui generic": {
         "group": "element",
-        "open plots": {
-            "Belief-Node 1Widget0": {
-                "step": "Belief-Node 1",
-                "position_x": "339",
-                "position_y": "682",
-                "width": "206",
-                "height": "200",
-                "position_relative_x": "0.17656250000000001",
-                "position_relative_y": "0.6840521564694082",
-                "width_relative": "0.10729166666666666",
-                "height_relative": "0.20060180541624875",
-                "data_list": [
-                    {
-                        "id": "INPUT",
-                        "name": "input",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
-                    }
-                ],
-                "plot configurations": [
-                    {
-                        "row": "1",
-                        "col": "0",
-                        "plot configuration": {
-                            "autoscaling": "true",
-                            "major grid visible": "false",
-                            "minor grid visible": "false",
-                            "y axis limits": {
-                                "lower limit": "0",
-                                "upper limit": "1"
-                            },
-                            "discrete plot": "false"
-                        }
-                    }
-                ]
-            }
-        },
+        "open plots": "",
         "plot groups": "",
         "architecture widgets": "",
         "robots": "",

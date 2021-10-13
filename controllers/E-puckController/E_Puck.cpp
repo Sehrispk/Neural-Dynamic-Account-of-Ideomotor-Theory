@@ -128,7 +128,7 @@ void E_Puck::applyMotorCommands()
 
   for (int i = 0; i < cedardata.LEDMat.rows; i++)
   {
-    if (cedardata.LEDMat.at<float>(i) >= 0.6)
+    if (cedardata.LEDMat.at<float>(i) >= 0.5)
     {
       int msg[1] = {i};
       em->send((const int *)msg, 4);
