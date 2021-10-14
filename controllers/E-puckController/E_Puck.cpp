@@ -102,7 +102,7 @@ void E_Puck::readSensorValues()
     std::string packet((const char *)rec->getData());
     float pitch(std::stof(packet));
     std::cout << pitch << " Hz" << std::endl;
-    sensordata.receiverMat.at<float>((int)(pitch/100)-1) = 1.;
+    sensordata.receiverMat.at<float>((int)(pitch/150)-1) = 1.;
     rec->nextPacket();
   }
 }

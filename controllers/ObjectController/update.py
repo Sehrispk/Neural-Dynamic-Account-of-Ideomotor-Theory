@@ -4,7 +4,7 @@ def update(self):
     if self.receiver.getQueueLength():
         distance = 1/sqrt(self.receiver.getSignalStrength())
         
-        if distance < 0.2:
+        if distance < 0.23:
             action = str(list(self.receiver.getData())[0])
             if self.contingencies[action] != "0":
                 self.sound = self.contingencies[action]

@@ -79,7 +79,7 @@
             "sizes": [
                 "5"
             ],
-            "time scale": "1000",
+            "time scale": "1200",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -448,6 +448,13 @@
             },
             "comments": ""
         },
+        "cedar.processing.sources.Boost": {
+            "name": "Belief-Boost",
+            "strength": "1",
+            "active": "true",
+            "deactivate on reset": "false",
+            "comments": ""
+        },
         "cedar.dynamics.NeuralField": {
             "name": "Belief-Network-Node",
             "activation as output": "false",
@@ -766,13 +773,6 @@
                 ],
                 "limit": "5"
             },
-            "comments": ""
-        },
-        "cedar.processing.sources.Boost": {
-            "name": "Boost",
-            "strength": "1",
-            "active": "true",
-            "deactivate on reset": "false",
             "comments": ""
         },
         "cedar.processing.sources.TCPReader": {
@@ -1201,7 +1201,7 @@
                 "threshold": "0",
                 "beta": "100"
             },
-            "global inhibition": "-0.22",
+            "global inhibition": "-0.50000000000000022",
             "lateral kernels": {
                 "cedar.aux.kernel.Gauss": {
                     "dimensionality": "1",
@@ -1210,7 +1210,7 @@
                     ],
                     "amplitude": "1.5",
                     "sigmas": [
-                        "3"
+                        "1"
                     ],
                     "normalize": "true",
                     "shifts": [
@@ -1255,7 +1255,7 @@
                 "50"
             ],
             "time scale": "100",
-            "resting level": "-1.75",
+            "resting level": "-2.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -1264,16 +1264,16 @@
                 "threshold": "0",
                 "beta": "100"
             },
-            "global inhibition": "-0.22000000000000006",
+            "global inhibition": "-0.50000000000000022",
             "lateral kernels": {
                 "cedar.aux.kernel.Gauss": {
                     "dimensionality": "1",
                     "anchor": [
                         "0"
                     ],
-                    "amplitude": "1.5000000000000004",
+                    "amplitude": "1.5",
                     "sigmas": [
-                        "3"
+                        "1"
                     ],
                     "normalize": "true",
                     "shifts": [
@@ -1573,7 +1573,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "100",
+            "time scale": "50",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -2108,7 +2108,7 @@
         },
         "cedar.processing.sources.Boost": {
             "name": "Exploration-Boost",
-            "strength": "6",
+            "strength": "1",
             "active": "false",
             "deactivate on reset": "false",
             "comments": ""
@@ -2122,7 +2122,7 @@
             "dimensionality": "0",
             "sizes": "",
             "time scale": "100",
-            "resting level": "-5",
+            "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -2166,17 +2166,17 @@
             ],
             "amplitude": "1",
             "centers": [
-                "5"
+                "2"
             ],
             "sigma": [
-                "1"
+                "0.01"
             ],
             "cyclic": "false",
             "comments": ""
         },
         "cedar.processing.sources.Boost": {
             "name": "Goal-Directed-Mode",
-            "strength": "5",
+            "strength": "1",
             "active": "false",
             "deactivate on reset": "false",
             "comments": ""
@@ -2763,6 +2763,16 @@
             "comments": ""
         },
         "cedar.processing.Projection": {
+            "name": "Projection 14",
+            "dimension mapping": {
+                "0": "4294967295"
+            },
+            "output dimensionality": "0",
+            "output dimension sizes": "",
+            "compression type": "MAXIMUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
             "name": "Projection 2",
             "dimension mapping": {
                 "0": "0",
@@ -2866,8 +2876,8 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "600",
-            "resting level": "-0.75",
+            "time scale": "300",
+            "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -2906,7 +2916,7 @@
             "name": "Reward Hebb Trace",
             "association dimension": "0",
             "association sizes": "",
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -2924,7 +2934,7 @@
             "association sizes": [
                 "5"
             ],
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -2946,7 +2956,7 @@
             "association sizes": [
                 "10"
             ],
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -2968,7 +2978,7 @@
             "association sizes": [
                 "5"
             ],
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -2990,7 +3000,7 @@
             "association sizes": [
                 "50"
             ],
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3012,7 +3022,7 @@
             "association sizes": [
                 "5"
             ],
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3034,7 +3044,7 @@
             "association sizes": [
                 "50"
             ],
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3056,7 +3066,7 @@
             "association sizes": [
                 "50"
             ],
-            "learning rate": "0.01",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3078,7 +3088,7 @@
             "association sizes": [
                 "5"
             ],
-            "learning rate": "0.01",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3100,7 +3110,7 @@
             "association sizes": [
                 "10"
             ],
-            "learning rate": "0.01",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3122,7 +3132,7 @@
             "association sizes": [
                 "50"
             ],
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3144,7 +3154,7 @@
             "association sizes": [
                 "10"
             ],
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3164,7 +3174,7 @@
             "name": "Reward Hebb Trace 20",
             "association dimension": "0",
             "association sizes": "",
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3180,7 +3190,7 @@
             "name": "Reward Hebb Trace 21",
             "association dimension": "0",
             "association sizes": "",
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3196,7 +3206,7 @@
             "name": "Reward Hebb Trace 22",
             "association dimension": "0",
             "association sizes": "",
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3212,7 +3222,7 @@
             "name": "Reward Hebb Trace 23",
             "association dimension": "0",
             "association sizes": "",
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3228,7 +3238,7 @@
             "name": "Reward Hebb Trace 24",
             "association dimension": "0",
             "association sizes": "",
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3246,7 +3256,7 @@
             "association sizes": [
                 "5"
             ],
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3268,7 +3278,7 @@
             "association sizes": [
                 "50"
             ],
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3290,7 +3300,7 @@
             "association sizes": [
                 "10"
             ],
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3312,7 +3322,7 @@
             "association sizes": [
                 "5"
             ],
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3334,7 +3344,7 @@
             "association sizes": [
                 "50"
             ],
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3356,7 +3366,7 @@
             "association sizes": [
                 "10"
             ],
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3378,7 +3388,7 @@
             "association sizes": [
                 "10"
             ],
-            "learning rate": "0.001",
+            "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
             "manual weights": "false",
@@ -3402,7 +3412,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "100",
+            "time scale": "300",
             "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -3651,7 +3661,7 @@
             "sizes": [
                 "10"
             ],
-            "time scale": "1000",
+            "time scale": "6000",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -3699,7 +3709,7 @@
                 "10"
             ],
             "time scale": "100",
-            "resting level": "-5",
+            "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -4280,6 +4290,16 @@
             "comments": ""
         },
         "cedar.processing.StaticGain": {
+            "name": "Static Gain 67",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 68",
+            "gain factor": "2",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
             "name": "Static Gain 7",
             "gain factor": "-1",
             "comments": ""
@@ -4297,7 +4317,7 @@
         "cedar.processing.sinks.TCPWriter": {
             "name": "TCP-Break-Writer",
             "port": "50031",
-            "ip_adress": "10.0.2.15",
+            "ip_adress": "134.147.176.105",
             "timeout (ms)": "3000",
             "max timeouts": "50",
             "send interval (timesteps)": "1",
@@ -4306,7 +4326,7 @@
         "cedar.processing.sinks.TCPWriter": {
             "name": "TCP-LED-Writer",
             "port": "50032",
-            "ip_adress": "10.0.2.15",
+            "ip_adress": "134.147.176.105",
             "timeout (ms)": "3000",
             "max timeouts": "50",
             "send interval (timesteps)": "1",
@@ -4315,7 +4335,7 @@
         "cedar.processing.sinks.TCPWriter": {
             "name": "TCP-Motor-Writer",
             "port": "50030",
-            "ip_adress": "10.0.2.15",
+            "ip_adress": "134.147.176.105",
             "timeout (ms)": "3000",
             "max timeouts": "50",
             "send interval (timesteps)": "1",
@@ -5373,10 +5393,6 @@
         {
             "source": "Projection 2.output",
             "target": "Transfer Function.input"
-        },
-        {
-            "source": "Transfer Function.sigmoided output",
-            "target": "Color-Attention-Field.input"
         },
         {
             "source": "Static Gain 2.output",
@@ -6607,7 +6623,7 @@
             "target": "Reward Hebb Trace 24.read out trigger"
         },
         {
-            "source": "Boost.boost",
+            "source": "Belief-Boost.boost",
             "target": "Belief-Network-Node.input"
         },
         {
@@ -6637,10 +6653,6 @@
         {
             "source": "Sound-Attention-Field.sigmoided activation",
             "target": "Sound-Role-Field.input"
-        },
-        {
-            "source": "Action-Attention-Field.sigmoided activation",
-            "target": "Action-Role-Field.input"
         },
         {
             "source": "Commit-Node 6.sigmoided activation",
@@ -6709,11 +6721,136 @@
         {
             "source": "Recruitment Boost.sigmoided activation",
             "target": "Action-Role-Field.input"
+        },
+        {
+            "source": "Action-Working-Memory.sigmoided activation",
+            "target": "Action-Role-Field.input"
+        },
+        {
+            "source": "x.vector",
+            "target": "Component Multiply 10.operands"
+        },
+        {
+            "source": "x.vector",
+            "target": "Component Multiply 11.operands"
+        },
+        {
+            "source": "x.vector",
+            "target": "Component Multiply 15.operands"
+        },
+        {
+            "source": "x.vector",
+            "target": "Component Multiply 20.operands"
+        },
+        {
+            "source": "x.vector",
+            "target": "Component Multiply 25.operands"
+        },
+        {
+            "source": "x.vector",
+            "target": "Component Multiply 30.operands"
+        },
+        {
+            "source": "Sound-Goal-Field.sigmoided activation",
+            "target": "Sound-Role-Field.input"
+        },
+        {
+            "source": "Sound-Goal-Field.sigmoided activation",
+            "target": "Projection 14.input"
+        },
+        {
+            "source": "Projection 14.output",
+            "target": "Static Gain 67.input"
+        },
+        {
+            "source": "Static Gain 67.output",
+            "target": "Belief-Node 6.input"
+        },
+        {
+            "source": "Static Gain 67.output",
+            "target": "Belief-Node 5.input"
+        },
+        {
+            "source": "Static Gain 67.output",
+            "target": "Belief-Node 4.input"
+        },
+        {
+            "source": "Static Gain 67.output",
+            "target": "Belief-Node 3.input"
+        },
+        {
+            "source": "Static Gain 67.output",
+            "target": "Belief-Node 2.input"
+        },
+        {
+            "source": "Static Gain 67.output",
+            "target": "Belief-Node 1.input"
+        },
+        {
+            "source": "Goal-Directed-Mode.boost",
+            "target": "Sound-Role-Field.input"
+        },
+        {
+            "source": "Goal-Directed-Mode.boost",
+            "target": "Color-Role-Field.input"
+        },
+        {
+            "source": "Goal-Directed-Mode.boost",
+            "target": "Action-Role-Field.input"
+        },
+        {
+            "source": "Goal-Directed-Mode.boost",
+            "target": "Sound-Action-Field.input"
+        },
+        {
+            "source": "Goal-Directed-Mode.boost",
+            "target": "Color-Action-Field.input"
+        },
+        {
+            "source": "Goal-Directed-Mode.boost",
+            "target": "Action-Selection-Field.input"
+        },
+        {
+            "source": "Color-Role-Field.sigmoided activation",
+            "target": "Color-Action-Field.input"
+        },
+        {
+            "source": "Sound-Role-Field.sigmoided activation",
+            "target": "Sound-Action-Field.input"
+        },
+        {
+            "source": "Action-Role-Field.sigmoided activation",
+            "target": "Action-Selection-Field.input"
+        },
+        {
+            "source": "Color-Action-Field.sigmoided activation",
+            "target": "Color-Attention-Field.input"
+        },
+        {
+            "source": "Transfer Function.sigmoided output",
+            "target": "Static Gain 68.input"
+        },
+        {
+            "source": "Static Gain 68.output",
+            "target": "Color-Attention-Field.input"
+        },
+        {
+            "source": "Exploration-Goal-Node.sigmoided activation",
+            "target": "Recruitment Boost.input"
+        }
+    ],
+    "scripts": [
+        {
+            "type": "cedar.proc.scripts.ExecuteFunctionOnStepsPlugin",
+            "configuration": {
+                "name": "Execute Function On Steps Plugin",
+                "FunctionName": "RewardHebbTrace->resetWeights()"
+            }
         }
     ],
     "name": "element",
     "connectors": "",
-    "is looped": "true",
+    "is looped": "false",
     "time factor": "1",
     "ui": [
         {
@@ -6794,6 +6931,15 @@
         },
         {
             "type": "step",
+            "step": "Belief-Boost",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "2338",
+            "positionY": "-812"
+        },
+        {
+            "type": "step",
             "step": "Belief-Network-Node",
             "display style": "ICON_AND_TEXT",
             "width": "124",
@@ -6854,15 +7000,6 @@
             "height": "40",
             "positionX": "1064",
             "positionY": "-1428"
-        },
-        {
-            "type": "step",
-            "step": "Boost",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "2338",
-            "positionY": "-812"
         },
         {
             "type": "step",
@@ -7438,7 +7575,7 @@
             "width": "40",
             "height": "40",
             "positionX": "-1582",
-            "positionY": "-448"
+            "positionY": "-546"
         },
         {
             "type": "step",
@@ -7456,7 +7593,7 @@
             "width": "40",
             "height": "40",
             "positionX": "-1246",
-            "positionY": "-546"
+            "positionY": "-434"
         },
         {
             "type": "step",
@@ -7464,7 +7601,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-1148",
+            "positionX": "-1232",
             "positionY": "-546"
         },
         {
@@ -7703,6 +7840,15 @@
         },
         {
             "type": "step",
+            "step": "Projection 14",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-1036",
+            "positionY": "-406"
+        },
+        {
+            "type": "step",
             "step": "Projection 2",
             "display style": "ICON_ONLY",
             "width": "40",
@@ -7726,7 +7872,7 @@
             "width": "40",
             "height": "40",
             "positionX": "1078",
-            "positionY": "182"
+            "positionY": "210"
         },
         {
             "type": "step",
@@ -8738,6 +8884,24 @@
         },
         {
             "type": "step",
+            "step": "Static Gain 67",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-966",
+            "positionY": "-406"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 68",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "210",
+            "positionY": "588"
+        },
+        {
+            "type": "step",
             "step": "Static Gain 7",
             "display style": "ICON_ONLY",
             "width": "40",
@@ -8797,7 +8961,7 @@
             "width": "40",
             "height": "40",
             "positionX": "210",
-            "positionY": "574"
+            "positionY": "630"
         },
         {
             "type": "step",
@@ -9034,11 +9198,11 @@
         }
     ],
     "ui view": {
-        "ScrollBarX": "-1004",
-        "ScrollBarY": "-275",
-        "SliderPosX": "-1004",
-        "SliderPosY": "-275",
-        "Zoom": "0.37"
+        "ScrollBarX": "-968",
+        "ScrollBarY": "-175",
+        "SliderPosX": "-968",
+        "SliderPosY": "-175",
+        "Zoom": "0.23999999999999999"
     },
     "ui generic": {
         "group": "element",

@@ -10,19 +10,19 @@
     },
     {
     	"type": "ColoredBox",
-	"name": "\"box1\"",
-	"translation": "0.1 0.05 -0.34",
-	"controllerArgs": {"R": "255", "G": "100", "B": "0","contingencies": "contingencies 1"}
+	    "name": "\"box1\"",
+	    "translation": "0.1 0.05 -0.34",
+	    "controllerArgs": {"R": "100", "G": "255", "B": "0","contingencies": "contingencies 1"}
     },
     {
     	"type": "ColoredBox",
-	"name": "\"box2\"",
-	"translation": "-0.1 0.05 -0.34",
-	"controllerArgs": {"R": "100", "G": "0", "B": "255", "contingencies": "contingencies 2"}
+	    "name": "\"box2\"",
+	    "translation": "-1.1 1.05 -1.34",
+	    "controllerArgs": {"R": "100", "G": "0", "B": "255", "contingencies": "contingencies 2"}
     }
     ],
     "Contingencies":{
-    	"contingencies 1": {"0":"1500", "1":"1000", "2":"500"},
+    	"contingencies 1": {"0":"500", "1":"1000", "2":"1500"},
     	"contingencies 2": {"0":"1000", "1":"1500", "2":"500"}
     }
 }
