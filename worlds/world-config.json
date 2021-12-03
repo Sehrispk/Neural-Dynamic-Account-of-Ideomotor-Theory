@@ -6,13 +6,14 @@
     	"translation": "0.0 0.0 0.2",
     	"kinematic": "TRUE",
     	"controller": "\"E-puckController\"",
-    	"controllerArgs": {}
+    	"controllerArgs": {},
+    	"version":"\"1\""
     },
     {
     	"type": "ColoredBox",
 	    "name": "\"box1\"",
 	    "translation": "0.1 0.05 -0.34",
-	    "controllerArgs": {"R": "100", "G": "255", "B": "0","contingencies": "contingencies 1"}
+	    "controllerArgs": {"R": "255", "G": "127", "B": "0","contingencies": "contingencies 1"}
     },
     {
     	"type": "ColoredBox",

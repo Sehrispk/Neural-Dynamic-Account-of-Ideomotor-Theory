@@ -6,7 +6,7 @@
 #include <webots/Receiver.hpp>
 #include <webots/Emitter.hpp>
 #include <webots/LED.hpp>
-#include <opencv4/opencv2/core/core.hpp>
+#include <opencv2/core/core.hpp>
 #include <fstream>
 #include <iostream>
 #include <map>
