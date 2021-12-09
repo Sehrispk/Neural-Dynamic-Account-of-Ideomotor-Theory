@@ -64,7 +64,7 @@
                 "3"
             ],
             "time scale": "100",
-            "resting level": "-2.75",
+            "resting level": "-2.25",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -73,7 +73,7 @@
                 "threshold": "0",
                 "beta": "100"
             },
-            "global inhibition": "-0.01",
+            "global inhibition": "0",
             "lateral kernels": "",
             "lateral kernel convolution": {
                 "borderType": "Zero",
@@ -111,7 +111,7 @@
                 "5"
             ],
             "time scale": "100",
-            "resting level": "-2.75",
+            "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -230,24 +230,55 @@
                 "threshold": "0",
                 "beta": "100"
             },
-            "global inhibition": "-0.01",
-            "lateral kernels": {
-                "cedar.aux.kernel.Gauss": {
-                    "dimensionality": "1",
-                    "anchor": [
-                        "0"
-                    ],
-                    "amplitude": "1",
-                    "sigmas": [
-                        "1"
-                    ],
-                    "normalize": "true",
-                    "shifts": [
-                        "0"
-                    ],
-                    "limit": "5"
-                }
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
             },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Action-Role-Gate",
+            "activation as output": "false",
+            "discrete metric (workaround)": "true",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "1",
+            "sizes": [
+                "3"
+            ],
+            "time scale": "100",
+            "resting level": "-1.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
             "lateral kernel convolution": {
                 "borderType": "Zero",
                 "mode": "Same",
@@ -328,7 +359,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "2",
             "sizes": [
-                "50",
+                "20",
                 "52"
             ],
             "time scale": "100",
@@ -376,6 +407,51 @@
             "strength": "1",
             "active": "true",
             "deactivate on reset": "false",
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Belief-CoS",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "0",
+            "sizes": "",
+            "time scale": "100",
+            "resting level": "-4.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
             "comments": ""
         },
         "cedar.dynamics.NeuralField": {
@@ -442,7 +518,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "100",
+            "time scale": "900",
             "resting level": "0",
             "input noise gain": "0",
             "multiplicative noise (input)": "false",
@@ -696,13 +772,6 @@
                 ],
                 "limit": "5"
             },
-            "comments": ""
-        },
-        "cedar.processing.sources.Boost": {
-            "name": "Boost",
-            "strength": "2",
-            "active": "false",
-            "deactivate on reset": "false",
             "comments": ""
         },
         "cedar.processing.sources.TCPReader": {
@@ -1066,45 +1135,6 @@
             },
             "comments": ""
         },
-        "cedar.dynamics.Preshape": {
-            "name": "CoS1-Trace",
-            "dimensionality": "0",
-            "sizes": "",
-            "time scale build up": "100",
-            "time scale decay": "4000",
-            "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0.5",
-                "beta": "1000"
-            },
-            "comments": ""
-        },
-        "cedar.dynamics.Preshape": {
-            "name": "CoS2-Trace",
-            "dimensionality": "0",
-            "sizes": "",
-            "time scale build up": "100",
-            "time scale decay": "4000",
-            "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0.5",
-                "beta": "1000"
-            },
-            "comments": ""
-        },
-        "cedar.dynamics.Preshape": {
-            "name": "CoS3-Trace",
-            "dimensionality": "0",
-            "sizes": "",
-            "time scale build up": "100",
-            "time scale decay": "4000",
-            "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0.5",
-                "beta": "1000"
-            },
-            "comments": ""
-        },
         "cedar.dynamics.NeuralField": {
             "name": "Color Concepts",
             "activation as output": "false",
@@ -1169,7 +1199,7 @@
                 "6"
             ],
             "time scale": "100",
-            "resting level": "-2.75",
+            "resting level": "-2.25",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -1178,7 +1208,7 @@
                 "threshold": "0",
                 "beta": "100"
             },
-            "global inhibition": "-0.01",
+            "global inhibition": "0",
             "lateral kernels": "",
             "lateral kernel convolution": {
                 "borderType": "Zero",
@@ -1271,7 +1301,7 @@
         "cedar.dynamics.NeuralField": {
             "name": "Color-Change-Detection",
             "activation as output": "false",
-            "discrete metric (workaround)": "false",
+            "discrete metric (workaround)": "true",
             "update stepIcon according to output": "true",
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "1",
@@ -1291,7 +1321,7 @@
             "global inhibition": "0",
             "lateral kernels": "",
             "lateral kernel convolution": {
-                "borderType": "Cyclic",
+                "borderType": "Zero",
                 "mode": "Same",
                 "engine": {
                     "type": "cedar.aux.conv.OpenCV"
@@ -1318,53 +1348,6 @@
         "cedar.dynamics.NeuralField": {
             "name": "Color-Change-Inhibition",
             "activation as output": "false",
-            "discrete metric (workaround)": "false",
-            "update stepIcon according to output": "true",
-            "threshold for updating the stepIcon": "0.80000000000000004",
-            "dimensionality": "1",
-            "sizes": [
-                "6"
-            ],
-            "time scale": "1200",
-            "resting level": "-0.75",
-            "input noise gain": "0.10000000000000001",
-            "multiplicative noise (input)": "false",
-            "multiplicative noise (activation)": "false",
-            "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
-            },
-            "global inhibition": "0",
-            "lateral kernels": "",
-            "lateral kernel convolution": {
-                "borderType": "Zero",
-                "mode": "Same",
-                "engine": {
-                    "type": "cedar.aux.conv.OpenCV"
-                },
-                "alternate even kernel center": "false"
-            },
-            "noise correlation kernel": {
-                "dimensionality": "1",
-                "anchor": [
-                    "0"
-                ],
-                "amplitude": "0",
-                "sigmas": [
-                    "3"
-                ],
-                "normalize": "true",
-                "shifts": [
-                    "0"
-                ],
-                "limit": "5"
-            },
-            "comments": ""
-        },
-        "cedar.dynamics.NeuralField": {
-            "name": "Color-Inhibition",
-            "activation as output": "false",
             "discrete metric (workaround)": "true",
             "update stepIcon according to output": "true",
             "threshold for updating the stepIcon": "0.80000000000000004",
@@ -1372,7 +1355,7 @@
             "sizes": [
                 "6"
             ],
-            "time scale": "1200",
+            "time scale": "6000",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -1410,7 +1393,7 @@
             "comments": ""
         },
         "cedar.dynamics.NeuralField": {
-            "name": "Color-Memory",
+            "name": "Color-Role-Gate",
             "activation as output": "false",
             "discrete metric (workaround)": "true",
             "update stepIcon according to output": "true",
@@ -1420,52 +1403,7 @@
                 "6"
             ],
             "time scale": "100",
-            "resting level": "-0.75",
-            "input noise gain": "0.10000000000000001",
-            "multiplicative noise (input)": "false",
-            "multiplicative noise (activation)": "false",
-            "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
-            },
-            "global inhibition": "0",
-            "lateral kernels": "",
-            "lateral kernel convolution": {
-                "borderType": "Zero",
-                "mode": "Same",
-                "engine": {
-                    "type": "cedar.aux.conv.OpenCV"
-                },
-                "alternate even kernel center": "false"
-            },
-            "noise correlation kernel": {
-                "dimensionality": "1",
-                "anchor": [
-                    "0"
-                ],
-                "amplitude": "0",
-                "sigmas": [
-                    "3"
-                ],
-                "normalize": "true",
-                "shifts": [
-                    "0"
-                ],
-                "limit": "5"
-            },
-            "comments": ""
-        },
-        "cedar.dynamics.NeuralField": {
-            "name": "Color-Recall-Boost",
-            "activation as output": "false",
-            "discrete metric (workaround)": "false",
-            "update stepIcon according to output": "true",
-            "threshold for updating the stepIcon": "0.80000000000000004",
-            "dimensionality": "0",
-            "sizes": "",
-            "time scale": "100",
-            "resting level": "-0.75",
+            "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -1510,7 +1448,7 @@
             "dimensionality": "2",
             "sizes": [
                 "20",
-                "121"
+                "52"
             ],
             "time scale": "100",
             "resting level": "-5",
@@ -1522,27 +1460,8 @@
                 "threshold": "0",
                 "beta": "100"
             },
-            "global inhibition": "-0.0099999999999999967",
-            "lateral kernels": {
-                "cedar.aux.kernel.Gauss": {
-                    "dimensionality": "2",
-                    "anchor": [
-                        "0",
-                        "0"
-                    ],
-                    "amplitude": "9.0000000000000071",
-                    "sigmas": [
-                        "1.01",
-                        "0.01"
-                    ],
-                    "normalize": "true",
-                    "shifts": [
-                        "0",
-                        "0"
-                    ],
-                    "limit": "5"
-                }
-            },
+            "global inhibition": "0",
+            "lateral kernels": "",
             "lateral kernel convolution": {
                 "borderType": "Cyclic",
                 "mode": "Same",
@@ -1574,12 +1493,12 @@
         "cedar.dynamics.NeuralField": {
             "name": "Color-matching-Field",
             "activation as output": "false",
-            "discrete metric (workaround)": "false",
+            "discrete metric (workaround)": "true",
             "update stepIcon according to output": "true",
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "1",
             "sizes": [
-                "50"
+                "6"
             ],
             "time scale": "100",
             "resting level": "-1.75",
@@ -2163,30 +2082,14 @@
             "name": "Gauss Input",
             "dimensionality": "1",
             "sizes": [
-                "10"
+                "5"
             ],
             "amplitude": "1",
             "centers": [
-                "8"
+                "4"
             ],
             "sigma": [
-                "1"
-            ],
-            "cyclic": "false",
-            "comments": ""
-        },
-        "cedar.processing.sources.GaussInput": {
-            "name": "Gauss Input 2",
-            "dimensionality": "1",
-            "sizes": [
-                "5"
-            ],
-            "amplitude": "3",
-            "centers": [
-                "3"
-            ],
-            "sigma": [
-                "0.10000000000000001"
+                "0.01"
             ],
             "cyclic": "false",
             "comments": ""
@@ -2199,10 +2102,45 @@
             ],
             "amplitude": "1",
             "centers": [
-                "2"
+                "0"
             ],
             "sigma": [
-                "0.10000000000000001"
+                "0.01"
+            ],
+            "cyclic": "false",
+            "comments": ""
+        },
+        "cedar.processing.sources.GaussInput": {
+            "name": "Gauss Input 6",
+            "dimensionality": "1",
+            "sizes": [
+                "10"
+            ],
+            "amplitude": "1",
+            "centers": [
+                "9"
+            ],
+            "sigma": [
+                "0.01"
+            ],
+            "cyclic": "false",
+            "comments": ""
+        },
+        "cedar.processing.sources.GaussInput": {
+            "name": "Gauss Input 7",
+            "dimensionality": "2",
+            "sizes": [
+                "20",
+                "52"
+            ],
+            "amplitude": "5.5",
+            "centers": [
+                "9",
+                "25"
+            ],
+            "sigma": [
+                "0.01",
+                "31"
             ],
             "cyclic": "false",
             "comments": ""
@@ -2257,7 +2195,7 @@
         "cedar.dynamics.NeuralField": {
             "name": "Goal-Change-Detection",
             "activation as output": "false",
-            "discrete metric (workaround)": "false",
+            "discrete metric (workaround)": "true",
             "update stepIcon according to output": "true",
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "1",
@@ -2265,6 +2203,53 @@
                 "3"
             ],
             "time scale": "100",
+            "resting level": "-0.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Goal-Change-Inhibition",
+            "activation as output": "false",
+            "discrete metric (workaround)": "true",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "1",
+            "sizes": [
+                "3"
+            ],
+            "time scale": "6000",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -2351,8 +2336,24 @@
                 "threshold": "0",
                 "beta": "100"
             },
-            "global inhibition": "0",
-            "lateral kernels": "",
+            "global inhibition": "-0.98999999999999999",
+            "lateral kernels": {
+                "cedar.aux.kernel.Gauss": {
+                    "dimensionality": "1",
+                    "anchor": [
+                        "0"
+                    ],
+                    "amplitude": "2",
+                    "sigmas": [
+                        "0.10000000000000001"
+                    ],
+                    "normalize": "true",
+                    "shifts": [
+                        "0"
+                    ],
+                    "limit": "5"
+                }
+            },
             "lateral kernel convolution": {
                 "borderType": "Zero",
                 "mode": "Same",
@@ -2569,7 +2570,7 @@
                 "6"
             ],
             "time scale": "100",
-            "resting level": "-1.75",
+            "resting level": "-2.5",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -2578,8 +2579,24 @@
                 "threshold": "0",
                 "beta": "100"
             },
-            "global inhibition": "0",
-            "lateral kernels": "",
+            "global inhibition": "-0.45000000000000007",
+            "lateral kernels": {
+                "cedar.aux.kernel.Gauss": {
+                    "dimensionality": "1",
+                    "anchor": [
+                        "0"
+                    ],
+                    "amplitude": "1.4999999999999996",
+                    "sigmas": [
+                        "0.10000000000000001"
+                    ],
+                    "normalize": "true",
+                    "shifts": [
+                        "0"
+                    ],
+                    "limit": "5"
+                }
+            },
             "lateral kernel convolution": {
                 "borderType": "Zero",
                 "mode": "Same",
@@ -2606,7 +2623,7 @@
             "comments": ""
         },
         "cedar.dynamics.NeuralField": {
-            "name": "Intention-In-Action-Node6",
+            "name": "Intention-In-Action-Action3",
             "activation as output": "false",
             "discrete metric (workaround)": "false",
             "update stepIcon according to output": "true",
@@ -2923,11 +2940,7 @@
         },
         "cedar.processing.Projection": {
             "name": "Projection",
-            "dimension mapping": {
-                "0": "4294967295",
-                "1": "1",
-                "2": "0"
-            },
+            "dimension mapping": "",
             "output dimensionality": "2",
             "output dimension sizes": [
                 "20",
@@ -2987,6 +3000,36 @@
             "comments": ""
         },
         "cedar.processing.Projection": {
+            "name": "Projection 15",
+            "dimension mapping": {
+                "0": "4294967295"
+            },
+            "output dimensionality": "0",
+            "output dimension sizes": "",
+            "compression type": "MAXIMUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
+            "name": "Projection 16",
+            "dimension mapping": {
+                "0": "4294967295"
+            },
+            "output dimensionality": "0",
+            "output dimension sizes": "",
+            "compression type": "MAXIMUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
+            "name": "Projection 17",
+            "dimension mapping": {
+                "0": "4294967295"
+            },
+            "output dimensionality": "0",
+            "output dimension sizes": "",
+            "compression type": "MAXIMUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
             "name": "Projection 2",
             "dimension mapping": {
                 "0": "0",
@@ -3016,7 +3059,7 @@
             },
             "output dimensionality": "0",
             "output dimension sizes": "",
-            "compression type": "SUM",
+            "compression type": "MAXIMUM",
             "comments": ""
         },
         "cedar.processing.Projection": {
@@ -3026,7 +3069,7 @@
             },
             "output dimensionality": "0",
             "output dimension sizes": "",
-            "compression type": "SUM",
+            "compression type": "MAXIMUM",
             "comments": ""
         },
         "cedar.processing.Projection": {
@@ -3283,14 +3326,14 @@
             "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
-            "manual weights": "false",
+            "manual weights": "true",
             "weight centers": [
-                "3"
+                "0"
             ],
             "weight sigmas": [
-                "3"
+                "0.01"
             ],
-            "weight amplitude": "6",
+            "weight amplitude": "1",
             "reward threshold": "0.5",
             "reciprocal weight threshold": "0.5",
             "require asso and trigger for learning": "false",
@@ -3305,14 +3348,14 @@
             "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
-            "manual weights": "false",
+            "manual weights": "true",
             "weight centers": [
-                "3"
+                "0"
             ],
             "weight sigmas": [
-                "3"
+                "0.01"
             ],
-            "weight amplitude": "6",
+            "weight amplitude": "1",
             "reward threshold": "0.5",
             "reciprocal weight threshold": "0.5",
             "require asso and trigger for learning": "false",
@@ -3327,14 +3370,14 @@
             "learning rate": "0.90000000000000002",
             "fixed reward duration": "false",
             "reward duration": "200",
-            "manual weights": "false",
+            "manual weights": "true",
             "weight centers": [
-                "3"
+                "0"
             ],
             "weight sigmas": [
-                "3"
+                "0.01"
             ],
-            "weight amplitude": "6",
+            "weight amplitude": "1",
             "reward threshold": "0.5",
             "reciprocal weight threshold": "0.5",
             "require asso and trigger for learning": "false",
@@ -4037,6 +4080,28 @@
             "comments": ""
         },
         "cedar.proc.steps.RewardHebbTrace": {
+            "name": "Reward Hebb Trace 49",
+            "association dimension": "1",
+            "association sizes": [
+                "3"
+            ],
+            "learning rate": "0.001",
+            "fixed reward duration": "false",
+            "reward duration": "200",
+            "manual weights": "true",
+            "weight centers": [
+                "1"
+            ],
+            "weight sigmas": [
+                "0.01"
+            ],
+            "weight amplitude": "1",
+            "reward threshold": "0.5",
+            "reciprocal weight threshold": "0.5",
+            "require asso and trigger for learning": "false",
+            "comments": ""
+        },
+        "cedar.proc.steps.RewardHebbTrace": {
             "name": "Reward Hebb Trace 5",
             "association dimension": "1",
             "association sizes": [
@@ -4053,6 +4118,116 @@
                 "3"
             ],
             "weight amplitude": "6",
+            "reward threshold": "0.5",
+            "reciprocal weight threshold": "0.5",
+            "require asso and trigger for learning": "false",
+            "comments": ""
+        },
+        "cedar.proc.steps.RewardHebbTrace": {
+            "name": "Reward Hebb Trace 50",
+            "association dimension": "1",
+            "association sizes": [
+                "3"
+            ],
+            "learning rate": "0.001",
+            "fixed reward duration": "false",
+            "reward duration": "200",
+            "manual weights": "true",
+            "weight centers": [
+                "0"
+            ],
+            "weight sigmas": [
+                "0.01"
+            ],
+            "weight amplitude": "1",
+            "reward threshold": "0.5",
+            "reciprocal weight threshold": "0.5",
+            "require asso and trigger for learning": "false",
+            "comments": ""
+        },
+        "cedar.proc.steps.RewardHebbTrace": {
+            "name": "Reward Hebb Trace 51",
+            "association dimension": "1",
+            "association sizes": [
+                "3"
+            ],
+            "learning rate": "0.001",
+            "fixed reward duration": "false",
+            "reward duration": "200",
+            "manual weights": "true",
+            "weight centers": [
+                "2"
+            ],
+            "weight sigmas": [
+                "0.01"
+            ],
+            "weight amplitude": "1",
+            "reward threshold": "0.5",
+            "reciprocal weight threshold": "0.5",
+            "require asso and trigger for learning": "false",
+            "comments": ""
+        },
+        "cedar.proc.steps.RewardHebbTrace": {
+            "name": "Reward Hebb Trace 52",
+            "association dimension": "1",
+            "association sizes": [
+                "5"
+            ],
+            "learning rate": "0.001",
+            "fixed reward duration": "false",
+            "reward duration": "200",
+            "manual weights": "true",
+            "weight centers": [
+                "2"
+            ],
+            "weight sigmas": [
+                "0.10000000000000001"
+            ],
+            "weight amplitude": "1",
+            "reward threshold": "0.5",
+            "reciprocal weight threshold": "0.5",
+            "require asso and trigger for learning": "false",
+            "comments": ""
+        },
+        "cedar.proc.steps.RewardHebbTrace": {
+            "name": "Reward Hebb Trace 53",
+            "association dimension": "1",
+            "association sizes": [
+                "5"
+            ],
+            "learning rate": "0.001",
+            "fixed reward duration": "false",
+            "reward duration": "200",
+            "manual weights": "true",
+            "weight centers": [
+                "3"
+            ],
+            "weight sigmas": [
+                "0.01"
+            ],
+            "weight amplitude": "1",
+            "reward threshold": "0.5",
+            "reciprocal weight threshold": "0.5",
+            "require asso and trigger for learning": "false",
+            "comments": ""
+        },
+        "cedar.proc.steps.RewardHebbTrace": {
+            "name": "Reward Hebb Trace 54",
+            "association dimension": "1",
+            "association sizes": [
+                "5"
+            ],
+            "learning rate": "0.001",
+            "fixed reward duration": "false",
+            "reward duration": "200",
+            "manual weights": "true",
+            "weight centers": [
+                "4"
+            ],
+            "weight sigmas": [
+                "0.01"
+            ],
+            "weight amplitude": "1",
             "reward threshold": "0.5",
             "reciprocal weight threshold": "0.5",
             "require asso and trigger for learning": "false",
@@ -4195,21 +4370,6 @@
             "number of vector entries": "3",
             "comments": ""
         },
-        "cedar.processing.ScalarsToVector": {
-            "name": "Scalars To Vector 4",
-            "number of vector entries": "5",
-            "comments": ""
-        },
-        "cedar.processing.ScalarsToVector": {
-            "name": "Scalars To Vector 5",
-            "number of vector entries": "5",
-            "comments": ""
-        },
-        "cedar.processing.ScalarsToVector": {
-            "name": "Scalars To Vector 6",
-            "number of vector entries": "5",
-            "comments": ""
-        },
         "cedar.dynamics.NeuralField": {
             "name": "Sound Concepts",
             "activation as output": "false",
@@ -4268,7 +4428,7 @@
                 "3"
             ],
             "time scale": "100",
-            "resting level": "-2.75",
+            "resting level": "-2.25",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -4277,7 +4437,7 @@
                 "threshold": "0",
                 "beta": "100"
             },
-            "global inhibition": "-0.01",
+            "global inhibition": "0",
             "lateral kernels": "",
             "lateral kernel convolution": {
                 "borderType": "Zero",
@@ -4315,7 +4475,7 @@
                 "10"
             ],
             "time scale": "100",
-            "resting level": "-2.75",
+            "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -4370,7 +4530,7 @@
         "cedar.dynamics.NeuralField": {
             "name": "Sound-Change-Detection",
             "activation as output": "false",
-            "discrete metric (workaround)": "false",
+            "discrete metric (workaround)": "true",
             "update stepIcon according to output": "true",
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "1",
@@ -4417,54 +4577,7 @@
         "cedar.dynamics.NeuralField": {
             "name": "Sound-Change-Inhibition",
             "activation as output": "false",
-            "discrete metric (workaround)": "false",
-            "update stepIcon according to output": "true",
-            "threshold for updating the stepIcon": "0.80000000000000004",
-            "dimensionality": "1",
-            "sizes": [
-                "3"
-            ],
-            "time scale": "6000",
-            "resting level": "-0.75",
-            "input noise gain": "0.10000000000000001",
-            "multiplicative noise (input)": "false",
-            "multiplicative noise (activation)": "false",
-            "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
-            },
-            "global inhibition": "0",
-            "lateral kernels": "",
-            "lateral kernel convolution": {
-                "borderType": "Zero",
-                "mode": "Same",
-                "engine": {
-                    "type": "cedar.aux.conv.OpenCV"
-                },
-                "alternate even kernel center": "false"
-            },
-            "noise correlation kernel": {
-                "dimensionality": "1",
-                "anchor": [
-                    "0"
-                ],
-                "amplitude": "0",
-                "sigmas": [
-                    "3"
-                ],
-                "normalize": "true",
-                "shifts": [
-                    "0"
-                ],
-                "limit": "5"
-            },
-            "comments": ""
-        },
-        "cedar.dynamics.NeuralField": {
-            "name": "Sound-Change-Inhibition 2",
-            "activation as output": "false",
-            "discrete metric (workaround)": "false",
+            "discrete metric (workaround)": "true",
             "update stepIcon according to output": "true",
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "1",
@@ -4519,7 +4632,7 @@
                 "10"
             ],
             "time scale": "100",
-            "resting level": "-0.75",
+            "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -4528,24 +4641,55 @@
                 "threshold": "0",
                 "beta": "100"
             },
-            "global inhibition": "-0.01",
-            "lateral kernels": {
-                "cedar.aux.kernel.Gauss": {
-                    "dimensionality": "1",
-                    "anchor": [
-                        "0"
-                    ],
-                    "amplitude": "1",
-                    "sigmas": [
-                        "1"
-                    ],
-                    "normalize": "true",
-                    "shifts": [
-                        "0"
-                    ],
-                    "limit": "5"
-                }
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
             },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Sound-Role-Gate",
+            "activation as output": "false",
+            "discrete metric (workaround)": "true",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "1",
+            "sizes": [
+                "3"
+            ],
+            "time scale": "100",
+            "resting level": "-1.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
             "lateral kernel convolution": {
                 "borderType": "Zero",
                 "mode": "Same",
@@ -4752,17 +4896,17 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 20",
-            "gain factor": "-5",
+            "gain factor": "-1",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 21",
-            "gain factor": "-5",
+            "gain factor": "-1",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 22",
-            "gain factor": "-5",
+            "gain factor": "-1",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -4807,7 +4951,7 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 30",
-            "gain factor": "-1000.5",
+            "gain factor": "-1.5",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -5027,7 +5171,7 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 70",
-            "gain factor": "-1",
+            "gain factor": "0.5",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -5037,12 +5181,37 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 72",
-            "gain factor": "-1",
+            "gain factor": "1",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 73",
+            "gain factor": "1",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 74",
             "gain factor": "2",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 75",
+            "gain factor": "0.50000000000000011",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 76",
+            "gain factor": "0.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 77",
+            "gain factor": "2",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 78",
+            "gain factor": "0.5",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -5855,7 +6024,7 @@
                 "CoS-Action2",
                 "Intention In Action-Action2",
                 "CoS-Action3",
-                "Intention-In-Action-Node6",
+                "Intention-In-Action-Action3",
                 "TCP-LED-Writer",
                 "Space To Rate Code",
                 "Intention In Action-Break",
@@ -5867,11 +6036,6 @@
                 "Motor-Attractor",
                 "Action-Working-Memory",
                 "Sound-Change-Detection",
-                "CoS1-Trace",
-                "CoS2-Trace",
-                "CoS3-Trace",
-                "Color-Change-Detection",
-                "Color-Change-Inhibition",
                 "Sound-Change-Inhibition",
                 "Action-Change-Inhibition",
                 "Belief-Node 2",
@@ -5958,11 +6122,20 @@
                 "Goal Sound",
                 "Intention Object",
                 "Intention Action",
-                "Color-Memory",
-                "Color-Inhibition",
-                "Color-Recall-Boost",
+                "Reward Hebb Trace 51",
+                "Reward Hebb Trace 49",
+                "Reward Hebb Trace 50",
+                "Reward Hebb Trace 52",
+                "Reward Hebb Trace 53",
+                "Reward Hebb Trace 54",
+                "Color-Change-Detection",
+                "Color-Change-Inhibition",
                 "Goal-Change-Detection",
-                "Sound-Change-Inhibition 2"
+                "Goal-Change-Inhibition",
+                "Belief-CoS",
+                "Sound-Role-Gate",
+                "Color-Role-Gate",
+                "Action-Role-Gate"
             ]
         }
     },
@@ -6113,7 +6286,7 @@
         },
         {
             "source": "Static Gain 15.output",
-            "target": "Intention-In-Action-Node6.input"
+            "target": "Intention-In-Action-Action3.input"
         },
         {
             "source": "Static Gain 13.output",
@@ -6177,7 +6350,7 @@
         },
         {
             "source": "Static Gain 17.output",
-            "target": "Intention-In-Action-Node6.input"
+            "target": "Intention-In-Action-Action3.input"
         },
         {
             "source": "Hopf Oscillator RHS.state change",
@@ -6228,11 +6401,11 @@
             "target": "Hopf Oscillator RHS 3.state"
         },
         {
-            "source": "Intention-In-Action-Node6.sigmoided activation",
+            "source": "Intention-In-Action-Action3.sigmoided activation",
             "target": "Hopf Oscillator RHS 3.omegas (bank) (optional)"
         },
         {
-            "source": "Intention-In-Action-Node6.sigmoided activation",
+            "source": "Intention-In-Action-Action3.sigmoided activation",
             "target": "Hopf Oscillator RHS 3.alphas (bank) (optional)"
         },
         {
@@ -6290,78 +6463,6 @@
         {
             "source": "CoS-Action1.sigmoided activation",
             "target": "Static Gain 7.input"
-        },
-        {
-            "source": "CoS-Action1.sigmoided activation",
-            "target": "CoS1-Trace.input"
-        },
-        {
-            "source": "CoS1-Trace.activation",
-            "target": "Scalars To Vector 4.scalar 2"
-        },
-        {
-            "source": "CoS1-Trace.activation",
-            "target": "Scalars To Vector 4.scalar 3"
-        },
-        {
-            "source": "CoS1-Trace.activation",
-            "target": "Scalars To Vector 4.scalar 4"
-        },
-        {
-            "source": "CoS-Action2.sigmoided activation",
-            "target": "CoS2-Trace.input"
-        },
-        {
-            "source": "CoS2-Trace.activation",
-            "target": "Scalars To Vector 5.scalar 2"
-        },
-        {
-            "source": "CoS2-Trace.activation",
-            "target": "Scalars To Vector 5.scalar 3"
-        },
-        {
-            "source": "CoS2-Trace.activation",
-            "target": "Scalars To Vector 5.scalar 4"
-        },
-        {
-            "source": "CoS-Action3.sigmoided activation",
-            "target": "CoS3-Trace.input"
-        },
-        {
-            "source": "CoS3-Trace.activation",
-            "target": "Scalars To Vector 6.scalar 2"
-        },
-        {
-            "source": "CoS3-Trace.activation",
-            "target": "Scalars To Vector 6.scalar 3"
-        },
-        {
-            "source": "CoS3-Trace.activation",
-            "target": "Scalars To Vector 6.scalar 4"
-        },
-        {
-            "source": "Scalars To Vector 4.vector",
-            "target": "Static Gain 20.input"
-        },
-        {
-            "source": "Scalars To Vector 5.vector",
-            "target": "Static Gain 21.input"
-        },
-        {
-            "source": "Scalars To Vector 6.vector",
-            "target": "Static Gain 22.input"
-        },
-        {
-            "source": "Static Gain 23.output",
-            "target": "Color-Change-Detection.input"
-        },
-        {
-            "source": "Microphone TCP Reader.output",
-            "target": "Sound-Perception.input"
-        },
-        {
-            "source": "Color-Change-Inhibition.sigmoided activation",
-            "target": "Static Gain 23.input"
         },
         {
             "source": "Sound-Change-Inhibition.sigmoided activation",
@@ -7616,10 +7717,6 @@
             "target": "Static Gain 67.input"
         },
         {
-            "source": "Static Gain 67.output",
-            "target": "Color-Space-Perception.input"
-        },
-        {
             "source": "Reward Hebb Trace 37.reciprocal output",
             "target": "red.input"
         },
@@ -7770,14 +7867,6 @@
         {
             "source": "Sound Concepts.sigmoided activation",
             "target": "Sound-Change-Inhibition.input"
-        },
-        {
-            "source": "Color Concepts.sigmoided activation",
-            "target": "Color-Change-Detection.input"
-        },
-        {
-            "source": "Color Concepts.sigmoided activation",
-            "target": "Color-Change-Inhibition.input"
         },
         {
             "source": "Sound Role Field.sigmoided activation",
@@ -7936,60 +8025,8 @@
             "target": "Action role Field.input"
         },
         {
-            "source": "Action-Working-Memory.sigmoided activation",
-            "target": "Action role Field.input"
-        },
-        {
-            "source": "Sound Concepts.sigmoided activation",
-            "target": "Sound Role Field.input"
-        },
-        {
-            "source": "Static Gain 70.output",
-            "target": "Color-Inhibition.input"
-        },
-        {
-            "source": "Color-Inhibition.sigmoided activation",
-            "target": "Static Gain 69.input"
-        },
-        {
-            "source": "Static Gain 69.output",
-            "target": "Color-Memory.input"
-        },
-        {
-            "source": "Color-Memory.sigmoided activation",
-            "target": "Color-Inhibition.input"
-        },
-        {
-            "source": "Color Concepts.sigmoided activation",
-            "target": "Static Gain 70.input"
-        },
-        {
-            "source": "Color Concepts.sigmoided activation",
-            "target": "Color-Memory.input"
-        },
-        {
-            "source": "Color-Memory.sigmoided activation",
-            "target": "Color Role Field.input"
-        },
-        {
-            "source": "Color-Change-Detection.sigmoided activation",
-            "target": "Projection 3.input"
-        },
-        {
-            "source": "Projection 3.output",
-            "target": "Color-Recall-Boost.input"
-        },
-        {
             "source": "Sound-Change-Detection.sigmoided activation",
             "target": "Projection 4.input"
-        },
-        {
-            "source": "Boost.boost",
-            "target": "Sound-Attention-Field.input"
-        },
-        {
-            "source": "Gauss Input.Gauss input",
-            "target": "Sound-Attention-Field.input"
         },
         {
             "source": "Projection 4.output",
@@ -8004,23 +8041,267 @@
             "target": "Commit Boost.input"
         },
         {
-            "source": "Static Gain 60.output",
+            "source": "Action-Working-Memory.sigmoided activation",
+            "target": "Static Gain 75.input"
+        },
+        {
+            "source": "Static Gain 75.output",
             "target": "Action role Field.input"
         },
         {
-            "source": "Static Gain 60.output",
+            "source": "Static Gain 76.output",
+            "target": "Sound Role Field.input"
+        },
+        {
+            "source": "Recruitment Boost.sigmoided activation",
+            "target": "Static Gain 77.input"
+        },
+        {
+            "source": "Static Gain 77.output",
+            "target": "Sound Role Field.input"
+        },
+        {
+            "source": "Static Gain 77.output",
             "target": "Color Role Field.input"
         },
         {
-            "source": "Static Gain 60.output",
-            "target": "Sound Role Field.input"
+            "source": "Static Gain 77.output",
+            "target": "Action role Field.input"
+        },
+        {
+            "source": "Intention Object.sigmoided activation",
+            "target": "Color-matching-Field.input"
+        },
+        {
+            "source": "Color Concepts.sigmoided activation",
+            "target": "Color-matching-Field.input"
+        },
+        {
+            "source": "Color-Attention-Field.sigmoided activation",
+            "target": "Projection 7.input"
+        },
+        {
+            "source": "Reward Hebb Trace 51.reciprocal output",
+            "target": "Intention-In-Action-Action3.input"
+        },
+        {
+            "source": "Intention Action.sigmoided activation",
+            "target": "Reward Hebb Trace 51.association input"
+        },
+        {
+            "source": "Intention Action.sigmoided activation",
+            "target": "Reward Hebb Trace 49.association input"
+        },
+        {
+            "source": "Intention Action.sigmoided activation",
+            "target": "Reward Hebb Trace 50.association input"
+        },
+        {
+            "source": "Reward Hebb Trace 49.reciprocal output",
+            "target": "Intention In Action-Action2.input"
+        },
+        {
+            "source": "Reward Hebb Trace 50.reciprocal output",
+            "target": "Intention In Action-Action1.input"
+        },
+        {
+            "source": "Intention Action.sigmoided activation",
+            "target": "Projection 15.input"
+        },
+        {
+            "source": "Projection 15.output",
+            "target": "CoS-Color In Attention.input"
+        },
+        {
+            "source": "Projection 15.output",
+            "target": "Precondition-Color In Attention.input"
+        },
+        {
+            "source": "Projection 15.output",
+            "target": "Intention In Action-Orient To Object.input"
+        },
+        {
+            "source": "Projection 15.output",
+            "target": "CoS-Orient To Object.input"
+        },
+        {
+            "source": "Projection 15.output",
+            "target": "Precondition-Oriented To Object.input"
+        },
+        {
+            "source": "Projection 15.output",
+            "target": "Precondition-Is In Front Of.input"
+        },
+        {
+            "source": "Projection 15.output",
+            "target": "Precondition-Break In Front Of Object.input"
+        },
+        {
+            "source": "Projection 15.output",
+            "target": "Intention In Action-Break.input"
+        },
+        {
+            "source": "Projection 15.output",
+            "target": "CoS-Break.input"
+        },
+        {
+            "source": "Projection 15.output",
+            "target": "CoS-Is In Front Of.input"
+        },
+        {
+            "source": "Color-Space-Perception.sigmoided activation",
+            "target": "Attention-Color-Binding-Field.input"
+        },
+        {
+            "source": "Reward Hebb Trace 50.reciprocal output",
+            "target": "CoS-Action1.input"
+        },
+        {
+            "source": "Reward Hebb Trace 49.reciprocal output",
+            "target": "CoS-Action2.input"
+        },
+        {
+            "source": "Reward Hebb Trace 51.reciprocal output",
+            "target": "CoS-Action3.input"
+        },
+        {
+            "source": "Intention In Action-Action1.sigmoided activation",
+            "target": "Reward Hebb Trace 52.read out trigger"
+        },
+        {
+            "source": "Intention In Action-Action2.sigmoided activation",
+            "target": "Reward Hebb Trace 53.read out trigger"
+        },
+        {
+            "source": "Intention-In-Action-Action3.sigmoided activation",
+            "target": "Reward Hebb Trace 54.read out trigger"
+        },
+        {
+            "source": "Reward Hebb Trace 52.trigger output",
+            "target": "Action-Introception-Field.input"
+        },
+        {
+            "source": "Reward Hebb Trace 53.trigger output",
+            "target": "Action-Introception-Field.input"
+        },
+        {
+            "source": "Reward Hebb Trace 54.trigger output",
+            "target": "Action-Introception-Field.input"
+        },
+        {
+            "source": "Gauss Input 7.Gauss input",
+            "target": "Color-Space-Perception.input"
+        },
+        {
+            "source": "Gauss Input 6.Gauss input",
+            "target": "Sound-Perception.input"
+        },
+        {
+            "source": "Gauss Input.Gauss input",
+            "target": "Action-Introception-Field.input"
+        },
+        {
+            "source": "Goal-Change-Inhibition.sigmoided activation",
+            "target": "Static Gain 20.input"
+        },
+        {
+            "source": "Static Gain 20.output",
+            "target": "Goal-Change-Detection.input"
+        },
+        {
+            "source": "Color-Change-Inhibition.sigmoided activation",
+            "target": "Static Gain 21.input"
+        },
+        {
+            "source": "Static Gain 21.output",
+            "target": "Color-Change-Detection.input"
         },
         {
             "source": "Goal Sound.sigmoided activation",
-            "target": "Sound Role Field.input"
+            "target": "Goal-Change-Detection.input"
         },
         {
-            "source": "Color-Recall-Boost.sigmoided activation",
+            "source": "Goal Sound.sigmoided activation",
+            "target": "Goal-Change-Inhibition.input"
+        },
+        {
+            "source": "Color Concepts.sigmoided activation",
+            "target": "Color-Change-Detection.input"
+        },
+        {
+            "source": "Color Concepts.sigmoided activation",
+            "target": "Color-Change-Inhibition.input"
+        },
+        {
+            "source": "Projection 14.output",
+            "target": "Static Gain 69.input"
+        },
+        {
+            "source": "Projection 5.output",
+            "target": "Static Gain 23.input"
+        },
+        {
+            "source": "Projection 3.output",
+            "target": "Static Gain 22.input"
+        },
+        {
+            "source": "Static Gain 22.output",
+            "target": "Sound-Change-Detection.input"
+        },
+        {
+            "source": "Static Gain 22.output",
+            "target": "Color-Change-Detection.input"
+        },
+        {
+            "source": "Goal-Change-Detection.sigmoided activation",
+            "target": "Projection 3.input"
+        },
+        {
+            "source": "Sound-Change-Detection.sigmoided activation",
+            "target": "Projection 5.input"
+        },
+        {
+            "source": "Static Gain 23.output",
+            "target": "Goal-Change-Detection.input"
+        },
+        {
+            "source": "Static Gain 23.output",
+            "target": "Color-Change-Detection.input"
+        },
+        {
+            "source": "Color-Change-Detection.sigmoided activation",
+            "target": "Projection 14.input"
+        },
+        {
+            "source": "Static Gain 69.output",
+            "target": "Sound-Change-Detection.input"
+        },
+        {
+            "source": "Static Gain 69.output",
+            "target": "Goal-Change-Detection.input"
+        },
+        {
+            "source": "Sound Concepts.sigmoided activation",
+            "target": "Static Gain 76.input"
+        },
+        {
+            "source": "Color Concepts.sigmoided activation",
+            "target": "Static Gain 70.input"
+        },
+        {
+            "source": "Static Gain 70.output",
+            "target": "Color Role Field.input"
+        },
+        {
+            "source": "Color-Change-Detection.sigmoided activation",
+            "target": "Projection 16.input"
+        },
+        {
+            "source": "Projection 16.output",
+            "target": "Static Gain 72.input"
+        },
+        {
+            "source": "Projection 16.output",
             "target": "Static Gain 71.input"
         },
         {
@@ -8028,94 +8309,122 @@
             "target": "Color Role Field.input"
         },
         {
-            "source": "Static Gain 71.output",
+            "source": "Static Gain 72.output",
             "target": "Sound Role Field.input"
-        },
-        {
-            "source": "Static Gain 71.output",
-            "target": "Action role Field.input"
         },
         {
             "source": "Static Gain 72.output",
-            "target": "Goal-Change-Detection.input"
+            "target": "Action role Field.input"
         },
         {
-            "source": "Sound-Change-Inhibition 2.sigmoided activation",
-            "target": "Static Gain 72.input"
-        },
-        {
-            "source": "Goal-Change-Detection.sigmoided activation",
-            "target": "Projection 5.input"
-        },
-        {
-            "source": "Goal Sound.sigmoided activation",
-            "target": "Goal-Change-Detection.input"
-        },
-        {
-            "source": "Goal Sound.sigmoided activation",
-            "target": "Sound-Change-Inhibition 2.input"
-        },
-        {
-            "source": "Projection 5.output",
+            "source": "Projection 17.output",
             "target": "Static Gain 73.input"
         },
         {
+            "source": "Projection 17.output",
+            "target": "Static Gain 74.input"
+        },
+        {
             "source": "Static Gain 73.output",
+            "target": "Color Role Field.input"
+        },
+        {
+            "source": "Static Gain 73.output",
+            "target": "Action role Field.input"
+        },
+        {
+            "source": "Static Gain 74.output",
             "target": "Sound Role Field.input"
         },
         {
-            "source": "Projection 5.output",
-            "target": "Color Role Field.input"
+            "source": "k.sum",
+            "target": "Belief-CoS.input"
         },
         {
-            "source": "Projection 5.output",
-            "target": "Action role Field.input"
+            "source": "Belief-Node 6.sigmoided activation",
+            "target": "Belief-CoS.input"
+        },
+        {
+            "source": "Belief-Node 5.sigmoided activation",
+            "target": "Belief-CoS.input"
+        },
+        {
+            "source": "Belief-Node 4.sigmoided activation",
+            "target": "Belief-CoS.input"
+        },
+        {
+            "source": "Belief-Node 3.sigmoided activation",
+            "target": "Belief-CoS.input"
+        },
+        {
+            "source": "Belief-Node 2.sigmoided activation",
+            "target": "Belief-CoS.input"
+        },
+        {
+            "source": "Belief-Node 1.sigmoided activation",
+            "target": "Belief-CoS.input"
+        },
+        {
+            "source": "Projection 17.output",
+            "target": "Belief-CoS.input"
+        },
+        {
+            "source": "Projection 4.output",
+            "target": "Belief-CoS.input"
+        },
+        {
+            "source": "Projection 16.output",
+            "target": "Belief-CoS.input"
         },
         {
             "source": "Goal Sound.sigmoided activation",
-            "target": "Projection 14.input"
+            "target": "Static Gain 78.input"
         },
         {
-            "source": "Projection 14.output",
-            "target": "Intention Object.input"
+            "source": "Static Gain 78.output",
+            "target": "Sound Role Field.input"
         },
         {
-            "source": "Projection 14.output",
-            "target": "Intention Action.input"
+            "source": "Goal-Change-Detection.sigmoided activation",
+            "target": "Projection 17.input"
         },
         {
-            "source": "Static Gain 73.output",
-            "target": "Action role Field.input"
-        },
-        {
-            "source": "Static Gain 73.output",
-            "target": "Color Role Field.input"
+            "source": "Sound Role Field.sigmoided activation",
+            "target": "Sound-Role-Gate.input"
         },
         {
             "source": "Color Role Field.sigmoided activation",
-            "target": "Intention Object.input"
+            "target": "Color-Role-Gate.input"
         },
         {
             "source": "Action role Field.sigmoided activation",
-            "target": "Intention Action.input"
+            "target": "Action-Role-Gate.input"
         },
         {
-            "source": "Gauss Input 3.Gauss input",
-            "target": "Goal Sound.input"
+            "source": "Belief-CoS.sigmoided activation",
+            "target": "Sound-Role-Gate.input"
+        },
+        {
+            "source": "Belief-CoS.sigmoided activation",
+            "target": "Color-Role-Gate.input"
+        },
+        {
+            "source": "Belief-CoS.sigmoided activation",
+            "target": "Action-Role-Gate.input"
         }
     ],
     "scripts": [
         {
-            "type": "cedar.proc.scripts.ExecuteFunctionOnStepsPlugin",
+            "type": "cedar.dyn.scripts.ExecuteFunctionOnSteps",
             "configuration": {
-                "name": "Execute Function On Steps Plugin",
-                "FunctionName": "RewardHebbTrace->resetWeights()"
+                "name": "Execute Function On Steps",
+                "FunctionName": "Preshape->resetMemory()"
             }
         }
     ],
     "name": "element",
     "connectors": "",
-    "is looped": "false",
+    "is looped": "true",
     "time factor": "1",
     "ui": [
         {
@@ -8137,8 +8446,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3248",
-            "positionY": "504"
+            "positionX": "4074",
+            "positionY": "308"
         },
         {
             "type": "step",
@@ -8169,6 +8478,15 @@
         },
         {
             "type": "step",
+            "step": "Action-Role-Gate",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "2002",
+            "positionY": "-294"
+        },
+        {
+            "type": "step",
             "step": "Action-Working-Memory",
             "display style": "ICON_AND_TEXT",
             "width": "124",
@@ -8191,8 +8509,17 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "5194",
-            "positionY": "560"
+            "positionX": "6020",
+            "positionY": "364"
+        },
+        {
+            "type": "step",
+            "step": "Belief-CoS",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "4214",
+            "positionY": "-588"
         },
         {
             "type": "step",
@@ -8200,8 +8527,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "5026",
-            "positionY": "560"
+            "positionX": "5852",
+            "positionY": "364"
         },
         {
             "type": "step",
@@ -8209,8 +8536,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3920",
-            "positionY": "1204"
+            "positionX": "4746",
+            "positionY": "1008"
         },
         {
             "type": "step",
@@ -8218,8 +8545,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3920",
-            "positionY": "952"
+            "positionX": "4746",
+            "positionY": "756"
         },
         {
             "type": "step",
@@ -8227,8 +8554,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3920",
-            "positionY": "700"
+            "positionX": "4746",
+            "positionY": "504"
         },
         {
             "type": "step",
@@ -8236,8 +8563,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3920",
-            "positionY": "448"
+            "positionX": "4746",
+            "positionY": "252"
         },
         {
             "type": "step",
@@ -8245,8 +8572,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3920",
-            "positionY": "196"
+            "positionX": "4746",
+            "positionY": "0"
         },
         {
             "type": "step",
@@ -8254,17 +8581,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3920",
-            "positionY": "-56"
-        },
-        {
-            "type": "step",
-            "step": "Boost",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "462",
-            "positionY": "308"
+            "positionX": "4746",
+            "positionY": "-252"
         },
         {
             "type": "step",
@@ -8290,8 +8608,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-168",
-            "positionY": "-490"
+            "positionX": "-14",
+            "positionY": "-476"
         },
         {
             "type": "step",
@@ -8299,8 +8617,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-168",
-            "positionY": "-280"
+            "positionX": "-14",
+            "positionY": "-266"
         },
         {
             "type": "step",
@@ -8308,8 +8626,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-168",
-            "positionY": "-70"
+            "positionX": "-14",
+            "positionY": "-56"
         },
         {
             "type": "step",
@@ -8349,33 +8667,6 @@
         },
         {
             "type": "step",
-            "step": "CoS1-Trace",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-28",
-            "positionY": "-434"
-        },
-        {
-            "type": "step",
-            "step": "CoS2-Trace",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-28",
-            "positionY": "-224"
-        },
-        {
-            "type": "step",
-            "step": "CoS3-Trace",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-28",
-            "positionY": "-14"
-        },
-        {
-            "type": "step",
             "step": "Color Concepts",
             "display style": "ICON_AND_TEXT",
             "width": "124",
@@ -8398,8 +8689,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3248",
-            "positionY": "434"
+            "positionX": "4074",
+            "positionY": "238"
         },
         {
             "type": "step",
@@ -8416,8 +8707,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1904",
-            "positionY": "504"
+            "positionX": "2800",
+            "positionY": "-672"
         },
         {
             "type": "step",
@@ -8425,35 +8716,17 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1904",
-            "positionY": "560"
+            "positionX": "2800",
+            "positionY": "-616"
         },
         {
             "type": "step",
-            "step": "Color-Inhibition",
+            "step": "Color-Role-Gate",
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1904",
-            "positionY": "420"
-        },
-        {
-            "type": "step",
-            "step": "Color-Memory",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "1904",
-            "positionY": "364"
-        },
-        {
-            "type": "step",
-            "step": "Color-Recall-Boost",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "2156",
-            "positionY": "504"
+            "positionX": "2002",
+            "positionY": "-350"
         },
         {
             "type": "step",
@@ -8470,8 +8743,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-3122",
-            "positionY": "-238"
+            "positionX": "-3136",
+            "positionY": "-210"
         },
         {
             "type": "step",
@@ -8479,8 +8752,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "4018",
-            "positionY": "1358"
+            "positionX": "4844",
+            "positionY": "1162"
         },
         {
             "type": "step",
@@ -8488,8 +8761,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "4228",
-            "positionY": "1204"
+            "positionX": "5054",
+            "positionY": "1008"
         },
         {
             "type": "step",
@@ -8497,8 +8770,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "4228",
-            "positionY": "952"
+            "positionX": "5054",
+            "positionY": "756"
         },
         {
             "type": "step",
@@ -8506,8 +8779,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "4228",
-            "positionY": "700"
+            "positionX": "5054",
+            "positionY": "504"
         },
         {
             "type": "step",
@@ -8515,8 +8788,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "4228",
-            "positionY": "448"
+            "positionX": "5054",
+            "positionY": "252"
         },
         {
             "type": "step",
@@ -8524,8 +8797,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "4228",
-            "positionY": "196"
+            "positionX": "5054",
+            "positionY": "0"
         },
         {
             "type": "step",
@@ -8533,8 +8806,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "4228",
-            "positionY": "-56"
+            "positionX": "5054",
+            "positionY": "-252"
         },
         {
             "type": "step",
@@ -8542,8 +8815,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3696",
-            "positionY": "-266"
+            "positionX": "4522",
+            "positionY": "-462"
         },
         {
             "type": "step",
@@ -8551,8 +8824,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4074",
-            "positionY": "-14"
+            "positionX": "4900",
+            "positionY": "-210"
         },
         {
             "type": "step",
@@ -8560,8 +8833,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4074",
-            "positionY": "238"
+            "positionX": "4900",
+            "positionY": "42"
         },
         {
             "type": "step",
@@ -8569,8 +8842,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3752",
-            "positionY": "378"
+            "positionX": "4578",
+            "positionY": "182"
         },
         {
             "type": "step",
@@ -8578,8 +8851,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3752",
-            "positionY": "448"
+            "positionX": "4578",
+            "positionY": "252"
         },
         {
             "type": "step",
@@ -8587,8 +8860,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3752",
-            "positionY": "518"
+            "positionX": "4578",
+            "positionY": "322"
         },
         {
             "type": "step",
@@ -8596,8 +8869,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4074",
-            "positionY": "490"
+            "positionX": "4900",
+            "positionY": "294"
         },
         {
             "type": "step",
@@ -8605,8 +8878,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4368",
-            "positionY": "462"
+            "positionX": "5194",
+            "positionY": "266"
         },
         {
             "type": "step",
@@ -8614,8 +8887,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3752",
-            "positionY": "630"
+            "positionX": "4578",
+            "positionY": "434"
         },
         {
             "type": "step",
@@ -8623,8 +8896,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3752",
-            "positionY": "700"
+            "positionX": "4578",
+            "positionY": "504"
         },
         {
             "type": "step",
@@ -8632,8 +8905,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3752",
-            "positionY": "770"
+            "positionX": "4578",
+            "positionY": "574"
         },
         {
             "type": "step",
@@ -8641,8 +8914,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3752",
-            "positionY": "-126"
+            "positionX": "4578",
+            "positionY": "-322"
         },
         {
             "type": "step",
@@ -8650,8 +8923,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4074",
-            "positionY": "742"
+            "positionX": "4900",
+            "positionY": "546"
         },
         {
             "type": "step",
@@ -8659,8 +8932,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4368",
-            "positionY": "714"
+            "positionX": "5194",
+            "positionY": "518"
         },
         {
             "type": "step",
@@ -8668,8 +8941,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3752",
-            "positionY": "882"
+            "positionX": "4578",
+            "positionY": "686"
         },
         {
             "type": "step",
@@ -8677,8 +8950,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3752",
-            "positionY": "952"
+            "positionX": "4578",
+            "positionY": "756"
         },
         {
             "type": "step",
@@ -8686,8 +8959,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3752",
-            "positionY": "1022"
+            "positionX": "4578",
+            "positionY": "826"
         },
         {
             "type": "step",
@@ -8695,8 +8968,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4074",
-            "positionY": "994"
+            "positionX": "4900",
+            "positionY": "798"
         },
         {
             "type": "step",
@@ -8704,8 +8977,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4368",
-            "positionY": "966"
+            "positionX": "5194",
+            "positionY": "770"
         },
         {
             "type": "step",
@@ -8713,8 +8986,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3752",
-            "positionY": "1134"
+            "positionX": "4578",
+            "positionY": "938"
         },
         {
             "type": "step",
@@ -8722,8 +8995,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3752",
-            "positionY": "1204"
+            "positionX": "4578",
+            "positionY": "1008"
         },
         {
             "type": "step",
@@ -8731,8 +9004,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3752",
-            "positionY": "1274"
+            "positionX": "4578",
+            "positionY": "1078"
         },
         {
             "type": "step",
@@ -8740,8 +9013,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3752",
-            "positionY": "-56"
+            "positionX": "4578",
+            "positionY": "-252"
         },
         {
             "type": "step",
@@ -8749,8 +9022,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4074",
-            "positionY": "1246"
+            "positionX": "4900",
+            "positionY": "1050"
         },
         {
             "type": "step",
@@ -8758,8 +9031,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4368",
-            "positionY": "1218"
+            "positionX": "5194",
+            "positionY": "1022"
         },
         {
             "type": "step",
@@ -8767,8 +9040,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3864",
-            "positionY": "1344"
+            "positionX": "4690",
+            "positionY": "1148"
         },
         {
             "type": "step",
@@ -8776,8 +9049,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3752",
-            "positionY": "14"
+            "positionX": "4578",
+            "positionY": "-182"
         },
         {
             "type": "step",
@@ -8785,8 +9058,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4368",
-            "positionY": "-42"
+            "positionX": "5194",
+            "positionY": "-238"
         },
         {
             "type": "step",
@@ -8794,8 +9067,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3752",
-            "positionY": "126"
+            "positionX": "4578",
+            "positionY": "-70"
         },
         {
             "type": "step",
@@ -8803,8 +9076,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3752",
-            "positionY": "196"
+            "positionX": "4578",
+            "positionY": "0"
         },
         {
             "type": "step",
@@ -8812,8 +9085,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3752",
-            "positionY": "266"
+            "positionX": "4578",
+            "positionY": "70"
         },
         {
             "type": "step",
@@ -8821,8 +9094,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4368",
-            "positionY": "210"
+            "positionX": "5194",
+            "positionY": "14"
         },
         {
             "type": "step",
@@ -8866,17 +9139,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "322",
-            "positionY": "378"
-        },
-        {
-            "type": "step",
-            "step": "Gauss Input 2",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "308",
-            "positionY": "630"
+            "positionX": "-252",
+            "positionY": "756"
         },
         {
             "type": "step",
@@ -8884,8 +9148,26 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1778",
-            "positionY": "-266"
+            "positionX": "1134",
+            "positionY": "-1064"
+        },
+        {
+            "type": "step",
+            "step": "Gauss Input 6",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-140",
+            "positionY": "252"
+        },
+        {
+            "type": "step",
+            "step": "Gauss Input 7",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-252",
+            "positionY": "378"
         },
         {
             "type": "step",
@@ -8893,8 +9175,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1904",
-            "positionY": "-336"
+            "positionX": "1246",
+            "positionY": "-1064"
         },
         {
             "type": "step",
@@ -8902,8 +9184,17 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "2254",
-            "positionY": "-336"
+            "positionX": "2800",
+            "positionY": "-1064"
+        },
+        {
+            "type": "step",
+            "step": "Goal-Change-Inhibition",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "2800",
+            "positionY": "-1008"
         },
         {
             "type": "step",
@@ -8911,8 +9202,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-448",
-            "positionY": "-420"
+            "positionX": "-294",
+            "positionY": "-406"
         },
         {
             "type": "step",
@@ -8920,8 +9211,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-448",
-            "positionY": "-210"
+            "positionX": "-294",
+            "positionY": "-196"
         },
         {
             "type": "step",
@@ -8929,8 +9220,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-448",
-            "positionY": "0"
+            "positionX": "-294",
+            "positionY": "14"
         },
         {
             "type": "step",
@@ -8938,8 +9229,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1204",
-            "positionY": "-210"
+            "positionX": "1218",
+            "positionY": "-28"
         },
         {
             "type": "step",
@@ -8947,8 +9238,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-588",
-            "positionY": "-490"
+            "positionX": "-434",
+            "positionY": "-476"
         },
         {
             "type": "step",
@@ -8956,8 +9247,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-588",
-            "positionY": "-280"
+            "positionX": "-434",
+            "positionY": "-266"
         },
         {
             "type": "step",
@@ -8983,17 +9274,17 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1204",
-            "positionY": "-266"
+            "positionX": "1218",
+            "positionY": "-84"
         },
         {
             "type": "step",
-            "step": "Intention-In-Action-Node6",
+            "step": "Intention-In-Action-Action3",
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-588",
-            "positionY": "-70"
+            "positionX": "-434",
+            "positionY": "-56"
         },
         {
             "type": "step",
@@ -9028,8 +9319,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-224",
-            "positionY": "-420"
+            "positionX": "-70",
+            "positionY": "-406"
         },
         {
             "type": "step",
@@ -9037,8 +9328,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-224",
-            "positionY": "0"
+            "positionX": "-70",
+            "positionY": "14"
         },
         {
             "type": "step",
@@ -9046,8 +9337,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-224",
-            "positionY": "-210"
+            "positionX": "-70",
+            "positionY": "-196"
         },
         {
             "type": "step",
@@ -9055,8 +9346,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-378",
-            "positionY": "-420"
+            "positionX": "-224",
+            "positionY": "-406"
         },
         {
             "type": "step",
@@ -9064,8 +9355,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-378",
-            "positionY": "-210"
+            "positionX": "-224",
+            "positionY": "-196"
         },
         {
             "type": "step",
@@ -9073,8 +9364,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-378",
-            "positionY": "0"
+            "positionX": "-224",
+            "positionY": "14"
         },
         {
             "type": "step",
@@ -9136,8 +9427,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3388",
-            "positionY": "-308"
+            "positionX": "4214",
+            "positionY": "-504"
         },
         {
             "type": "step",
@@ -9145,8 +9436,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3388",
-            "positionY": "-266"
+            "positionX": "4214",
+            "positionY": "-462"
         },
         {
             "type": "step",
@@ -9154,8 +9445,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3388",
-            "positionY": "-224"
+            "positionX": "4214",
+            "positionY": "-420"
         },
         {
             "type": "step",
@@ -9163,8 +9454,35 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2044",
-            "positionY": "-378"
+            "positionX": "2562",
+            "positionY": "-714"
+        },
+        {
+            "type": "step",
+            "step": "Projection 15",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-924",
+            "positionY": "-770"
+        },
+        {
+            "type": "step",
+            "step": "Projection 16",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "2954",
+            "positionY": "-672"
+        },
+        {
+            "type": "step",
+            "step": "Projection 17",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "2954",
+            "positionY": "-1064"
         },
         {
             "type": "step",
@@ -9181,8 +9499,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2072",
-            "positionY": "504"
+            "positionX": "2562",
+            "positionY": "-1106"
         },
         {
             "type": "step",
@@ -9190,8 +9508,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2072",
-            "positionY": "210"
+            "positionX": "2954",
+            "positionY": "-868"
         },
         {
             "type": "step",
@@ -9199,8 +9517,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2422",
-            "positionY": "-336"
+            "positionX": "2562",
+            "positionY": "-910"
         },
         {
             "type": "step",
@@ -9217,7 +9535,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-2730",
+            "positionX": "-2744",
             "positionY": "-112"
         },
         {
@@ -9253,8 +9571,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3654",
-            "positionY": "1358"
+            "positionX": "4480",
+            "positionY": "1162"
         },
         {
             "type": "step",
@@ -9262,8 +9580,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "4578",
-            "positionY": "-56"
+            "positionX": "5404",
+            "positionY": "-252"
         },
         {
             "type": "step",
@@ -9271,8 +9589,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3528",
-            "positionY": "742"
+            "positionX": "4354",
+            "positionY": "546"
         },
         {
             "type": "step",
@@ -9280,8 +9598,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3528",
-            "positionY": "420"
+            "positionX": "4354",
+            "positionY": "224"
         },
         {
             "type": "step",
@@ -9289,8 +9607,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3528",
-            "positionY": "490"
+            "positionX": "4354",
+            "positionY": "294"
         },
         {
             "type": "step",
@@ -9298,8 +9616,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3528",
-            "positionY": "350"
+            "positionX": "4354",
+            "positionY": "154"
         },
         {
             "type": "step",
@@ -9307,8 +9625,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3528",
-            "positionY": "238"
+            "positionX": "4354",
+            "positionY": "42"
         },
         {
             "type": "step",
@@ -9316,8 +9634,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3528",
-            "positionY": "98"
+            "positionX": "4354",
+            "positionY": "-98"
         },
         {
             "type": "step",
@@ -9325,8 +9643,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3528",
-            "positionY": "-154"
+            "positionX": "4354",
+            "positionY": "-350"
         },
         {
             "type": "step",
@@ -9334,8 +9652,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3528",
-            "positionY": "-14"
+            "positionX": "4354",
+            "positionY": "-210"
         },
         {
             "type": "step",
@@ -9343,8 +9661,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3528",
-            "positionY": "-84"
+            "positionX": "4354",
+            "positionY": "-280"
         },
         {
             "type": "step",
@@ -9352,8 +9670,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3528",
-            "positionY": "1106"
+            "positionX": "4354",
+            "positionY": "910"
         },
         {
             "type": "step",
@@ -9361,8 +9679,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3528",
-            "positionY": "1176"
+            "positionX": "4354",
+            "positionY": "980"
         },
         {
             "type": "step",
@@ -9370,8 +9688,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "4578",
-            "positionY": "196"
+            "positionX": "5404",
+            "positionY": "0"
         },
         {
             "type": "step",
@@ -9379,8 +9697,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "4578",
-            "positionY": "448"
+            "positionX": "5404",
+            "positionY": "252"
         },
         {
             "type": "step",
@@ -9388,8 +9706,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "4578",
-            "positionY": "700"
+            "positionX": "5404",
+            "positionY": "504"
         },
         {
             "type": "step",
@@ -9397,8 +9715,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "4578",
-            "positionY": "952"
+            "positionX": "5404",
+            "positionY": "756"
         },
         {
             "type": "step",
@@ -9406,8 +9724,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "4578",
-            "positionY": "1204"
+            "positionX": "5404",
+            "positionY": "1008"
         },
         {
             "type": "step",
@@ -9460,8 +9778,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3528",
-            "positionY": "1246"
+            "positionX": "4354",
+            "positionY": "1050"
         },
         {
             "type": "step",
@@ -9559,8 +9877,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3528",
-            "positionY": "854"
+            "positionX": "4354",
+            "positionY": "658"
         },
         {
             "type": "step",
@@ -9645,12 +9963,66 @@
         },
         {
             "type": "step",
+            "step": "Reward Hebb Trace 49",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-602",
+            "positionY": "-266"
+        },
+        {
+            "type": "step",
             "step": "Reward Hebb Trace 5",
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3528",
-            "positionY": "924"
+            "positionX": "4354",
+            "positionY": "728"
+        },
+        {
+            "type": "step",
+            "step": "Reward Hebb Trace 50",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-602",
+            "positionY": "-476"
+        },
+        {
+            "type": "step",
+            "step": "Reward Hebb Trace 51",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-588",
+            "positionY": "-56"
+        },
+        {
+            "type": "step",
+            "step": "Reward Hebb Trace 52",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-574",
+            "positionY": "308"
+        },
+        {
+            "type": "step",
+            "step": "Reward Hebb Trace 53",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-574",
+            "positionY": "364"
+        },
+        {
+            "type": "step",
+            "step": "Reward Hebb Trace 54",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-574",
+            "positionY": "420"
         },
         {
             "type": "step",
@@ -9658,8 +10030,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3528",
-            "positionY": "994"
+            "positionX": "4354",
+            "positionY": "798"
         },
         {
             "type": "step",
@@ -9667,8 +10039,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3528",
-            "positionY": "602"
+            "positionX": "4354",
+            "positionY": "406"
         },
         {
             "type": "step",
@@ -9676,8 +10048,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3528",
-            "positionY": "672"
+            "positionX": "4354",
+            "positionY": "476"
         },
         {
             "type": "step",
@@ -9685,8 +10057,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3528",
-            "positionY": "168"
+            "positionX": "4354",
+            "positionY": "-28"
         },
         {
             "type": "step",
@@ -9694,8 +10066,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3388",
-            "positionY": "1358"
+            "positionX": "4214",
+            "positionY": "1162"
         },
         {
             "type": "step",
@@ -9703,35 +10075,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "392",
-            "positionY": "-224"
-        },
-        {
-            "type": "step",
-            "step": "Scalars To Vector 4",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "126",
-            "positionY": "-434"
-        },
-        {
-            "type": "step",
-            "step": "Scalars To Vector 5",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "126",
-            "positionY": "-224"
-        },
-        {
-            "type": "step",
-            "step": "Scalars To Vector 6",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "126",
-            "positionY": "-14"
+            "positionX": "546",
+            "positionY": "-210"
         },
         {
             "type": "step",
@@ -9748,8 +10093,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3248",
-            "positionY": "364"
+            "positionX": "4074",
+            "positionY": "168"
         },
         {
             "type": "step",
@@ -9766,8 +10111,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1904",
-            "positionY": "210"
+            "positionX": "2800",
+            "positionY": "-868"
         },
         {
             "type": "step",
@@ -9775,17 +10120,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1904",
-            "positionY": "266"
-        },
-        {
-            "type": "step",
-            "step": "Sound-Change-Inhibition 2",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "2254",
-            "positionY": "-280"
+            "positionX": "2800",
+            "positionY": "-812"
         },
         {
             "type": "step",
@@ -9795,6 +10131,15 @@
             "height": "40",
             "positionX": "-126",
             "positionY": "476"
+        },
+        {
+            "type": "step",
+            "step": "Sound-Role-Gate",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "2002",
+            "positionY": "-406"
         },
         {
             "type": "step",
@@ -9892,8 +10237,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-28",
-            "positionY": "-84"
+            "positionX": "126",
+            "positionY": "-70"
         },
         {
             "type": "step",
@@ -9928,8 +10273,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2058",
-            "positionY": "266"
+            "positionX": "2954",
+            "positionY": "-812"
         },
         {
             "type": "step",
@@ -9946,8 +10291,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "196",
-            "positionY": "-434"
+            "positionX": "2954",
+            "positionY": "-1008"
         },
         {
             "type": "step",
@@ -9955,8 +10300,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "196",
-            "positionY": "-224"
+            "positionX": "2954",
+            "positionY": "-616"
         },
         {
             "type": "step",
@@ -9964,8 +10309,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "196",
-            "positionY": "-14"
+            "positionX": "2646",
+            "positionY": "-1106"
         },
         {
             "type": "step",
@@ -9973,8 +10318,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2058",
-            "positionY": "560"
+            "positionX": "2646",
+            "positionY": "-910"
         },
         {
             "type": "step",
@@ -9982,8 +10327,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4130",
-            "positionY": "1260"
+            "positionX": "4956",
+            "positionY": "1064"
         },
         {
             "type": "step",
@@ -9991,8 +10336,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4438",
-            "positionY": "1218"
+            "positionX": "5264",
+            "positionY": "1022"
         },
         {
             "type": "step",
@@ -10000,8 +10345,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4130",
-            "positionY": "756"
+            "positionX": "4956",
+            "positionY": "560"
         },
         {
             "type": "step",
@@ -10009,8 +10354,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4438",
-            "positionY": "714"
+            "positionX": "5264",
+            "positionY": "518"
         },
         {
             "type": "step",
@@ -10018,8 +10363,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4130",
-            "positionY": "504"
+            "positionX": "4956",
+            "positionY": "308"
         },
         {
             "type": "step",
@@ -10027,8 +10372,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4438",
-            "positionY": "462"
+            "positionX": "5264",
+            "positionY": "266"
         },
         {
             "type": "step",
@@ -10036,8 +10381,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4130",
-            "positionY": "1008"
+            "positionX": "4956",
+            "positionY": "812"
         },
         {
             "type": "step",
@@ -10045,8 +10390,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4130",
-            "positionY": "0"
+            "positionX": "4956",
+            "positionY": "-196"
         },
         {
             "type": "step",
@@ -10054,8 +10399,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4438",
-            "positionY": "210"
+            "positionX": "5264",
+            "positionY": "14"
         },
         {
             "type": "step",
@@ -10063,8 +10408,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4438",
-            "positionY": "-42"
+            "positionX": "5264",
+            "positionY": "-238"
         },
         {
             "type": "step",
@@ -10072,8 +10417,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4130",
-            "positionY": "252"
+            "positionX": "4956",
+            "positionY": "56"
         },
         {
             "type": "step",
@@ -10081,8 +10426,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3864",
-            "positionY": "-266"
+            "positionX": "4690",
+            "positionY": "-462"
         },
         {
             "type": "step",
@@ -10090,8 +10435,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3458",
-            "positionY": "0"
+            "positionX": "4284",
+            "positionY": "-196"
         },
         {
             "type": "step",
@@ -10099,8 +10444,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3458",
-            "positionY": "-70"
+            "positionX": "4284",
+            "positionY": "-266"
         },
         {
             "type": "step",
@@ -10108,8 +10453,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3458",
-            "positionY": "-140"
+            "positionX": "4284",
+            "positionY": "-336"
         },
         {
             "type": "step",
@@ -10117,8 +10462,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3458",
-            "positionY": "112"
+            "positionX": "4284",
+            "positionY": "-84"
         },
         {
             "type": "step",
@@ -10126,8 +10471,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3458",
-            "positionY": "182"
+            "positionX": "4284",
+            "positionY": "-14"
         },
         {
             "type": "step",
@@ -10135,8 +10480,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4438",
-            "positionY": "966"
+            "positionX": "5264",
+            "positionY": "770"
         },
         {
             "type": "step",
@@ -10144,8 +10489,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3458",
-            "positionY": "252"
+            "positionX": "4284",
+            "positionY": "56"
         },
         {
             "type": "step",
@@ -10153,8 +10498,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3458",
-            "positionY": "364"
+            "positionX": "4284",
+            "positionY": "168"
         },
         {
             "type": "step",
@@ -10162,8 +10507,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3458",
-            "positionY": "434"
+            "positionX": "4284",
+            "positionY": "238"
         },
         {
             "type": "step",
@@ -10171,8 +10516,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3458",
-            "positionY": "504"
+            "positionX": "4284",
+            "positionY": "308"
         },
         {
             "type": "step",
@@ -10180,8 +10525,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3458",
-            "positionY": "616"
+            "positionX": "4284",
+            "positionY": "420"
         },
         {
             "type": "step",
@@ -10189,8 +10534,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3458",
-            "positionY": "686"
+            "positionX": "4284",
+            "positionY": "490"
         },
         {
             "type": "step",
@@ -10198,8 +10543,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3458",
-            "positionY": "756"
+            "positionX": "4284",
+            "positionY": "560"
         },
         {
             "type": "step",
@@ -10207,8 +10552,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3458",
-            "positionY": "868"
+            "positionX": "4284",
+            "positionY": "672"
         },
         {
             "type": "step",
@@ -10216,8 +10561,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3458",
-            "positionY": "938"
+            "positionX": "4284",
+            "positionY": "742"
         },
         {
             "type": "step",
@@ -10225,8 +10570,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3458",
-            "positionY": "1008"
+            "positionX": "4284",
+            "positionY": "812"
         },
         {
             "type": "step",
@@ -10243,8 +10588,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3458",
-            "positionY": "1120"
+            "positionX": "4284",
+            "positionY": "924"
         },
         {
             "type": "step",
@@ -10252,8 +10597,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3458",
-            "positionY": "1190"
+            "positionX": "4284",
+            "positionY": "994"
         },
         {
             "type": "step",
@@ -10261,8 +10606,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3458",
-            "positionY": "1260"
+            "positionX": "4284",
+            "positionY": "1064"
         },
         {
             "type": "step",
@@ -10270,8 +10615,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4074",
-            "positionY": "-56"
+            "positionX": "4900",
+            "positionY": "-252"
         },
         {
             "type": "step",
@@ -10279,8 +10624,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4074",
-            "positionY": "196"
+            "positionX": "4900",
+            "positionY": "0"
         },
         {
             "type": "step",
@@ -10288,8 +10633,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4074",
-            "positionY": "448"
+            "positionX": "4900",
+            "positionY": "252"
         },
         {
             "type": "step",
@@ -10297,8 +10642,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4074",
-            "positionY": "700"
+            "positionX": "4900",
+            "positionY": "504"
         },
         {
             "type": "step",
@@ -10306,8 +10651,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4074",
-            "positionY": "952"
+            "positionX": "4900",
+            "positionY": "756"
         },
         {
             "type": "step",
@@ -10315,8 +10660,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4074",
-            "positionY": "1204"
+            "positionX": "4900",
+            "positionY": "1008"
         },
         {
             "type": "step",
@@ -10324,8 +10669,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4172",
-            "positionY": "1358"
+            "positionX": "4998",
+            "positionY": "1162"
         },
         {
             "type": "step",
@@ -10342,8 +10687,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3808",
-            "positionY": "1358"
+            "positionX": "4634",
+            "positionY": "1162"
         },
         {
             "type": "step",
@@ -10351,8 +10696,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4732",
-            "positionY": "-56"
+            "positionX": "5558",
+            "positionY": "-252"
         },
         {
             "type": "step",
@@ -10360,8 +10705,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4732",
-            "positionY": "196"
+            "positionX": "5558",
+            "positionY": "0"
         },
         {
             "type": "step",
@@ -10369,8 +10714,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4732",
-            "positionY": "448"
+            "positionX": "5558",
+            "positionY": "252"
         },
         {
             "type": "step",
@@ -10378,8 +10723,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4732",
-            "positionY": "700"
+            "positionX": "5558",
+            "positionY": "504"
         },
         {
             "type": "step",
@@ -10387,8 +10732,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4732",
-            "positionY": "952"
+            "positionX": "5558",
+            "positionY": "756"
         },
         {
             "type": "step",
@@ -10396,8 +10741,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4732",
-            "positionY": "1204"
+            "positionX": "5558",
+            "positionY": "1008"
         },
         {
             "type": "step",
@@ -10423,8 +10768,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2058",
-            "positionY": "420"
+            "positionX": "2646",
+            "positionY": "-714"
         },
         {
             "type": "step",
@@ -10432,8 +10777,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-14",
-            "positionY": "-490"
+            "positionX": "140",
+            "positionY": "-476"
         },
         {
             "type": "step",
@@ -10441,8 +10786,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1834",
-            "positionY": "420"
+            "positionX": "1778",
+            "positionY": "462"
         },
         {
             "type": "step",
@@ -10450,8 +10795,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2310",
-            "positionY": "504"
+            "positionX": "3094",
+            "positionY": "-630"
         },
         {
             "type": "step",
@@ -10459,8 +10804,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2408",
-            "positionY": "-280"
+            "positionX": "3094",
+            "positionY": "-672"
         },
         {
             "type": "step",
@@ -10468,8 +10813,53 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2506",
-            "positionY": "-336"
+            "positionX": "3094",
+            "positionY": "-1064"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 74",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "3094",
+            "positionY": "-1022"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 75",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "2058",
+            "positionY": "770"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 76",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1778",
+            "positionY": "210"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 77",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "4634",
+            "positionY": "1204"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 78",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1456",
+            "positionY": "-1036"
         },
         {
             "type": "step",
@@ -10477,8 +10867,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-28",
-            "positionY": "-294"
+            "positionX": "126",
+            "positionY": "-280"
         },
         {
             "type": "step",
@@ -10504,8 +10894,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "462",
-            "positionY": "-224"
+            "positionX": "616",
+            "positionY": "-210"
         },
         {
             "type": "step",
@@ -10531,8 +10921,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3682",
-            "positionY": "126"
+            "positionX": "4508",
+            "positionY": "-70"
         },
         {
             "type": "step",
@@ -10540,8 +10930,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3682",
-            "positionY": "196"
+            "positionX": "4508",
+            "positionY": "0"
         },
         {
             "type": "step",
@@ -10549,8 +10939,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3682",
-            "positionY": "266"
+            "positionX": "4508",
+            "positionY": "70"
         },
         {
             "type": "step",
@@ -10558,8 +10948,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3682",
-            "positionY": "378"
+            "positionX": "4508",
+            "positionY": "182"
         },
         {
             "type": "step",
@@ -10567,8 +10957,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3682",
-            "positionY": "448"
+            "positionX": "4508",
+            "positionY": "252"
         },
         {
             "type": "step",
@@ -10576,8 +10966,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3682",
-            "positionY": "518"
+            "positionX": "4508",
+            "positionY": "322"
         },
         {
             "type": "step",
@@ -10585,8 +10975,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3682",
-            "positionY": "630"
+            "positionX": "4508",
+            "positionY": "434"
         },
         {
             "type": "step",
@@ -10594,8 +10984,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3682",
-            "positionY": "700"
+            "positionX": "4508",
+            "positionY": "504"
         },
         {
             "type": "step",
@@ -10603,8 +10993,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3682",
-            "positionY": "770"
+            "positionX": "4508",
+            "positionY": "574"
         },
         {
             "type": "step",
@@ -10612,8 +11002,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3682",
-            "positionY": "882"
+            "positionX": "4508",
+            "positionY": "686"
         },
         {
             "type": "step",
@@ -10621,8 +11011,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3682",
-            "positionY": "952"
+            "positionX": "4508",
+            "positionY": "756"
         },
         {
             "type": "step",
@@ -10630,8 +11020,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3682",
-            "positionY": "1022"
+            "positionX": "4508",
+            "positionY": "826"
         },
         {
             "type": "step",
@@ -10639,8 +11029,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3682",
-            "positionY": "1134"
+            "positionX": "4508",
+            "positionY": "938"
         },
         {
             "type": "step",
@@ -10648,8 +11038,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3682",
-            "positionY": "1204"
+            "positionX": "4508",
+            "positionY": "1008"
         },
         {
             "type": "step",
@@ -10657,8 +11047,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3682",
-            "positionY": "1274"
+            "positionX": "4508",
+            "positionY": "1078"
         },
         {
             "type": "step",
@@ -10675,8 +11065,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3682",
-            "positionY": "-126"
+            "positionX": "4508",
+            "positionY": "-322"
         },
         {
             "type": "step",
@@ -10684,8 +11074,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3682",
-            "positionY": "-56"
+            "positionX": "4508",
+            "positionY": "-252"
         },
         {
             "type": "step",
@@ -10693,8 +11083,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3682",
-            "positionY": "14"
+            "positionX": "4508",
+            "positionY": "-182"
         },
         {
             "type": "step",
@@ -10746,8 +11136,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3640",
-            "positionY": "-392"
+            "positionX": "4466",
+            "positionY": "-588"
         },
         {
             "type": "step",
@@ -10773,8 +11163,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4018",
-            "positionY": "-392"
+            "positionX": "4844",
+            "positionY": "-588"
         },
         {
             "type": "step",
@@ -10782,8 +11172,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3626",
-            "positionY": "-266"
+            "positionX": "4452",
+            "positionY": "-462"
         },
         {
             "type": "step",
@@ -10827,8 +11217,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "3696",
-            "positionY": "-350"
+            "positionX": "4522",
+            "positionY": "-546"
         },
         {
             "type": "step",
@@ -10845,8 +11235,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "4312",
-            "positionY": "-350"
+            "positionX": "5138",
+            "positionY": "-546"
         },
         {
             "type": "step",
@@ -10859,11 +11249,11 @@
         }
     ],
     "ui view": {
-        "ScrollBarX": "-124",
-        "ScrollBarY": "-153",
-        "SliderPosX": "-124",
-        "SliderPosY": "-153",
-        "Zoom": "0.23999999999999999"
+        "ScrollBarX": "184",
+        "ScrollBarY": "-459",
+        "SliderPosX": "184",
+        "SliderPosY": "-459",
+        "Zoom": "0.37"
     },
     "ui generic": {
         "group": "element",
@@ -10873,7 +11263,7 @@
         "robots": "",
         "width": "250",
         "height": "250",
-        "smart mode": "false",
+        "smart mode": "true",
         "collapsed": "false",
         "lock geometry": "false",
         "uncollapsed width": "250",
