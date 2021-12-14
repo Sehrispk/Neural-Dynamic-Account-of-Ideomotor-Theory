@@ -173,7 +173,7 @@
             "sizes": [
                 "3"
             ],
-            "time scale": "1200",
+            "time scale": "2000",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -277,8 +277,24 @@
                 "threshold": "0",
                 "beta": "100"
             },
-            "global inhibition": "0",
-            "lateral kernels": "",
+            "global inhibition": "-0.10000000000000001",
+            "lateral kernels": {
+                "cedar.aux.kernel.Gauss": {
+                    "dimensionality": "1",
+                    "anchor": [
+                        "0"
+                    ],
+                    "amplitude": "1",
+                    "sigmas": [
+                        "0.01"
+                    ],
+                    "normalize": "true",
+                    "shifts": [
+                        "0"
+                    ],
+                    "limit": "5"
+                }
+            },
             "lateral kernel convolution": {
                 "borderType": "Zero",
                 "mode": "Same",
@@ -2093,6 +2109,22 @@
             "comments": ""
         },
         "cedar.processing.sources.GaussInput": {
+            "name": "Gauss Input 2",
+            "dimensionality": "1",
+            "sizes": [
+                "3"
+            ],
+            "amplitude": "0",
+            "centers": [
+                "2"
+            ],
+            "sigma": [
+                "0.01"
+            ],
+            "cyclic": "false",
+            "comments": ""
+        },
+        "cedar.processing.sources.GaussInput": {
             "name": "Gauss Input 6",
             "dimensionality": "1",
             "sizes": [
@@ -3172,11 +3204,15 @@
         },
         "cedar.processing.Projection": {
             "name": "Projection",
-            "dimension mapping": "",
+            "dimension mapping": {
+                "0": "4294967295",
+                "1": "1",
+                "2": "0"
+            },
             "output dimensionality": "2",
             "output dimension sizes": [
                 "20",
-                "121"
+                "52"
             ],
             "compression type": "SUM",
             "comments": ""
@@ -4106,7 +4142,7 @@
             "reward duration": "200",
             "manual weights": "true",
             "weight centers": [
-                "11"
+                "10"
             ],
             "weight sigmas": [
                 "0.5"
@@ -4956,7 +4992,7 @@
                 "10"
             ],
             "time scale": "100",
-            "resting level": "-1.75",
+            "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -5523,7 +5559,7 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 84",
-            "gain factor": "0.5",
+            "gain factor": "1",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -5534,6 +5570,11 @@
         "cedar.processing.StaticGain": {
             "name": "Static Gain 86",
             "gain factor": "0.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 87",
+            "gain factor": "2",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -6212,7 +6253,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "3000",
+            "time scale": "5000",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -6952,10 +6993,6 @@
         {
             "source": "Action-Change-Inhibition.sigmoided activation",
             "target": "Static Gain 2.input"
-        },
-        {
-            "source": "Static Gain 2.output",
-            "target": "Action-Working-Memory.input"
         },
         {
             "source": "Projection 12.output",
@@ -8535,10 +8572,6 @@
         },
         {
             "source": "Static Gain 77.output",
-            "target": "Sound Role Field.input"
-        },
-        {
-            "source": "Static Gain 77.output",
             "target": "Color Role Field.input"
         },
         {
@@ -8664,10 +8697,6 @@
         {
             "source": "Reward Hebb Trace 54.trigger output",
             "target": "Action-Introception-Field.input"
-        },
-        {
-            "source": "Gauss Input 7.Gauss input",
-            "target": "Color-Space-Perception.input"
         },
         {
             "source": "Goal-Change-Inhibition.sigmoided activation",
@@ -9054,14 +9083,6 @@
             "target": "Intention Action.input"
         },
         {
-            "source": "Gauss Input.Gauss input",
-            "target": "Action-Introception-Field.input"
-        },
-        {
-            "source": "Gauss Input 6.Gauss input",
-            "target": "Sound-Perception.input"
-        },
-        {
             "source": "node.sigmoided activation",
             "target": "Goal-CoS.input"
         },
@@ -9083,10 +9104,6 @@
         },
         {
             "source": "Color-Gate.sigmoided activation",
-            "target": "Intention Object.input"
-        },
-        {
-            "source": "Color-Gate.sigmoided activation",
             "target": "Projection 20.input"
         },
         {
@@ -9096,6 +9113,47 @@
         {
             "source": "Static Gain 84.output",
             "target": "Intention Action.input"
+        },
+        {
+            "source": "Microphone TCP Reader.output",
+            "target": "Sound-Perception.input"
+        },
+        {
+            "source": "Static Gain 67.output",
+            "target": "Color-Space-Perception.input"
+        },
+        {
+            "source": "Camera TCP Reader.output",
+            "target": "Color Conversion.input image"
+        },
+        {
+            "source": "Projection 16.output",
+            "target": "Belief-CoDs.input"
+        },
+        {
+            "source": "Static Gain 2.output",
+            "target": "Action-Working-Memory.input"
+        },
+        {
+            "source": "Gauss Input 2.Gauss input",
+            "target": "Goal Sound.input"
+        },
+        {
+            "source": "Sound-Change-Detection.sigmoided activation",
+            "target": "Static Gain 87.input"
+        },
+        {
+            "source": "Static Gain 87.output",
+            "target": "Sound Role Field.input"
+        }
+    ],
+    "scripts": [
+        {
+            "type": "cedar.proc.scripts.ExecuteFunctionOnStepsPlugin",
+            "configuration": {
+                "name": "Execute Function On Steps Plugin",
+                "FunctionName": "RewardHebbTrace->resetWeights()"
+            }
         }
     ],
     "name": "element",
@@ -9132,7 +9190,7 @@
             "width": "124",
             "height": "40",
             "positionX": "504",
-            "positionY": "630"
+            "positionY": "588"
         },
         {
             "type": "step",
@@ -9149,7 +9207,7 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-126",
+            "positionX": "-56",
             "positionY": "588"
         },
         {
@@ -9375,7 +9433,7 @@
             "width": "124",
             "height": "40",
             "positionX": "504",
-            "positionY": "504"
+            "positionY": "532"
         },
         {
             "type": "step",
@@ -9410,7 +9468,7 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-126",
+            "positionX": "-56",
             "positionY": "532"
         },
         {
@@ -9817,6 +9875,15 @@
             "height": "40",
             "positionX": "-140",
             "positionY": "350"
+        },
+        {
+            "type": "step",
+            "step": "Gauss Input 2",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "1106",
+            "positionY": "-924"
         },
         {
             "type": "step",
@@ -10238,8 +10305,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "14",
-            "positionY": "504"
+            "positionX": "126",
+            "positionY": "532"
         },
         {
             "type": "step",
@@ -10905,7 +10972,7 @@
             "width": "124",
             "height": "40",
             "positionX": "504",
-            "positionY": "420"
+            "positionY": "476"
         },
         {
             "type": "step",
@@ -10931,7 +10998,7 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-126",
+            "positionX": "-56",
             "positionY": "476"
         },
         {
@@ -11057,7 +11124,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1834",
+            "positionX": "1820",
             "positionY": "826"
         },
         {
@@ -11372,8 +11439,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "448",
-            "positionY": "448"
+            "positionX": "420",
+            "positionY": "476"
         },
         {
             "type": "step",
@@ -11471,8 +11538,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "448",
-            "positionY": "658"
+            "positionX": "420",
+            "positionY": "588"
         },
         {
             "type": "step",
@@ -11543,8 +11610,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-182",
-            "positionY": "630"
+            "positionX": "-140",
+            "positionY": "532"
         },
         {
             "type": "step",
@@ -11552,8 +11619,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "448",
-            "positionY": "546"
+            "positionX": "420",
+            "positionY": "532"
         },
         {
             "type": "step",
@@ -11737,6 +11804,15 @@
         },
         {
             "type": "step",
+            "step": "Static Gain 87",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "3094",
+            "positionY": "-854"
+        },
+        {
+            "type": "step",
             "step": "Static Gain 89",
             "display style": "ICON_ONLY",
             "width": "40",
@@ -11786,8 +11862,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "448",
-            "positionY": "588"
+            "positionX": "336",
+            "positionY": "532"
         },
         {
             "type": "step",
@@ -12150,16 +12226,266 @@
         }
     ],
     "ui view": {
-        "ScrollBarX": "246",
-        "ScrollBarY": "-403",
-        "SliderPosX": "246",
-        "SliderPosY": "-403",
-        "Zoom": "0.40999999999999998"
+        "ScrollBarX": "-1",
+        "ScrollBarY": "-124",
+        "SliderPosX": "-1",
+        "SliderPosY": "-124",
+        "Zoom": "0.56000000000000005"
     },
     "ui generic": {
         "group": "element",
         "open plots": "",
-        "plot groups": "",
+        "plot groups": {
+            "Beliefs": {
+                "Camera TCP ReaderWidget0": {
+                    "step": "Camera TCP Reader",
+                    "position_x": "7",
+                    "position_y": "710",
+                    "width": "286",
+                    "height": "320",
+                    "position_relative_x": "0.0036458333333333334",
+                    "position_relative_y": "0.71213640922768306",
+                    "width_relative": "0.14895833333333333",
+                    "height_relative": "0.32096288866599798",
+                    "data_list": [
+                        {
+                            "id": "OUTPUT",
+                            "name": "output",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "smooth scaling": "true",
+                                "keep aspect ratio": "true",
+                                "automatic value scaling": "true",
+                                "show legend": "true",
+                                "value limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "color jet": "PlotDefault"
+                            }
+                        }
+                    ]
+                },
+                "Reward Hebb Trace 19Widget0": {
+                    "step": "Reward Hebb Trace 19",
+                    "position_x": "455",
+                    "position_y": "262",
+                    "width": "206",
+                    "height": "200",
+                    "position_relative_x": "0.23697916666666666",
+                    "position_relative_y": "0.26278836509528586",
+                    "width_relative": "0.10729166666666666",
+                    "height_relative": "0.20060180541624875",
+                    "data_list": [
+                        {
+                            "id": "OUTPUT",
+                            "name": "weights",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "autoscaling": "true",
+                                "major grid visible": "false",
+                                "minor grid visible": "false",
+                                "y axis limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "discrete plot": "false"
+                            }
+                        }
+                    ]
+                },
+                "Reward Hebb Trace 2Widget0": {
+                    "step": "Reward Hebb Trace 2",
+                    "position_x": "457",
+                    "position_y": "469",
+                    "width": "206",
+                    "height": "200",
+                    "position_relative_x": "0.23802083333333332",
+                    "position_relative_y": "0.47041123370110333",
+                    "width_relative": "0.10729166666666666",
+                    "height_relative": "0.20060180541624875",
+                    "data_list": [
+                        {
+                            "id": "OUTPUT",
+                            "name": "weights",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "autoscaling": "true",
+                                "major grid visible": "false",
+                                "minor grid visible": "false",
+                                "y axis limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "discrete plot": "false"
+                            }
+                        }
+                    ]
+                },
+                "Reward Hebb Trace 3Widget0": {
+                    "step": "Reward Hebb Trace 3",
+                    "position_x": "460",
+                    "position_y": "673",
+                    "width": "206",
+                    "height": "200",
+                    "position_relative_x": "0.23958333333333334",
+                    "position_relative_y": "0.67502507522567701",
+                    "width_relative": "0.10729166666666666",
+                    "height_relative": "0.20060180541624875",
+                    "data_list": [
+                        {
+                            "id": "OUTPUT",
+                            "name": "weights",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "autoscaling": "true",
+                                "major grid visible": "false",
+                                "minor grid visible": "false",
+                                "y axis limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "discrete plot": "false"
+                            }
+                        }
+                    ]
+                },
+                "Reward Hebb Trace 4Widget0": {
+                    "step": "Reward Hebb Trace 4",
+                    "position_x": "231",
+                    "position_y": "256",
+                    "width": "206",
+                    "height": "200",
+                    "position_relative_x": "0.1203125",
+                    "position_relative_y": "0.2567703109327984",
+                    "width_relative": "0.10729166666666666",
+                    "height_relative": "0.20060180541624875",
+                    "data_list": [
+                        {
+                            "id": "OUTPUT",
+                            "name": "weights",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "autoscaling": "true",
+                                "major grid visible": "false",
+                                "minor grid visible": "false",
+                                "y axis limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "discrete plot": "false"
+                            }
+                        }
+                    ]
+                },
+                "Reward Hebb Trace 5Widget0": {
+                    "step": "Reward Hebb Trace 5",
+                    "position_x": "221",
+                    "position_y": "461",
+                    "width": "206",
+                    "height": "200",
+                    "position_relative_x": "0.11510416666666666",
+                    "position_relative_y": "0.46238716148445336",
+                    "width_relative": "0.10729166666666666",
+                    "height_relative": "0.20060180541624875",
+                    "data_list": [
+                        {
+                            "id": "OUTPUT",
+                            "name": "weights",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "autoscaling": "true",
+                                "major grid visible": "false",
+                                "minor grid visible": "false",
+                                "y axis limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "discrete plot": "false"
+                            }
+                        }
+                    ]
+                },
+                "Reward Hebb Trace 6Widget0": {
+                    "step": "Reward Hebb Trace 6",
+                    "position_x": "218",
+                    "position_y": "663",
+                    "width": "206",
+                    "height": "200",
+                    "position_relative_x": "0.11354166666666667",
+                    "position_relative_y": "0.66499498495486464",
+                    "width_relative": "0.10729166666666666",
+                    "height_relative": "0.20060180541624875",
+                    "data_list": [
+                        {
+                            "id": "OUTPUT",
+                            "name": "weights",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "autoscaling": "true",
+                                "major grid visible": "false",
+                                "minor grid visible": "false",
+                                "y axis limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "discrete plot": "false"
+                            }
+                        }
+                    ]
+                },
+                "visible": "true"
+            }
+        },
         "architecture widgets": "",
         "robots": "",
         "width": "250",
