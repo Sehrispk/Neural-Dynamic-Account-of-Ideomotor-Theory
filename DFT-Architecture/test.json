@@ -1,0 +1,2216 @@
+{
+    "meta": {
+        "format": "1"
+    },
+    "steps": {
+        "cedar.dynamics.NeuralField": {
+            "name": "Action-Goal-Memory",
+            "activation as output": "false",
+            "discrete metric (workaround)": "true",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "2",
+            "sizes": [
+                "6",
+                "3"
+            ],
+            "time scale": "100",
+            "resting level": "-0.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "-0.01",
+            "lateral kernels": {
+                "cedar.aux.kernel.Gauss": {
+                    "dimensionality": "2",
+                    "anchor": [
+                        "0",
+                        "0"
+                    ],
+                    "amplitude": "2",
+                    "sigmas": [
+                        "0.01",
+                        "0.01"
+                    ],
+                    "normalize": "true",
+                    "shifts": [
+                        "0",
+                        "0"
+                    ],
+                    "limit": "5"
+                },
+                "cedar.aux.kernel.Gauss": {
+                    "dimensionality": "2",
+                    "anchor": [
+                        "0",
+                        "0"
+                    ],
+                    "amplitude": "-0.99999999999999833",
+                    "sigmas": [
+                        "0.01",
+                        "0.01"
+                    ],
+                    "normalize": "true",
+                    "shifts": [
+                        "0",
+                        "0"
+                    ],
+                    "limit": "5"
+                }
+            },
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "2",
+                "anchor": [
+                    "0",
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3",
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0",
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Action-Goal-Selection",
+            "activation as output": "false",
+            "discrete metric (workaround)": "true",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "2",
+            "sizes": [
+                "6",
+                "3"
+            ],
+            "time scale": "100",
+            "resting level": "-2",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "-0.29999999999999999",
+            "lateral kernels": {
+                "cedar.aux.kernel.Gauss": {
+                    "dimensionality": "2",
+                    "anchor": [
+                        "0",
+                        "0"
+                    ],
+                    "amplitude": "0.99999999999999989",
+                    "sigmas": [
+                        "0.01",
+                        "0.01"
+                    ],
+                    "normalize": "true",
+                    "shifts": [
+                        "0",
+                        "0"
+                    ],
+                    "limit": "5"
+                }
+            },
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "2",
+                "anchor": [
+                    "0",
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3",
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0",
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Action-Role-Field",
+            "activation as output": "false",
+            "discrete metric (workaround)": "true",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "1",
+            "sizes": [
+                "3"
+            ],
+            "time scale": "100",
+            "resting level": "-2.25",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Belief-CoDs",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "0",
+            "sizes": "",
+            "time scale": "300",
+            "resting level": "-1.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Belief-CoS",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "0",
+            "sizes": "",
+            "time scale": "100",
+            "resting level": "-3.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.processing.sources.Boost": {
+            "name": "Boost 2",
+            "strength": "6",
+            "active": "false",
+            "deactivate on reset": "false",
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "CoS",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "0",
+            "sizes": "",
+            "time scale": "100",
+            "resting level": "-5",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": {
+                "cedar.aux.kernel.Box": {
+                    "dimensionality": "1",
+                    "anchor": [
+                        "0"
+                    ],
+                    "amplitude": "1",
+                    "widths": [
+                        "1"
+                    ]
+                }
+            },
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Color-Change-Detection 2",
+            "activation as output": "false",
+            "discrete metric (workaround)": "true",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "1",
+            "sizes": [
+                "6"
+            ],
+            "time scale": "100",
+            "resting level": "-0.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Color-Change-Inhibition",
+            "activation as output": "false",
+            "discrete metric (workaround)": "true",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "1",
+            "sizes": [
+                "6"
+            ],
+            "time scale": "2000",
+            "resting level": "-0.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Color-Gate-Field",
+            "activation as output": "false",
+            "discrete metric (workaround)": "true",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "1",
+            "sizes": [
+                "6"
+            ],
+            "time scale": "100",
+            "resting level": "-1.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Color-Role-Field",
+            "activation as output": "false",
+            "discrete metric (workaround)": "true",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "1",
+            "sizes": [
+                "6"
+            ],
+            "time scale": "100",
+            "resting level": "-2.25",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Combined-Action-Belief",
+            "activation as output": "false",
+            "discrete metric (workaround)": "true",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "2",
+            "sizes": [
+                "6",
+                "3"
+            ],
+            "time scale": "100",
+            "resting level": "-1.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "2",
+                "anchor": [
+                    "0",
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3",
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0",
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.processing.sources.GaussInput": {
+            "name": "Gauss Input",
+            "dimensionality": "1",
+            "sizes": [
+                "6"
+            ],
+            "amplitude": "1",
+            "centers": [
+                "0"
+            ],
+            "sigma": [
+                "0.01"
+            ],
+            "cyclic": "false",
+            "comments": ""
+        },
+        "cedar.processing.sources.GaussInput": {
+            "name": "Gauss Input 2",
+            "dimensionality": "1",
+            "sizes": [
+                "3"
+            ],
+            "amplitude": "1",
+            "centers": [
+                "1"
+            ],
+            "sigma": [
+                "0.01"
+            ],
+            "cyclic": "false",
+            "comments": ""
+        },
+        "cedar.processing.sources.GaussInput": {
+            "name": "Gauss Input 3",
+            "dimensionality": "1",
+            "sizes": [
+                "3"
+            ],
+            "amplitude": "1",
+            "centers": [
+                "0"
+            ],
+            "sigma": [
+                "0.01"
+            ],
+            "cyclic": "false",
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Goal-Change-Detection",
+            "activation as output": "false",
+            "discrete metric (workaround)": "true",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "1",
+            "sizes": [
+                "3"
+            ],
+            "time scale": "100",
+            "resting level": "-0.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Goal-Change-inhibition",
+            "activation as output": "false",
+            "discrete metric (workaround)": "true",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "1",
+            "sizes": [
+                "3"
+            ],
+            "time scale": "2000",
+            "resting level": "-0.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Goal-CoS\/CoDs",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "0",
+            "sizes": "",
+            "time scale": "100",
+            "resting level": "-5",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": {
+                "cedar.aux.kernel.Box": {
+                    "dimensionality": "1",
+                    "anchor": [
+                        "0"
+                    ],
+                    "amplitude": "1",
+                    "widths": [
+                        "1"
+                    ]
+                }
+            },
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.Preshape": {
+            "name": "Goal-stabilization",
+            "dimensionality": "1",
+            "sizes": [
+                "3"
+            ],
+            "time scale build up": "100",
+            "time scale decay": "1000",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0.5",
+                "beta": "1000"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.Preshape": {
+            "name": "GoalInhibition",
+            "dimensionality": "1",
+            "sizes": [
+                "3"
+            ],
+            "time scale build up": "5000",
+            "time scale decay": "1000",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0.5",
+                "beta": "1000"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.Preshape": {
+            "name": "Intention-inhibition",
+            "dimensionality": "2",
+            "sizes": [
+                "6",
+                "3"
+            ],
+            "time scale build up": "1000",
+            "time scale decay": "1000",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0.5",
+                "beta": "1000"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.Preshape": {
+            "name": "Intention-stabilization",
+            "dimensionality": "2",
+            "sizes": [
+                "6",
+                "3"
+            ],
+            "time scale build up": "100",
+            "time scale decay": "1000",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0.5",
+                "beta": "1000"
+            },
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
+            "name": "Projection",
+            "dimension mapping": {
+                "0": "0"
+            },
+            "output dimensionality": "2",
+            "output dimension sizes": [
+                "6",
+                "3"
+            ],
+            "compression type": "SUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
+            "name": "Projection 16",
+            "dimension mapping": {
+                "0": "4294967295"
+            },
+            "output dimensionality": "0",
+            "output dimension sizes": "",
+            "compression type": "MAXIMUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
+            "name": "Projection 2",
+            "dimension mapping": {
+                "0": "0"
+            },
+            "output dimensionality": "2",
+            "output dimension sizes": [
+                "6",
+                "3"
+            ],
+            "compression type": "SUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
+            "name": "Projection 3",
+            "dimension mapping": {
+                "0": "1"
+            },
+            "output dimensionality": "2",
+            "output dimension sizes": [
+                "6",
+                "3"
+            ],
+            "compression type": "SUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
+            "name": "Projection 4",
+            "dimension mapping": {
+                "0": "4294967295"
+            },
+            "output dimensionality": "0",
+            "output dimension sizes": "",
+            "compression type": "MAXIMUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
+            "name": "Projection 5",
+            "dimension mapping": {
+                "0": "4294967295"
+            },
+            "output dimensionality": "0",
+            "output dimension sizes": "",
+            "compression type": "MAXIMUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
+            "name": "Projection 6",
+            "dimension mapping": {
+                "0": "4294967295"
+            },
+            "output dimensionality": "0",
+            "output dimension sizes": "",
+            "compression type": "MAXIMUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
+            "name": "Projection 7",
+            "dimension mapping": {
+                "0": "4294967295"
+            },
+            "output dimensionality": "0",
+            "output dimension sizes": "",
+            "compression type": "MAXIMUM",
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Sound-Goal-Memory",
+            "activation as output": "false",
+            "discrete metric (workaround)": "true",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "1",
+            "sizes": [
+                "3"
+            ],
+            "time scale": "100",
+            "resting level": "-0.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "-0.01",
+            "lateral kernels": {
+                "cedar.aux.kernel.Gauss": {
+                    "dimensionality": "1",
+                    "anchor": [
+                        "0"
+                    ],
+                    "amplitude": "2",
+                    "sigmas": [
+                        "0.01"
+                    ],
+                    "normalize": "true",
+                    "shifts": [
+                        "0"
+                    ],
+                    "limit": "5"
+                },
+                "cedar.aux.kernel.Gauss": {
+                    "dimensionality": "1",
+                    "anchor": [
+                        "0"
+                    ],
+                    "amplitude": "-1",
+                    "sigmas": [
+                        "0.01"
+                    ],
+                    "normalize": "true",
+                    "shifts": [
+                        "0"
+                    ],
+                    "limit": "5"
+                }
+            },
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Sound-Goal-Selection",
+            "activation as output": "false",
+            "discrete metric (workaround)": "true",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "1",
+            "sizes": [
+                "3"
+            ],
+            "time scale": "100",
+            "resting level": "-2",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "-0.20000000000000001",
+            "lateral kernels": {
+                "cedar.aux.kernel.Gauss": {
+                    "dimensionality": "1",
+                    "anchor": [
+                        "0"
+                    ],
+                    "amplitude": "0.5",
+                    "sigmas": [
+                        "0.01"
+                    ],
+                    "normalize": "true",
+                    "shifts": [
+                        "0"
+                    ],
+                    "limit": "5"
+                }
+            },
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Sound-Role-Field",
+            "activation as output": "false",
+            "discrete metric (workaround)": "true",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "1",
+            "sizes": [
+                "3"
+            ],
+            "time scale": "100",
+            "resting level": "-2.25",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain",
+            "gain factor": "-0.40000000000000002",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 10",
+            "gain factor": "-1",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 11",
+            "gain factor": "-1",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 12",
+            "gain factor": "-1",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 13",
+            "gain factor": "1.25",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 14",
+            "gain factor": "-0.20000000000000001",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 15",
+            "gain factor": "2",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 16",
+            "gain factor": "0.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 2",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 21",
+            "gain factor": "-1",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 3",
+            "gain factor": "1.5000000000000002",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 4",
+            "gain factor": "1.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 5",
+            "gain factor": "-0.20000000000000001",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 6",
+            "gain factor": "1.5000000000000002",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 7",
+            "gain factor": "-0.5",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 71",
+            "gain factor": "2",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 72",
+            "gain factor": "1.25",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 8",
+            "gain factor": "1.3999999999999999",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 9",
+            "gain factor": "-3.0000000000000013",
+            "comments": ""
+        }
+    },
+    "triggers": {
+        "cedar.processing.LoopedTrigger": {
+            "name": "default thread",
+            "step size": "0.02 s",
+            "fake Euler step size": "0.02 s",
+            "minimum sleep time": "0.0002 s",
+            "idle time": "1e-05 s",
+            "simulated time": "0.001 s",
+            "loop mode": "real deltaT",
+            "start with all": "true",
+            "listeners": [
+                "Action-Goal-Memory",
+                "Action-Goal-Selection",
+                "Sound-Goal-Memory",
+                "Sound-Goal-Selection",
+                "Color-Gate-Field",
+                "Sound-Role-Field",
+                "Color-Role-Field",
+                "Action-Role-Field",
+                "Goal-stabilization",
+                "Combined-Action-Belief",
+                "CoS",
+                "Goal-CoS\/CoDs",
+                "Color-Change-Detection 2",
+                "Color-Change-Inhibition",
+                "GoalInhibition",
+                "Intention-stabilization",
+                "Intention-inhibition",
+                "Belief-CoDs",
+                "Belief-CoS",
+                "Goal-Change-Detection",
+                "Goal-Change-inhibition"
+            ]
+        }
+    },
+    "connections": [
+        {
+            "source": "Color-Gate-Field.sigmoided activation",
+            "target": "Projection.input"
+        },
+        {
+            "source": "Action-Role-Field.sigmoided activation",
+            "target": "Projection 3.input"
+        },
+        {
+            "source": "Color-Role-Field.sigmoided activation",
+            "target": "Projection 2.input"
+        },
+        {
+            "source": "Projection 3.output",
+            "target": "Combined-Action-Belief.input"
+        },
+        {
+            "source": "Projection 2.output",
+            "target": "Combined-Action-Belief.input"
+        },
+        {
+            "source": "Combined-Action-Belief.sigmoided activation",
+            "target": "Action-Goal-Selection.input"
+        },
+        {
+            "source": "Action-Goal-Selection.sigmoided activation",
+            "target": "Action-Goal-Memory.input"
+        },
+        {
+            "source": "Goal-stabilization.activation",
+            "target": "Static Gain 2.input"
+        },
+        {
+            "source": "Gauss Input.Gauss input",
+            "target": "Color-Gate-Field.input"
+        },
+        {
+            "source": "Gauss Input 2.Gauss input",
+            "target": "Static Gain 3.input"
+        },
+        {
+            "source": "Gauss Input.Gauss input",
+            "target": "Static Gain 4.input"
+        },
+        {
+            "source": "Static Gain 4.output",
+            "target": "Color-Role-Field.input"
+        },
+        {
+            "source": "Static Gain 3.output",
+            "target": "Action-Role-Field.input"
+        },
+        {
+            "source": "Color-Change-Inhibition.sigmoided activation",
+            "target": "Static Gain 21.input"
+        },
+        {
+            "source": "Static Gain 21.output",
+            "target": "Color-Change-Detection 2.input"
+        },
+        {
+            "source": "Color-Change-Detection 2.sigmoided activation",
+            "target": "Projection 16.input"
+        },
+        {
+            "source": "Projection 16.output",
+            "target": "Static Gain 72.input"
+        },
+        {
+            "source": "Projection 16.output",
+            "target": "Static Gain 71.input"
+        },
+        {
+            "source": "Gauss Input.Gauss input",
+            "target": "Color-Change-Inhibition.input"
+        },
+        {
+            "source": "Gauss Input.Gauss input",
+            "target": "Color-Change-Detection 2.input"
+        },
+        {
+            "source": "Static Gain 71.output",
+            "target": "Color-Role-Field.input"
+        },
+        {
+            "source": "Static Gain 72.output",
+            "target": "Sound-Role-Field.input"
+        },
+        {
+            "source": "Static Gain 72.output",
+            "target": "Action-Role-Field.input"
+        },
+        {
+            "source": "Projection 16.output",
+            "target": "Static Gain 5.input"
+        },
+        {
+            "source": "Gauss Input 3.Gauss input",
+            "target": "Static Gain 6.input"
+        },
+        {
+            "source": "Static Gain 6.output",
+            "target": "Sound-Role-Field.input"
+        },
+        {
+            "source": "Boost 2.boost",
+            "target": "Goal-CoS\/CoDs.input"
+        },
+        {
+            "source": "Sound-Role-Field.sigmoided activation",
+            "target": "Sound-Goal-Selection.input"
+        },
+        {
+            "source": "Sound-Goal-Selection.sigmoided activation",
+            "target": "Sound-Goal-Memory.input"
+        },
+        {
+            "source": "Goal-CoS\/CoDs.sigmoided activation",
+            "target": "GoalInhibition.peak detector"
+        },
+        {
+            "source": "Sound-Goal-Memory.sigmoided activation",
+            "target": "GoalInhibition.input"
+        },
+        {
+            "source": "GoalInhibition.activation",
+            "target": "Static Gain 7.input"
+        },
+        {
+            "source": "CoS.sigmoided activation",
+            "target": "Intention-inhibition.peak detector"
+        },
+        {
+            "source": "Action-Goal-Memory.sigmoided activation",
+            "target": "Intention-inhibition.input"
+        },
+        {
+            "source": "Intention-inhibition.activation",
+            "target": "Static Gain.input"
+        },
+        {
+            "source": "Intention-stabilization.activation",
+            "target": "Static Gain 8.input"
+        },
+        {
+            "source": "Projection.output",
+            "target": "Combined-Action-Belief.input"
+        },
+        {
+            "source": "Sound-Role-Field.sigmoided activation",
+            "target": "Projection 4.input"
+        },
+        {
+            "source": "Color-Role-Field.sigmoided activation",
+            "target": "Projection 5.input"
+        },
+        {
+            "source": "Action-Role-Field.sigmoided activation",
+            "target": "Projection 6.input"
+        },
+        {
+            "source": "Projection 6.output",
+            "target": "Belief-CoS.input"
+        },
+        {
+            "source": "Projection 5.output",
+            "target": "Belief-CoS.input"
+        },
+        {
+            "source": "Projection 4.output",
+            "target": "Belief-CoS.input"
+        },
+        {
+            "source": "Projection 16.output",
+            "target": "Belief-CoS.input"
+        },
+        {
+            "source": "Belief-CoS.sigmoided activation",
+            "target": "Static Gain 9.input"
+        },
+        {
+            "source": "Static Gain 9.output",
+            "target": "Belief-CoDs.input"
+        },
+        {
+            "source": "Projection 16.output",
+            "target": "Belief-CoDs.input"
+        },
+        {
+            "source": "Belief-CoDs.sigmoided activation",
+            "target": "Color-Gate-Field.input"
+        },
+        {
+            "source": "Projection 4.output",
+            "target": "Belief-CoDs.input"
+        },
+        {
+            "source": "Projection 5.output",
+            "target": "Belief-CoDs.input"
+        },
+        {
+            "source": "Projection 6.output",
+            "target": "Belief-CoDs.input"
+        },
+        {
+            "source": "Projection 16.output",
+            "target": "Action-Goal-Selection.input"
+        },
+        {
+            "source": "Static Gain 5.output",
+            "target": "Action-Goal-Memory.input"
+        },
+        {
+            "source": "Static Gain 5.output",
+            "target": "Sound-Goal-Memory.input"
+        },
+        {
+            "source": "Boost 2.boost",
+            "target": "CoS.input"
+        },
+        {
+            "source": "Projection 16.output",
+            "target": "Sound-Goal-Selection.input"
+        },
+        {
+            "source": "Goal-Change-inhibition.sigmoided activation",
+            "target": "Static Gain 10.input"
+        },
+        {
+            "source": "Static Gain 10.output",
+            "target": "Goal-Change-Detection.input"
+        },
+        {
+            "source": "Goal-Change-Detection.sigmoided activation",
+            "target": "Projection 7.input"
+        },
+        {
+            "source": "Sound-Goal-Memory.sigmoided activation",
+            "target": "Goal-Change-Detection.input"
+        },
+        {
+            "source": "Sound-Goal-Memory.sigmoided activation",
+            "target": "Goal-Change-inhibition.input"
+        },
+        {
+            "source": "Projection 16.output",
+            "target": "Static Gain 11.input"
+        },
+        {
+            "source": "Static Gain 11.output",
+            "target": "Goal-Change-Detection.input"
+        },
+        {
+            "source": "Projection 7.output",
+            "target": "Static Gain 12.input"
+        },
+        {
+            "source": "Projection 7.output",
+            "target": "Static Gain 14.input"
+        },
+        {
+            "source": "Projection 7.output",
+            "target": "Static Gain 13.input"
+        },
+        {
+            "source": "Projection 7.output",
+            "target": "Static Gain 15.input"
+        },
+        {
+            "source": "Static Gain 12.output",
+            "target": "Color-Change-Detection 2.input"
+        },
+        {
+            "source": "Sound-Goal-Memory.sigmoided activation",
+            "target": "Static Gain 16.input"
+        },
+        {
+            "source": "Static Gain 16.output",
+            "target": "Sound-Role-Field.input"
+        },
+        {
+            "source": "Static Gain 14.output",
+            "target": "Sound-Goal-Memory.input"
+        },
+        {
+            "source": "Static Gain 14.output",
+            "target": "Action-Goal-Memory.input"
+        },
+        {
+            "source": "Static Gain 13.output",
+            "target": "Color-Role-Field.input"
+        },
+        {
+            "source": "Static Gain 13.output",
+            "target": "Action-Role-Field.input"
+        },
+        {
+            "source": "Static Gain 15.output",
+            "target": "Sound-Role-Field.input"
+        },
+        {
+            "source": "Projection 7.output",
+            "target": "Sound-Goal-Selection.input"
+        },
+        {
+            "source": "Projection 7.output",
+            "target": "Action-Goal-Selection.input"
+        },
+        {
+            "source": "Action-Goal-Memory.sigmoided activation",
+            "target": "Intention-stabilization.input"
+        },
+        {
+            "source": "Sound-Goal-Memory.sigmoided activation",
+            "target": "Goal-stabilization.input"
+        }
+    ],
+    "name": "element",
+    "connectors": "",
+    "is looped": "false",
+    "time factor": "1",
+    "ui": [
+        {
+            "type": "connections",
+            "connections": [
+                {
+                    "source slot": "Gauss Input.Gauss input",
+                    "target slot": "Color-Change-Detection 2.input",
+                    "anchors": [
+                        {
+                            "x": "-91",
+                            "y": "-1093"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "step",
+            "step": "Action-Goal-Memory",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-812",
+            "positionY": "84"
+        },
+        {
+            "type": "step",
+            "step": "Action-Goal-Selection",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-588",
+            "positionY": "84"
+        },
+        {
+            "type": "step",
+            "step": "Action-Role-Field",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "224",
+            "positionY": "-154"
+        },
+        {
+            "type": "step",
+            "step": "Belief-CoDs",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "644",
+            "positionY": "-476"
+        },
+        {
+            "type": "step",
+            "step": "Belief-CoS",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "644",
+            "positionY": "-420"
+        },
+        {
+            "type": "step",
+            "step": "Boost 2",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-1064",
+            "positionY": "-406"
+        },
+        {
+            "type": "step",
+            "step": "CoS",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-994",
+            "positionY": "56"
+        },
+        {
+            "type": "step",
+            "step": "Color-Change-Detection 2",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-84",
+            "positionY": "-742"
+        },
+        {
+            "type": "step",
+            "step": "Color-Change-Inhibition",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-84",
+            "positionY": "-686"
+        },
+        {
+            "type": "step",
+            "step": "Color-Gate-Field",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "14",
+            "positionY": "196"
+        },
+        {
+            "type": "step",
+            "step": "Color-Role-Field",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "224",
+            "positionY": "-210"
+        },
+        {
+            "type": "step",
+            "step": "Combined-Action-Belief",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "420",
+            "positionY": "84"
+        },
+        {
+            "type": "step",
+            "step": "Gauss Input",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-42",
+            "positionY": "364"
+        },
+        {
+            "type": "step",
+            "step": "Gauss Input 2",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-42",
+            "positionY": "420"
+        },
+        {
+            "type": "step",
+            "step": "Gauss Input 3",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-42",
+            "positionY": "308"
+        },
+        {
+            "type": "step",
+            "step": "Goal-Change-Detection",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-84",
+            "positionY": "-1008"
+        },
+        {
+            "type": "step",
+            "step": "Goal-Change-inhibition",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-84",
+            "positionY": "-952"
+        },
+        {
+            "type": "step",
+            "step": "Goal-CoS\/CoDs",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-924",
+            "positionY": "-602"
+        },
+        {
+            "type": "step",
+            "step": "Goal-stabilization",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-728",
+            "positionY": "-560"
+        },
+        {
+            "type": "step",
+            "step": "GoalInhibition",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-728",
+            "positionY": "-616"
+        },
+        {
+            "type": "step",
+            "step": "Intention-inhibition",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-812",
+            "positionY": "-42"
+        },
+        {
+            "type": "step",
+            "step": "Intention-stabilization",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-812",
+            "positionY": "14"
+        },
+        {
+            "type": "step",
+            "step": "Projection",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "168",
+            "positionY": "196"
+        },
+        {
+            "type": "step",
+            "step": "Projection 16",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "70",
+            "positionY": "-742"
+        },
+        {
+            "type": "step",
+            "step": "Projection 2",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "364",
+            "positionY": "56"
+        },
+        {
+            "type": "step",
+            "step": "Projection 3",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "364",
+            "positionY": "112"
+        },
+        {
+            "type": "step",
+            "step": "Projection 4",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "364",
+            "positionY": "-476"
+        },
+        {
+            "type": "step",
+            "step": "Projection 5",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "364",
+            "positionY": "-434"
+        },
+        {
+            "type": "step",
+            "step": "Projection 6",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "364",
+            "positionY": "-392"
+        },
+        {
+            "type": "step",
+            "step": "Projection 7",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "70",
+            "positionY": "-1008"
+        },
+        {
+            "type": "step",
+            "step": "Sound-Goal-Memory",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-728",
+            "positionY": "-476"
+        },
+        {
+            "type": "step",
+            "step": "Sound-Goal-Selection",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-504",
+            "positionY": "-462"
+        },
+        {
+            "type": "step",
+            "step": "Sound-Role-Field",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "224",
+            "positionY": "-266"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-644",
+            "positionY": "-42"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 10",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "70",
+            "positionY": "-952"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 11",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "210",
+            "positionY": "-826"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 12",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "210",
+            "positionY": "-1064"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 13",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "210",
+            "positionY": "-980"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 14",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "210",
+            "positionY": "-1022"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 15",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "210",
+            "positionY": "-938"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 16",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-588",
+            "positionY": "-434"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 2",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-560",
+            "positionY": "-560"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 21",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "70",
+            "positionY": "-686"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 3",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "42",
+            "positionY": "420"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 4",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "42",
+            "positionY": "364"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 5",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "210",
+            "positionY": "-784"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 6",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "42",
+            "positionY": "308"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 7",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-560",
+            "positionY": "-616"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 71",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "210",
+            "positionY": "-700"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 72",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "210",
+            "positionY": "-742"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 8",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-644",
+            "positionY": "14"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 9",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "812",
+            "positionY": "-420"
+        },
+        {
+            "type": "trigger",
+            "trigger": "default thread",
+            "width": "30",
+            "height": "30",
+            "positionX": "0",
+            "positionY": "0"
+        }
+    ],
+    "ui view": {
+        "ScrollBarX": "-719",
+        "ScrollBarY": "-807",
+        "SliderPosX": "-719",
+        "SliderPosY": "-807",
+        "Zoom": "0.72999999999999998"
+    },
+    "ui generic": {
+        "group": "element",
+        "open plots": {
+            "Sound-Goal-MemoryWidget0": {
+                "step": "Sound-Goal-Memory",
+                "position_x": "189",
+                "position_y": "320",
+                "width": "200",
+                "height": "200",
+                "position_relative_x": "0.11753731343283583",
+                "position_relative_y": "0.32454361054766734",
+                "width_relative": "0.12437810945273632",
+                "height_relative": "0.20283975659229209",
+                "data_list": [
+                    {
+                        "id": "BUFFER",
+                        "name": "input sum",
+                        "ignoreIfMissing": "false",
+                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                    },
+                    {
+                        "id": "BUFFER",
+                        "name": "activation",
+                        "ignoreIfMissing": "true",
+                        "plotDeclaration": ""
+                    },
+                    {
+                        "id": "OUTPUT",
+                        "name": "activation",
+                        "ignoreIfMissing": "true",
+                        "plotDeclaration": ""
+                    },
+                    {
+                        "id": "OUTPUT",
+                        "name": "sigmoided activation",
+                        "ignoreIfMissing": "false",
+                        "plotDeclaration": ""
+                    }
+                ],
+                "plot configurations": [
+                    {
+                        "row": "1",
+                        "col": "0",
+                        "plot configuration": {
+                            "autoscaling": "true",
+                            "major grid visible": "false",
+                            "minor grid visible": "false",
+                            "y axis limits": {
+                                "lower limit": "0",
+                                "upper limit": "1"
+                            },
+                            "discrete plot": "true"
+                        }
+                    }
+                ]
+            },
+            "Sound-Goal-SelectionWidget0": {
+                "step": "Sound-Goal-Selection",
+                "position_x": "417",
+                "position_y": "314",
+                "width": "200",
+                "height": "200",
+                "position_relative_x": "0.25932835820895522",
+                "position_relative_y": "0.31845841784989859",
+                "width_relative": "0.12437810945273632",
+                "height_relative": "0.20283975659229209",
+                "data_list": [
+                    {
+                        "id": "BUFFER",
+                        "name": "input sum",
+                        "ignoreIfMissing": "false",
+                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                    },
+                    {
+                        "id": "BUFFER",
+                        "name": "activation",
+                        "ignoreIfMissing": "true",
+                        "plotDeclaration": ""
+                    },
+                    {
+                        "id": "OUTPUT",
+                        "name": "activation",
+                        "ignoreIfMissing": "true",
+                        "plotDeclaration": ""
+                    },
+                    {
+                        "id": "OUTPUT",
+                        "name": "sigmoided activation",
+                        "ignoreIfMissing": "false",
+                        "plotDeclaration": ""
+                    }
+                ],
+                "plot configurations": [
+                    {
+                        "row": "1",
+                        "col": "0",
+                        "plot configuration": {
+                            "autoscaling": "true",
+                            "major grid visible": "false",
+                            "minor grid visible": "false",
+                            "y axis limits": {
+                                "lower limit": "0",
+                                "upper limit": "1"
+                            },
+                            "discrete plot": "true"
+                        }
+                    }
+                ]
+            }
+        },
+        "plot groups": "",
+        "architecture widgets": "",
+        "robots": "",
+        "width": "250",
+        "height": "250",
+        "smart mode": "false",
+        "collapsed": "false",
+        "lock geometry": "false",
+        "uncollapsed width": "250",
+        "uncollapsed height": "250",
+        "positionX": "0",
+        "positionY": "0"
+    }
+}
