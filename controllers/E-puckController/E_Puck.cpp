@@ -40,6 +40,11 @@ void E_Puck::ComThreadUpdate()
     comThread->setWriteMatrix("receiver", sensordata.receiverMat);
   }
 
+  if (comThread->doesWriteSocketExist("LEDs_write"))
+  {
+      comThread->setWriteMatrix("LEDs_write", sensordata.LEDMat)
+  }
+
 //read from Cedar
   if (comThread->doesReadSocketExist("motors"))
   {
@@ -65,14 +70,14 @@ void E_Puck::ComThreadUpdate()
     else{cedardata.breakMat = cv::Mat::zeros(1,1,CV_32F);}
   }
   
-  if (comThread->doesReadSocketExist("LEDs"))
+  if (comThread->doesReadSocketExist("LEDs_read"))
   {
-    cv::Mat commandMatrix = comThread->getReadCommandMatrix("LEDs");
-    if (commandMatrix.rows == 3)
+    cv::Mat commandMatrix = comThread->getReadCommandMatrix("LEDs_read");
+    if (commandMatrix.rows == 9)
     {
         cedardata.LEDMat = commandMatrix;
     }
-    else{cedardata.LEDMat = cv::Mat::zeros(3, 1,CV_32F);}
+    else{cedardata.LEDMat = cv::Mat::zeros(9,1,CV_32F);}
   }
 }
 
@@ -137,7 +142,7 @@ void E_Puck::applyMotorCommands()
   
   for (std::vector<webots::LED*>::size_type i = 0; i < LEDs.size(); i++)
   {
-    LEDs[i]->set((int)(2*cedardata.LEDMat.at<float>(i*cedardata.LEDMat.rows / LEDs.size())));
+    LEDs[i]->set((int)(cedardata.LEDMat.at<float>(i)));
   }
 }
 
@@ -192,6 +197,7 @@ void E_Puck::initFromConfig()
   LEDs.push_back(getLED("led5"));
   LEDs.push_back(getLED("led6"));
   LEDs.push_back(getLED("led7"));
+  LEDs.push_back(getLED("led9"));
   
   // add write sockets
   if (configMap.find("camera_port_snd") != configMap.end())
@@ -201,6 +207,10 @@ void E_Puck::initFromConfig()
   if (configMap.find("mic_port_snd") != configMap.end())
   {
     comThread->addWriteSocket("receiver", std::stoi(configMap["mic_port_snd"]), configMap["cedar_ip"]);
+  }
+  if (configMap.find("LED_port_snd") != configMap.end())
+  {
+      comThread->addWriteSocket("LEDs_write", std::stoi(configMap["LED_port_snd"]), configMap["cedar_ip"]);
   }
   
   // add read sockets
@@ -214,7 +224,7 @@ void E_Puck::initFromConfig()
   }
   if (configMap.find("LED_port_rcv") != configMap.end())
   {
-    comThread->addReadSocket("LEDs", std::stoi(configMap["LED_port_rcv"]), std::stoi(configMap["read_buffer_size"]));
+    comThread->addReadSocket("LEDs_read", std::stoi(configMap["LED_port_rcv"]), std::stoi(configMap["read_buffer_size"]));
   }
 }
 
