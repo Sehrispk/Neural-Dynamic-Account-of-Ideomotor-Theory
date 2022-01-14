@@ -1,0 +1,57 @@
+PROTO ColoredButton [
+  field SFVec3f    translation  0 0.01 0
+  field SFRotation rotation     0 1 0 0
+  field SFString controller "ObjectController"
+  field MFString           controllerArgs               []
+  field SFString name "ColoredButton"
+]
+{
+Robot {
+  translation IS translation
+  rotation IS rotation
+  children [
+    Display {
+      translation 0 0.02 0
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0 0 0
+              emissiveColor 1 1 1
+              shininess 0
+            }
+            texture ImageTexture {
+              url [
+                "/local/webots/resources/images/missing_texture.png"
+              ]
+              filtering 0
+            }
+          }
+          geometry Cylinder {
+            height 0.02
+            radius 0.05
+          }
+        }
+      ]
+    }   
+    Emitter {
+    }
+    Receiver {
+    }
+    Speaker {
+    }
+    DEF edge Shape {
+      appearance Rubber {
+      }
+      geometry Cylinder {
+        height 0.02
+        radius 0.06
+      }
+    }
+  ]
+  name IS name
+  boundingObject USE edge
+  controller IS controller
+  controllerArgs IS controllerArgs
+}
+}

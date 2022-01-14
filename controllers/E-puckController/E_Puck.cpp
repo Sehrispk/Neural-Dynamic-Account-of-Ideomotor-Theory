@@ -42,7 +42,7 @@ void E_Puck::ComThreadUpdate()
 
   if (comThread->doesWriteSocketExist("LEDs_write"))
   {
-      comThread->setWriteMatrix("LEDs_write", sensordata.LEDMat)
+      comThread->setWriteMatrix("LEDs_write", cedardata.LEDMat);
   }
 
 //read from Cedar
@@ -131,9 +131,9 @@ void E_Puck::applyMotorCommands()
     motors[i]->setVelocity(v[i]);
   }
 
-  for (int i = 0; i < cedardata.LEDMat.rows; i++)
-  {
-    if (cedardata.LEDMat.at<float>(i) >= 0.5)
+  for (int i = 0; i < cedardata.LEDMat.rows/3; i++)
+  {;
+    if ((cedardata.LEDMat.at<float>(3*i) >= 0.5) && (cedardata.LEDMat.at<float>(3*i+1) >= 0.5) && (cedardata.LEDMat.at<float>(3*i+2) >= 0.5))
     {
       int msg[1] = {i};
       em->send((const int *)msg, 4);
@@ -142,7 +142,7 @@ void E_Puck::applyMotorCommands()
   
   for (std::vector<webots::LED*>::size_type i = 0; i < LEDs.size(); i++)
   {
-    LEDs[i]->set((int)(cedardata.LEDMat.at<float>(i)));
+    LEDs[i]->set((int)(cedardata.LEDMat.at<float>(i)+0.1));
   }
 }
 

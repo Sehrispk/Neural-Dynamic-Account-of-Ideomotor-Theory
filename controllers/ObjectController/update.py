@@ -10,7 +10,6 @@ def update(self):
                 self.sound = self.contingencies[action]
                 if not self.speaker.isSoundPlaying(""):
                     self.speaker.playSound(self.speaker, self.speaker, self.sound+"Hz.wav", 1, 1, 0, False)
-                
         self.receiver.nextPacket()
         
     if self.speaker.isSoundPlaying(""):

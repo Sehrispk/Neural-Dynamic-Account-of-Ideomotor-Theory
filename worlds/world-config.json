@@ -10,20 +10,20 @@
     	"version":"\"1\""
     },
     {
-    	"type": "ColoredBox",
+    	"type": "ColoredButton",
 	    "name": "\"box1\"",
-	    "translation": "0.25 0.05 0.26",
-	    "controllerArgs": {"R": "0", "G": "255", "B": "0","contingencies": "contingencies 1"}
+	    "translation": "-0.5 0.01 -0.6",
+	    "controllerArgs": {"R": "150", "G": "255", "B": "0","contingencies": "contingencies 1"}
     },
     {
-    	"type": "ColoredBox",
+    	"type": "ColoredButton",
 	    "name": "\"box2\"",
-	    "translation": "-0.26 0.05 -0.25",
-	    "controllerArgs": {"R": "0", "G": "0", "B": "255", "contingencies": "contingencies 2"}
+	    "translation": "-0.6 0.01 -0.5",
+	    "controllerArgs": {"R": "150", "G": "0", "B": "255", "contingencies": "contingencies 2"}
     }
     ],
     "Contingencies":{
-    	"contingencies 1": {"0":"0", "1":"0", "2":"1000"},
-    	"contingencies 2": {"0":"500", "1":"0", "2":"0"}
+    	"contingencies 1": {"0":"1000", "1":"1000", "2":"1000"},
+    	"contingencies 2": {"0":"500", "1":"500", "2":"500"}
     }
 }
