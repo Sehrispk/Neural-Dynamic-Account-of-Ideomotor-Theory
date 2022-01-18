@@ -6,13 +6,14 @@ WorldInfo {
 }
 Viewpoint {
   orientation 0.9995626769961532 0.029521771910946144 -0.001708724530768774 5.6847883159204615
-  position -0.04667921680958926 1.0182183459533691 1.498145565431588
+  position -0.05185815090061992 1.1904921503168775 1.750940343541628
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
 RectangleArena {
+  floorSize 2 2
 }
 SupervisorRobot {
   translation 0 -0.14 0

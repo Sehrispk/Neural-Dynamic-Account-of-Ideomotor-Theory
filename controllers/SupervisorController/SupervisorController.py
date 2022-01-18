@@ -1,52 +1,90 @@
 """SupervisorController controller."""
 
-# You may need to import some classes of the controller module. Ex:
-#  from controller import Robot, Motor, DistanceSensor
-import json
+import time, yaml, random, copy
+import numpy as np
 from controller import Robot
 from controller import Supervisor
-# create the Robot instance.
-#robot = Robot()
+from utilities import loadRobot
 
-# get the time step of the current world.
+# load supervisor and get nodes
 supervisor = Supervisor()
-timestep = int(supervisor.getBasicTimeStep())
 children = supervisor.getRoot().getField('children')
+timestep = int(supervisor.getBasicTimeStep())
 
-f = open('../../worlds/world-config.json')
-config = json.load(f)
+# load config
+f = open('../../worlds/world-setup.yml')
+config = yaml.load(f, yaml.FullLoader)
+f.close()
 
-for robot in config['Robots']:
-    controllerArgs = '['
-    args = ''
-    for key,value in robot['controllerArgs'].items():
-        controllerArgs += '\"{}\", '.format(value)
-    controllerArgs += ']'
-    for key,value in robot.items():
-        if key != 'controllerArgs' and key != 'type':
-            args += key + ' ' + value + ', '
-    args += 'controllerArgs ' + str(controllerArgs)
-    
-    robotString = '{0} {{{1}}}'.format(robot['type'], args)
-    children.importMFNodeFromString(-1, robotString)
-    
-# You should insert a getDevice-like function in order to get the
-# instance of a device of the robot. Something like:
-#  motor = robot.getDevice('motorname')
-#  ds = robot.getDevice('dsname')
-#  ds.enable(timestep)
+# load E-Puck
+epuck = loadRobot(children, config['Robots']['epuck'])
+
+# setup experiment
+Scenario = "voluntaryGoalSwitching"
+phase = -1
+if config['Scenarios'][Scenario]['learningPhase'] == True:
+    phase = 0
+elif config[Scenario]['goalChoicePhase'] == True:
+    phase = 1
+else:
+    phase = 2
+
+
+# generate object_configs
+scenario_objects = config['Scenarios'][Scenario]['objects']
+object_configs = []    
+active_objects = []
+for object in scenario_objects:
+    # load color and contingencies
+    object_config = copy.deepcopy(config['Robots']['button'])
+    object_config['name'] = "\"{}\"".format(object)
+    object_config['controllerArgs'] = scenario_objects[object]
+    object_configs += [object_config]
+
+# load objects at random location for learnings phase == 0:
+if phase == 0:
+    for obj_conf in object_configs:
+        translation = [round(random.uniform(-1, 1),4), 0.01, round(random.uniform(-1, 1),4)]
+        active_objects += [loadRobot(children, obj_conf, translation)]
 
 # Main loop:
-# - perform simulation steps until Webots is stopping the controller
-#while robot.step(timestep) != -1:
-    # Read the sensors:
-    # Enter here functions to read sensor data, like:
-    #  val = ds.getValue()
+tic = time.time()
+while supervisor.step(timestep) != -1:
+    toc = time.time()
+    if phase == 2 and len(active_objects) == 0:
+        translation = epuck.getPosition()
+        translation[0] = translation[0] - epuck.getOrientation()[2] * 0.3
+        translation[2] = translation[2] - epuck.getOrientation()[0] * 0.3
+        
+        active_objects += [loadRobot(children, object_configs[0], translation)]
+    
+    
+    
+    
+    # switch phases
+    if toc - tic > 10 and phase == 0:
+        tic = toc
+        for object in active_objects:
+            object.remove()
+        active_objects.clear()
+        print("learning phase done!")
+        phase = 1
+    
+    if toc - tic > 10 and phase == 1:
+        tic = toc
+        print("goal choice phase done!")
+        phase = 2
+        
+    if toc - tic > 10 and phase == 2:
+        tic = toc
+        for object in active_objects:
+            object.remove()
+        active_objects.clear()
+        epuck.remove()
+        print("scenario done!")
+        exit()
+        #print(epuck.getPosition()) #[-0.1 bis 0.1] fuer x und y
+        #print(np.arccos(epuck.getOrientation()[0])/np.pi*np.sign(epuck.getOrientation()[6]))
 
-    # Process sensor data here.
-
-    # Enter here functions to send actuator commands, like:
-    #  motor.setPosition(10.0)
-    #pass
 
 # Enter here exit cleanup code.

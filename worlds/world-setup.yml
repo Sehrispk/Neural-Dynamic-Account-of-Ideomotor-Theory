@@ -1,0 +1,68 @@
+Robots:
+
+ epuck:
+  type: E-puck
+  name: "\"e-puck\""
+  translation: "0 0 0.2"
+  kinematic: "TRUE"
+  controller: "\"E-puckController\""
+  controllerArgs: {}
+  version: "\"1\""
+  
+ button:
+  type: ColoredButton
+  name: "\"defaultButton\""
+  translation: "0 0.01 0"
+  controllerArgs:
+   color:
+    R: 255
+    G: 0
+    B: 0
+   contingency:
+    '0': 0
+    '1': 0
+    '2': 0
+
+Scenarios:
+
+ voluntaryGoalSwitching:
+ 
+  objects:
+   button1:
+    color:
+     'R': 255
+     'G': 0
+     'B': 0
+    contingencies:
+     '0': 500
+     '1': 0
+     '2': 0
+   button2:
+    color:
+     'R': 150
+     'G': 255
+     'B': 0
+    contingencies:
+     '0': 0
+     '1': 1000
+     '2': 0
+   button3:
+    color:
+     'R': 150
+     'G': 0
+     'B': 255
+    contingencies:
+     '0': 0
+     '1': 0
+     '2': 1500
+     
+  distractors:
+   sound: False
+   object: True
+   
+  distractorRate: 1
+  rewardRate: 1
+  rewardDelay: 0
+  learningPhase: True
+  goalChoicePhase: True
+   

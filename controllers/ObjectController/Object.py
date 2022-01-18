@@ -4,8 +4,8 @@ from controller import Receiver
 from controller import Emitter
 
 class Object(Robot):
-    def __init__(self, contingencies):
-        self.color = [0, 0, 0]
+    def __init__(self, color, contingencies):
+        self.color = color
         self.sound = ""
         self.contingencies = contingencies
         

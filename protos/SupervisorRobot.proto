@@ -21,6 +21,8 @@ PROTO SupervisorRobot [
 	    subdivision 2
       }
     }
+    Emitter {
+    }
   ]
   controller IS controller
   supervisor IS supervisor
