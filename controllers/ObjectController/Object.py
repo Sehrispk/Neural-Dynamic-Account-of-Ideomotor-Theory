@@ -1,13 +1,12 @@
-from controller import Robot
-from controller import Display
-from controller import Receiver
-from controller import Emitter
+from controller import Robot, Display, Receiver, Emitter, Speaker
 
 class Object(Robot):
-    def __init__(self, color, contingencies):
+    def __init__(self, color, contingencies, rewardDelay=0, rewardRate=1):
         self.color = color
         self.sound = ""
         self.contingencies = contingencies
+        self.rewardDelay = rewardDelay
+        self.rewardRate = rewardRate
         
         super().__init__()
         

@@ -23,6 +23,8 @@ PROTO SupervisorRobot [
     }
     Emitter {
     }
+    Receiver {
+    }
   ]
   controller IS controller
   supervisor IS supervisor
