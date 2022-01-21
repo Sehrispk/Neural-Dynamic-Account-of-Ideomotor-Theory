@@ -44,6 +44,11 @@ void E_Puck::ComThreadUpdate()
   {
       comThread->setWriteMatrix("LEDs_write", cedardata.LEDMat);
   }
+  
+  if (comThread->doesWriteSocketExist("task"))
+  {
+      comThread->setWriteMatrix("task", sensordata.receiverMat); //wichtig
+  }
 
 //read from Cedar
   if (comThread->doesReadSocketExist("motors"))
@@ -79,6 +84,16 @@ void E_Puck::ComThreadUpdate()
     }
     else{cedardata.LEDMat = cv::Mat::zeros(9,1,CV_32F);}
   }
+  
+  if (comThread->doesReadSocketExist("goal"))
+  {
+    cv::Mat commandMatrix = comThread->getReadCommandMatrix("goal");
+    if (commandMatrix.rows == 3)
+    {
+        cedardata.goalMat = commandMatrix;
+    }
+    else{cedardata.goalMat = cv::Mat::zeros(3,1,CV_32F);}
+  }
 }
 
 
@@ -106,9 +121,12 @@ void E_Puck::readSensorValues()
   {
     std::string packet((const char *)rec->getData());
     float pitch(std::stof(packet));
-    std::cout << pitch << " Hz" << std::endl;
-    sensordata.receiverMat.at<float>((int)(pitch/150)-1) = 1.;
-    rec->nextPacket();
+    if (pitch != -1)
+    {
+      std::cout << pitch << " Hz" << std::endl;
+      sensordata.receiverMat.at<float>((int)(pitch/150)-1) = 1.;
+      rec->nextPacket();
+    }
   }
 }
 
@@ -132,12 +150,21 @@ void E_Puck::applyMotorCommands()
   }
 
   for (int i = 0; i < cedardata.LEDMat.rows/3; i++)
-  {;
+  {
     if ((cedardata.LEDMat.at<float>(3*i) >= 0.5) && (cedardata.LEDMat.at<float>(3*i+1) >= 0.5) && (cedardata.LEDMat.at<float>(3*i+2) >= 0.5))
     {
       int msg[1] = {i};
       em->send((const int *)msg, 4);
     }
+    else
+    {
+      int msg[1] = {-2};
+      em->send((const int *)msg, 4);
+    }
+    int msg[1] = {-3};
+    em->setChannel(3);
+    em->send((const int *)msg, 4);
+    em->setChannel(1);
   }
   
   for (std::vector<webots::LED*>::size_type i = 0; i < LEDs.size(); i++)
@@ -212,6 +239,10 @@ void E_Puck::initFromConfig()
   {
       comThread->addWriteSocket("LEDs_write", std::stoi(configMap["LED_port_snd"]), configMap["cedar_ip"]);
   }
+  if (configMap.find("goal_port_snd") != configMap.end())
+  {
+    comThread->addReadSocket("task", std::stoi(configMap["goal_port_snd"]), std::stoi(configMap["read_buffer_size"]));
+  }
   
   // add read sockets
   if (configMap.find("motor_port_rcv") != configMap.end())
@@ -225,6 +256,10 @@ void E_Puck::initFromConfig()
   if (configMap.find("LED_port_rcv") != configMap.end())
   {
     comThread->addReadSocket("LEDs_read", std::stoi(configMap["LED_port_rcv"]), std::stoi(configMap["read_buffer_size"]));
+  }
+  if (configMap.find("goal_port_rcv") != configMap.end())
+  {
+    comThread->addReadSocket("goal", std::stoi(configMap["goal_port_rcv"]), std::stoi(configMap["read_buffer_size"]));
   }
 }
 

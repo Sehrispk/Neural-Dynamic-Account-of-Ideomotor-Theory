@@ -32,6 +32,7 @@ class E_Puck : public Robot
       cv::Mat motorMat;
       cv::Mat breakMat;
       cv::Mat LEDMat;
+      cv::Mat goalMat;
   };
   
   SensorData sensordata;
@@ -58,7 +59,7 @@ public:
     comThread->run();
     // init structs
     sensordata = SensorData{cv::Mat::zeros(8,1,CV_32F), cv::Mat::zeros(10,1,CV_32F), cv::Mat::zeros(52, 39, CV_8UC4)};
-    cedardata = CedarData{cv::Mat::zeros(1,1,CV_32F), cv::Mat::zeros(1,1,CV_32F), cv::Mat::zeros(8,1,CV_32F)};
+    cedardata = CedarData{cv::Mat::zeros(1,1,CV_32F), cv::Mat::zeros(1,1,CV_32F), cv::Mat::zeros(8,1,CV_32F), cv::Mat::zeros(3,1,CV_32F)};
   };
 
   ~E_Puck()

@@ -1,5 +1,5 @@
 """SupervisorController controller."""
-import time, yaml, random, copy
+import time, yaml
 import numpy as np
 from controller import Supervisor
 from SupervisorRobot import SupervisorRobot
@@ -16,22 +16,43 @@ timestep = int(supervisor.getBasicTimeStep())
 
 # load E-Puck
 supervisor.loadRobot(kind='epuck', ID='e-puck')
-epuck = supervisor.activeRobots['e-puck']
+'''epuck = supervisor.activeRobots['e-puck']
 
-epuckLEDs = epuck.getFromDevice('led0')
-# led 1 ....
-
+# get reference to relevant epuck LEDs
+epuckLEDs = [epuck.getProtoField('children'), epuck.getProtoField('children'), epuck.getProtoField('children')]
+print(epuck.getProtoNumberOfFields())
+i=0
+field = epuck.getProtoField('children')
+while True:
+    print(field.getMFNode(i).getDef())
+    if field.getMFNode(i).getDef() == 'EPUCK_LED0':
+        print(field.getMFNode(i).getBaseTypeName())
+        print(field.getMFNode(i).getId())
+        print(field.getMFNode(i).getNumberOfFields())
+        j=0
+        while j < field.getMFNode(i).getNumberOfFields():
+            ledField = field.getMFNode(i).getFieldByIndex(j)
+            print(ledField.getName())
+            j+=1
+    i+=1'''
+    
 # Main loop:
+tic = time.time()
 while supervisor.step(timestep) != -1:
-    epuck.getPosition()
-    epuck.getOrientation()
-    epuckLEDS.getState()
-    active_objects.getPosition()
-    active_objects.getSpeakerState()
+    # inspect()
+    # manage scneario()
+    supervisor.inspectState()
+    supervisor.update()
 
-    supervisor.update(position, orientation, led, positions, speaker)
-
-    write(self.phase, position, orientation, led, positions, speaker)
+    toc = time.time()
+    if toc - tic > 100 and supervisor.phase == 0:
+        tic = toc
+        supervisor.action_counter[:] = 1
+        
+    if toc - tic > 10 and supervisor.phase == 1:
+        tic = toc
+        supervisor.state[2] = 15
+    # write()
 
 
 
