@@ -42,7 +42,7 @@ while supervisor.step(timestep) != -1:
     # inspect()
     # manage scneario()
     supervisor.inspectState()
-    supervisor.update()
+    supervisor.managePhases()
 
     toc = time.time()
     if toc - tic > 100 and supervisor.phase == 0:

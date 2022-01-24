@@ -47,7 +47,7 @@ void E_Puck::ComThreadUpdate()
   
   if (comThread->doesWriteSocketExist("task"))
   {
-      comThread->setWriteMatrix("task", sensordata.receiverMat); //wichtig
+      comThread->setWriteMatrix("task", sensordata.receiverTaskMat); //wichtig
   }
 
 //read from Cedar
@@ -117,19 +117,23 @@ void E_Puck::readSensorValues()
 
   // read receiver value
   sensordata.receiverMat = cv::Mat::zeros(10,1,CV_32F);
-  if (rec->getQueueLength() > 0)
+  sensordata.receiverTaskMat = cv::Mat::zeros(3, 1, CV_32F);
+  while (rec->getQueueLength() > 0)
   {
-    std::string packet((const char *)rec->getData());
-    float pitch(std::stof(packet));
-    if (pitch != -1)
-    {
-      std::cout << pitch << " Hz" << std::endl;
-      sensordata.receiverMat.at<float>((int)(pitch/150)-1) = 1.;
+      std::string p((const char*)rec->getData());
+      std::float packet(std::stof(p));
+      if ((packet >= 500 && packet <= 1500))
+      {
+          std::cout << packet << " Hz" << std::endl;
+          sensordata.receiverMat.at<float>((int)(packet / 150) - 1) = 1.;
+      }
+      else if ((packet >= 0 && packet <= 2))
+      {
+          sensordata.receiverTaskMat.at<float>((int)packet) = 1.;
+      }
       rec->nextPacket();
-    }
   }
 }
-
 
 void E_Puck::applyMotorCommands()
 {
@@ -151,20 +155,22 @@ void E_Puck::applyMotorCommands()
 
   for (int i = 0; i < cedardata.LEDMat.rows/3; i++)
   {
+    // send action
     if ((cedardata.LEDMat.at<float>(3*i) >= 0.5) && (cedardata.LEDMat.at<float>(3*i+1) >= 0.5) && (cedardata.LEDMat.at<float>(3*i+2) >= 0.5))
     {
       int msg[1] = {i};
       em->send((const int *)msg, 4);
     }
-    else
-    {
-      int msg[1] = {-2};
-      em->send((const int *)msg, 4);
-    }
-    int msg[1] = {-3};
-    em->setChannel(3);
-    em->send((const int *)msg, 4);
-    em->setChannel(1);
+  }
+
+  for (int i = 0; i < cedardata.goalMat.rows; i++)
+  {
+      // send goal
+      if (cedardata.goalMat.at<float>(i) >= 0.5)
+      {
+          int msg[1] = { 5+i*5 };
+          em->send((const int*)msg, 4);
+      }
   }
   
   for (std::vector<webots::LED*>::size_type i = 0; i < LEDs.size(); i++)
@@ -194,10 +200,10 @@ void E_Puck::initFromConfig()
   // get and enable receiver and emitter from webots
   std::cout << "Initialize Microphone!" << std::endl;
   rec = getReceiver("receiver");
-  rec->setChannel(2);
+  rec->setChannel(1);
   rec->enable(this->getBasicTimeStep());
   em = getEmitter("emitter");
-  em->setChannel(1);
+  em->setChannel(2);
   
   // get and enable distance sensors from webots
   std::cout << "Initialize distance Sensors!" << std::endl;

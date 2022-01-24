@@ -12,7 +12,7 @@ class SupervisorRobot(Supervisor):
 
         self.receiver.setChannel(-1)
         self.receiver.enable(int(self.getBasicTimeStep()))
-        self.emitter.setChannel(3)
+        self.emitter.setChannel(1)
         self.activeRobots = {}
 
         self.config = config
@@ -20,6 +20,7 @@ class SupervisorRobot(Supervisor):
         self.phase = 0
         self.init_phase = 1
         self.robotIDs = []
+        self.contingencies = {}
 
         if config['Scenarios'][scenario]['learningPhase'] == True:
             self.phase = 0
@@ -30,15 +31,21 @@ class SupervisorRobot(Supervisor):
 
         for robotID in config['Scenarios'][scenario]['objects']:
             self.robotIDs += [robotID]
-        
-        
-        self.state = [-1, -2, -3]    
-        self.action_counter = pd.DataFrame(np.zeros(shape=(3,len(self.robotIDs))), columns=self.robotIDs)
+
+        for ID in self.robotIDs:
+            self.contingecies[ID] = self.config['Scenarios'][self.scenario]['distractorRate']['objects'][ID]['contingencies']
+
+        # defines the state of the scenario
+        self.sound = np.zeros(10)
+        self.action = np.zeors(3)
+        self.goal = np.zeros(3)
         self.targetObject = ''
+        self.action_episode = 0
+        self.action_counter = pd.DataFrame(np.zeros(shape=(3,len(self.robotIDs))), columns=self.robotIDs)
 
 
     from memberFunctions import loadRobot
     from memberFunctions import deleteRobot
     from memberFunctions import chooseActionEpisode
-    from memberFunctions import update
+    from memberFunctions import managePhases
     from memberFunctions import inspectState

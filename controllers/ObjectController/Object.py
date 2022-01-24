@@ -15,9 +15,9 @@ class Object(Robot):
         self.emitter = self.getDevice('emitter')
         self.speaker = self.getDevice('speaker')
         
-        self.receiver.setChannel(1)
+        self.receiver.setChannel(2)
         self.receiver.enable(int(self.getBasicTimeStep()))
-        self.emitter.setChannel(2)
+        self.emitter.setChannel(1)
         
         
     from set_color import set_color

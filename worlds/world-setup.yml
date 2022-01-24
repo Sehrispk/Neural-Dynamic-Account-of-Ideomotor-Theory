@@ -59,8 +59,10 @@ Scenarios:
   distractors:
    sound: False
    object: True
-   
+
+  targetRate: 0
   distractorRate: 1
+  queRate: 0
   rewardRate: 1
   rewardDelay: 0
   learningPhase: True
