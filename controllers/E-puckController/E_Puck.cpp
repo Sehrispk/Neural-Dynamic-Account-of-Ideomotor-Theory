@@ -121,7 +121,7 @@ void E_Puck::readSensorValues()
   while (rec->getQueueLength() > 0)
   {
       std::string p((const char*)rec->getData());
-      std::float packet(std::stof(p));
+      float packet(std::stof(p));
       if ((packet >= 500 && packet <= 1500))
       {
           std::cout << packet << " Hz" << std::endl;
@@ -247,7 +247,7 @@ void E_Puck::initFromConfig()
   }
   if (configMap.find("goal_port_snd") != configMap.end())
   {
-    comThread->addReadSocket("task", std::stoi(configMap["goal_port_snd"]), std::stoi(configMap["read_buffer_size"]));
+    comThread->addWriteSocket("task", std::stoi(configMap["goal_port_snd"]), configMap["cedar_ip"]);
   }
   
   // add read sockets

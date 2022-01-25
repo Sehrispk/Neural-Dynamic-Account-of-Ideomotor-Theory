@@ -5,7 +5,7 @@ read_buffer_size:32768
 camera_port_snd:50020
 mic_port_snd:50021
 LED_port_snd:50022
-goal_port_send:50023
+goal_port_snd:50023
 motor_port_rcv:50030
 break_port_rcv:50031
 LED_port_rcv:50032

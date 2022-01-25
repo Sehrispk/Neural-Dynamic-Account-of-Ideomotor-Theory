@@ -31,8 +31,56 @@ def deleteRobot(self, ID):
         robot = self.activeRobots.pop(ID)
         robot.remove()
 
-def chooseActionEpisode(self):
-    print('chooseActionEpisode')
+
+def updateState(self):
+    sound = np.zeros(10)
+    goal = np.zeros(3)
+    action = np.zeros(3)
+    target = ''
+    
+    # read receiver
+    while self.receiver.getQueueLength() > 0:
+        message = int(str(list(self.receiver.getData())[0]))
+        self.receiver.nextPacket()
+        if (message >= 500 and message <= 1500):
+            sound[message/150-1] = 1
+        elif (message >=0 and message <= 2):
+            action[message] = 1
+        elif (message >= 5 and message <= 15):
+            goal[int(message/5-1)] = 1
+            
+    # determine action status
+    if not all(a == 0 for a in action):
+        epuckPosition = self.activeRobots['e-puck'].getPosition()
+        objID = ''
+        objDistance = 10
+        for ID in self.activeRobots:
+            if not ID == 'e-puck':
+                objectPosition = self.activeRobots[ID].getPosition()
+                distance = (epuckPosition[0]-objectPosition[0])**2+(epuckPosition[1]-objectPosition[1])**2
+                if distance < objDistance:
+                    objID = ID
+                    objDistance = distance
+        target = obj
+        
+    # update robot states
+    self.currentState.objects = {}
+    for ID in self.activeRobots:
+        if ID == 'e-puck':
+            self.currentState.epuck['position'] = self.activeRobots[ID].getPosition()
+            self.currentState.epuck['orientation'] = self.activeRobots[ID].getOrientation()
+            self.currentState.epuck['goal'] = goal
+            self.currentState.epuck['action'] = action
+            self.currentState.epuck['actionTarget'] = target
+        else:
+            self.currentState.objects[ID]['position'] = self.activeRobots[ID].getPosition()
+            if target == ID:
+                self.currentState.objects[ID]['sound'] = sound
+            else:
+                self.currentState.objects[ID]['sound'] = 0
+            
+    # update phase state
+    self.updatePhase[str(self.currentState.phase['phase'])](self)
 
 def managePhases(self):
     if self.phase == 0:
@@ -51,6 +99,7 @@ def managePhases(self):
 
     elif self.phase == 1:
         # give goal choice command
+        print(self.goal)
         self.emitter.send(bytes(str(self.phase), 'utf-8'))
         if any(self.goal) != 0:
             print('goal selection phase done') 
@@ -72,7 +121,7 @@ def managePhases(self):
             if self.goal[i] > 0.5:
                 distractorSounds[i] = 0
                 for ID in self.robotIDs:
-                    if self.contingencies[ID][str(i)] == "0":
+                    if self.contingencies[ID][str(i)] == 0:
                         distractorObjects += [ID]
                     else:
                         targetObjects += [ID]
@@ -96,8 +145,9 @@ def managePhases(self):
             translation[0] -= self.activeRobots['e-puck'].getOrientation()[2] * 0.3
             translation[2] -= self.activeRobots['e-puck'].getOrientation()[0] * 0.3
             ID = random.choice(distractorObjects)
-            self.loadRobot(self.children, kind='button', ID=ID, translation=translation)
+            self.loadRobot(kind='button', ID=ID, translation=translation)
             self.action_episode = 1
+            print("load {}".format(ID))
 
             #mark beginning of action episode
         elif episodeDecision >= targetRate + distractorRate and distractorRate <= targetRate + distractorRate + queRate and not self.action_episode:
@@ -110,33 +160,8 @@ def managePhases(self):
             #what to measure and when to measure
             #major cleanup of code...
 
-def inspectState(self):
-    self.sound = np.zeros(10)
-    self.action = np.zeors(3)
-    self.goal = np.zeros(3)
-    while self.receiver.getQueueLength() > 0:
-        message = int(str(list(self.receiver.getData())[0]))
-        self.receiver.nextPacket()
-        if (message >= 500 and message <= 1500):
-            self.sound[message/500-1] = 1
-        elif (message >=0 and message <= 2):
-            self.action[message] = 1
-        elif (message >= 5 and message <= 15):
-            self.goal[message/1.5-1] = 1
-    
-    if all(self.action) == 0:
-        self.targetObject = ''
-    else:
-        epuckPosition = self.activeRobots['e-puck'].getPosition()
-        obj = ''
-        objDistance = 10
-        for ID in self.robotIDs:
-            objectPosition = self.activeRobots['ID'].getPosition()
-            distance = [(epuckPosition[0]-objectPosition[0])**2+(epuckPosition[1]-objectPosition[1])**2]
-            if distance < objDistance:
-                obj = ID
-                objDistance = distance
-        self.targetObject = obj
-        self.action_counter[obj, next(x[0] for x in enumerate(self.action) if x[1] > 0.7)] += 1
+#def inspectState(self):
+#        if obj != '':
+#            self.action_counter.at[next(x[0] for x in enumerate(self.action) if x[1] > 0.7), obj] += 1
 
         

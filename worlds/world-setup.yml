@@ -56,15 +56,12 @@ Scenarios:
      '1': 0
      '2': 1500
      
-  distractors:
-   sound: False
-   object: True
-
-  targetRate: 0
-  distractorRate: 1
-  queRate: 0
-  rewardRate: 1
-  rewardDelay: 0
-  learningPhase: True
-  goalChoicePhase: True
+  settings:
+   targetRate: 0
+   distractorRate: 1
+   queRate: 0
+   rewardRate: 1
+   rewardDelay: 0
+   learningPhase: True
+   goalChoicePhase: True
    

@@ -41,17 +41,18 @@ tic = time.time()
 while supervisor.step(timestep) != -1:
     # inspect()
     # manage scneario()
-    supervisor.inspectState()
-    supervisor.managePhases()
+    supervisor.updateState()
+    #supervisor.managePhases()
 
     toc = time.time()
-    if toc - tic > 100 and supervisor.phase == 0:
+    if toc - tic > 10:
         tic = toc
-        supervisor.action_counter[:] = 1
+        supervisor.currentState.phase['phase'] = 1
         
     if toc - tic > 10 and supervisor.phase == 1:
         tic = toc
-        supervisor.state[2] = 15
+        
+        supervisor.currentState.phase['phase'] = 1
     # write()
 
 
