@@ -1,5 +1,6 @@
 dir
 __pycache__
+build
 *.bak*
 *.data
 *.cache
