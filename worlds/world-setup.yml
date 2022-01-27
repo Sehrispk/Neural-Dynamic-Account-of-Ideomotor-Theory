@@ -28,7 +28,7 @@ Scenarios:
  voluntaryGoalSwitching:
  
   objects:
-   button1:
+   redButton:
     color:
      'R': 255
      'G': 0
@@ -37,7 +37,7 @@ Scenarios:
      '0': 500
      '1': 0
      '2': 0
-   button2:
+   greenButton:
     color:
      'R': 150
      'G': 255
@@ -46,7 +46,7 @@ Scenarios:
      '0': 0
      '1': 1000
      '2': 0
-   button3:
+   blueButton:
     color:
      'R': 150
      'G': 0

@@ -1,23 +1,33 @@
 from controller import Supervisor, Receiver, Emitter
 import pandas as pd
 import numpy as np
+import time
 
-class phaseFunctionWrapper():
+class Timer():
+    # timer object
     def __init__(self):
-        return
+        self.run = 0
+        self.referenceTime = time.time()
+        self.reading = 0
 
-    def updatePhase0(self):
-        print('that worked0')
-    
-    def updatePhase1(self):
-        print('that worked1')
-    
-    def updatePhase2(self):
-        print('that worked2')
+    def start(self):
+        self.run = 1
+        self.referenceTime = time.time()
+
+    def stop(self):
+        self.run = 0
+
+    def reset(self):
+        self.referenceTime = time.time()
+        self.reading = 0
+
+    def update(self):
+        if self.run:
+            self.reading = time.time() - self.referenceTime
 
 class WorldState():
     # wrapper class for relevant world variables
-    epuck = {} # {'position': [0, 0, 0.2], 'orientation': np.zeros(2), 'goal': np.zeros(3), 'action': np.zeros(3), 'actionTarget': ''}
+    epuck = {} # {'position': [0, 0, 0.2], 'orientation': np.zeros(2), 'goal': np.zeros(3), 'action': np.zeros(3,2), 'actionTarget': ['', '']}
     objects = {} # {'ID': {'color': '', 'position': [0,0,0], 'sound': ''}, ...}
     phase = {} # {'phase': 0, 'actionEpisode': 0, 'actionCounter': pd.DataFrame(np.zeros(shape=(3,len(self.robotIDs))), columns=self.robotIDs)}
 
@@ -49,6 +59,7 @@ class SupervisorRobot(Supervisor):
         self.receiver = self.getDevice('receiver')
         self.emitter = self.getDevice('emitter')
         self.children = self.getRoot().getField('children')
+        self.episodeTimer = Timer()
 
         self.receiver.setChannel(-1)
         self.receiver.enable(int(self.getBasicTimeStep()))
@@ -60,11 +71,11 @@ class SupervisorRobot(Supervisor):
         # currentState
         self.currentState = WorldState()
         self.currentState.phase['phase'] = initialPhase
-        
-        self.updatePhase = {'0':phaseFunctionWrapper.updatePhase0, '1': phaseFunctionWrapper.updatePhase1, '2':phaseFunctionWrapper.updatePhase2}
 
 
     from memberFunctions import loadRobot
     from memberFunctions import deleteRobot
+    from memberFunctions import initPhase
+    from memberFunctions import startActionEpisode
+    from memberFunctions import updatePhase
     from memberFunctions import updateState
-    from memberFunctions import managePhases

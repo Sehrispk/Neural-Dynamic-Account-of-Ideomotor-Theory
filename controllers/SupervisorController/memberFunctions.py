@@ -31,14 +31,113 @@ def deleteRobot(self, ID):
         robot = self.activeRobots.pop(ID)
         robot.remove()
 
+def initPhase(self):
+    for ID in self.activeRobots:
+        if ID != "e-puck":
+            self.deleteRobot(ID)
+
+    if self.currentState.phase.phase == 0:
+        for robotID in self.robotIDs:
+            translation = [round(random.uniform(-1, 1), 4), 0.01, round(random.uniform(-1, 1), 4)]
+            self.loadRobot(kind='button', ID=robotID, translation=translation)
+        return
+    elif self.currentState.phase.phase == 1:
+        return
+    elif self.currentState.phase.phase == 2:
+        return
+
+def startActionEpisode(self):
+    if self.currentState.phase.phase == 0:
+        return
+    elif self.currentState.phase.phase == 1:
+        return
+    elif self.currentState.phase.phase == 2:
+        for ID in self.activeRobots:
+            if ID != "e-puck":
+                self.deleteRobot(ID)
+        targetRate = int(self.config['Scenarios'][self.scenario]['settings']['targetRate'])
+        distractorRate = int(self.config['Scenarios'][self.scenario]['settings']['distractorRate'])
+        queRate = int(self.config['Scenarios'][self.scenario]['settings']['queRate'])
+        episodeDecision = round(random.uniform(0, 1), 4)
+
+        distractorObjects = []
+        targetObjects = []
+        distractorSounds = self.currentState.epuck.goal
+        i = 0
+        while i < len(self.currentState.epuck.goal):
+            if self.currentState.epuck.goal[i] > 0.5:
+                distractorSounds[i] = 0
+                for ID in self.robotIDs:
+                    if self.contingencies[ID][str(i)] == 0:
+                        distractorObjects += [ID]
+                    else:
+                        targetObjects += [ID]
+            else:
+                distractorSounds[i] = 1
+            i += 1
+
+        if episodeDecision <= targetRate:
+            #place target
+            translation = self.activeRobots['e-puck'].getPosition()
+            translation[0] -= self.activeRobots['e-puck'].getOrientation()[2] * 0.3
+            translation[2] -= self.activeRobots['e-puck'].getOrientation()[0] * 0.3
+            ID = random.choice(targetObjects)
+            self.loadRobot(kind='button', ID=ID, translation=translation)
+            print("load {}".format(ID))
+
+            #mark beginning of action episode
+        elif episodeDecision >= targetRate and episodeDecision <= targetRate + distractorRate:
+            #place distractor
+            translation = self.activeRobots['e-puck'].getPosition()
+            translation[0] -= self.activeRobots['e-puck'].getOrientation()[2] * 0.3
+            translation[2] -= self.activeRobots['e-puck'].getOrientation()[0] * 0.3
+            ID = random.choice(distractorObjects)
+            self.loadRobot(kind='button', ID=ID, translation=translation)
+            print("load {}".format(ID))
+
+            #mark beginning of action episode
+        elif episodeDecision >= targetRate + distractorRate and distractorRate <= targetRate + distractorRate + queRate:
+            #play que sound
+            #self.playsound()
+            #and place object?
+            print('supervisor should now play sound')
+
+def updatePhase(self):
+    # log actions
+    if all(self.currentState.epuck.action[:,0]) < 0.5 and any(self.currentState.epuck.action[:,1]) > 0.5:
+        self.currentState.phase.actionEpisode += 1
+        self.currentState.phase.actionCounter[self.currentState.epuck.actionTarget[1]][self.currentState.epuck.action[0,1]] += 1 #!!!!!!!!
+        self.episodeTimer.start()
+
+    # phase completion conditions
+    if self.currentState.phase.phase == 0 and self.currentState.phase.actionCounter.all(axis=None) > 0:
+        print("learning phase done")
+        self.currentState.phase.phase += 1
+        self.initPhase()
+    elif self.currentState.phase.phase == 1 and any(self.currentState.epuck.goal) > 0.5:
+        print("goal selection phase done")
+        self.currentState.phase.phase += 1
+        self.initPhase()
+    elif self.currentState.phase.phase == 1 and self.currentState.phase.actionEpisode > 10000:
+        print("goal performance phase done")
+        self.currentState.phase.phase = 0
+        self.initPhase()
+
+    # start new action episode
+    if self.episodeTimer.reading > 5:
+        self.startActionEpisode()
+        self.episodeTimer.stop()
+        self.episodeTimer.reset()
 
 def updateState(self):
+    # send task information to epuck
+    self.emitter.send(bytes(str(self.currentState.phase.phase), 'utf-8'))
+
+    # read receiver
     sound = np.zeros(10)
     goal = np.zeros(3)
-    action = np.zeros(3)
-    target = ''
-    
-    # read receiver
+    action = np.zeros(3,2)
+    target = ['','']
     while self.receiver.getQueueLength() > 0:
         message = int(str(list(self.receiver.getData())[0]))
         self.receiver.nextPacket()
@@ -48,7 +147,7 @@ def updateState(self):
             action[message] = 1
         elif (message >= 5 and message <= 15):
             goal[int(message/5-1)] = 1
-            
+
     # determine action status
     if not all(a == 0 for a in action):
         epuckPosition = self.activeRobots['e-puck'].getPosition()
@@ -61,17 +160,19 @@ def updateState(self):
                 if distance < objDistance:
                     objID = ID
                     objDistance = distance
-        target = obj
+        target = objID
         
-    # update robot states
+    # update robot status
     self.currentState.objects = {}
     for ID in self.activeRobots:
         if ID == 'e-puck':
             self.currentState.epuck['position'] = self.activeRobots[ID].getPosition()
             self.currentState.epuck['orientation'] = self.activeRobots[ID].getOrientation()
             self.currentState.epuck['goal'] = goal
-            self.currentState.epuck['action'] = action
-            self.currentState.epuck['actionTarget'] = target
+            self.currentState.epuck['action'][:, 1] = self.currentState.epuck['action'][:, 0]
+            self.currentState.epuck['action'][:, 0] = action
+            self.currentState.epuck['actionTarget'][1] = self.currentState.epuck['actionTarget'][0]
+            self.currentState.epuck['actionTarget'][0] = target
         else:
             self.currentState.objects[ID]['position'] = self.activeRobots[ID].getPosition()
             if target == ID:
@@ -79,89 +180,5 @@ def updateState(self):
             else:
                 self.currentState.objects[ID]['sound'] = 0
             
-    # update phase state
-    self.updatePhase[str(self.currentState.phase['phase'])](self)
-
-def managePhases(self):
-    if self.phase == 0:
-        self.emitter.send(bytes(str(self.phase), 'utf-8'))
-        if self.init_phase == 1:
-            for robotID in self.robotIDs:
-                translation = [round(random.uniform(-1, 1), 4), 0.01, round(random.uniform(-1, 1), 4)]
-                self.loadRobot(kind='button', ID=robotID, translation=translation)
-            self.init_phase = 0
-        else:
-            if self.action_counter.all(axis=None):
-                print('learning phase done')
-                for ID in self.robotIDs:
-                    self.deleteRobot(ID)
-                    self.phase = 1
-
-    elif self.phase == 1:
-        # give goal choice command
-        print(self.goal)
-        self.emitter.send(bytes(str(self.phase), 'utf-8'))
-        if any(self.goal) != 0:
-            print('goal selection phase done') 
-            self.phase = 2
-
-    elif self.phase == 2:
-        self.emitter.send(bytes(str(self.phase), 'utf-8'))
-
-        targetRate = int(self.config['Scenarios'][self.scenario]['targetRate'])
-        distractorRate = int(self.config['Scenarios'][self.scenario]['distractorRate'])
-        queRate = int(self.config['Scenarios'][self.scenario]['queRate'])
-        episodeDecision = round(random.uniform(0, 1), 4)
-
-        distractorObjects = []
-        targetObjects = []
-        distractorSounds = self.goal
-        i=0
-        while i < len(self.goal):
-            if self.goal[i] > 0.5:
-                distractorSounds[i] = 0
-                for ID in self.robotIDs:
-                    if self.contingencies[ID][str(i)] == 0:
-                        distractorObjects += [ID]
-                    else:
-                        targetObjects += [ID]
-            else:
-                distractorSounds[i] = 1
-            i+=1
-
-        if episodeDecision <= targetRate and not self.action_episode:
-            #place target
-            translation = self.activeRobots['e-puck'].getPosition()
-            translation[0] -= self.activeRobots['e-puck'].getOrientation()[2] * 0.3
-            translation[2] -= self.activeRobots['e-puck'].getOrientation()[0] * 0.3
-            ID = random.choice(targetObjects)
-            self.loadRobot(self.children, kind='button', ID=ID, translation=translation)
-            self.action_episode = 1
-
-            #mark beginning of action episode
-        elif episodeDecision >= targetRate and episodeDecision <= targetRate + distractorRate and not self.action_episode:
-            #place distractor
-            translation = self.activeRobots['e-puck'].getPosition()
-            translation[0] -= self.activeRobots['e-puck'].getOrientation()[2] * 0.3
-            translation[2] -= self.activeRobots['e-puck'].getOrientation()[0] * 0.3
-            ID = random.choice(distractorObjects)
-            self.loadRobot(kind='button', ID=ID, translation=translation)
-            self.action_episode = 1
-            print("load {}".format(ID))
-
-            #mark beginning of action episode
-        elif episodeDecision >= targetRate + distractorRate and distractorRate <= targetRate + distractorRate + queRate and not self.action_episode:
-            #play que sound
-            #self.playsound()
-            print('supervisor should now play sound')
-            self.action_episode = 1
-
-            #how to manage action episodes
-            #what to measure and when to measure
-            #major cleanup of code...
-
-#def inspectState(self):
-#        if obj != '':
-#            self.action_counter.at[next(x[0] for x in enumerate(self.action) if x[1] > 0.7), obj] += 1
-
-        
+    # update timer
+    self.episodeTimer.update()
