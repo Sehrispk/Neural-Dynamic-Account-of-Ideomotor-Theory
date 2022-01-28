@@ -60,6 +60,7 @@ class SupervisorRobot(Supervisor):
         self.emitter = self.getDevice('emitter')
         self.children = self.getRoot().getField('children')
         self.episodeTimer = Timer()
+        self.distractorTimer = Timer()
 
         self.receiver.setChannel(-1)
         self.receiver.enable(int(self.getBasicTimeStep()))
@@ -71,6 +72,8 @@ class SupervisorRobot(Supervisor):
         # currentState
         self.currentState = WorldState()
         self.currentState.phase['phase'] = initialPhase
+        self.currentState.phase['actionCounter'] = pd.DataFrame(np.zeros(shape=(3,len(self.robotIDs))), columns=self.robotIDs)
+        self.currentState.phase['actionEpisode'] = 0
 
 
     from memberFunctions import loadRobot

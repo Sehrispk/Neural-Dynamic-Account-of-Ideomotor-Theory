@@ -124,7 +124,7 @@ void E_Puck::readSensorValues()
       float packet(std::stof(p));
       if ((packet >= 500 && packet <= 1500))
       {
-          std::cout << packet << " Hz" << std::endl;
+          //std::cout << packet << " Hz" << std::endl;
           sensordata.receiverMat.at<float>((int)(packet / 150) - 1) = 1.;
       }
       else if ((packet >= 0 && packet <= 2))
