@@ -48,7 +48,7 @@ while supervisor.step(timestep) != -1:
         supervisor.initPhase()
         supervisor.updateState()
     
-    if toc - tic > 300 and supervisor.currentState.phase['phase'] == 0:
+    if toc - tic > 200 and supervisor.currentState.phase['phase'] == 0:
         tic = toc
         supervisor.currentState.phase['phase'] = 1
         supervisor.initPhase()

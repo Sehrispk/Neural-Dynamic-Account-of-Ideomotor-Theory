@@ -55,6 +55,8 @@ def initPhase(self):
         return
 
 def startActionEpisode(self):
+    self.distractorTimer.stop()
+    self.distractorTimer.reset()
     if self.currentState.phase['phase'] == 0:
         return
     elif self.currentState.phase['phase'] == 1:
@@ -94,7 +96,6 @@ def startActionEpisode(self):
             translation[2] -= self.activeRobots['e-puck'].getOrientation()[0] * 0.5
             ID = random.choice(targetObjects)
             self.loadRobot(kind='button', ID=ID, translation=translation)
-            print("load {}".format(ID))
 
             #mark beginning of action episode
         elif episodeDecision >= targetRate and episodeDecision <= targetRate + distractorRate:
@@ -105,9 +106,9 @@ def startActionEpisode(self):
             try:
                 ID = random.choice(distractorObjects)
                 self.loadRobot(kind='button', ID=ID, translation=translation)
-                print("load {}".format(ID))
             except:
                 print("no ditractor object")
+            self.distractorTimer.start()
 
             #mark beginning of action episode
         elif episodeDecision >= targetRate + distractorRate and distractorRate <= targetRate + distractorRate + queRate:
@@ -146,8 +147,9 @@ def updatePhase(self):
         self.updateState()
 
     # start new action episode
-    if self.episodeTimer.reading > 5:
+    if self.episodeTimer.reading > 5 or self.distractorTimer.reading > 30:
         self.startActionEpisode()
+        self.updateState()
         self.episodeTimer.stop()
         self.episodeTimer.reset()
 
