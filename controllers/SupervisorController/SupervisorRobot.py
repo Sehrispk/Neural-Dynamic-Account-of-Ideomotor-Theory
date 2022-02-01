@@ -58,13 +58,17 @@ class SupervisorRobot(Supervisor):
         # devices
         self.receiver = self.getDevice('receiver')
         self.emitter = self.getDevice('emitter')
+        self.speaker = self.getDevice('speaker')
         self.children = self.getRoot().getField('children')
         self.episodeTimer = Timer()
         self.distractorTimer = Timer()
+        self.targetTimer = Timer()
+        self.soundTimer = Timer()
 
         self.receiver.setChannel(-1)
         self.receiver.enable(int(self.getBasicTimeStep()))
         self.emitter.setChannel(1)
+        self.sound = 0
         
         # active Robots
         self.activeRobots = {}

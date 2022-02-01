@@ -25,6 +25,8 @@ PROTO SupervisorRobot [
     }
     Receiver {
     }
+    Speaker {
+    }
   ]
   controller IS controller
   supervisor IS supervisor

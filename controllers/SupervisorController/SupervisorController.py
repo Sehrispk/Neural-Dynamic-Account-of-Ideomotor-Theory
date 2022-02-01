@@ -1,4 +1,24 @@
 """SupervisorController controller."""
+
+# todo!!!! 
+#distance between objects in learning phase 
+#distance of objects from epuck in goal performance stage
+# TUNING OF BELIEF STRUCTURE
+# TUNING OF STRATEGIES AND GOALS -> NO ROGUE STRATEGIES
+# MEMORZ FOR COLORS
+# TUNING OF TIMERS
+# fix action object association
+# implement reward delay and chance in objects
+# settings file for better control
+# Timer in data files
+# non-Binary target, goal, sound and action in data (not just 0 and 1)
+
+# desire in DFT architecture?
+# why do strategies of wrong goals sometimes remain?
+# goal selection phase after each action episode?
+
+
+
 import time, yaml
 import numpy as np
 from controller import Supervisor
@@ -46,19 +66,16 @@ while supervisor.step(timestep) != -1:
         tic = toc
         init=1
         supervisor.initPhase()
-        supervisor.updateState()
     
-    if toc - tic > 200 and supervisor.currentState.phase['phase'] == 0:
+    if toc - tic > 30 and supervisor.currentState.phase['phase'] == 0:
         tic = toc
         supervisor.currentState.phase['phase'] = 1
         supervisor.initPhase()
-        supervisor.updateState()
         
-    if toc - tic > 300 and supervisor.currentState.phase['phase'] == 1:
-        tic = toc
-        supervisor.currentState.phase['phase'] = 2
-        supervisor.initPhase()
-        supervisor.updateState()
+    #if toc - tic > 60 and supervisor.currentState.phase['phase'] == 1:
+    #    tic = toc
+    #    supervisor.currentState.phase['phase'] = 2
+    #    supervisor.initPhase()
 
     # write data
     positions = "{} {}".format(supervisor.currentState.epuck['position'], supervisor.currentState.epuck['orientation'])

@@ -57,9 +57,9 @@ Scenarios:
      '2': 1500
      
   settings:
-   targetRate: 0
-   distractorRate: 1
-   queRate: 0
+   targetRate: 0.3
+   distractorRate: 0.5
+   queRate: 0.2
    rewardRate: 1
    rewardDelay: 0
    learningPhase: True
