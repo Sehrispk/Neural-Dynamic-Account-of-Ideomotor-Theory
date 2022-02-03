@@ -1,20 +1,21 @@
 """SupervisorController controller."""
 
-# todo!!!! 
-#distance between objects in learning phase 
-#distance of objects from epuck in goal performance stage
-# TUNING OF BELIEF STRUCTURE
-# TUNING OF STRATEGIES AND GOALS -> NO ROGUE STRATEGIES
-# MEMORZ FOR COLORS
-# TUNING OF TIMERS
-# fix action object association
-# implement reward delay and chance in objects
-# settings file for better control
-# Timer in data files
-# non-Binary target, goal, sound and action in data (not just 0 and 1)
+# Webots todo!!!!
+# distance of objects from epuck in goal performance stage: FR
+# TUNING OF TIMERS: FR
+# (fix action object association)?
+# non-Binary target, goal, sound and action in data (not just 0 and 1): TODAY
 
+#DFT Tuning/todos
+# MEMORY FOR COLORS: TODAY
+# TUNING OF STRATEGIES AND GOALS -> NO ROGUE STRATEGIES: TODAY
+# why do strategies of wrong goals sometimes remain? TODAY
+# TUNING OF BELIEF STRUCTURE
 # desire in DFT architecture?
-# why do strategies of wrong goals sometimes remain?
+# Attention
+
+
+
 # goal selection phase after each action episode?
 
 
@@ -51,8 +52,8 @@ supervisor.currentState.epuck['position'] = np.zeros(3)
 f_traj = open("../../data/trajectory.dat", 'w')
 f_ev = open("../../data/events.dat", 'w')
 
-f_traj.write("{}\t{}\t{}\t{}\n".format("e-puck", supervisor.robotIDs[0], supervisor.robotIDs[1], supervisor.robotIDs[2]))
-f_ev.write("{}\t{}\t{}\t{}\t{}\n".format("phase", "actionEpisode", "goal", "action", "target", "sound"))
+f_traj.write("{}\t{}\t{}\t{}\t{}\n".format("Time", "e-puck", supervisor.robotIDs[0], supervisor.robotIDs[1], supervisor.robotIDs[2]))
+f_ev.write("{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format("Time", "phase", "actionEpisode", "goal", "action", "target", "sound"))
 
 # Main loop:
 tic = time.time()
@@ -67,10 +68,10 @@ while supervisor.step(timestep) != -1:
         init=1
         supervisor.initPhase()
     
-    if toc - tic > 30 and supervisor.currentState.phase['phase'] == 0:
-        tic = toc
-        supervisor.currentState.phase['phase'] = 1
-        supervisor.initPhase()
+    #if toc - tic > 30 and supervisor.currentState.phase['phase'] == 0:
+    #    tic = toc
+    #    supervisor.currentState.phase['phase'] = 1
+    #    supervisor.initPhase()
         
     #if toc - tic > 60 and supervisor.currentState.phase['phase'] == 1:
     #    tic = toc
@@ -85,7 +86,7 @@ while supervisor.step(timestep) != -1:
         else:
             positions += "\t"
 
-    f_traj.write("{}\n".format(positions))
+    f_traj.write("{}\t{}\n".format(supervisor.clock.reading, positions))
     f_traj.flush()
 
     sound = 0
@@ -94,7 +95,7 @@ while supervisor.step(timestep) != -1:
             if supervisor.currentState.objects[ID]['sound'] != 0:
                 sound = supervisor.currentState.objects['ID']['position']
 
-    f_ev.write("{}\t{}\t{}\t{}\t{}\n".format(supervisor.currentState.phase['phase'],
+    f_ev.write("{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format(supervisor.clock.reading, supervisor.currentState.phase['phase'],
                                            supervisor.currentState.phase['actionEpisode'],
                                            supervisor.currentState.epuck['goal'],
                                            supervisor.currentState.epuck['action'][:,0],

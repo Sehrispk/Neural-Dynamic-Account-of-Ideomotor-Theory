@@ -1,5 +1,23 @@
 from controller import Robot, Display, Receiver, Emitter, Speaker
 
+class Timer():
+    # timer object
+    def __init__(self):
+        self.run = 0
+        self.referenceTime = time.time()
+        self.reading = 0
+
+    def start(self):
+        self.run = 1
+        self.referenceTime = time.time()
+
+    def stop(self):
+        self.run = 0
+
+    def reset(self):
+        self.referenceTime = time.time()
+        self.reading = 0
+
 class Object(Robot):
     def __init__(self, color, contingencies, rewardDelay=0, rewardRate=1):
         self.color = color
@@ -14,6 +32,7 @@ class Object(Robot):
         self.receiver = self.getDevice('receiver')
         self.emitter = self.getDevice('emitter')
         self.speaker = self.getDevice('speaker')
+        self.timer = Timer()
         
         self.receiver.setChannel(2)
         self.receiver.enable(int(self.getBasicTimeStep()))

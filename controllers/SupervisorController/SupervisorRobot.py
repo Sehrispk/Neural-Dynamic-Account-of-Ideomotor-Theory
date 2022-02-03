@@ -39,7 +39,6 @@ class SupervisorRobot(Supervisor):
         self.config = config
         self.scenario = scenario
         # scenario settings
-        initialPhase = -1
         self.robotIDs = []
         self.contingencies = {}
         if config['Scenarios'][scenario]['settings']['learningPhase'] == True:
@@ -60,6 +59,7 @@ class SupervisorRobot(Supervisor):
         self.emitter = self.getDevice('emitter')
         self.speaker = self.getDevice('speaker')
         self.children = self.getRoot().getField('children')
+        self.clock = Timer
         self.episodeTimer = Timer()
         self.distractorTimer = Timer()
         self.targetTimer = Timer()
@@ -69,6 +69,8 @@ class SupervisorRobot(Supervisor):
         self.receiver.enable(int(self.getBasicTimeStep()))
         self.emitter.setChannel(1)
         self.sound = 0
+        self.clock.reset()
+        self.clock.start()
         
         # active Robots
         self.activeRobots = {}

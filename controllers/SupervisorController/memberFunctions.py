@@ -1,8 +1,22 @@
 import copy, random
 import numpy as np
+import settings
+
+def randomPositions(robotIDs):
+    translations = {}
+    for ID in robotIDs:
+        translations[ID] = [random.uniform(-arenaSize, arenaSize), 0.01, random.uniform(-arenaSize, arenaSize)]
+
+    for ID1 in robotIDs:
+        for ID2 in robotIDs:
+            distance = ((translations[ID1][0] - translations[ID2][0])**2 + (translations[ID1][2] - translations[ID2][2])**2)
+            if distance < objectMinimumDistance and not distance == 0:
+                randomPositions(robotIDs)
+
+    return translations
 
 def loadRobot(self, kind, ID, translation=[0, 0.01, 0]):
-    # creates robotString from config setting, creates robot and returns robot node
+    # creates robotString from config setting and creates robot
     robot_conf = copy.deepcopy(self.config['Robots'][kind])
     try:
         robot_conf['controllerArgs'] = self.config['Scenarios'][self.scenario]['objects'][ID]
@@ -42,23 +56,21 @@ def initPhase(self):
 
     transField = self.activeRobots['e-puck'].getField("translation")
     #orienField = self.activeRobots['e-puck'].getField("orientation")
-    INITIAL = [0, 0.01, 0]
-    transField.setSFVec3f(INITIAL)
+    transField.setSFVec3f([0, 0.01, 0])
 
     if self.currentState.phase['phase'] == 0:
         print('init phase 0')
-        for robotID in self.robotIDs:
-            translation = [round(random.uniform(-0.7, 0.7), 4), 0.01, round(random.uniform(-0.7, 0.7), 4)]
-            self.loadRobot(kind='button', ID=robotID, translation=translation)
+        self.startActionEpisode()
     elif self.currentState.phase['phase'] == 1:
         print('init phase 1')
     elif self.currentState.phase['phase'] == 2:
         print('init phase 2')
         self.startActionEpisode()
-    self.updateState()
     return
 
 def startActionEpisode(self):
+    self.episodeTimer.stop()
+    self.episodeTimer.reset()
     self.distractorTimer.stop()
     self.distractorTimer.reset()
     self.targetTimer.stop()
@@ -73,10 +85,10 @@ def startActionEpisode(self):
         for ID in IDs:
             if ID != "e-puck":
                 self.deleteRobot(ID)
-                
-        for robotID in self.robotIDs:
-            translation = [round(random.uniform(-0.7, 0.7), 4), 0.01, round(random.uniform(-0.7, 0.7), 4)]
-            self.loadRobot(kind='button', ID=robotID, translation=translation)
+
+        translations = randomPositions(self.robotIDs)
+        for ID, translation in translations.items():
+            self.loadRobot(kind='button', ID=ID, translation=translation)
     elif self.currentState.phase['phase'] == 1:
         transField = self.activeRobots['e-puck'].getField("translation")
         #orienField = self.activeRobots['e-puck'].getField("orientation")
@@ -87,9 +99,7 @@ def startActionEpisode(self):
     elif self.currentState.phase['phase'] == 2:
         transField = self.activeRobots['e-puck'].getField("translation")
         #orienField = self.activeRobots['e-puck'].getField("orientation")
-            
-        INITIAL = [0, 0.01, 0]
-        transField.setSFVec3f(INITIAL)
+        transField.setSFVec3f([0, 0.01, 0])
     
         IDs = []
         for ID in self.activeRobots:
@@ -101,7 +111,7 @@ def startActionEpisode(self):
         targetRate = self.config['Scenarios'][self.scenario]['settings']['targetRate']
         distractorRate = self.config['Scenarios'][self.scenario]['settings']['distractorRate']
         queRate = self.config['Scenarios'][self.scenario]['settings']['queRate']
-        episodeDecision = round(random.uniform(0, 1), 4)
+        episodeDecision = random.uniform(0, 1)
         print(episodeDecision)
 
         distractorObjects = []
@@ -109,7 +119,7 @@ def startActionEpisode(self):
         distractorSounds = self.currentState.epuck['goal']
         i = 0
         while i < len(self.currentState.epuck['goal']):
-            if self.currentState.epuck['goal'][i] > 0.5:
+            if self.currentState.epuck['goal'][i] > stateThreshold:
                 distractorSounds[i] = 0
                 for ID in self.robotIDs:
                     if self.contingencies[ID][str(i)] == 0:
@@ -120,6 +130,7 @@ def startActionEpisode(self):
                 distractorSounds[i] = 1
             i += 1
 
+        # chose random objects/sounds if no goal is selected
         if len(targetObjects) == 0:
             targetObjects += [random.choice(self.robotIDs)]
         if len(distractorObjects) == 0:
@@ -130,10 +141,9 @@ def startActionEpisode(self):
 
         if episodeDecision <= targetRate:
             #place target
-            #translation = [round(random.uniform(-0.75, 0.75), 4), 0.01, round(random.uniform(-0.75, 0.75), 4)] # 
             translation = transField.getSFVec3f()
-            translation[0] -= self.activeRobots['e-puck'].getOrientation()[2] * 0.5 + random.uniform(-0.05, 0.05)
-            translation[2] -= self.activeRobots['e-puck'].getOrientation()[0] * 0.5 + random.uniform(-0.05, 0.05)
+            translation[0] -= self.activeRobots['e-puck'].getOrientation()[2] * objectPlaceDistance + random.uniform(-objectPlaceNoise, objectPlaceNoise)
+            translation[2] -= self.activeRobots['e-puck'].getOrientation()[0] * objectPlaceDistance + random.uniform(-objectPlaceNoise, objectPlaceNoise)
             try:
                 ID = random.choice(targetObjects)
                 self.loadRobot(kind='button', ID=ID, translation=translation)
@@ -141,13 +151,11 @@ def startActionEpisode(self):
                 print("no target object")
             self.targetTimer.start()
 
-            #mark beginning of action episode
         elif episodeDecision >= targetRate and episodeDecision <= targetRate + distractorRate:
             #place distractor
-            #translation = [round(random.uniform(-0.75, 0.75), 4), 0.01, round(random.uniform(-0.75, 0.75), 4)] # 
             translation = transField.getSFVec3f()
-            translation[0] -= self.activeRobots['e-puck'].getOrientation()[2] * 0.5 + random.uniform(-0.05, 0.05)
-            translation[2] -= self.activeRobots['e-puck'].getOrientation()[0] * 0.5 + random.uniform(-0.05, 0.05)
+            translation[0] -= self.activeRobots['e-puck'].getOrientation()[2] * objectPlaceDistance + random.uniform(-objectPlaceNoise, objectPlaceNoise)
+            translation[2] -= self.activeRobots['e-puck'].getOrientation()[0] * objectPlaceDistance + random.uniform(-objectPlaceNoise, objectPlaceNoise)
             try:
                 ID = random.choice(distractorObjects)
                 self.loadRobot(kind='button', ID=ID, translation=translation)
@@ -158,18 +166,17 @@ def startActionEpisode(self):
             #mark beginning of action episode
         elif episodeDecision >= targetRate + distractorRate and distractorRate <= targetRate + distractorRate + queRate:
             #play que sound
-            path = "/home/sehrispk/repositories/Neural-Dynamic-Account-of-Ideomotor-Theory/controllers/ObjectController/"
-            s = [500, 1000, 1500]
             i = 0
             while i < len(distractorSounds):
                 if distractorSounds[i] == 1:
                     if not self.speaker.isSoundPlaying(""):
                             self.sound = s[i]
-                            self.speaker.playSound(self.speaker, self.speaker, path+str(s[i])+"Hz.wav", 1, 1, 0, False)
+                            self.speaker.playSound(self.speaker, self.speaker, soundPath+str(frequencies[i])+"Hz.wav", 1, 1, 0, False)
                 i += 1
                         
             print('supervisor plays sound {}Hz'.format(self.sound))
             self.soundTimer.start()
+    self.updateState()
 
 def updatePhase(self):
     # log actions
@@ -179,30 +186,27 @@ def updatePhase(self):
         print(self.currentState.phase['actionEpisode'])
         print(idx)
         print(self.currentState.epuck['actionTarget'])
-        self.currentState.phase['actionCounter'][self.currentState.epuck['actionTarget'][1]][idx] += 1 
+        self.currentState.phase['actionCounter'][self.currentState.epuck['actionTarget'][1]][idx] += 1
         print(self.currentState.phase['actionCounter'])
         self.episodeTimer.start()
 
     # phase completion conditions
-    if self.currentState.phase['phase'] == 0 and self.currentState.phase['actionCounter'].all(axis=None) > 0 and self.episodeTimer.reading > 5:
+    if self.currentState.phase['phase'] == 0 and self.currentState.phase['actionCounter'].all(axis=None) > 0 and self.episodeTimer.reading > episodeTimeout:
         print("learning phase done")
         self.currentState.phase['phase'] += 1
         self.initPhase()
-    elif self.currentState.phase['phase'] == 1 and any(self.currentState.epuck['goal']) > 0.5:
+    elif self.currentState.phase['phase'] == 1 and any(self.currentState.epuck['goal']) > stateThreshold:
         print("goal selection phase done")
         self.currentState.phase['phase'] += 1
         self.initPhase()
-    elif self.currentState.phase['phase'] == 1 and self.currentState.phase['actionEpisode'] > 100:
+    elif self.currentState.phase['phase'] == 1 and self.currentState.phase['actionEpisode'] >= N_goalReach:
         print("goal performance phase done")
-        self.currentState.phase['phase'] = 0
+        self.currentState.phase['phase'] = 1
         self.initPhase()
 
     # start new action episode
-    if self.episodeTimer.reading > 5 or self.distractorTimer.reading > 30 or self.soundTimer.reading > 10 or self.targetTimer.reading > 30:
+    if self.episodeTimer.reading > episodeTimeout or self.distractorTimer.reading > distractorTimeout or self.soundTimer.reading > soundTimeout or self.targetTimer.reading > targetTimeout:
         self.startActionEpisode()
-        self.updateState()
-        self.episodeTimer.stop()
-        self.episodeTimer.reset()
 
 def updateState(self):
     # send task information to epuck
@@ -264,11 +268,10 @@ def updateState(self):
     self.distractorTimer.update()
     self.targetTimer.update()
     self.soundTimer.update()
+    self.clock.update()
     
     # reset epuck if out of bounds
-    if abs(self.activeRobots['e-puck'].getPosition()[0]) > 0.85 or abs(self.activeRobots['e-puck'].getPosition()[2]) > 0.85:
+    if abs(self.activeRobots['e-puck'].getPosition()[0]) > resetBound or abs(self.activeRobots['e-puck'].getPosition()[2]) > resetBound:
         transField = self.activeRobots['e-puck'].getField("translation")
         #orienField = self.activeRobots['e-puck'].getField("orientation")
-            
-        INITIAL = [0, 0.01, 0]
-        transField.setSFVec3f(INITIAL)
+        transField.setSFVec3f([0, 0.01, 0])

@@ -120,9 +120,18 @@ void E_Puck::readSensorValues()
   sensordata.receiverTaskMat = cv::Mat::zeros(3, 1, CV_32F);
   while (rec->getQueueLength() > 0)
   {
-      std::string p((const char*)rec->getData());
-      float packet(std::stof(p));
-      if ((packet >= 500 && packet <= 1500))
+      //std::string p((const char*)rec->getData());
+      //float packet(std::stof(p));
+      if (rec->getDataSize() == 10 * sizeof(float))
+      {
+          sensordata.receiverMat = cv::Mat(10, 1, CV_32F, rec->getData);
+      }
+      else if (rec->getDataSize() == 3 * sizeof(float))
+      {
+          sensordata.receiverTaskMat = cv::Mat(3, 1, CV_32F, rec->getData);
+      }
+      
+      /*if ((packet >= 500 && packet <= 1500))
       {
           //std::cout << packet << " Hz" << std::endl;
           sensordata.receiverMat.at<float>((int)(packet / 150) - 1) = 1.;
@@ -132,8 +141,8 @@ void E_Puck::readSensorValues()
           sensordata.receiverTaskMat.at<float>((int)packet) = 1.;
       }
       rec->nextPacket();
+  }*/
   }
-}
 
 void E_Puck::applyMotorCommands()
 {
@@ -153,7 +162,7 @@ void E_Puck::applyMotorCommands()
     motors[i]->setVelocity(v[i]);
   }
 
-  for (int i = 0; i < cedardata.LEDMat.rows/3; i++)
+  /*for (int i = 0; i < cedardata.LEDMat.rows/3; i++)
   {
     // send action
     if ((cedardata.LEDMat.at<float>(3*i) >= 0.5) && (cedardata.LEDMat.at<float>(3*i+1) >= 0.5) && (cedardata.LEDMat.at<float>(3*i+2) >= 0.5))
@@ -171,7 +180,10 @@ void E_Puck::applyMotorCommands()
           int msg[1] = { 5+i*5 };
           em->send((const int*)msg, 4);
       }
-  }
+  }*/
+
+  em->send(cedardata.LEDMat, cedardata.LEDMat.total() * cedardata.LEDMat.elemSize());
+  em->send(cedardata.goalMat, cedardata.goalMat.total() * cedardata.goalMat.elemSize());
   
   for (std::vector<webots::LED*>::size_type i = 0; i < LEDs.size(); i++)
   {
