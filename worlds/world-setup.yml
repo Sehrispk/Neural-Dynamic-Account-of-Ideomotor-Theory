@@ -3,7 +3,7 @@ Robots:
  epuck:
   type: E-puck
   name: "\"e-puck\""
-  translation: "0 0 0.2"
+  translation: "0 0 0.1"
   kinematic: "TRUE"
   controller: "\"E-puckController\""
   controllerArgs: {}
@@ -39,7 +39,7 @@ Scenarios:
      '2': 0
    greenButton:
     color:
-     'R': 150
+     'R': 0
      'G': 255
      'B': 0
     contingencies:
@@ -48,7 +48,7 @@ Scenarios:
      '2': 0
    blueButton:
     color:
-     'R': 150
+     'R': 0
      'G': 0
      'B': 255
     contingencies:

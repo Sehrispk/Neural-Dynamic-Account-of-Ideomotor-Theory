@@ -5,8 +5,12 @@ import sys, ast
 # create the Robot instance.
 color = ast.literal_eval(sys.argv[1])
 contingencies = ast.literal_eval(sys.argv[2])
-rewardDelay = ast.literal_eval(sys.argv[3])
-rewardRate = ast.literal_eval(sys.argv[4])
+if len(sys.argv) == 4:
+    rewardDelay = ast.literal_eval(sys.argv[3])
+    rewardRate = ast.literal_eval(sys.argv[4])
+else:
+    rewardDelay = 0
+    rewardRate = 1
 object = Object(color, contingencies, rewardDelay, rewardRate)
 
 # get the time step of the current world.

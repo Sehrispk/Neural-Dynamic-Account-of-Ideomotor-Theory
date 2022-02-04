@@ -59,7 +59,7 @@ class SupervisorRobot(Supervisor):
         self.emitter = self.getDevice('emitter')
         self.speaker = self.getDevice('speaker')
         self.children = self.getRoot().getField('children')
-        self.clock = Timer
+        self.clock = Timer()
         self.episodeTimer = Timer()
         self.distractorTimer = Timer()
         self.targetTimer = Timer()

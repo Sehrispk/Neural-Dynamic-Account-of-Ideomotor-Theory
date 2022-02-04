@@ -22,13 +22,13 @@ Robot {
             }
             texture ImageTexture {
               url [
-                "/local/webots/resources/images/missing_texture.png"
+                "/local/webots/webots/resources/images/missing_texture.png"
               ]
               filtering 0
             }
           }
           geometry Cylinder {
-            height 0.02
+            height 0.04
             radius 0.05
           }
         }
@@ -47,6 +47,24 @@ Robot {
         height 0.02
         radius 0.06
       }
+    }
+    Solid {
+      translation 0 0.03 0
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1. 0.8 0.8
+            roughness 0
+            transparency 0
+            emissiveColor 0 0 0
+          }
+          geometry DEF disp Cylinder {
+            height 0.01
+            radius 0.05001
+          }
+        }
+      ]
+      boundingObject USE disp
     }
   ]
   name IS name

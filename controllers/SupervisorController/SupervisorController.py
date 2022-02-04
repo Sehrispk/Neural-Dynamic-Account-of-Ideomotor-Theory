@@ -1,15 +1,10 @@
 """SupervisorController controller."""
 
 # Webots todo!!!!
-# distance of objects from epuck in goal performance stage: FR
-# TUNING OF TIMERS: FR
-# (fix action object association)?
-# non-Binary target, goal, sound and action in data (not just 0 and 1): TODAY
+# (TUNING OF TIMERS)
 
 #DFT Tuning/todos
 # MEMORY FOR COLORS: TODAY
-# TUNING OF STRATEGIES AND GOALS -> NO ROGUE STRATEGIES: TODAY
-# why do strategies of wrong goals sometimes remain? TODAY
 # TUNING OF BELIEF STRUCTURE
 # desire in DFT architecture?
 # Attention
@@ -63,7 +58,7 @@ while supervisor.step(timestep) != -1:
     supervisor.updatePhase()
 
     toc = time.time()
-    if toc - tic > 10 and supervisor.currentState.phase['phase'] == 0 and not init:
+    if toc - tic > 3 and supervisor.currentState.phase['phase'] == 0 and not init:
         tic = toc
         init=1
         supervisor.initPhase()
@@ -79,7 +74,7 @@ while supervisor.step(timestep) != -1:
     #    supervisor.initPhase()
 
     # write data
-    positions = "{} {}".format(supervisor.currentState.epuck['position'], supervisor.currentState.epuck['orientation'])
+    positions = "{} {} {}".format(supervisor.currentState.epuck['position'], supervisor.currentState.epuck['orientation'], supervisor.currentState.epuck['led'])
     for ID in supervisor.robotIDs:
         if isActive(ID, supervisor):
             positions += "\t{}".format(supervisor.currentState.objects[ID]['position'])
@@ -89,11 +84,11 @@ while supervisor.step(timestep) != -1:
     f_traj.write("{}\t{}\n".format(supervisor.clock.reading, positions))
     f_traj.flush()
 
-    sound = 0
+    sound = np.zeros(10)
     for ID in supervisor.robotIDs:
         if isActive(ID, supervisor):
-            if supervisor.currentState.objects[ID]['sound'] != 0:
-                sound = supervisor.currentState.objects['ID']['position']
+            if any(supervisor.currentState.objects[ID]['sound']) != 0:
+                sound = supervisor.currentState.objects[ID]['sound']
 
     f_ev.write("{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format(supervisor.clock.reading, supervisor.currentState.phase['phase'],
                                            supervisor.currentState.phase['actionEpisode'],

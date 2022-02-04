@@ -1,17 +1,20 @@
-import copy, random
+import copy, random, struct
 import numpy as np
-import settings
+from settings import *
 
 def randomPositions(robotIDs):
     translations = {}
-    for ID in robotIDs:
-        translations[ID] = [random.uniform(-arenaSize, arenaSize), 0.01, random.uniform(-arenaSize, arenaSize)]
-
-    for ID1 in robotIDs:
-        for ID2 in robotIDs:
-            distance = ((translations[ID1][0] - translations[ID2][0])**2 + (translations[ID1][2] - translations[ID2][2])**2)
-            if distance < objectMinimumDistance and not distance == 0:
-                randomPositions(robotIDs)
+    search = 1
+    while search:
+        for ID in robotIDs:
+            translations[ID] = [random.uniform(-arenaSize, arenaSize), 0.01, random.uniform(-arenaSize, arenaSize)]
+        search = 0
+    
+        for ID1 in robotIDs:
+            for ID2 in robotIDs:
+                distance = ((translations[ID1][0] - translations[ID2][0])**2 + (translations[ID1][2] - translations[ID2][2])**2)
+                if distance < objectMinimumDistance and not distance == 0:
+                    search = 1
 
     return translations
 
@@ -56,7 +59,7 @@ def initPhase(self):
 
     transField = self.activeRobots['e-puck'].getField("translation")
     #orienField = self.activeRobots['e-puck'].getField("orientation")
-    transField.setSFVec3f([0, 0.01, 0])
+    transField.setSFVec3f([0, 0.0, 0])
 
     if self.currentState.phase['phase'] == 0:
         print('init phase 0')
@@ -93,13 +96,13 @@ def startActionEpisode(self):
         transField = self.activeRobots['e-puck'].getField("translation")
         #orienField = self.activeRobots['e-puck'].getField("orientation")
             
-        INITIAL = [0, 0.01, 0]
+        INITIAL = [0, 0.0, 0]
         transField.setSFVec3f(INITIAL)
         return
     elif self.currentState.phase['phase'] == 2:
         transField = self.activeRobots['e-puck'].getField("translation")
         #orienField = self.activeRobots['e-puck'].getField("orientation")
-        transField.setSFVec3f([0, 0.01, 0])
+        transField.setSFVec3f([0, 0, 0])
     
         IDs = []
         for ID in self.activeRobots:
@@ -112,11 +115,10 @@ def startActionEpisode(self):
         distractorRate = self.config['Scenarios'][self.scenario]['settings']['distractorRate']
         queRate = self.config['Scenarios'][self.scenario]['settings']['queRate']
         episodeDecision = random.uniform(0, 1)
-        print(episodeDecision)
 
         distractorObjects = []
         targetObjects = []
-        distractorSounds = self.currentState.epuck['goal']
+        distractorSounds = np.zeros(len(self.currentState.epuck['goal']))
         i = 0
         while i < len(self.currentState.epuck['goal']):
             if self.currentState.epuck['goal'][i] > stateThreshold:
@@ -135,7 +137,7 @@ def startActionEpisode(self):
             targetObjects += [random.choice(self.robotIDs)]
         if len(distractorObjects) == 0:
             distractorObjects += [random.choice(self.robotIDs)]
-        if len(distractorSounds) == 0:
+        if not any(distractorSounds > stateThreshold):
             r = random.choice([0, 1, 2])
             distractorSounds[r] = 1
 
@@ -143,10 +145,12 @@ def startActionEpisode(self):
             #place target
             translation = transField.getSFVec3f()
             translation[0] -= self.activeRobots['e-puck'].getOrientation()[2] * objectPlaceDistance + random.uniform(-objectPlaceNoise, objectPlaceNoise)
+            translation[1] = 0.01
             translation[2] -= self.activeRobots['e-puck'].getOrientation()[0] * objectPlaceDistance + random.uniform(-objectPlaceNoise, objectPlaceNoise)
             try:
                 ID = random.choice(targetObjects)
                 self.loadRobot(kind='button', ID=ID, translation=translation)
+                print("supervisor places target object")
             except:
                 print("no target object")
             self.targetTimer.start()
@@ -155,24 +159,22 @@ def startActionEpisode(self):
             #place distractor
             translation = transField.getSFVec3f()
             translation[0] -= self.activeRobots['e-puck'].getOrientation()[2] * objectPlaceDistance + random.uniform(-objectPlaceNoise, objectPlaceNoise)
+            translation[1] = 0.01
             translation[2] -= self.activeRobots['e-puck'].getOrientation()[0] * objectPlaceDistance + random.uniform(-objectPlaceNoise, objectPlaceNoise)
             try:
                 ID = random.choice(distractorObjects)
                 self.loadRobot(kind='button', ID=ID, translation=translation)
+                print("supervisor places distractor object")
             except:
                 print("no distractor object")
             self.distractorTimer.start()
 
-            #mark beginning of action episode
         elif episodeDecision >= targetRate + distractorRate and distractorRate <= targetRate + distractorRate + queRate:
             #play que sound
-            i = 0
-            while i < len(distractorSounds):
-                if distractorSounds[i] == 1:
-                    if not self.speaker.isSoundPlaying(""):
-                            self.sound = s[i]
-                            self.speaker.playSound(self.speaker, self.speaker, soundPath+str(frequencies[i])+"Hz.wav", 1, 1, 0, False)
-                i += 1
+            idx = random.choice([i for i,val in enumerate(distractorSounds) if val==1])
+            if not self.speaker.isSoundPlaying(""):
+                self.sound = frequencies[idx]
+                self.speaker.playSound(self.speaker, self.speaker, soundPath+str(frequencies[idx])+"Hz.wav", 1, 1, 0, False)
                         
             print('supervisor plays sound {}Hz'.format(self.sound))
             self.soundTimer.start()
@@ -183,9 +185,8 @@ def updatePhase(self):
     if all(x < 0.5 for x in self.currentState.epuck['action'][:,0]) and any(self.currentState.epuck['action'][:,1]) > 0.5:
         self.currentState.phase['actionEpisode'] += 1
         idx = [i for i,val in enumerate(self.currentState.epuck['action'][:,1]) if val==1][0]
-        print(self.currentState.phase['actionEpisode'])
-        print(idx)
-        print(self.currentState.epuck['actionTarget'])
+        print("actionEpisode: {}".format(self.currentState.phase['actionEpisode']))
+        print("action {} on {}".format(idx, self.currentState.epuck['actionTarget']))
         self.currentState.phase['actionCounter'][self.currentState.epuck['actionTarget'][1]][idx] += 1
         print(self.currentState.phase['actionCounter'])
         self.episodeTimer.start()
@@ -212,25 +213,48 @@ def updateState(self):
     # send task information to epuck
     self.emitter.send(bytes(str(self.currentState.phase['phase']), 'utf-8'))
     if self.speaker.isSoundPlaying(""):
-        self.emitter.send(bytes(str(self.sound), 'utf-8'))
+        packet = np.zeros(10)
+        packet[round(self.sound/150-1)] = 1
+        message = struct.pack('%sf' % len(packet), *packet)
+        self.emitter.send(message)
 
     # read receiver
-    sound = 0
+    sound = np.zeros(10)
     goal = np.zeros(3)
+    led = np.zeros(9)
     action = np.zeros(3)
     target = ''
     while self.receiver.getQueueLength() > 0:
-        message = int(str(list(self.receiver.getData())[0]))
+        packet = struct.unpack('%sf' % int((self.receiver.getData().__sizeof__()-33)/4), self.receiver.getData())
+        #message = int(str(list(self.receiver.getData())[0]))
+        if (len(packet) == 10):
+            sound = list(packet)
+        elif (len(packet) == 9):
+            led = list(packet)
+        elif (len(packet) == 3):
+            goal = list(packet)
         self.receiver.nextPacket()
-        if (message >= 500 and message <= 1500):
-            sound = message
-        elif (message >=0 and message <= 2):
-            action[message] = 1
-        elif (message >= 5 and message <= 15):
-            goal[int(message/5-1)] = 1
 
     # determine action status
-    if not all(a == 0 for a in action):
+    i = 0
+    while i < len(led)/3:
+        if led[3*i] >= 0.5 and led[3*i+1] >= 0.5 and led[3*i+2] >= 0.5:
+            action[i] = 1
+            epuckPosition = self.activeRobots['e-puck'].getPosition()
+            objID = ''
+            objDistance = 10
+            for ID in self.activeRobots:
+                if not ID == 'e-puck':
+                    objectPosition = self.activeRobots[ID].getPosition()
+                    distance = (epuckPosition[0]-objectPosition[0])**2+(epuckPosition[2]-objectPosition[2])**2
+                    
+                    if distance < objDistance:
+                        objID = ID
+                        objDistance = distance
+            target = objID
+        i += 1
+    
+    """if not all(a == 0 for a in action):
         epuckPosition = self.activeRobots['e-puck'].getPosition()
         objID = ''
         objDistance = 10
@@ -242,7 +266,7 @@ def updateState(self):
                 if distance < objDistance:
                     objID = ID
                     objDistance = distance
-        target = objID
+        target = objID"""
         
     # update robot status
     self.currentState.objects = {}
@@ -250,6 +274,7 @@ def updateState(self):
         if ID == 'e-puck':
             self.currentState.epuck['position'] = self.activeRobots[ID].getPosition()
             self.currentState.epuck['orientation'] = self.activeRobots[ID].getOrientation()
+            self.currentState.epuck['led'] = led
             self.currentState.epuck['goal'] = goal
             self.currentState.epuck['action'][:, 1] = self.currentState.epuck['action'][:, 0]
             self.currentState.epuck['action'][:, 0] = action
@@ -261,7 +286,7 @@ def updateState(self):
             if target == ID:
                 self.currentState.objects[ID]['sound'] = sound
             else:
-                self.currentState.objects[ID]['sound'] = 0
+                self.currentState.objects[ID]['sound'] = np.zeros(10)
             
     # update timer
     self.episodeTimer.update()
@@ -274,4 +299,4 @@ def updateState(self):
     if abs(self.activeRobots['e-puck'].getPosition()[0]) > resetBound or abs(self.activeRobots['e-puck'].getPosition()[2]) > resetBound:
         transField = self.activeRobots['e-puck'].getField("translation")
         #orienField = self.activeRobots['e-puck'].getField("orientation")
-        transField.setSFVec3f([0, 0.01, 0])
+        transField.setSFVec3f([0, 0.0, 0])

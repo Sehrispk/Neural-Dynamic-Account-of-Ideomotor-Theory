@@ -1,13 +1,12 @@
 from math import sqrt
 import numpy as np
 import struct, random
+import sys
 def update(self):
-    if self.receiver.getQueueLength():
+    while self.receiver.getQueueLength() > 0:
         distance = 1/sqrt(self.receiver.getSignalStrength())
         #action = str(list(self.receiver.getData())[0])
-
-        packet = struct.unpack('%sf' % self.receiver.getDataSize()/sys.getsizeof(float), receiver.getData())
-        
+        packet = struct.unpack('%sf' % int((self.receiver.getData().__sizeof__()-33)/4), self.receiver.getData())
         #if distance < 0.23 and (int(action) >= 0 and int(action) <= 2):
         #    if self.contingencies[action] != 0:
         #        self.sound = self.contingencies[action]
@@ -15,14 +14,14 @@ def update(self):
         #            self.timer.start()
         #self.receiver.nextPacket()
 
-        if len(distance) < 0.23 and packet == 9:
+        if distance < 0.23 and len(packet) == 9:
             i = 0
             while i < len(packet)/3:
-                i += 1
-                if packet[3*i] >= 0.5 and packet[3*i+1] >= 0.5 and packer[3*i+2] >= 0.5 and self.contingencies[str(i)] != 0:
+                if packet[3*i] >= 0.5 and packet[3*i+1] >= 0.5 and packet[3*i+2] >= 0.5 and self.contingencies[str(i)] != 0:
                     self.sound = self.contingencies[str(i)]
                     if not self.timer.run:
                         self.timer.start()
+                i += 1
         self.receiver.nextPacket()
 
 

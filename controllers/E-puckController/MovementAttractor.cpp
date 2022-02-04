@@ -55,6 +55,7 @@ void MovementAttractor(cv::Mat ps_distance, float psi_target, float v[])
 
   // berechne forcelets
   f_obstacle(ps_distance, f_obs);
+  f_obs[0] += 0.1*f_obs[0]; //small bias for one side
   float f_sum = 0;
   for (int i=0; i<8; i++)
   {

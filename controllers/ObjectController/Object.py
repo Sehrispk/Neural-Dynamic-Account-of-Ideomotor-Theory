@@ -1,4 +1,5 @@
 from controller import Robot, Display, Receiver, Emitter, Speaker
+import time
 
 class Timer():
     # timer object
@@ -17,6 +18,10 @@ class Timer():
     def reset(self):
         self.referenceTime = time.time()
         self.reading = 0
+    
+    def update(self):
+        if self.run:
+            self.reading = time.time() - self.referenceTime
 
 class Object(Robot):
     def __init__(self, color, contingencies, rewardDelay=0, rewardRate=1):

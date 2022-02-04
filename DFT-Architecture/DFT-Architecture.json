@@ -109,7 +109,7 @@
             "sizes": [
                 "3"
             ],
-            "time scale": "6000",
+            "time scale": "4000",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -4309,7 +4309,7 @@
                 "threshold": "0",
                 "beta": "100"
             },
-            "global inhibition": "-0.01",
+            "global inhibition": "0",
             "lateral kernels": "",
             "lateral kernel convolution": {
                 "borderType": "Zero",
@@ -7237,7 +7237,7 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 94",
-            "gain factor": "0.5",
+            "gain factor": "0.75",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -7252,7 +7252,7 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 97",
-            "gain factor": "-0.25",
+            "gain factor": "-0.14999999999999999",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -7540,7 +7540,7 @@
             "name": "Transfer Function 2",
             "function": {
                 "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0.40000000000000002"
+                "threshold": "0.48999999999999999"
             },
             "comments": ""
         },
@@ -8642,10 +8642,6 @@
         {
             "source": "Convolution 2.result",
             "target": "Distance-matching-Field.input"
-        },
-        {
-            "source": "Static Gain 11.output",
-            "target": "Intention In Action-Orient To Object.input"
         },
         {
             "source": "Static Gain 13.output",
@@ -11390,6 +11386,10 @@
         {
             "source": "exploration-Task.sigmoided activation",
             "target": "Learning-Gate.input"
+        },
+        {
+            "source": "Static Gain 95.output",
+            "target": "Strategy-Selection.input"
         }
     ],
     "scripts": [
@@ -14973,10 +14973,10 @@
         }
     ],
     "ui view": {
-        "ScrollBarX": "670",
-        "ScrollBarY": "-218",
-        "SliderPosX": "670",
-        "SliderPosY": "-218",
+        "ScrollBarX": "-1378",
+        "ScrollBarY": "-1478",
+        "SliderPosX": "-1378",
+        "SliderPosY": "-1478",
         "Zoom": "0.55000000000000004"
     },
     "ui generic": {
@@ -15035,59 +15035,6 @@
                     }
                 ]
             },
-            "Action-Outcome-DetectioWidget0": {
-                "step": "Action-Outcome-Detectio",
-                "position_x": "208",
-                "position_y": "467",
-                "width": "206",
-                "height": "200",
-                "position_relative_x": "0.10833333333333334",
-                "position_relative_y": "0.46840521564694082",
-                "width_relative": "0.10729166666666666",
-                "height_relative": "0.20060180541624875",
-                "data_list": [
-                    {
-                        "id": "BUFFER",
-                        "name": "input sum",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
-                    },
-                    {
-                        "id": "BUFFER",
-                        "name": "activation",
-                        "ignoreIfMissing": "true",
-                        "plotDeclaration": ""
-                    },
-                    {
-                        "id": "OUTPUT",
-                        "name": "activation",
-                        "ignoreIfMissing": "true",
-                        "plotDeclaration": ""
-                    },
-                    {
-                        "id": "OUTPUT",
-                        "name": "sigmoided activation",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": ""
-                    }
-                ],
-                "plot configurations": [
-                    {
-                        "row": "1",
-                        "col": "0",
-                        "plot configuration": {
-                            "autoscaling": "true",
-                            "major grid visible": "false",
-                            "minor grid visible": "false",
-                            "y axis limits": {
-                                "lower limit": "0",
-                                "upper limit": "1"
-                            },
-                            "discrete plot": "false"
-                        }
-                    }
-                ]
-            },
             "Action-RecallWidget0": {
                 "step": "Action-Recall",
                 "position_x": "1128",
@@ -15126,12 +15073,12 @@
             },
             "Action-Color-ProjectionWidget0": {
                 "step": "Action-Color-Projection",
-                "position_x": "212",
-                "position_y": "672",
+                "position_x": "221",
+                "position_y": "691",
                 "width": "206",
                 "height": "200",
-                "position_relative_x": "0.11041666666666666",
-                "position_relative_y": "0.67402206619859584",
+                "position_relative_x": "0.11510416666666666",
+                "position_relative_y": "0.6930792377131394",
                 "width_relative": "0.10729166666666666",
                 "height_relative": "0.20060180541624875",
                 "data_list": [
@@ -15209,6 +15156,59 @@
                                 "upper limit": "1"
                             },
                             "color jet": "PlotDefault"
+                        }
+                    }
+                ]
+            },
+            "Action-Outcome-DetectioWidget0": {
+                "step": "Action-Outcome-Detectio",
+                "position_x": "208",
+                "position_y": "467",
+                "width": "206",
+                "height": "200",
+                "position_relative_x": "0.10833333333333334",
+                "position_relative_y": "0.46840521564694082",
+                "width_relative": "0.10729166666666666",
+                "height_relative": "0.20060180541624875",
+                "data_list": [
+                    {
+                        "id": "BUFFER",
+                        "name": "input sum",
+                        "ignoreIfMissing": "false",
+                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                    },
+                    {
+                        "id": "BUFFER",
+                        "name": "activation",
+                        "ignoreIfMissing": "true",
+                        "plotDeclaration": ""
+                    },
+                    {
+                        "id": "OUTPUT",
+                        "name": "activation",
+                        "ignoreIfMissing": "true",
+                        "plotDeclaration": ""
+                    },
+                    {
+                        "id": "OUTPUT",
+                        "name": "sigmoided activation",
+                        "ignoreIfMissing": "false",
+                        "plotDeclaration": ""
+                    }
+                ],
+                "plot configurations": [
+                    {
+                        "row": "1",
+                        "col": "0",
+                        "plot configuration": {
+                            "autoscaling": "true",
+                            "major grid visible": "false",
+                            "minor grid visible": "false",
+                            "y axis limits": {
+                                "lower limit": "0",
+                                "upper limit": "1"
+                            },
+                            "discrete plot": "false"
                         }
                     }
                 ]
@@ -15534,11 +15534,11 @@
             },
             "TCP-Goal-WriterWidget0": {
                 "step": "TCP-Goal-Writer",
-                "position_x": "1445",
+                "position_x": "1353",
                 "position_y": "387",
                 "width": "206",
                 "height": "192",
-                "position_relative_x": "0.75260416666666663",
+                "position_relative_x": "0.70468750000000002",
                 "position_relative_y": "0.3881644934804413",
                 "width_relative": "0.10729166666666666",
                 "height_relative": "0.19257773319959878",
@@ -15569,12 +15569,12 @@
             },
             "one-dimensional fieldWidget0": {
                 "step": "one-dimensional field",
-                "position_x": "1445",
-                "position_y": "598",
+                "position_x": "1361",
+                "position_y": "589",
                 "width": "206",
                 "height": "200",
-                "position_relative_x": "0.75260416666666663",
-                "position_relative_y": "0.59979939819458372",
+                "position_relative_x": "0.70885416666666667",
+                "position_relative_y": "0.59077231695085253",
                 "width_relative": "0.10729166666666666",
                 "height_relative": "0.20060180541624875",
                 "data_list": [
