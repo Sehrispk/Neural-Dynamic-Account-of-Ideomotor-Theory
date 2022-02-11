@@ -41,12 +41,9 @@ class SupervisorRobot(Supervisor):
         # scenario settings
         self.robotIDs = []
         self.contingencies = {}
-        if config['Scenarios'][scenario]['settings']['learningPhase'] == True:
-            initialPhase = 0
-        elif config['Scenarios'][scenario]['settings']['goalChoicePhase'] == True:
-            initialPhase = 1
-        else:
-            initialPhase = 2
+        self.phaseList = self.config['Scenarios'][self.scenario]['settings']['phaseList']
+        self.phaseIdx = 0
+        self.phaseEpisode = 0
             
         for robotID in config['Scenarios'][scenario]['objects']:
             self.robotIDs += [robotID]
@@ -77,14 +74,12 @@ class SupervisorRobot(Supervisor):
 
         # currentState
         self.currentState = WorldState()
-        self.currentState.phase['phase'] = initialPhase
+        self.currentState.phase['phase'] = self.phaseList[self.phaseIdx]
         self.currentState.phase['actionCounter'] = pd.DataFrame(np.zeros(shape=(3,len(self.robotIDs))), columns=self.robotIDs)
         self.currentState.phase['actionEpisode'] = 0
 
-
     from memberFunctions import loadRobot
     from memberFunctions import deleteRobot
-    from memberFunctions import initPhase
     from memberFunctions import startActionEpisode
     from memberFunctions import updatePhase
     from memberFunctions import updateState

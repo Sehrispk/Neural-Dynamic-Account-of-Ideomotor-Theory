@@ -1,0 +1,40 @@
+{
+    "name": "SupervisorCommands",
+    "filename": "\/home\/sehrispk\/repositories\/Neural-Dynamic-Account-of-Ideomotor-Theory\/DFT-Architecture\/SupervisorCommands.json",
+    "repetitions": "1",
+    "ActionSequences": {
+        "cedar.proc.experiment.ActionSequence": {
+            "name": "ActionSequence",
+            "ActionSet": {
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Action-Habituation"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                },
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Action-Perseveration"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                }
+            },
+            "Condition": {
+                "type": "cedar.proc.experiment.condition.OnMatrixValue",
+                "Step Data": {
+                    "element path": "Reset-Signal",
+                    "parameter path": "sigmoided activation"
+                },
+                "check full matrix": "true",
+                "number of elements": "1",
+                "compare operator": ">",
+                "value": "0.80000000000000004"
+            }
+        }
+    },
+    "repeat": "false"
+}

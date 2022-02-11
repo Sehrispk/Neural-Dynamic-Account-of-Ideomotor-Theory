@@ -117,7 +117,7 @@ void E_Puck::readSensorValues()
 
   // read receiver value
   sensordata.receiverMat = cv::Mat::zeros(10,1,CV_32F);
-  sensordata.receiverTaskMat = cv::Mat::zeros(3, 1, CV_32F);
+  sensordata.receiverTaskMat = cv::Mat::zeros(8, 1, CV_32F);
   while (rec->getQueueLength() > 0)
   {
       //std::string p((const char*)rec->getData());
