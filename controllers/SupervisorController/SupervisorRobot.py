@@ -5,25 +5,28 @@ import time
 
 class Timer():
     # timer object
-    def __init__(self):
+    def __init__(self, timestep):
+        self.timeStep = timestep
+        self.simulationTime = 0
         self.run = 0
-        self.referenceTime = time.time()
+        self.referenceTime = self.simulationTime
         self.reading = 0
 
     def start(self):
         self.run = 1
-        self.referenceTime = time.time()
+        self.referenceTime = self.simulationTime
 
     def stop(self):
         self.run = 0
 
     def reset(self):
-        self.referenceTime = time.time()
+        self.referenceTime = self.simulationTime
         self.reading = 0
 
     def update(self):
+        self.simulationTime += self.timeStep
         if self.run:
-            self.reading = time.time() - self.referenceTime
+            self.reading = self.simulationTime - self.referenceTime
 
 class WorldState():
     # wrapper class for relevant world variables
@@ -56,11 +59,11 @@ class SupervisorRobot(Supervisor):
         self.emitter = self.getDevice('emitter')
         self.speaker = self.getDevice('speaker')
         self.children = self.getRoot().getField('children')
-        self.clock = Timer()
-        self.episodeTimer = Timer()
-        self.distractorTimer = Timer()
-        self.targetTimer = Timer()
-        self.soundTimer = Timer()
+        self.clock = Timer(self.getBasicTimeStep()/1000)
+        self.episodeTimer = Timer(self.getBasicTimeStep()/1000)
+        self.distractorTimer = Timer(self.getBasicTimeStep()/1000)
+        self.targetTimer = Timer(self.getBasicTimeStep()/1000)
+        self.soundTimer = Timer(self.getBasicTimeStep()/1000)
 
         self.receiver.setChannel(-1)
         self.receiver.enable(int(self.getBasicTimeStep()))

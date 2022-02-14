@@ -3304,7 +3304,7 @@
                 "3"
             ],
             "time scale": "100",
-            "resting level": "-1.75",
+            "resting level": "-2.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -4955,6 +4955,16 @@
             "comments": ""
         },
         "cedar.processing.Projection": {
+            "name": "Projection",
+            "dimension mapping": {
+                "0": "4294967295"
+            },
+            "output dimensionality": "0",
+            "output dimension sizes": "",
+            "compression type": "MAXIMUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
             "name": "Projection 10",
             "dimension mapping": {
                 "0": "4294967295"
@@ -5165,11 +5175,7 @@
         },
         "cedar.processing.Projection": {
             "name": "Projection 3",
-            "dimension mapping": {
-                "0": "4294967295",
-                "1": "1",
-                "2": "0"
-            },
+            "dimension mapping": "",
             "output dimensionality": "2",
             "output dimension sizes": [
                 "20",
@@ -5190,16 +5196,6 @@
         },
         "cedar.processing.Projection": {
             "name": "Projection 4",
-            "dimension mapping": {
-                "0": "4294967295"
-            },
-            "output dimensionality": "0",
-            "output dimension sizes": "",
-            "compression type": "MAXIMUM",
-            "comments": ""
-        },
-        "cedar.processing.Projection": {
-            "name": "Projection 5",
             "dimension mapping": {
                 "0": "4294967295"
             },
@@ -7027,11 +7023,6 @@
             "comments": ""
         },
         "cedar.processing.StaticGain": {
-            "name": "Static Gain 101",
-            "gain factor": "-1",
-            "comments": ""
-        },
-        "cedar.processing.StaticGain": {
             "name": "Static Gain 102",
             "gain factor": "3",
             "comments": ""
@@ -7104,6 +7095,11 @@
         "cedar.processing.StaticGain": {
             "name": "Static Gain 115",
             "gain factor": "-1",
+            "comments": ""
+        },
+        "cedar.processing.StaticGain": {
+            "name": "Static Gain 116",
+            "gain factor": "2",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -7558,7 +7554,7 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 94",
-            "gain factor": "0.75",
+            "gain factor": "1",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -11011,14 +11007,6 @@
             "target": "Action-Recall.input"
         },
         {
-            "source": "Goal-Selection.sigmoided activation",
-            "target": "Projection 5.input"
-        },
-        {
-            "source": "Projection 5.output",
-            "target": "Goal-Intention.input"
-        },
-        {
             "source": "Recall-Goal-Match-CoS.sigmoided activation",
             "target": "Static Gain 8.input"
         },
@@ -11187,10 +11175,6 @@
             "target": "Strategie-Gate.input"
         },
         {
-            "source": "Static Gain 101.output",
-            "target": "Goal-Intention.input"
-        },
-        {
             "source": "Intention-CoS.sigmoided activation",
             "target": "Static Gain 103.input"
         },
@@ -11233,10 +11217,6 @@
         {
             "source": "Static Gain 7.output",
             "target": "Intention-Perform-Action.input"
-        },
-        {
-            "source": "Goal-Intention.sigmoided activation",
-            "target": "Goal-Selection.input"
         },
         {
             "source": "Intention-Perform-Action.sigmoided activation",
@@ -11311,10 +11291,6 @@
             "target": "Strategy-Perseveration.peak detector"
         },
         {
-            "source": "Static Gain 101.output",
-            "target": "Goal-Selection.input"
-        },
-        {
             "source": "Goal-Habituation.activation",
             "target": "Static Gain 111.input"
         },
@@ -11345,10 +11321,6 @@
         {
             "source": "Goal-Selection-Signal.sigmoided activation",
             "target": "Static Gain 112.input"
-        },
-        {
-            "source": "Static Gain 112.output",
-            "target": "Goal-Selection.input"
         },
         {
             "source": "Static Gain 67.output",
@@ -11671,26 +11643,6 @@
             "target": "Supervisor-Task-Input.input"
         },
         {
-            "source": "exploration-Task.sigmoided activation",
-            "target": "Static Gain 101.input"
-        },
-        {
-            "source": "exploration-Task.sigmoided activation",
-            "target": "Intention-Perform-Action.input"
-        },
-        {
-            "source": "goal-reaching-task.sigmoided activation",
-            "target": "Goal-Intention.input"
-        },
-        {
-            "source": "Static Gain 112.output",
-            "target": "Goal-Intention.input"
-        },
-        {
-            "source": "exploration-Task.sigmoided activation",
-            "target": "Learning-Gate.input"
-        },
-        {
             "source": "Static Gain 95.output",
             "target": "Strategy-Selection.input"
         },
@@ -11835,16 +11787,52 @@
             "target": "Static Gain 70.input"
         },
         {
-            "source": "Static Gain 70.output",
-            "target": "Goal-Selection.input"
-        },
-        {
             "source": "Medium-Pitch-Task.sigmoided activation",
             "target": "Scalars To Vector 6.scalar 1"
         },
         {
             "source": "High-Pitch-Task.sigmoided activation",
             "target": "Scalars To Vector 6.scalar 2"
+        },
+        {
+            "source": "Goal-Intention.sigmoided activation",
+            "target": "Static Gain 116.input"
+        },
+        {
+            "source": "Static Gain 116.output",
+            "target": "Goal-Selection.input"
+        },
+        {
+            "source": "Scalars To Vector 6.vector",
+            "target": "Projection.input"
+        },
+        {
+            "source": "Projection.output",
+            "target": "Goal-Intention.input"
+        },
+        {
+            "source": "Static Gain 70.output",
+            "target": "Goal-Selection.input"
+        },
+        {
+            "source": "exploration-Task.sigmoided activation",
+            "target": "Intention-Perform-Action.input"
+        },
+        {
+            "source": "Goal-Selection-Signal.sigmoided activation",
+            "target": "Goal-Intention.input"
+        },
+        {
+            "source": "Static Gain 112.output",
+            "target": "Goal-Selection.input"
+        },
+        {
+            "source": "goal-reaching-task.sigmoided activation",
+            "target": "Goal-Intention.input"
+        },
+        {
+            "source": "Static Gain 109.output",
+            "target": "Strategy-Selection.input"
         }
     ],
     "scripts": [
@@ -11853,13 +11841,6 @@
             "configuration": {
                 "name": "Execute Function On Steps",
                 "FunctionName": "Preshape->resetMemory()"
-            }
-        },
-        {
-            "type": "cedar.proc.scripts.ExecuteFunctionOnStepsPlugin",
-            "configuration": {
-                "name": "Execute Function On Steps Plugin",
-                "FunctionName": "RewardHebbTrace->resetWeights()"
             }
         }
     ],
@@ -12787,8 +12768,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-1442",
-            "positionY": "-1428"
+            "positionX": "-1484",
+            "positionY": "-1456"
         },
         {
             "type": "step",
@@ -13197,6 +13178,15 @@
         },
         {
             "type": "step",
+            "step": "Projection",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-1694",
+            "positionY": "-1750"
+        },
+        {
+            "type": "step",
             "step": "Projection 10",
             "display style": "ICON_ONLY",
             "width": "40",
@@ -13392,15 +13382,6 @@
             "height": "40",
             "positionX": "-560",
             "positionY": "-2002"
-        },
-        {
-            "type": "step",
-            "step": "Projection 5",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "-1568",
-            "positionY": "-1358"
         },
         {
             "type": "step",
@@ -13894,7 +13875,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-1862",
+            "positionX": "-1820",
             "positionY": "-1792"
         },
         {
@@ -14061,15 +14042,6 @@
         },
         {
             "type": "step",
-            "step": "Static Gain 101",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "-1862",
-            "positionY": "-1848"
-        },
-        {
-            "type": "step",
             "step": "Static Gain 102",
             "display style": "ICON_ONLY",
             "width": "40",
@@ -14173,7 +14145,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-1862",
+            "positionX": "-1820",
             "positionY": "-1624"
         },
         {
@@ -14202,6 +14174,15 @@
             "height": "40",
             "positionX": "1834",
             "positionY": "994"
+        },
+        {
+            "type": "step",
+            "step": "Static Gain 116",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-1316",
+            "positionY": "-1456"
         },
         {
             "type": "step",
@@ -14785,7 +14766,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-1778",
+            "positionX": "-1694",
             "positionY": "-1792"
         },
         {
@@ -14839,7 +14820,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1806",
+            "positionX": "1834",
             "positionY": "602"
         },
         {
@@ -14893,7 +14874,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-1568",
+            "positionX": "-1526",
             "positionY": "-1316"
         },
         {
@@ -15019,7 +15000,7 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1806",
+            "positionX": "1834",
             "positionY": "560"
         },
         {
@@ -15536,658 +15517,17 @@
         }
     ],
     "ui view": {
-        "ScrollBarX": "-2386",
-        "ScrollBarY": "-1388",
-        "SliderPosX": "-2386",
-        "SliderPosY": "-1388",
-        "Zoom": "0.70999999999999996"
+        "ScrollBarX": "-1516",
+        "ScrollBarY": "-888",
+        "SliderPosX": "-1516",
+        "SliderPosY": "-888",
+        "Zoom": "0.59999999999999998"
     },
     "ui generic": {
         "group": "element",
-        "open plots": {
-            "Action ConceptsWidget0": {
-                "step": "Action Concepts",
-                "position_x": "0",
-                "position_y": "664",
-                "width": "206",
-                "height": "200",
-                "position_relative_x": "0",
-                "position_relative_y": "0.66599799398194581",
-                "width_relative": "0.10729166666666666",
-                "height_relative": "0.20060180541624875",
-                "data_list": [
-                    {
-                        "id": "BUFFER",
-                        "name": "input sum",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
-                    },
-                    {
-                        "id": "BUFFER",
-                        "name": "activation",
-                        "ignoreIfMissing": "true",
-                        "plotDeclaration": ""
-                    },
-                    {
-                        "id": "OUTPUT",
-                        "name": "activation",
-                        "ignoreIfMissing": "true",
-                        "plotDeclaration": ""
-                    },
-                    {
-                        "id": "OUTPUT",
-                        "name": "sigmoided activation",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": ""
-                    }
-                ],
-                "plot configurations": [
-                    {
-                        "row": "1",
-                        "col": "0",
-                        "plot configuration": {
-                            "autoscaling": "true",
-                            "major grid visible": "false",
-                            "minor grid visible": "false",
-                            "y axis limits": {
-                                "lower limit": "0",
-                                "upper limit": "1"
-                            },
-                            "discrete plot": "true"
-                        }
-                    }
-                ]
-            },
-            "Action-HabituationWidget0": {
-                "step": "Action-Habituation",
-                "position_x": "770",
-                "position_y": "464",
-                "width": "217",
-                "height": "202",
-                "position_relative_x": "0.40104166666666669",
-                "position_relative_y": "0.46539618856569709",
-                "width_relative": "0.11302083333333333",
-                "height_relative": "0.20260782347041123",
-                "data_list": [
-                    {
-                        "id": "OUTPUT",
-                        "name": "activation",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
-                    }
-                ],
-                "plot configurations": [
-                    {
-                        "row": "1",
-                        "col": "0",
-                        "plot configuration": {
-                            "smooth scaling": "true",
-                            "keep aspect ratio": "true",
-                            "automatic value scaling": "true",
-                            "show legend": "true",
-                            "value limits": {
-                                "lower limit": "0",
-                                "upper limit": "1"
-                            },
-                            "color jet": "PlotDefault"
-                        }
-                    }
-                ]
-            },
-            "Action-Color-ProjectionWidget0": {
-                "step": "Action-Color-Projection",
-                "position_x": "209",
-                "position_y": "667",
-                "width": "206",
-                "height": "200",
-                "position_relative_x": "0.10885416666666667",
-                "position_relative_y": "0.66900702106318954",
-                "width_relative": "0.10729166666666666",
-                "height_relative": "0.20060180541624875",
-                "data_list": [
-                    {
-                        "id": "BUFFER",
-                        "name": "input sum",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
-                    },
-                    {
-                        "id": "BUFFER",
-                        "name": "activation",
-                        "ignoreIfMissing": "true",
-                        "plotDeclaration": ""
-                    },
-                    {
-                        "id": "OUTPUT",
-                        "name": "activation",
-                        "ignoreIfMissing": "true",
-                        "plotDeclaration": ""
-                    },
-                    {
-                        "id": "OUTPUT",
-                        "name": "sigmoided activation",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": ""
-                    }
-                ],
-                "plot configurations": [
-                    {
-                        "row": "1",
-                        "col": "0",
-                        "plot configuration": {
-                            "autoscaling": "true",
-                            "major grid visible": "false",
-                            "minor grid visible": "false",
-                            "y axis limits": {
-                                "lower limit": "0",
-                                "upper limit": "1"
-                            },
-                            "discrete plot": "true"
-                        }
-                    }
-                ]
-            },
-            "Action-Outcome-DetectioWidget0": {
-                "step": "Action-Outcome-Detectio",
-                "position_x": "208",
-                "position_y": "467",
-                "width": "206",
-                "height": "200",
-                "position_relative_x": "0.10833333333333334",
-                "position_relative_y": "0.46840521564694082",
-                "width_relative": "0.10729166666666666",
-                "height_relative": "0.20060180541624875",
-                "data_list": [
-                    {
-                        "id": "BUFFER",
-                        "name": "input sum",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
-                    },
-                    {
-                        "id": "BUFFER",
-                        "name": "activation",
-                        "ignoreIfMissing": "true",
-                        "plotDeclaration": ""
-                    },
-                    {
-                        "id": "OUTPUT",
-                        "name": "activation",
-                        "ignoreIfMissing": "true",
-                        "plotDeclaration": ""
-                    },
-                    {
-                        "id": "OUTPUT",
-                        "name": "sigmoided activation",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": ""
-                    }
-                ],
-                "plot configurations": [
-                    {
-                        "row": "1",
-                        "col": "0",
-                        "plot configuration": {
-                            "autoscaling": "true",
-                            "major grid visible": "false",
-                            "minor grid visible": "false",
-                            "y axis limits": {
-                                "lower limit": "0",
-                                "upper limit": "1"
-                            },
-                            "discrete plot": "false"
-                        }
-                    }
-                ]
-            },
-            "Action-RecallWidget0": {
-                "step": "Action-Recall",
-                "position_x": "1128",
-                "position_y": "467",
-                "width": "214",
-                "height": "200",
-                "position_relative_x": "0.58750000000000002",
-                "position_relative_y": "0.46840521564694082",
-                "width_relative": "0.11145833333333334",
-                "height_relative": "0.20060180541624875",
-                "data_list": [
-                    {
-                        "id": "BUFFER",
-                        "name": "activation",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
-                    }
-                ],
-                "plot configurations": [
-                    {
-                        "row": "1",
-                        "col": "0",
-                        "plot configuration": {
-                            "smooth scaling": "true",
-                            "keep aspect ratio": "true",
-                            "automatic value scaling": "true",
-                            "show legend": "true",
-                            "value limits": {
-                                "lower limit": "0",
-                                "upper limit": "1"
-                            },
-                            "color jet": "PlotDefault"
-                        }
-                    }
-                ]
-            },
-            "Camera TCP ReaderWidget0": {
-                "step": "Camera TCP Reader",
-                "position_x": "208",
-                "position_y": "263",
-                "width": "207",
-                "height": "202",
-                "position_relative_x": "0.10833333333333334",
-                "position_relative_y": "0.26379137412236708",
-                "width_relative": "0.10781250000000001",
-                "height_relative": "0.20260782347041123",
-                "data_list": [
-                    {
-                        "id": "OUTPUT",
-                        "name": "output",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
-                    }
-                ],
-                "plot configurations": [
-                    {
-                        "row": "1",
-                        "col": "0",
-                        "plot configuration": {
-                            "smooth scaling": "true",
-                            "keep aspect ratio": "true",
-                            "automatic value scaling": "true",
-                            "show legend": "true",
-                            "value limits": {
-                                "lower limit": "0",
-                                "upper limit": "1"
-                            },
-                            "color jet": "PlotDefault"
-                        }
-                    }
-                ]
-            },
-            "Goal-HabituationWidget0": {
-                "step": "Goal-Habituation",
-                "position_x": "562",
-                "position_y": "464",
-                "width": "208",
-                "height": "202",
-                "position_relative_x": "0.29270833333333335",
-                "position_relative_y": "0.46539618856569709",
-                "width_relative": "0.10833333333333334",
-                "height_relative": "0.20260782347041123",
-                "data_list": [
-                    {
-                        "id": "OUTPUT",
-                        "name": "activation",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
-                    }
-                ],
-                "plot configurations": [
-                    {
-                        "row": "1",
-                        "col": "0",
-                        "plot configuration": {
-                            "autoscaling": "true",
-                            "major grid visible": "false",
-                            "minor grid visible": "false",
-                            "y axis limits": {
-                                "lower limit": "0",
-                                "upper limit": "1"
-                            },
-                            "discrete plot": "false"
-                        }
-                    }
-                ]
-            },
-            "Goal-SelectionWidget0": {
-                "step": "Goal-Selection",
-                "position_x": "562",
-                "position_y": "264",
-                "width": "206",
-                "height": "200",
-                "position_relative_x": "0.29270833333333335",
-                "position_relative_y": "0.26479438314944836",
-                "width_relative": "0.10729166666666666",
-                "height_relative": "0.20060180541624875",
-                "data_list": [
-                    {
-                        "id": "BUFFER",
-                        "name": "input sum",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
-                    },
-                    {
-                        "id": "BUFFER",
-                        "name": "activation",
-                        "ignoreIfMissing": "true",
-                        "plotDeclaration": ""
-                    },
-                    {
-                        "id": "OUTPUT",
-                        "name": "activation",
-                        "ignoreIfMissing": "true",
-                        "plotDeclaration": ""
-                    },
-                    {
-                        "id": "OUTPUT",
-                        "name": "sigmoided activation",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": ""
-                    }
-                ],
-                "plot configurations": [
-                    {
-                        "row": "1",
-                        "col": "0",
-                        "plot configuration": {
-                            "autoscaling": "true",
-                            "major grid visible": "false",
-                            "minor grid visible": "false",
-                            "y axis limits": {
-                                "lower limit": "0",
-                                "upper limit": "1"
-                            },
-                            "discrete plot": "true"
-                        }
-                    }
-                ]
-            },
-            "Intention-SelectionWidget0": {
-                "step": "Intention-Selection",
-                "position_x": "768",
-                "position_y": "264",
-                "width": "212",
-                "height": "200",
-                "position_relative_x": "0.40000000000000002",
-                "position_relative_y": "0.26479438314944836",
-                "width_relative": "0.11041666666666666",
-                "height_relative": "0.20060180541624875",
-                "data_list": [
-                    {
-                        "id": "BUFFER",
-                        "name": "activation",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
-                    }
-                ],
-                "plot configurations": [
-                    {
-                        "row": "1",
-                        "col": "0",
-                        "plot configuration": {
-                            "smooth scaling": "true",
-                            "keep aspect ratio": "true",
-                            "automatic value scaling": "true",
-                            "show legend": "true",
-                            "value limits": {
-                                "lower limit": "0",
-                                "upper limit": "1"
-                            },
-                            "color jet": "PlotDefault"
-                        }
-                    }
-                ]
-            },
-            "Sound ConceptsWidget0": {
-                "step": "Sound Concepts",
-                "position_x": "0",
-                "position_y": "264",
-                "width": "206",
-                "height": "200",
-                "position_relative_x": "0",
-                "position_relative_y": "0.26479438314944836",
-                "width_relative": "0.10729166666666666",
-                "height_relative": "0.20060180541624875",
-                "data_list": [
-                    {
-                        "id": "BUFFER",
-                        "name": "input sum",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
-                    },
-                    {
-                        "id": "BUFFER",
-                        "name": "activation",
-                        "ignoreIfMissing": "true",
-                        "plotDeclaration": ""
-                    },
-                    {
-                        "id": "OUTPUT",
-                        "name": "activation",
-                        "ignoreIfMissing": "true",
-                        "plotDeclaration": ""
-                    },
-                    {
-                        "id": "OUTPUT",
-                        "name": "sigmoided activation",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": ""
-                    }
-                ],
-                "plot configurations": [
-                    {
-                        "row": "1",
-                        "col": "0",
-                        "plot configuration": {
-                            "autoscaling": "true",
-                            "major grid visible": "false",
-                            "minor grid visible": "false",
-                            "y axis limits": {
-                                "lower limit": "0",
-                                "upper limit": "1"
-                            },
-                            "discrete plot": "true"
-                        }
-                    }
-                ]
-            },
-            "ObjectColor ConceptsWidget0": {
-                "step": "ObjectColor Concepts",
-                "position_x": "0",
-                "position_y": "463",
-                "width": "206",
-                "height": "200",
-                "position_relative_x": "0",
-                "position_relative_y": "0.46439317953861586",
-                "width_relative": "0.10729166666666666",
-                "height_relative": "0.20060180541624875",
-                "data_list": [
-                    {
-                        "id": "BUFFER",
-                        "name": "input sum",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
-                    },
-                    {
-                        "id": "BUFFER",
-                        "name": "activation",
-                        "ignoreIfMissing": "true",
-                        "plotDeclaration": ""
-                    },
-                    {
-                        "id": "OUTPUT",
-                        "name": "activation",
-                        "ignoreIfMissing": "true",
-                        "plotDeclaration": ""
-                    },
-                    {
-                        "id": "OUTPUT",
-                        "name": "sigmoided activation",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": ""
-                    }
-                ],
-                "plot configurations": [
-                    {
-                        "row": "1",
-                        "col": "0",
-                        "plot configuration": {
-                            "autoscaling": "true",
-                            "major grid visible": "false",
-                            "minor grid visible": "false",
-                            "y axis limits": {
-                                "lower limit": "0",
-                                "upper limit": "1"
-                            },
-                            "discrete plot": "true"
-                        }
-                    }
-                ]
-            },
-            "Sound-RecallWidget0": {
-                "step": "Sound-Recall",
-                "position_x": "1132",
-                "position_y": "264",
-                "width": "214",
-                "height": "200",
-                "position_relative_x": "0.58958333333333335",
-                "position_relative_y": "0.26479438314944836",
-                "width_relative": "0.11145833333333334",
-                "height_relative": "0.20060180541624875",
-                "data_list": [
-                    {
-                        "id": "BUFFER",
-                        "name": "input sum",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
-                    },
-                    {
-                        "id": "BUFFER",
-                        "name": "activation",
-                        "ignoreIfMissing": "true",
-                        "plotDeclaration": ""
-                    },
-                    {
-                        "id": "OUTPUT",
-                        "name": "activation",
-                        "ignoreIfMissing": "true",
-                        "plotDeclaration": ""
-                    },
-                    {
-                        "id": "OUTPUT",
-                        "name": "sigmoided activation",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": ""
-                    }
-                ],
-                "plot configurations": [
-                    {
-                        "row": "1",
-                        "col": "0",
-                        "plot configuration": {
-                            "autoscaling": "true",
-                            "major grid visible": "false",
-                            "minor grid visible": "false",
-                            "y axis limits": {
-                                "lower limit": "0",
-                                "upper limit": "1"
-                            },
-                            "discrete plot": "true"
-                        }
-                    }
-                ]
-            },
-            "Supervisor-Task-InputWidget0": {
-                "step": "Supervisor-Task-Input",
-                "position_x": "1348",
-                "position_y": "472",
-                "width": "206",
-                "height": "200",
-                "position_relative_x": "0.70208333333333328",
-                "position_relative_y": "0.47342026078234706",
-                "width_relative": "0.10729166666666666",
-                "height_relative": "0.20060180541624875",
-                "data_list": [
-                    {
-                        "id": "BUFFER",
-                        "name": "input sum",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
-                    },
-                    {
-                        "id": "BUFFER",
-                        "name": "activation",
-                        "ignoreIfMissing": "true",
-                        "plotDeclaration": ""
-                    },
-                    {
-                        "id": "OUTPUT",
-                        "name": "activation",
-                        "ignoreIfMissing": "true",
-                        "plotDeclaration": ""
-                    },
-                    {
-                        "id": "OUTPUT",
-                        "name": "sigmoided activation",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": ""
-                    }
-                ],
-                "plot configurations": [
-                    {
-                        "row": "1",
-                        "col": "0",
-                        "plot configuration": {
-                            "autoscaling": "true",
-                            "major grid visible": "false",
-                            "minor grid visible": "false",
-                            "y axis limits": {
-                                "lower limit": "0",
-                                "upper limit": "1"
-                            },
-                            "discrete plot": "true"
-                        }
-                    }
-                ]
-            },
-            "TCP-Goal-WriterWidget0": {
-                "step": "TCP-Goal-Writer",
-                "position_x": "1349",
-                "position_y": "279",
-                "width": "206",
-                "height": "192",
-                "position_relative_x": "0.7026041666666667",
-                "position_relative_y": "0.27983951855566702",
-                "width_relative": "0.10729166666666666",
-                "height_relative": "0.19257773319959878",
-                "data_list": [
-                    {
-                        "id": "INPUT",
-                        "name": "input",
-                        "ignoreIfMissing": "false",
-                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
-                    }
-                ],
-                "plot configurations": [
-                    {
-                        "row": "1",
-                        "col": "0",
-                        "plot configuration": {
-                            "autoscaling": "true",
-                            "major grid visible": "false",
-                            "minor grid visible": "false",
-                            "y axis limits": {
-                                "lower limit": "0",
-                                "upper limit": "1"
-                            },
-                            "discrete plot": "true"
-                        }
-                    }
-                ]
-            }
-        },
+        "open plots": "",
         "plot groups": "",
-        "architecture widgets": {
-            "video": "default.json"
-        },
+        "architecture widgets": "",
         "robots": "",
         "width": "250",
         "height": "250",

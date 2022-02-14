@@ -59,7 +59,7 @@ def phaseSTaskEpisode(self):
     # place target and distractor for low pitch goal
     deleteObjects(self)
     if self.currentState.epuck['goal'][self.currentState.phase['phase']-2] < stateThreshold:
-        # wait until gal has formed
+        # wait until goal has formed
         self.episodeTimer.start()
         return
     else:

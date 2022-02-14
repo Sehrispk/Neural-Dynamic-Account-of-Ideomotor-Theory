@@ -9,13 +9,11 @@
 # TUNING OF BELIEF STRUCTURE
 #tuning of memory traces
 # desire in DFT architecture? -> probably not
-# connect new tasks
-# implement dft exp to reset architecture
 # plan recoring
 # exploring when no strategy?
 
 
-import time, yaml
+import datetime, yaml, os
 import numpy as np
 from controller import Supervisor
 from SupervisorRobot import SupervisorRobot
@@ -44,15 +42,17 @@ supervisor.currentState.epuck['actionTarget'] = ['','']
 supervisor.currentState.epuck['position'] = np.zeros(3)
 
 # prepare Data
-f_traj = open("../../data/trajectory2.dat", 'w')
-f_ev = open("../../data/events2.dat", 'w')
-f_count = open("../../data/actionCount2.dat", 'w')
+path = "../../data/Simulation_" + datetime.datetime.now().strftime("%d%m_%H%M")
+if not os.path.isdir(path):
+    os.mkdir(path)
+f_traj = open(path + "/trajectory.dat", 'w')
+f_ev = open(path + "/events.dat", 'w')
+f_count = open(path + "/actionCount.dat", 'w')
 
 f_traj.write("{}\t{}\t{}\t{}\t{}\n".format("Time", "e-puck", supervisor.robotIDs[0], supervisor.robotIDs[1], supervisor.robotIDs[2]))
 f_ev.write("{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format("Time", "phase", "phaseEpisode", "actionEpisode", "goal", "action", "target", "sound"))
 
 # Main loop:
-tic = time.time()
 init = 0
 count = supervisor.currentState.phase['actionCounter'].copy()
 f_count.write("T:\t{}\n{}\n".format(supervisor.clock.reading, supervisor.currentState.phase['actionCounter']))
