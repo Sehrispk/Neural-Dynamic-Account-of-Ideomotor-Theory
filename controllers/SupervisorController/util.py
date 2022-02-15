@@ -1,4 +1,4 @@
-import random
+import random, math
 from settings import *
 
 def randomPositions(epuckPosition, robotIDs):
@@ -10,9 +10,9 @@ def randomPositions(epuckPosition, robotIDs):
         search = 0
     
         for ID1 in robotIDs:
-            epuck_distance = ((translations[ID1][0] - epuckPosition[0])**2 + (translations[ID1][2] - epuckPosition[2])**2)
+            epuck_distance = math.sqrt(((translations[ID1][0] - epuckPosition[0])**2 + (translations[ID1][2] - epuckPosition[2])**2))
             for ID2 in robotIDs:
-                distance = ((translations[ID1][0] - translations[ID2][0])**2 + (translations[ID1][2] - translations[ID2][2])**2)
+                distance = math.sqrt(((translations[ID1][0] - translations[ID2][0])**2 + (translations[ID1][2] - translations[ID2][2])**2))
                 if distance < objectMinimumDistance and epuck_distance < objectMinimumDistance and not distance == 0:
                     search = 1
 

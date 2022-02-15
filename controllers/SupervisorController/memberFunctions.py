@@ -11,8 +11,8 @@ def phaseResetComplete(currentState, phaseEpisode, clock, episodeTimer):
         return 0
         
 def phaseExploreComplete(currentState, phaseEpisode, clock, episodeTimer):
-    #if currentState.phase['actionCounter'].all(axis=None) > 0 and episodeTimer.reading > episodeTimeout:
-    if clock.reading > 2*Tinit:
+    if currentState.phase['actionCounter'].all(axis=None) > 0 and episodeTimer.reading > episodeTimeout:
+    #if clock.reading > 2*Tinit:
         print("learning phase done...")
         return 1
     else:
@@ -47,21 +47,23 @@ def phaseATaskComplete(currentState, phaseEpisode, clock, episodeTimer):
         return 0
         
 def phaseResetEpisode():
-    return
+    return 0
     
 def phaseExploreEpisode(self):
     deleteObjects(self)
     translations = randomPositions(self.currentState.epuck['position'], self.robotIDs)
     for ID, translation in translations.items():
         self.loadRobot(kind='button', ID=ID, translation=translation)
+    return 1
         
 def phaseSTaskEpisode(self):
     # place target and distractor for low pitch goal
     deleteObjects(self)
     if self.currentState.epuck['goal'][self.currentState.phase['phase']-2] < stateThreshold:
         # wait until goal has formed
+        print(self.currentState.epuck['goal'])
         self.episodeTimer.start()
-        return
+        return 0
     else:
         # reset epuck position
         transField = self.activeRobots['e-puck'].getField("translation")
@@ -93,10 +95,11 @@ def phaseSTaskEpisode(self):
         self.loadRobot(kind='button', ID=ID, translation=translation)
         print("supervisor places ditractor object: {}".format(ID))
         self.targetTimer.start()
+        return 1
     
 def phaseSelectionEpisode(self):
     # wait for goal
-    return
+    return 0
     
 def phaseStabilityEpisode(self):
     # delete active objects
@@ -174,8 +177,9 @@ def phaseStabilityEpisode(self):
                     
         print('supervisor plays distractor sound {}Hz'.format(self.sound))
         self.soundTimer.start()
+    return 1
 def phaseATaskEpisode(self):
-    return
+    return 0
     
 phaseComplete = [phaseResetComplete, phaseExploreComplete, phaseSTaskComplete, phaseSTaskComplete, phaseSTaskComplete, phaseSelectionComplete, phaseStabilityComplete, phaseATaskComplete]
 phaseEpisode = [phaseResetEpisode, phaseExploreEpisode, phaseSTaskEpisode, phaseSTaskEpisode, phaseSTaskEpisode, phaseSelectionEpisode, phaseStabilityEpisode, phaseATaskEpisode]
@@ -224,9 +228,9 @@ def startActionEpisode(self):
     self.soundTimer.stop()
     self.soundTimer.reset()
     
-    phaseEpisode[self.phaseList[self.phaseIdx]](self)
+    if phaseEpisode[self.phaseList[self.phaseIdx]](self):
+        self.phaseEpisode += 1
     self.updateState()
-    self.phaseEpisode += 1
 
 def updatePhase(self):
     # log actions

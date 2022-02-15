@@ -1,13 +1,13 @@
 arenaSize = 0.7
 resetBound = 0.8
-Tinit = 5
+Tinit = 15
 
-objectMinimumDistance = 0.2
+objectMinimumDistance = 0.7
 objectPlaceDistance = 0.5
 objectPlaceNoise = 0.05
 
 stateThreshold = 0.5
-N_stability = 5
+N_stability = 10
 N_goal = 5
 N_action = 50
 
