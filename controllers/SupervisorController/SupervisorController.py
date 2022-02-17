@@ -43,7 +43,8 @@ supervisor.currentState.epuck['position'] = np.zeros(3)
 
 # prepare Data
 path = "../../data/Simulation_" + datetime.datetime.now().strftime("%d%m_%H%M")
-if not os.path.isdir(path):
+if not os.path.isdir("../../data/"):
+    os.mkdir("../../data/")
     os.mkdir(path)
 f_traj = open(path + "/trajectory.dat", 'w')
 f_ev = open(path + "/events.dat", 'w')
