@@ -12,8 +12,8 @@ def randomPositions(epuckPosition, robotIDs):
         for ID1 in robotIDs:
             epuck_distance = math.sqrt(((translations[ID1][0] - epuckPosition[0])**2 + (translations[ID1][2] - epuckPosition[2])**2))
             for ID2 in robotIDs:
-                distance = math.sqrt(((translations[ID1][0] - translations[ID2][0])**2 + (translations[ID1][2] - translations[ID2][2])**2))
-                if distance < objectMinimumDistance and epuck_distance < objectMinimumDistance and not distance == 0:
+                distance = math.sqrt((translations[ID1][0] - translations[ID2][0])**2 + (translations[ID1][2] - translations[ID2][2])**2)    
+                if distance != 0 and (distance < objectMinimumDistance or epuck_distance < objectMinimumDistance):
                     search = 1
 
     return translations

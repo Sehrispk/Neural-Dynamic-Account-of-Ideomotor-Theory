@@ -20,7 +20,7 @@ def phaseExploreComplete(currentState, phaseEpisode, clock, episodeTimer):
         
 def phaseSTaskComplete(currentState, phaseEpisode, clock, episodeTimer):
     if phaseEpisode >= N_goal:
-        print("Play Sound Task task done...")
+        print("play sound phase done...")
         return 1
     else:
         return 0

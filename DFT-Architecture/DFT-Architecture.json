@@ -11894,8 +11894,28 @@
         {
             "source": "Intention-CoS.sigmoided activation",
             "target": "Action-Perseveration.peak detector"
+        },
+        {
+            "source": "Intention In Action-Action1.sigmoided activation",
+            "target": "CoS-Action1.input"
+        },
+        {
+            "source": "Intention In Action-Action2.sigmoided activation",
+            "target": "CoS-Action2.input"
+        },
+        {
+            "source": "Intention-In-Action-Action3.sigmoided activation",
+            "target": "CoS-Action3.input"
         }
     ],
+    "records": {
+        "Goal-Selection[BUFFER].activation": "0.2 s",
+        "Goal-Selection[BUFFER].current delta time": "0.2 s",
+        "Goal-Selection[OUTPUT].sigmoided activation": "0.2 s",
+        "Intention-Selection[BUFFER].activation": "0.2 s",
+        "Intention-Selection[BUFFER].current delta time": "0.2 s",
+        "Intention-Selection[OUTPUT].sigmoided activation": "0.2 s"
+    },
     "scripts": [
         {
             "type": "cedar.dyn.scripts.ExecuteFunctionOnSteps",
@@ -15569,11 +15589,11 @@
         }
     ],
     "ui view": {
-        "ScrollBarX": "-767",
-        "ScrollBarY": "-535",
-        "SliderPosX": "-767",
-        "SliderPosY": "-535",
-        "Zoom": "0.44"
+        "ScrollBarX": "-802",
+        "ScrollBarY": "-823",
+        "SliderPosX": "-802",
+        "SliderPosY": "-823",
+        "Zoom": "0.39000000000000001"
     },
     "ui generic": {
         "group": "element",

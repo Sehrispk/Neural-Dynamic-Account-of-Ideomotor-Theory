@@ -1,16 +1,13 @@
 """SupervisorController controller."""
 
-# Webots todo!!!!
-# (TUNING OF TIMERS)
-# goal selection phase after each action episode? -> maybe only if goal decays?
-# implement multiple contingencies for 1 sound
+#Webots todo!!!!
+#goal selection phase after N(each) action episodes -> requires goal reset
+#handcrafted sequence of action episodes
 
 #DFT Tuning/todos
-# TUNING OF BELIEF STRUCTURE
 #tuning of memory traces
-# desire in DFT architecture? -> probably not
-# plan recoring
-# exploring when no strategy?
+#plan recoring and plotting of data
+#exploring when no strategy
 
 
 import datetime, yaml, os, time
@@ -45,7 +42,9 @@ supervisor.currentState.epuck['position'] = np.zeros(3)
 path = "../../data/Simulation_" + datetime.datetime.now().strftime("%d%m_%H%M")
 if not os.path.isdir("../../data/"):
     os.mkdir("../../data/")
-    os.mkdir(path)
+if not os.path.isdir(path):
+    os.mkdir(path)  
+
 f_traj = open(path + "/trajectory.dat", 'w')
 f_ev = open(path + "/events.dat", 'w')
 f_count = open(path + "/actionCount.dat", 'w')
@@ -61,21 +60,6 @@ f_count.write("T:\t{}\n{}\n".format(supervisor.clock.reading, supervisor.current
 while supervisor.step(timestep) != -1:
     supervisor.updateState()
     supervisor.updatePhase()
-
-    #if toc - tic > 3 and supervisor.currentState.phase['phase'] == 0 and not init:
-    #    tic = toc
-    #    init=1
-    #    supervisor.initPhase()
-    
-    #if toc - tic > 30 and supervisor.currentState.phase['phase'] == 0:
-    #    tic = toc
-    #   supervisor.currentState.phase['phase'] = 1
-    #   supervisor.initPhase()
-        
-    #if toc - tic > 60 and supervisor.currentState.phase['phase'] == 1:
-    #    tic = toc
-    #    supervisor.currentState.phase['phase'] = 2
-    #    supervisor.initPhase()
 
     # write data
     positions = "{} {} {}".format(supervisor.currentState.epuck['position'], supervisor.currentState.epuck['orientation'], supervisor.currentState.epuck['led'])

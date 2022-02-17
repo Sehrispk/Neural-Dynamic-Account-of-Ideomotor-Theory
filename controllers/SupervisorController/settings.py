@@ -2,8 +2,8 @@ arenaSize = 0.7
 resetBound = 0.8
 Tinit = 15
 
-objectMinimumDistance = 0.7
-objectPlaceDistance = 0.5
+objectMinimumDistance = 0.4
+objectPlaceDistance = 0.2
 objectPlaceNoise = 0.05
 
 stateThreshold = 0.5
