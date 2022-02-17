@@ -39,9 +39,11 @@ supervisor.currentState.epuck['actionTarget'] = ['','']
 supervisor.currentState.epuck['position'] = np.zeros(3)
 
 # prepare Data
-path = "../../data/Simulation_" + datetime.datetime.now().strftime("%d%m_%H%M")
+path = "../../data/Simulation/Simulation_" + datetime.datetime.now().strftime("%Y_%m_%d__%H_%M_%S")
 if not os.path.isdir("../../data/"):
     os.mkdir("../../data/")
+if not os.path.isdir("../../data/Simulation/"):
+    os.mkdir("../../data/Simulation/")
 if not os.path.isdir(path):
     os.mkdir(path)  
 
