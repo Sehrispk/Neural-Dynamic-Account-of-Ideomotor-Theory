@@ -19,28 +19,28 @@ def phaseExploreComplete(currentState, phaseEpisode, clock, episodeTimer):
         return 0
         
 def phaseSTaskComplete(currentState, phaseEpisode, clock, episodeTimer):
-    if phaseEpisode >= N_goal:
+    if phaseEpisode > N_goal:
         print("play sound phase done...")
         return 1
     else:
         return 0
         
 def phaseSelectionComplete(currentState, phaseEpisode, clock, episodeTimer):
-    if any([g > stateThreshold for g in currentState.epuck['goal']]):
+    if any([g > stateThreshold for g in currentState.epuck['goal']]) and episodeTimer.reading > episodeTimeout:
         print("goal selection phase done...")
         return 1
     else:
         return 0
         
 def phaseStabilityComplete(currentState, phaseEpisode, clock, episodeTimer):
-    if phaseEpisode >= N_stability:
+    if phaseEpisode > N_stability:
         print("goal reaching phase done...")
         return 1
     else:
         return 0
         
 def phaseATaskComplete(currentState, phaseEpisode, clock, episodeTimer):
-    if phaseEpisode >= N_action:
+    if phaseEpisode > N_action:
         print("action task done...")
         return 1
     else:
@@ -83,14 +83,14 @@ def phaseSTaskEpisode(self):
         translation[0] -= self.activeRobots['e-puck'].getOrientation()[2] * objectPlaceDistance
         translation[1] = 0.01
         translation[2] -= self.activeRobots['e-puck'].getOrientation()[0] * objectPlaceDistance 
-        translation[0] += objectMinimumDistance * translation[2]
-        translation[2] -= objectMinimumDistance * translation[0]
+        translation[0] += objectMinimumDistance/2 * translation[2]
+        translation[2] -= objectMinimumDistance/2 * translation[0]
         ID = random.choice(targetObjects)
         self.loadRobot(kind='button', ID=ID, translation=translation)
         print("supervisor places target object: {}".format(ID))
         
-        translation [0] -= 2 * objectMinimumDistance * translation[2]
-        translation [2] += 2 * objectMinimumDistance * translation[0]
+        translation [0] -= objectMinimumDistance * translation[2]
+        translation [2] += objectMinimumDistance * translation[0]
         ID = random.choice(distractorObjects)
         self.loadRobot(kind='button', ID=ID, translation=translation)
         print("supervisor places ditractor object: {}".format(ID))
@@ -99,6 +99,8 @@ def phaseSTaskEpisode(self):
     
 def phaseSelectionEpisode(self):
     # wait for goal
+    deleteObjects(self)
+    self.episodeTimer.start()
     return 0
     
 def phaseStabilityEpisode(self):
@@ -135,11 +137,32 @@ def phaseStabilityEpisode(self):
     transField.setSFVec3f([0, 0, 0])
     
     # determin next action episode
-    targetRate = self.config['Scenarios'][self.scenario]['settings']['targetRate']
-    distractorRate = self.config['Scenarios'][self.scenario]['settings']['distractorRate']
-    queRate = self.config['Scenarios'][self.scenario]['settings']['queRate']
+    if self.config['Scenarios'][self.scenario]['settings']['customSequence']:
+        try:
+            if self.config['Scenarios'][self.scenario]['settings']['customSequence'][self.phaseEpisode] == 't':
+                targetRate = 1
+                distractorRate = 0
+                queRate = 0
+            if self.config['Scenarios'][self.scenario]['settings']['customSequence'][self.phaseEpisode] == 'd':
+                targetRate = 0
+                distractorRate = 1
+                queRate = 0
+            if self.config['Scenarios'][self.scenario]['settings']['customSequence'][self.phaseEpisode] == 'q':
+                targetRate = 0
+                distractorRate = 0
+                queRate = 1
+        except Exception as e:
+            print(e)
+            print('invalid sequence string, continue with default rates')
+            targetRate = self.config['Scenarios'][self.scenario]['settings']['targetRate']
+            distractorRate = self.config['Scenarios'][self.scenario]['settings']['distractorRate']
+            queRate = self.config['Scenarios'][self.scenario]['settings']['queRate']
+    else: 
+        targetRate = self.config['Scenarios'][self.scenario]['settings']['targetRate']
+        distractorRate = self.config['Scenarios'][self.scenario]['settings']['distractorRate']
+        queRate = self.config['Scenarios'][self.scenario]['settings']['queRate']
+        
     episodeDecision = random.uniform(0, 1)
-
     if episodeDecision <= targetRate:
         #place target
         translation = transField.getSFVec3f()
@@ -178,6 +201,7 @@ def phaseStabilityEpisode(self):
         print('supervisor plays distractor sound {}Hz'.format(self.sound))
         self.soundTimer.start()
     return 1
+    
 def phaseATaskEpisode(self):
     return 0
     
@@ -250,8 +274,8 @@ def updatePhase(self):
             self.phaseIdx += 1
             self.currentState.phase['phase'] = self.phaseList[self.phaseIdx]# init phase
             print("init phase {}".format(self.phaseList[self.phaseIdx]))
-            self.startActionEpisode()
             self.phaseEpisode = 0
+            self.startActionEpisode()
         else:
             # end experiemnt
             print("cleaning up...")

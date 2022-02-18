@@ -16,7 +16,17 @@ def randomPositions(epuckPosition, robotIDs):
                 if distance != 0 and (distance < objectMinimumDistance or epuck_distance < objectMinimumDistance):
                     search = 1
 
-    return translations
+    keys = list(translations.keys())
+    values = list(translations.values())
+    random.shuffle(values)
+    
+    shuffled_translations = dict()
+    i=0
+    while i < len(keys):
+        shuffled_translations.update({keys[i]: values[i]})
+        i+=1
+
+    return shuffled_translations
     
 def deleteObjects(self):
     IDs = []

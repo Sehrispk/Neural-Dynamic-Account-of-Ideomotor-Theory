@@ -1,14 +1,7 @@
 """SupervisorController controller."""
 
-#Webots todo!!!!
-#goal selection phase after N(each) action episodes -> requires goal reset
-#handcrafted sequence of action episodes
-
 #DFT Tuning/todos
 #tuning of memory traces
-#plan recoring and plotting of data
-#exploring when no strategy
-
 
 import datetime, yaml, os, time
 import numpy as np
