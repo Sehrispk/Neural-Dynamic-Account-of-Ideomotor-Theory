@@ -1,5 +1,5 @@
 #The first to lines are mandatory! Check the Ip of the Computer with cedar and set it accordingly! Buffer Size is just a heuristic here.
-cedar_ip:134.147.176.105
+cedar_ip:192.168.0.68
 read_buffer_size:32768
 #You can comment with # as first! char to ignore certain ports
 camera_port_snd:50020

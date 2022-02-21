@@ -1,0 +1,30 @@
+{
+    "name": "Experiment",
+    "filename": "\/home\/sehrispk\/repositories\/Neural-Dynamic-Account-of-Ideomotor-Theory\/DFT-Architecture\/Experiment.json",
+    "repetitions": "1",
+    "ActionSequences": {
+        "cedar.proc.experiment.ActionSequence": {
+            "name": "ActionSequence",
+            "ActionSet": {
+                "cedar.proc.experiment.action.EndTrial": {
+                    "Reset type": "Reset",
+                    "Success": "true",
+                    "Message": "experiment done",
+                    "stop triggers": "true"
+                }
+            },
+            "Condition": {
+                "type": "cedar.proc.experiment.condition.OnMatrixValue",
+                "Step Data": {
+                    "element path": "Action-Task",
+                    "parameter path": "sigmoided activation"
+                },
+                "check full matrix": "false",
+                "number of elements": "1",
+                "compare operator": ">",
+                "value": "0.80000000000000004"
+            }
+        }
+    },
+    "repeat": "false"
+}

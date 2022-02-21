@@ -7,7 +7,7 @@ objectPlaceDistance = 0.6
 objectPlaceNoise = 0.05
 
 stateThreshold = 0.5
-N_stability = 3
+N_stability = 12
 N_goal = 3
 N_action = 50
 

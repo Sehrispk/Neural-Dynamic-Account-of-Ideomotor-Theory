@@ -40,7 +40,7 @@ def phaseStabilityComplete(currentState, phaseEpisode, clock, episodeTimer):
         return 0
         
 def phaseATaskComplete(currentState, phaseEpisode, clock, episodeTimer):
-    if phaseEpisode > N_action:
+    if episodeTimer.reading > 2:
         print("action task done...")
         return 1
     else:
@@ -203,6 +203,8 @@ def phaseStabilityEpisode(self):
     return 1
     
 def phaseATaskEpisode(self):
+    deleteObjects(self)
+    self.episodeTimer.start()
     return 0
     
 phaseComplete = [phaseResetComplete, phaseExploreComplete, phaseSTaskComplete, phaseSTaskComplete, phaseSTaskComplete, phaseSelectionComplete, phaseStabilityComplete, phaseATaskComplete]
