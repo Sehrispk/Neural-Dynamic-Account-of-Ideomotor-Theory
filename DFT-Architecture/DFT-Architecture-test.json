@@ -269,22 +269,6 @@
             },
             "comments": ""
         },
-        "cedar.dynamics.Preshape": {
-            "name": "Action-Perseveration",
-            "dimensionality": "2",
-            "sizes": [
-                "6",
-                "3"
-            ],
-            "time scale build up": "1000",
-            "time scale decay": "150000",
-            "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0.5",
-                "beta": "1000"
-            },
-            "comments": ""
-        },
         "cedar.dynamics.NeuralField": {
             "name": "Action-Projection",
             "activation as output": "false",
@@ -409,7 +393,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "1000",
+            "time scale": "4000",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -510,18 +494,7 @@
                 "beta": "100"
             },
             "global inhibition": "0",
-            "lateral kernels": {
-                "cedar.aux.kernel.Box": {
-                    "dimensionality": "1",
-                    "anchor": [
-                        "0"
-                    ],
-                    "amplitude": "1",
-                    "widths": [
-                        "1"
-                    ]
-                }
-            },
+            "lateral kernels": "",
             "lateral kernel convolution": {
                 "borderType": "Zero",
                 "mode": "Same",
@@ -1543,7 +1516,7 @@
             "threshold for updating the stepIcon": "0.80000000000000004",
             "dimensionality": "0",
             "sizes": "",
-            "time scale": "5000",
+            "time scale": "100",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -1554,7 +1527,23 @@
                 "beta": "100"
             },
             "global inhibition": "0",
-            "lateral kernels": "",
+            "lateral kernels": {
+                "cedar.aux.kernel.Gauss": {
+                    "dimensionality": "1",
+                    "anchor": [
+                        "0"
+                    ],
+                    "amplitude": "1",
+                    "sigmas": [
+                        "0.01"
+                    ],
+                    "normalize": "true",
+                    "shifts": [
+                        "0"
+                    ],
+                    "limit": "5"
+                }
+            },
             "lateral kernel convolution": {
                 "borderType": "Zero",
                 "mode": "Same",
@@ -3056,23 +3045,8 @@
             },
             "comments": ""
         },
-        "cedar.dynamics.Preshape": {
-            "name": "Goal-Habituation",
-            "dimensionality": "1",
-            "sizes": [
-                "3"
-            ],
-            "time scale build up": "10000",
-            "time scale decay": "5000",
-            "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0.5",
-                "beta": "1000"
-            },
-            "comments": ""
-        },
         "cedar.dynamics.NeuralField": {
-            "name": "Goal-Habituation-Gate",
+            "name": "Goal-CoS-Timer",
             "activation as output": "false",
             "discrete metric (workaround)": "false",
             "update stepIcon according to output": "true",
@@ -3090,7 +3064,23 @@
                 "beta": "100"
             },
             "global inhibition": "0",
-            "lateral kernels": "",
+            "lateral kernels": {
+                "cedar.aux.kernel.Gauss": {
+                    "dimensionality": "1",
+                    "anchor": [
+                        "0"
+                    ],
+                    "amplitude": "1",
+                    "sigmas": [
+                        "0.01"
+                    ],
+                    "normalize": "true",
+                    "shifts": [
+                        "0"
+                    ],
+                    "limit": "5"
+                }
+            },
             "lateral kernel convolution": {
                 "borderType": "Zero",
                 "mode": "Same",
@@ -3113,6 +3103,21 @@
                     "0"
                 ],
                 "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.Preshape": {
+            "name": "Goal-Habituation",
+            "dimensionality": "1",
+            "sizes": [
+                "3"
+            ],
+            "time scale build up": "10000",
+            "time scale decay": "5000",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0.5",
+                "beta": "1000"
             },
             "comments": ""
         },
@@ -3419,6 +3424,51 @@
             "comments": ""
         },
         "cedar.dynamics.NeuralField": {
+            "name": "Goal-Reset",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "0",
+            "sizes": "",
+            "time scale": "4000",
+            "resting level": "-0.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
             "name": "Goal-Selection",
             "activation as output": "false",
             "discrete metric (workaround)": "true",
@@ -3429,23 +3479,23 @@
                 "3"
             ],
             "time scale": "100",
-            "resting level": "-2.75",
+            "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
             "sigmoid": {
                 "type": "cedar.aux.math.AbsSigmoid",
                 "threshold": "0",
-                "beta": "50"
+                "beta": "100"
             },
-            "global inhibition": "-0.5",
+            "global inhibition": "-1.0000000000000004",
             "lateral kernels": {
                 "cedar.aux.kernel.Gauss": {
                     "dimensionality": "1",
                     "anchor": [
                         "0"
                     ],
-                    "amplitude": "1.6000000000000001",
+                    "amplitude": "1",
                     "sigmas": [
                         "0.01"
                     ],
@@ -3490,6 +3540,51 @@
             "dimensionality": "0",
             "sizes": "",
             "time scale": "1000",
+            "resting level": "-0.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
+            "name": "Goal-Timeout",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "0",
+            "sizes": "",
+            "time scale": "100",
             "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
@@ -3797,66 +3892,6 @@
             "comments": ""
         },
         "cedar.dynamics.NeuralField": {
-            "name": "Intention-CoS",
-            "activation as output": "false",
-            "discrete metric (workaround)": "false",
-            "update stepIcon according to output": "true",
-            "threshold for updating the stepIcon": "0.80000000000000004",
-            "dimensionality": "0",
-            "sizes": "",
-            "time scale": "100",
-            "resting level": "-0.75",
-            "input noise gain": "0.10000000000000001",
-            "multiplicative noise (input)": "false",
-            "multiplicative noise (activation)": "false",
-            "sigmoid": {
-                "type": "cedar.aux.math.HeavisideSigmoid",
-                "threshold": "0"
-            },
-            "global inhibition": "0",
-            "lateral kernels": {
-                "cedar.aux.kernel.Gauss": {
-                    "dimensionality": "1",
-                    "anchor": [
-                        "0"
-                    ],
-                    "amplitude": "1",
-                    "sigmas": [
-                        "0.01"
-                    ],
-                    "normalize": "true",
-                    "shifts": [
-                        "0"
-                    ],
-                    "limit": "5"
-                }
-            },
-            "lateral kernel convolution": {
-                "borderType": "Zero",
-                "mode": "Same",
-                "engine": {
-                    "type": "cedar.aux.conv.OpenCV"
-                },
-                "alternate even kernel center": "false"
-            },
-            "noise correlation kernel": {
-                "dimensionality": "1",
-                "anchor": [
-                    "0"
-                ],
-                "amplitude": "0",
-                "sigmas": [
-                    "3"
-                ],
-                "normalize": "true",
-                "shifts": [
-                    "0"
-                ],
-                "limit": "5"
-            },
-            "comments": ""
-        },
-        "cedar.dynamics.NeuralField": {
             "name": "Intention-Compare-Strategies",
             "activation as output": "false",
             "discrete metric (workaround)": "false",
@@ -4003,7 +4038,7 @@
                 "3"
             ],
             "time scale": "100",
-            "resting level": "-4",
+            "resting level": "-2.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -4014,17 +4049,23 @@
             },
             "global inhibition": "-0.3000000000000001",
             "lateral kernels": {
-                "cedar.aux.kernel.Box": {
+                "cedar.aux.kernel.Gauss": {
                     "dimensionality": "2",
                     "anchor": [
                         "0",
                         "0"
                     ],
-                    "amplitude": "0.5",
-                    "widths": [
-                        "1",
-                        "1"
-                    ]
+                    "amplitude": "0.29999999999999999",
+                    "sigmas": [
+                        "0.01",
+                        "0.01"
+                    ],
+                    "normalize": "true",
+                    "shifts": [
+                        "0",
+                        "0"
+                    ],
+                    "limit": "5"
                 }
             },
             "lateral kernel convolution": {
@@ -5221,6 +5262,16 @@
             "comments": ""
         },
         "cedar.processing.Projection": {
+            "name": "Projection 19",
+            "dimension mapping": {
+                "0": "4294967295"
+            },
+            "output dimensionality": "0",
+            "output dimension sizes": "",
+            "compression type": "MAXIMUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
             "name": "Projection 2",
             "dimension mapping": {
                 "0": "0",
@@ -5280,6 +5331,16 @@
             "output dimensionality": "0",
             "output dimension sizes": "",
             "compression type": "MAXIMUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
+            "name": "Projection 24",
+            "dimension mapping": {
+                "0": "4294967295"
+            },
+            "output dimensionality": "0",
+            "output dimension sizes": "",
+            "compression type": "SUM",
             "comments": ""
         },
         "cedar.processing.Projection": {
@@ -5361,6 +5422,16 @@
         },
         "cedar.processing.Projection": {
             "name": "Projection 4",
+            "dimension mapping": {
+                "0": "4294967295"
+            },
+            "output dimensionality": "0",
+            "output dimension sizes": "",
+            "compression type": "MAXIMUM",
+            "comments": ""
+        },
+        "cedar.processing.Projection": {
+            "name": "Projection 5",
             "dimension mapping": {
                 "0": "4294967295"
             },
@@ -6434,6 +6505,21 @@
             "number of vector entries": "3",
             "comments": ""
         },
+        "cedar.processing.ScalarsToVector": {
+            "name": "Scalars To Vector 7",
+            "number of vector entries": "3",
+            "comments": ""
+        },
+        "cedar.processing.ScalarsToVector": {
+            "name": "Scalars To Vector 8",
+            "number of vector entries": "2",
+            "comments": ""
+        },
+        "cedar.processing.ScalarsToVector": {
+            "name": "Scalars To Vector 9",
+            "number of vector entries": "2",
+            "comments": ""
+        },
         "cedar.dynamics.NeuralField": {
             "name": "Sound Concepts",
             "activation as output": "false",
@@ -7122,7 +7208,7 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 100",
-            "gain factor": "1.3",
+            "gain factor": "1",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -7132,12 +7218,12 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 102",
-            "gain factor": "3",
+            "gain factor": "1",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 103",
-            "gain factor": "-1",
+            "gain factor": "-4.0000000000000018",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -7162,12 +7248,12 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 108",
-            "gain factor": "-0.20000000000000001",
+            "gain factor": "-1",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 109",
-            "gain factor": "0.10000000000000001",
+            "gain factor": "-1",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -7177,12 +7263,12 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 110",
-            "gain factor": "0.12",
+            "gain factor": "0",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 111",
-            "gain factor": "-0.20000000000000001",
+            "gain factor": "0",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -7203,11 +7289,6 @@
         "cedar.processing.StaticGain": {
             "name": "Static Gain 115",
             "gain factor": "-1",
-            "comments": ""
-        },
-        "cedar.processing.StaticGain": {
-            "name": "Static Gain 116",
-            "gain factor": "2",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -7617,7 +7698,7 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 84",
-            "gain factor": "1.1000000000000001",
+            "gain factor": "1",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -7657,7 +7738,7 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 91",
-            "gain factor": "0.10000000000000001",
+            "gain factor": "1.3877787807814457e-16",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -7687,12 +7768,12 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 97",
-            "gain factor": "-0.20000000000000001",
+            "gain factor": "0",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 98",
-            "gain factor": "0.050000000000000003",
+            "gain factor": "-1",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -7748,38 +7829,6 @@
                     "0"
                 ],
                 "limit": "5"
-            },
-            "comments": ""
-        },
-        "cedar.dynamics.Preshape": {
-            "name": "Strategy-Habituation",
-            "dimensionality": "2",
-            "sizes": [
-                "6",
-                "3"
-            ],
-            "time scale build up": "10000",
-            "time scale decay": "5000",
-            "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0.5",
-                "beta": "1000"
-            },
-            "comments": ""
-        },
-        "cedar.dynamics.Preshape": {
-            "name": "Strategy-Perseveration",
-            "dimensionality": "2",
-            "sizes": [
-                "6",
-                "3"
-            ],
-            "time scale build up": "3000",
-            "time scale decay": "10000",
-            "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0.5",
-                "beta": "1000"
             },
             "comments": ""
         },
@@ -8119,6 +8168,11 @@
         "cedar.processing.VectorToScalars": {
             "name": "Vector To Scalars 3",
             "number of vector entries": "3",
+            "comments": ""
+        },
+        "cedar.processing.VectorToScalars": {
+            "name": "Vector To Scalars 4",
+            "number of vector entries": "2",
             "comments": ""
         },
         "cedar.dynamics.NeuralField": {
@@ -8897,7 +8951,6 @@
                 "Color-Change-Inhibition",
                 "Goal-Change-Detection",
                 "Goal-Change-Inhibition",
-                "Intention-CoS",
                 "Action-Color-Projection",
                 "Action-Projection",
                 "Intention-Selection",
@@ -8920,7 +8973,6 @@
                 "Sound-Change-Gate",
                 "Goal-Change-Gate",
                 "Action-Habituation",
-                "Action-Perseveration",
                 "Goal-Intention",
                 "Goal-Selection",
                 "Recall-Goal-Match-CoS",
@@ -8934,11 +8986,8 @@
                 "Recall-Goal-Match",
                 "Goal-Change-Precondition",
                 "Goal-Change-CoS",
-                "CoS-Timer",
                 "Action-Reset",
                 "Action-Timeout",
-                "Strategy-Perseveration",
-                "Strategy-Habituation",
                 "Goal-Perseveration",
                 "Goal-Habituation",
                 "Goal-Selection-Signal",
@@ -8956,7 +9005,6 @@
                 "Action2-Match",
                 "Action3-Match",
                 "Action-Outcome-Detectio",
-                "Goal-Habituation-Gate",
                 "Reward Hebb Trace 27",
                 "Reward Hebb Trace 28",
                 "Reward Hebb Trace 29",
@@ -8980,7 +9028,11 @@
                 "Action-Task",
                 "Belief-Active",
                 "Object-Gate",
-                "Goal-UnSelection-Signal"
+                "Goal-UnSelection-Signal",
+                "CoS-Timer",
+                "Goal-CoS-Timer",
+                "Goal-Timeout",
+                "Goal-Reset"
             ]
         }
     },
@@ -10618,18 +10670,6 @@
             "target": "Sound Role Field.input"
         },
         {
-            "source": "CoS-Action1.sigmoided activation",
-            "target": "Intention-CoS.input"
-        },
-        {
-            "source": "CoS-Action2.sigmoided activation",
-            "target": "Intention-CoS.input"
-        },
-        {
-            "source": "CoS-Action3.sigmoided activation",
-            "target": "Intention-CoS.input"
-        },
-        {
             "source": "Static Gain 10.output",
             "target": "Space-matching-Field.input"
         },
@@ -10942,24 +10982,12 @@
             "target": "Static Gain 97.input"
         },
         {
-            "source": "Action-Perseveration.activation",
-            "target": "Static Gain 98.input"
-        },
-        {
             "source": "ObjectColor Concepts.sigmoided activation",
             "target": "Projection 20.input"
         },
         {
             "source": "Intention-Selection.sigmoided activation",
-            "target": "Action-Perseveration.input"
-        },
-        {
-            "source": "Intention-Selection.sigmoided activation",
             "target": "Action-Habituation.input"
-        },
-        {
-            "source": "Intention-CoS.sigmoided activation",
-            "target": "Action-Habituation.peak detector"
         },
         {
             "source": "Goal-Recall-Intention.sigmoided activation",
@@ -11150,18 +11178,6 @@
             "target": "Strategie-Gate.input"
         },
         {
-            "source": "Intention-CoS.sigmoided activation",
-            "target": "Static Gain 103.input"
-        },
-        {
-            "source": "Static Gain 103.output",
-            "target": "Action-Color-Projection.input"
-        },
-        {
-            "source": "Static Gain 103.output",
-            "target": "Action-Projection.input"
-        },
-        {
             "source": "Action-Timeout.sigmoided activation",
             "target": "Action-Reset.input"
         },
@@ -11175,18 +11191,6 @@
         },
         {
             "source": "Static Gain 82.output",
-            "target": "Action-Timeout.input"
-        },
-        {
-            "source": "Static Gain 7.output",
-            "target": "Intention-CoS.input"
-        },
-        {
-            "source": "Intention-CoS.sigmoided activation",
-            "target": "CoS-Timer.input"
-        },
-        {
-            "source": "CoS-Timer.sigmoided activation",
             "target": "Action-Timeout.input"
         },
         {
@@ -11238,26 +11242,6 @@
             "target": "Static Gain 107.input"
         },
         {
-            "source": "Strategy-Habituation.activation",
-            "target": "Static Gain 108.input"
-        },
-        {
-            "source": "Strategy-Perseveration.activation",
-            "target": "Static Gain 109.input"
-        },
-        {
-            "source": "Strategy-Selection.sigmoided activation",
-            "target": "Strategy-Perseveration.input"
-        },
-        {
-            "source": "Strategy-Selection.sigmoided activation",
-            "target": "Strategy-Habituation.input"
-        },
-        {
-            "source": "Goal-CoS.sigmoided activation",
-            "target": "Strategy-Perseveration.peak detector"
-        },
-        {
             "source": "Goal-Habituation.activation",
             "target": "Static Gain 111.input"
         },
@@ -11280,10 +11264,6 @@
         {
             "source": "Goal-Selection.sigmoided activation",
             "target": "Goal-Habituation.input"
-        },
-        {
-            "source": "Goal-CoS.sigmoided activation",
-            "target": "Goal-Perseveration.peak detector"
         },
         {
             "source": "Goal-Selection-Signal.sigmoided activation",
@@ -11410,18 +11390,6 @@
             "target": "CoS-Action3.input"
         },
         {
-            "source": "Action Concepts.sigmoided activation",
-            "target": "Action1-Match.input"
-        },
-        {
-            "source": "Action Concepts.sigmoided activation",
-            "target": "Action2-Match.input"
-        },
-        {
-            "source": "Action Concepts.sigmoided activation",
-            "target": "Action3-Match.input"
-        },
-        {
             "source": "Projection 29.output",
             "target": "Action-Outcome-Detectio.input"
         },
@@ -11432,22 +11400,6 @@
         {
             "source": "Projection 4.output",
             "target": "Action-Outcome-Detectio.input"
-        },
-        {
-            "source": "Goal-Habituation-Gate.sigmoided activation",
-            "target": "Goal-Habituation.peak detector"
-        },
-        {
-            "source": "Goal-CoD.sigmoided activation",
-            "target": "Goal-Habituation-Gate.input"
-        },
-        {
-            "source": "Goal-CoS.sigmoided activation",
-            "target": "Goal-Habituation-Gate.input"
-        },
-        {
-            "source": "Goal-Habituation-Gate.sigmoided activation",
-            "target": "Strategy-Habituation.peak detector"
         },
         {
             "source": "red.sigmoided activation",
@@ -11594,10 +11546,6 @@
             "target": "Static Gain 67.input"
         },
         {
-            "source": "Static Gain 108.output",
-            "target": "Strategy-Selection.input"
-        },
-        {
             "source": "Goal-Selection.sigmoided activation",
             "target": "TCP-Goal-Writer.input"
         },
@@ -11702,10 +11650,6 @@
             "target": "Color Role Field.input"
         },
         {
-            "source": "Static Gain 98.output",
-            "target": "Intention-Selection.input"
-        },
-        {
             "source": "Supervisor-Task-Input.sigmoided activation",
             "target": "Vector To Scalars 2.input vector"
         },
@@ -11758,46 +11702,6 @@
             "target": "Scalars To Vector 6.scalar 2"
         },
         {
-            "source": "Goal-Intention.sigmoided activation",
-            "target": "Static Gain 116.input"
-        },
-        {
-            "source": "Static Gain 116.output",
-            "target": "Goal-Selection.input"
-        },
-        {
-            "source": "Scalars To Vector 6.vector",
-            "target": "Projection.input"
-        },
-        {
-            "source": "Projection.output",
-            "target": "Goal-Intention.input"
-        },
-        {
-            "source": "Static Gain 70.output",
-            "target": "Goal-Selection.input"
-        },
-        {
-            "source": "exploration-Task.sigmoided activation",
-            "target": "Intention-Perform-Action.input"
-        },
-        {
-            "source": "Goal-Selection-Signal.sigmoided activation",
-            "target": "Goal-Intention.input"
-        },
-        {
-            "source": "Static Gain 112.output",
-            "target": "Goal-Selection.input"
-        },
-        {
-            "source": "goal-reaching-task.sigmoided activation",
-            "target": "Goal-Intention.input"
-        },
-        {
-            "source": "Static Gain 109.output",
-            "target": "Strategy-Selection.input"
-        },
-        {
             "source": "Static Gain 104.output",
             "target": "Object-Recall-Intention.input"
         },
@@ -11808,14 +11712,6 @@
         {
             "source": "Reset-Signal.sigmoided activation",
             "target": "Static Gain 101.input"
-        },
-        {
-            "source": "Static Gain 101.output",
-            "target": "Sound-Recall.input"
-        },
-        {
-            "source": "Static Gain 101.output",
-            "target": "Action-Recall.input"
         },
         {
             "source": "Learning-Reward-Node.sigmoided activation",
@@ -11978,20 +11874,12 @@
             "target": "Precondition-loaded-Strategy.input"
         },
         {
-            "source": "Learning-Reward-Node.sigmoided activation",
-            "target": "Action-Perseveration.peak detector"
-        },
-        {
             "source": "Vector To Scalars 2.scalar 5",
             "target": "Goal-UnSelection-Signal.input"
         },
         {
             "source": "Goal-UnSelection-Signal.sigmoided activation",
             "target": "Static Gain 117.input"
-        },
-        {
-            "source": "Static Gain 117.output",
-            "target": "Goal-Intention.input"
         },
         {
             "source": "Goal-Selection-Signal.sigmoided activation",
@@ -12002,12 +11890,164 @@
             "target": "Goal-UnSelection-Signal.input"
         },
         {
-            "source": "Static Gain 117.output",
+            "source": "Action-Working-Memory.sigmoided activation",
+            "target": "Action3-Match.input"
+        },
+        {
+            "source": "Action-Working-Memory.sigmoided activation",
+            "target": "Action2-Match.input"
+        },
+        {
+            "source": "Action-Working-Memory.sigmoided activation",
+            "target": "Action1-Match.input"
+        },
+        {
+            "source": "CoS-Action1.sigmoided activation",
+            "target": "Scalars To Vector 7.scalar 0"
+        },
+        {
+            "source": "CoS-Action2.sigmoided activation",
+            "target": "Scalars To Vector 7.scalar 1"
+        },
+        {
+            "source": "CoS-Action3.sigmoided activation",
+            "target": "Scalars To Vector 7.scalar 2"
+        },
+        {
+            "source": "Scalars To Vector 7.vector",
+            "target": "Projection 19.input"
+        },
+        {
+            "source": "Projection 19.output",
+            "target": "CoS-Timer.input"
+        },
+        {
+            "source": "Projection 19.output",
+            "target": "Action-Habituation.peak detector"
+        },
+        {
+            "source": "Projection 24.output",
+            "target": "Goal-Intention.input"
+        },
+        {
+            "source": "Goal-Selection.sigmoided activation",
+            "target": "Projection 24.input"
+        },
+        {
+            "source": "Static Gain 101.output",
             "target": "Sound-Recall.input"
         },
         {
-            "source": "Static Gain 117.output",
+            "source": "Static Gain 101.output",
             "target": "Action-Recall.input"
+        },
+        {
+            "source": "exploration-Task.sigmoided activation",
+            "target": "Intention-Perform-Action.input"
+        },
+        {
+            "source": "exploration-Task.sigmoided activation",
+            "target": "Intention-Selection.input"
+        },
+        {
+            "source": "Static Gain 70.output",
+            "target": "Goal-Selection.input"
+        },
+        {
+            "source": "CoS-Timer.sigmoided activation",
+            "target": "Action-Timeout.input"
+        },
+        {
+            "source": "Projection 19.output",
+            "target": "Static Gain 98.input"
+        },
+        {
+            "source": "Static Gain 98.output",
+            "target": "Action-Timeout.input"
+        },
+        {
+            "source": "Static Gain 82.output",
+            "target": "CoS-Timer.input"
+        },
+        {
+            "source": "Goal-CoD.sigmoided activation",
+            "target": "Scalars To Vector 8.scalar 1"
+        },
+        {
+            "source": "Goal-CoS.sigmoided activation",
+            "target": "Scalars To Vector 8.scalar 0"
+        },
+        {
+            "source": "Scalars To Vector 8.vector",
+            "target": "Projection.input"
+        },
+        {
+            "source": "Projection.output",
+            "target": "Goal-Habituation.peak detector"
+        },
+        {
+            "source": "Scalars To Vector 8.vector",
+            "target": "Vector To Scalars 4.input vector"
+        },
+        {
+            "source": "Vector To Scalars 4.scalar 0",
+            "target": "Goal-Perseveration.peak detector"
+        },
+        {
+            "source": "Goal-CoD.sigmoided activation",
+            "target": "Scalars To Vector 9.scalar 1"
+        },
+        {
+            "source": "Goal-CoS.sigmoided activation",
+            "target": "Scalars To Vector 9.scalar 0"
+        },
+        {
+            "source": "Scalars To Vector 9.vector",
+            "target": "Projection 5.input"
+        },
+        {
+            "source": "Goal-Timeout.sigmoided activation",
+            "target": "Goal-Reset.input"
+        },
+        {
+            "source": "Goal-Reset.sigmoided activation",
+            "target": "Static Gain 108.input"
+        },
+        {
+            "source": "Projection 5.output",
+            "target": "Static Gain 109.input"
+        },
+        {
+            "source": "Static Gain 109.output",
+            "target": "Goal-Timeout.input"
+        },
+        {
+            "source": "Projection 5.output",
+            "target": "Goal-CoS-Timer.input"
+        },
+        {
+            "source": "Goal-CoS-Timer.sigmoided activation",
+            "target": "Goal-Timeout.input"
+        },
+        {
+            "source": "Static Gain 108.output",
+            "target": "Goal-Timeout.input"
+        },
+        {
+            "source": "Static Gain 108.output",
+            "target": "Goal-CoS-Timer.input"
+        },
+        {
+            "source": "Goal-Timeout.sigmoided activation",
+            "target": "Static Gain 103.input"
+        },
+        {
+            "source": "Static Gain 103.output",
+            "target": "Goal-Selection.input"
+        },
+        {
+            "source": "goal-reaching-task.sigmoided activation",
+            "target": "Goal-Selection.input"
         }
     ],
     "records": {
@@ -12097,15 +12137,6 @@
         },
         {
             "type": "step",
-            "step": "Action-Perseveration",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-728",
-            "positionY": "-952"
-        },
-        {
-            "type": "step",
             "step": "Action-Projection",
             "display style": "ICON_AND_TEXT",
             "width": "124",
@@ -12128,8 +12159,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "336",
-            "positionY": "-644"
+            "positionX": "532",
+            "positionY": "-434"
         },
         {
             "type": "step",
@@ -12146,8 +12177,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "336",
-            "positionY": "-588"
+            "positionX": "532",
+            "positionY": "-378"
         },
         {
             "type": "step",
@@ -12362,8 +12393,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "336",
-            "positionY": "-532"
+            "positionX": "532",
+            "positionY": "-322"
         },
         {
             "type": "step",
@@ -12952,6 +12983,15 @@
         },
         {
             "type": "step",
+            "step": "Goal-CoS-Timer",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-70",
+            "positionY": "-1288"
+        },
+        {
+            "type": "step",
             "step": "Goal-Habituation",
             "display style": "ICON_AND_TEXT",
             "width": "124",
@@ -12961,20 +13001,11 @@
         },
         {
             "type": "step",
-            "step": "Goal-Habituation-Gate",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-2422",
-            "positionY": "-1316"
-        },
-        {
-            "type": "step",
             "step": "Goal-Intention",
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-1484",
+            "positionX": "-1456",
             "positionY": "-1456"
         },
         {
@@ -13033,12 +13064,21 @@
         },
         {
             "type": "step",
+            "step": "Goal-Reset",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-70",
+            "positionY": "-1400"
+        },
+        {
+            "type": "step",
             "step": "Goal-Selection",
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
             "positionX": "-1736",
-            "positionY": "-1358"
+            "positionY": "-1386"
         },
         {
             "type": "step",
@@ -13048,6 +13088,15 @@
             "height": "40",
             "positionX": "-2030",
             "positionY": "-1666"
+        },
+        {
+            "type": "step",
+            "step": "Goal-Timeout",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-70",
+            "positionY": "-1344"
         },
         {
             "type": "step",
@@ -13102,15 +13151,6 @@
             "height": "40",
             "positionX": "-2534",
             "positionY": "-266"
-        },
-        {
-            "type": "step",
-            "step": "Intention-CoS",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "336",
-            "positionY": "-476"
         },
         {
             "type": "step",
@@ -13388,8 +13428,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-1694",
-            "positionY": "-1848"
+            "positionX": "-2128",
+            "positionY": "-1316"
         },
         {
             "type": "step",
@@ -13474,6 +13514,15 @@
         },
         {
             "type": "step",
+            "step": "Projection 19",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "336",
+            "positionY": "-280"
+        },
+        {
+            "type": "step",
             "step": "Projection 2",
             "display style": "ICON_ONLY",
             "width": "40",
@@ -13516,6 +13565,15 @@
             "height": "40",
             "positionX": "-728",
             "positionY": "-1218"
+        },
+        {
+            "type": "step",
+            "step": "Projection 24",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-1526",
+            "positionY": "-1456"
         },
         {
             "type": "step",
@@ -13588,6 +13646,15 @@
             "height": "40",
             "positionX": "-560",
             "positionY": "-2002"
+        },
+        {
+            "type": "step",
+            "step": "Projection 5",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-308",
+            "positionY": "-1344"
         },
         {
             "type": "step",
@@ -14059,6 +14126,33 @@
         },
         {
             "type": "step",
+            "step": "Scalars To Vector 7",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "266",
+            "positionY": "-280"
+        },
+        {
+            "type": "step",
+            "step": "Scalars To Vector 8",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-2254",
+            "positionY": "-1316"
+        },
+        {
+            "type": "step",
+            "step": "Scalars To Vector 9",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-378",
+            "positionY": "-1344"
+        },
+        {
+            "type": "step",
             "step": "Sound Concepts",
             "display style": "ICON_AND_TEXT",
             "width": "124",
@@ -14243,8 +14337,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "518",
-            "positionY": "-476"
+            "positionX": "98",
+            "positionY": "-1344"
         },
         {
             "type": "step",
@@ -14288,8 +14382,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-1694",
-            "positionY": "-896"
+            "positionX": "98",
+            "positionY": "-1400"
         },
         {
             "type": "step",
@@ -14297,8 +14391,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-1694",
-            "positionY": "-952"
+            "positionX": "-168",
+            "positionY": "-1344"
         },
         {
             "type": "step",
@@ -14362,15 +14456,6 @@
             "height": "40",
             "positionX": "1834",
             "positionY": "994"
-        },
-        {
-            "type": "step",
-            "step": "Static Gain 116",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "-1316",
-            "positionY": "-1456"
         },
         {
             "type": "step",
@@ -14963,8 +15048,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "504",
-            "positionY": "-588"
+            "positionX": "700",
+            "positionY": "-378"
         },
         {
             "type": "step",
@@ -15089,8 +15174,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "504",
-            "positionY": "-644"
+            "positionX": "700",
+            "positionY": "-434"
         },
         {
             "type": "step",
@@ -15242,8 +15327,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-560",
-            "positionY": "-952"
+            "positionX": "406",
+            "positionY": "-280"
         },
         {
             "type": "step",
@@ -15262,24 +15347,6 @@
             "height": "40",
             "positionX": "-2086",
             "positionY": "-1036"
-        },
-        {
-            "type": "step",
-            "step": "Strategy-Habituation",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-1862",
-            "positionY": "-896"
-        },
-        {
-            "type": "step",
-            "step": "Strategy-Perseveration",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-1862",
-            "positionY": "-952"
         },
         {
             "type": "step",
@@ -15553,6 +15620,15 @@
         },
         {
             "type": "step",
+            "step": "Vector To Scalars 4",
+            "display style": "ICON_ONLY",
+            "width": "40",
+            "height": "40",
+            "positionX": "-2128",
+            "positionY": "-1372"
+        },
+        {
+            "type": "step",
             "step": "action 2",
             "display style": "ICON_AND_TEXT",
             "width": "124",
@@ -15732,10 +15808,10 @@
         }
     ],
     "ui view": {
-        "ScrollBarX": "-1223",
-        "ScrollBarY": "-920",
-        "SliderPosX": "-1223",
-        "SliderPosY": "-920",
+        "ScrollBarX": "-1384",
+        "ScrollBarY": "-950",
+        "SliderPosX": "-1384",
+        "SliderPosY": "-950",
         "Zoom": "0.56999999999999995"
     },
     "ui generic": {
