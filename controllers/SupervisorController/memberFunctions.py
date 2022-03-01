@@ -3,68 +3,64 @@ import numpy as np
 from settings import *
 from util import *
 
-def phaseResetComplete(currentState, phaseEpisode, clock, episodeTimer):
-    if clock.reading > Tinit:
-        print("start experiment...")
+def phasePauseComplete(currentState, phaseEpisode, clock, episodeTimer):
+    if clock.reading > Tinit and episodeTimer.reading > 2:
+        print("pause complete...")
         return 1
     else:
+        if episodeTimer.reading == 0:
+            episodeTimer.start()
         return 0
         
 def phaseExploreComplete(currentState, phaseEpisode, clock, episodeTimer):
-    if currentState.phase['actionCounter'].all(axis=None) > 0 and episodeTimer.reading > episodeTimeout:
-    #if clock.reading > 2*Tinit:
+    #if currentState.phase['actionCounter'].all(axis=None) > 0 and episodeTimer.reading > episodeTimeout:
+    if clock.reading > 2*Tinit:
         print("learning phase done...")
         return 1
     else:
         return 0
         
-def phaseSTaskComplete(currentState, phaseEpisode, clock, episodeTimer):
+def phaseTestComplete(currentState, phaseEpisode, clock, episodeTimer):
     if phaseEpisode > N_goal:
-        print("play sound phase done...")
+        print("test phase done...")
         return 1
     else:
         return 0
         
-def phaseSelectionComplete(currentState, phaseEpisode, clock, episodeTimer):
-    if any([g > stateThreshold for g in currentState.epuck['goal']]) and episodeTimer.reading > episodeTimeout:
-        print("goal selection phase done...")
+def phaseSwitchComplete(currentState, phaseEpisode, clock, episodeTimer):
+    if phaseEpisode > 2:
+        print("switch phase done...")
         return 1
     else:
         return 0
         
-def phaseStabilityComplete(currentState, phaseEpisode, clock, episodeTimer):
-    if phaseEpisode > N_stability:
-        print("goal reaching phase done...")
+def phaseRepititionComplete(currentState, phaseEpisode, clock, episodeTimer):
+    if phaseEpisode > N_repitition:
+        print("repitition phase done...")
         return 1
     else:
         return 0
         
-def phaseATaskComplete(currentState, phaseEpisode, clock, episodeTimer):
+def phaseEndComplete(currentState, phaseEpisode, clock, episodeTimer):
     if episodeTimer.reading > 2:
-        print("action task done...")
         return 1
     else:
         return 0
         
-def phaseResetEpisode():
+def phasePauseEpisode(self):
+    # wait
+    self.episodeTimer.start()
     return 0
     
 def phaseExploreEpisode(self):
-    deleteObjects(self)
     translations = randomPositions(self.currentState.epuck['position'], self.robotIDs)
     for ID, translation in translations.items():
         self.loadRobot(kind='button', ID=ID, translation=translation)
     return 1
         
-def phaseSTaskEpisode(self):
-    # place target and distractor for low pitch goal
-    deleteObjects(self)
-    if self.currentState.epuck['goal'][self.currentState.phase['phase']-2] < stateThreshold:
-        # wait until goal has formed
-        print(self.currentState.epuck['goal'])
-        self.episodeTimer.start()
-        return 0
-    else:
+def phaseTestEpisode(self):
+    # place target and distractor for goal
+    if any([g > stateThreshold for g in self.currentState.epuck['goal']]):
         # reset epuck position
         transField = self.activeRobots['e-puck'].getField("translation")
         #orienField = self.activeRobots['e-puck'].getField("orientation")
@@ -77,36 +73,81 @@ def phaseSTaskEpisode(self):
                 distractorObjects += [ID]
             else:
                 targetObjects += [ID]
-                
-        #place target
+        
+        #place objects
         translation = transField.getSFVec3f()
         translation[0] -= self.activeRobots['e-puck'].getOrientation()[2] * objectPlaceDistance
         translation[1] = 0.01
         translation[2] -= self.activeRobots['e-puck'].getOrientation()[0] * objectPlaceDistance 
-        translation[0] += objectMinimumDistance/2 * translation[2]
-        translation[2] -= objectMinimumDistance/2 * translation[0]
-        ID = random.choice(targetObjects)
-        self.loadRobot(kind='button', ID=ID, translation=translation)
-        print("supervisor places target object: {}".format(ID))
-        
-        translation [0] -= objectMinimumDistance * translation[2]
-        translation [2] += objectMinimumDistance * translation[0]
-        ID = random.choice(distractorObjects)
-        self.loadRobot(kind='button', ID=ID, translation=translation)
-        print("supervisor places ditractor object: {}".format(ID))
-        self.targetTimer.start()
+        if self.phaseEpisode == 0 or self.phaseEpisode == 2:
+            translation[0] += objectMinimumDistance/2 * translation[2]
+            translation[2] -= objectMinimumDistance/2 * translation[0]
+            ID = random.choice(distractorObjects)
+            self.loadRobot(kind='button', ID=ID, translation=translation)
+            print("supervisor places distractor object: {}".format(ID))
+            self.distractorTimer.start()
+        if self.phaseEpisode >= 1:
+            translation[0] -= objectMinimumDistance/2 * translation[2]
+            translation[2] += objectMinimumDistance/2 * translation[0]
+            ID = random.choice(targetObjects)
+            self.loadRobot(kind='button', ID=ID, translation=translation)
+            print("supervisor places target object: {}".format(ID))
+            self.targetTimer.start()
         return 1
+    else:
+        # wait until goal has formed
+        self.episodeTimer.start()
+        return 0
     
-def phaseSelectionEpisode(self):
-    # wait for goal
-    deleteObjects(self)
-    self.episodeTimer.start()
-    return 0
+def phaseSwitchEpisode(self):
+    if any([g > stateThreshold for g in self.currentState.epuck['goal']]):
+        # reset epuck position
+        transField = self.activeRobots['e-puck'].getField("translation")
+        #orienField = self.activeRobots['e-puck'].getField("orientation")
+        transField.setSFVec3f([0, 0, 0])
+        
+        # determine distractor and target objects and sounds
+        distractorObjects = []
+        targetObjects = []
+        distractorSounds = np.zeros(len(self.currentState.epuck['goal']))
+        i = 0
+        while i < len(self.currentState.epuck['goal']):
+            if self.currentState.epuck['goal'][i] > stateThreshold:
+                distractorSounds[i] = 0
+                for ID in self.robotIDs:
+                    if self.contingencies[ID][str(i)] == 0:
+                        distractorObjects += [ID]
+                    else:
+                        targetObjects += [ID]
+            else:
+                distractorSounds[i] = 1
+            i += 1
+                
+        if self.phaseEpisode == 0:
+            translation = transField.getSFVec3f()
+            translation[0] -= self.activeRobots['e-puck'].getOrientation()[2] * objectPlaceDistance
+            translation[1] = 0.01
+            translation[2] -= self.activeRobots['e-puck'].getOrientation()[0] * objectPlaceDistance 
+            ID = random.choice(distractorObjects)
+            self.loadRobot(kind='button', ID=ID, translation=translation)
+            print("supervisor places distractor object: {}".format(ID))
+            self.distractorTimer.start()
+        else: 
+            translation = transField.getSFVec3f()
+            translation[0] -= self.activeRobots['e-puck'].getOrientation()[2] * objectPlaceDistance
+            translation[1] = 0.01
+            translation[2] -= self.activeRobots['e-puck'].getOrientation()[0] * objectPlaceDistance 
+            ID = random.choice(targetObjects)
+            self.loadRobot(kind='button', ID=ID, translation=translation)
+            print("supervisor places target object: {}".format(ID))
+            self.targetTimer.start()
+        return 1
+    else:
+        # wait for goal
+        self.episodeTimer.start()
+        return 0
     
-def phaseStabilityEpisode(self):
-    # delete active objects
-    deleteObjects(self)
-
+def phaseRepititionEpisode(self):
     # determine distractor and target objects and sounds
     distractorObjects = []
     targetObjects = []
@@ -202,13 +243,12 @@ def phaseStabilityEpisode(self):
         self.soundTimer.start()
     return 1
     
-def phaseATaskEpisode(self):
-    deleteObjects(self)
+def phaseEndEpisode(self):
     self.episodeTimer.start()
     return 0
     
-phaseComplete = [phaseResetComplete, phaseExploreComplete, phaseSTaskComplete, phaseSTaskComplete, phaseSTaskComplete, phaseSelectionComplete, phaseStabilityComplete, phaseATaskComplete]
-phaseEpisode = [phaseResetEpisode, phaseExploreEpisode, phaseSTaskEpisode, phaseSTaskEpisode, phaseSTaskEpisode, phaseSelectionEpisode, phaseStabilityEpisode, phaseATaskEpisode]
+phaseComplete = [phasePauseComplete, phaseExploreComplete, phaseTestComplete, phaseTestComplete, phaseTestComplete, phaseSwitchComplete, phaseRepititionComplete, phaseEndComplete]
+phaseEpisode = [phasePauseEpisode, phaseExploreEpisode, phaseTestEpisode, phaseTestEpisode, phaseTestEpisode, phaseSwitchEpisode, phaseRepititionEpisode, phaseEndEpisode]
 
 def loadRobot(self, kind, ID, translation=[0, 0.01, 0]):
     # creates robotString from config setting and creates robot
@@ -272,12 +312,20 @@ def updatePhase(self):
     # phase completion conditions
     if phaseComplete[self.phaseList[self.phaseIdx]](self.currentState, self.phaseEpisode, self.clock, self.episodeTimer):
         # new phase
+        deleteObjects(self)
         if self.phaseIdx < len(self.phaseList)-1:
             self.phaseIdx += 1
             self.currentState.phase['phase'] = self.phaseList[self.phaseIdx]# init phase
             print("init phase {}".format(self.phaseList[self.phaseIdx]))
             self.phaseEpisode = 0
-            self.startActionEpisode()
+            self.episodeTimer.reset()
+            self.episodeTimer.start()
+            self.distractorTimer.stop()
+            self.distractorTimer.reset()
+            self.targetTimer.stop()
+            self.targetTimer.reset()
+            self.waitTimer.stop()
+            self.waitTimer.reset()
         else:
             # end experiemnt
             print("cleaning up...")
@@ -291,7 +339,13 @@ def updatePhase(self):
 
     # start new action episode
     if self.episodeTimer.reading > episodeTimeout or self.distractorTimer.reading > distractorTimeout or self.soundTimer.reading > soundTimeout or self.targetTimer.reading > targetTimeout:
-        self.startActionEpisode()
+        deleteObjects(self)
+        if not self.waitTimer.run: self.waitTimer.start()
+        #print("T{}".format(self.waitTimer.reading-5))
+        if self.waitTimer.reading > placeWaitTime:
+            self.startActionEpisode()
+            self.waitTimer.stop()
+            self.waitTimer.reset()
 
 def updateState(self):
     # send task information to epuck and que sounds
@@ -364,7 +418,7 @@ def updateState(self):
     self.targetTimer.update()
     self.soundTimer.update()
     self.clock.update()
-    
+    self.waitTimer.update()
     # reset epuck if out of bounds
     if abs(self.activeRobots['e-puck'].getPosition()[0]) > resetBound or abs(self.activeRobots['e-puck'].getPosition()[2]) > resetBound:
         transField = self.activeRobots['e-puck'].getField("translation")
