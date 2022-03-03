@@ -2,6 +2,13 @@
 
 #DFT Tuning/todos
 #tuning of memory traces
+#positive memory traces -> schnelleres ansteigen und absteigen
+#timer für belief activation anpassen
+
+#webots -> experiemnt sequenzen anpassen
+# -> memory traces nach jeder sequenz rücksetzen
+# -> nach test -> einzeln perseveration und habituation testen
+# test für unterschiedliche strategien zum selben sound testen
 
 import datetime, yaml, os, time
 import numpy as np
@@ -52,6 +59,7 @@ init = 0
 tic = time.time()
 count = supervisor.currentState.phase['actionCounter'].copy()
 f_count.write("T:\t{}\n{}\n".format(supervisor.clock.reading, supervisor.currentState.phase['actionCounter']))
+print("start experiment...")
 while supervisor.step(timestep) != -1:
     supervisor.updateState()
     supervisor.updatePhase()
@@ -77,10 +85,10 @@ while supervisor.step(timestep) != -1:
     f_ev.write("{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format(supervisor.clock.reading,supervisor.currentState.phase['phase'],
                                            supervisor.phaseEpisode,
                                            supervisor.currentState.phase['actionEpisode'],
-                                           supervisor.currentState.epuck['goal'],
-                                           supervisor.currentState.epuck['action'][:,0],
+                                           list(supervisor.currentState.epuck['goal']),
+                                           list(supervisor.currentState.epuck['action'][:,0]),
                                            supervisor.currentState.epuck['actionTarget'][0],
-                                           sound))
+                                           list(sound)))
     f_ev.flush()
     
     if not count.equals(supervisor.currentState.phase['actionCounter']):

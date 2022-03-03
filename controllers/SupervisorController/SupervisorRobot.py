@@ -64,6 +64,7 @@ class SupervisorRobot(Supervisor):
         self.distractorTimer = Timer(self.getBasicTimeStep()/1000)
         self.targetTimer = Timer(self.getBasicTimeStep()/1000)
         self.soundTimer = Timer(self.getBasicTimeStep()/1000)
+        self.waitTimer = Timer(self.getBasicTimeStep()/1000)
 
         self.receiver.setChannel(-1)
         self.receiver.enable(int(self.getBasicTimeStep()))
