@@ -9,20 +9,260 @@
                 "cedar.proc.experiment.action.EndTrial": {
                     "Reset type": "Reset",
                     "Success": "true",
-                    "Message": "experiment done",
+                    "Message": "experiment done...",
                     "stop triggers": "true"
                 }
             },
             "Condition": {
                 "type": "cedar.proc.experiment.condition.OnMatrixValue",
                 "Step Data": {
-                    "element path": "Action-Task",
+                    "element path": "End",
                     "parameter path": "sigmoided activation"
                 },
                 "check full matrix": "false",
                 "number of elements": "1",
                 "compare operator": ">",
                 "value": "0.80000000000000004"
+            }
+        },
+        "cedar.proc.experiment.ActionSequence": {
+            "name": "ActionSequence2",
+            "ActionSet": {
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Goal-Habituation"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                },
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Goal-Perseveration"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                },
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Action-Habituation"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                }
+            },
+            "Condition": {
+                "type": "cedar.proc.experiment.condition.OnMatrixValue",
+                "Step Data": {
+                    "element path": "Exploration",
+                    "parameter path": "sigmoided activation"
+                },
+                "check full matrix": "false",
+                "number of elements": "1",
+                "compare operator": ">",
+                "value": "0.5"
+            }
+        },
+        "cedar.proc.experiment.ActionSequence": {
+            "name": "ActionSequence3",
+            "ActionSet": {
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Goal-Habituation"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                },
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Goal-Perseveration"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                },
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Action-Habituation"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                }
+            },
+            "Condition": {
+                "type": "cedar.proc.experiment.condition.OnMatrixValue",
+                "Step Data": {
+                    "element path": "Test Low-Pitch",
+                    "parameter path": "sigmoided activation"
+                },
+                "check full matrix": "false",
+                "number of elements": "1",
+                "compare operator": ">",
+                "value": "0.5"
+            }
+        },
+        "cedar.proc.experiment.ActionSequence": {
+            "name": "ActionSequence",
+            "ActionSet": {
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Action-Habituation"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                },
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Goal-Habituation"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                },
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Goal-Perseveration"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                }
+            },
+            "Condition": {
+                "type": "cedar.proc.experiment.condition.OnMatrixValue",
+                "Step Data": {
+                    "element path": "Test Medium-Pitch",
+                    "parameter path": "sigmoided activation"
+                },
+                "check full matrix": "false",
+                "number of elements": "1",
+                "compare operator": ">",
+                "value": "0.5"
+            }
+        },
+        "cedar.proc.experiment.ActionSequence": {
+            "name": "ActionSequence",
+            "ActionSet": {
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Action-Habituation"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                },
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Goal-Habituation"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                },
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Goal-Perseveration"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                }
+            },
+            "Condition": {
+                "type": "cedar.proc.experiment.condition.OnMatrixValue",
+                "Step Data": {
+                    "element path": "Test High-Pitch",
+                    "parameter path": "sigmoided activation"
+                },
+                "check full matrix": "false",
+                "number of elements": "1",
+                "compare operator": ">",
+                "value": "0.5"
+            }
+        },
+        "cedar.proc.experiment.ActionSequence": {
+            "name": "ActionSequence",
+            "ActionSet": {
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Action-Habituation"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                },
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Goal-Perseveration"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                },
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Goal-Habituation"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                }
+            },
+            "Condition": {
+                "type": "cedar.proc.experiment.condition.OnMatrixValue",
+                "Step Data": {
+                    "element path": "Voluntary Task Switching",
+                    "parameter path": "sigmoided activation"
+                },
+                "check full matrix": "false",
+                "number of elements": "1",
+                "compare operator": ">",
+                "value": "0.5"
+            }
+        },
+        "cedar.proc.experiment.ActionSequence": {
+            "name": "ActionSequence",
+            "ActionSet": {
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Action-Habituation"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                },
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Goal-Perseveration"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                },
+                "cedar.proc.experiment.action.CallElementAction": {
+                    "connectable": {
+                        "connectable path": "Goal-Habituation"
+                    },
+                    "action": {
+                        "action": "reset memory"
+                    }
+                }
+            },
+            "Condition": {
+                "type": "cedar.proc.experiment.condition.OnMatrixValue",
+                "Step Data": {
+                    "element path": "Voluntary Task Repitition",
+                    "parameter path": "sigmoided activation"
+                },
+                "check full matrix": "false",
+                "number of elements": "1",
+                "compare operator": ">",
+                "value": "0.30000000000000004"
             }
         }
     },
