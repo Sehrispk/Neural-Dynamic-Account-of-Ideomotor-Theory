@@ -13,8 +13,8 @@ def phasePauseComplete(currentState, phaseEpisode, clock, episodeTimer):
         return 0
         
 def phaseExploreComplete(currentState, phaseEpisode, clock, episodeTimer):
-    #if currentState.phase['actionCounter'].all(axis=None) > 0 and episodeTimer.reading > episodeTimeout:
-    if clock.reading > 2*Tinit:
+    if currentState.phase['actionCounter'].all(axis=None) > 0 and episodeTimer.reading > episodeTimeout:
+    #if clock.reading > 2*Tinit:
         print("learning phase done...")
         return 1
     else:
