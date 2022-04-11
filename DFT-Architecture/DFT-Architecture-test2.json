@@ -161,53 +161,6 @@
             },
             "comments": ""
         },
-        "cedar.dynamics.NeuralField": {
-            "name": "Action-Color-Projection",
-            "activation as output": "false",
-            "discrete metric (workaround)": "true",
-            "update stepIcon according to output": "true",
-            "threshold for updating the stepIcon": "0.80000000000000004",
-            "dimensionality": "1",
-            "sizes": [
-                "6"
-            ],
-            "time scale": "100",
-            "resting level": "-0.75",
-            "input noise gain": "0.10000000000000001",
-            "multiplicative noise (input)": "false",
-            "multiplicative noise (activation)": "false",
-            "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
-            },
-            "global inhibition": "0",
-            "lateral kernels": "",
-            "lateral kernel convolution": {
-                "borderType": "Zero",
-                "mode": "Same",
-                "engine": {
-                    "type": "cedar.aux.conv.OpenCV"
-                },
-                "alternate even kernel center": "false"
-            },
-            "noise correlation kernel": {
-                "dimensionality": "1",
-                "anchor": [
-                    "0"
-                ],
-                "amplitude": "0",
-                "sigmas": [
-                    "3"
-                ],
-                "normalize": "true",
-                "shifts": [
-                    "0"
-                ],
-                "limit": "5"
-            },
-            "comments": ""
-        },
         "cedar.dynamics.Preshape": {
             "name": "Action-Habituation",
             "dimensionality": "2",
@@ -1171,97 +1124,7 @@
             "dimensionality": "0",
             "sizes": "",
             "time scale": "100",
-            "resting level": "-1.75",
-            "input noise gain": "0.10000000000000001",
-            "multiplicative noise (input)": "false",
-            "multiplicative noise (activation)": "false",
-            "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
-            },
-            "global inhibition": "0",
-            "lateral kernels": "",
-            "lateral kernel convolution": {
-                "borderType": "Zero",
-                "mode": "Same",
-                "engine": {
-                    "type": "cedar.aux.conv.OpenCV"
-                },
-                "alternate even kernel center": "false"
-            },
-            "noise correlation kernel": {
-                "dimensionality": "1",
-                "anchor": [
-                    "0"
-                ],
-                "amplitude": "0",
-                "sigmas": [
-                    "3"
-                ],
-                "normalize": "true",
-                "shifts": [
-                    "0"
-                ],
-                "limit": "5"
-            },
-            "comments": ""
-        },
-        "cedar.dynamics.NeuralField": {
-            "name": "CoS-Color In Attention",
-            "activation as output": "false",
-            "discrete metric (workaround)": "false",
-            "update stepIcon according to output": "true",
-            "threshold for updating the stepIcon": "0.80000000000000004",
-            "dimensionality": "0",
-            "sizes": "",
-            "time scale": "100",
-            "resting level": "-1.75",
-            "input noise gain": "0.10000000000000001",
-            "multiplicative noise (input)": "false",
-            "multiplicative noise (activation)": "false",
-            "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
-            },
-            "global inhibition": "0",
-            "lateral kernels": "",
-            "lateral kernel convolution": {
-                "borderType": "Zero",
-                "mode": "Same",
-                "engine": {
-                    "type": "cedar.aux.conv.OpenCV"
-                },
-                "alternate even kernel center": "false"
-            },
-            "noise correlation kernel": {
-                "dimensionality": "1",
-                "anchor": [
-                    "0"
-                ],
-                "amplitude": "0",
-                "sigmas": [
-                    "3"
-                ],
-                "normalize": "true",
-                "shifts": [
-                    "0"
-                ],
-                "limit": "5"
-            },
-            "comments": ""
-        },
-        "cedar.dynamics.NeuralField": {
-            "name": "CoS-Is In Front Of",
-            "activation as output": "false",
-            "discrete metric (workaround)": "false",
-            "update stepIcon according to output": "true",
-            "threshold for updating the stepIcon": "0.80000000000000004",
-            "dimensionality": "0",
-            "sizes": "",
-            "time scale": "100",
-            "resting level": "-1.75",
+            "resting level": "-0.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -1306,7 +1169,7 @@
             "dimensionality": "0",
             "sizes": "",
             "time scale": "100",
-            "resting level": "-2.75",
+            "resting level": "-1.75",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -4344,6 +4207,53 @@
             "comments": ""
         },
         "cedar.dynamics.NeuralField": {
+            "name": "Motor-Gate",
+            "activation as output": "false",
+            "discrete metric (workaround)": "false",
+            "update stepIcon according to output": "true",
+            "threshold for updating the stepIcon": "0.80000000000000004",
+            "dimensionality": "1",
+            "sizes": [
+                "52"
+            ],
+            "time scale": "100",
+            "resting level": "-0.75",
+            "input noise gain": "0.10000000000000001",
+            "multiplicative noise (input)": "false",
+            "multiplicative noise (activation)": "false",
+            "sigmoid": {
+                "type": "cedar.aux.math.AbsSigmoid",
+                "threshold": "0",
+                "beta": "100"
+            },
+            "global inhibition": "0",
+            "lateral kernels": "",
+            "lateral kernel convolution": {
+                "borderType": "Zero",
+                "mode": "Same",
+                "engine": {
+                    "type": "cedar.aux.conv.OpenCV"
+                },
+                "alternate even kernel center": "false"
+            },
+            "noise correlation kernel": {
+                "dimensionality": "1",
+                "anchor": [
+                    "0"
+                ],
+                "amplitude": "0",
+                "sigmas": [
+                    "3"
+                ],
+                "normalize": "true",
+                "shifts": [
+                    "0"
+                ],
+                "limit": "5"
+            },
+            "comments": ""
+        },
+        "cedar.dynamics.NeuralField": {
             "name": "Object-Gate",
             "activation as output": "false",
             "discrete metric (workaround)": "true",
@@ -4673,52 +4583,7 @@
             "dimensionality": "0",
             "sizes": "",
             "time scale": "100",
-            "resting level": "-0.75",
-            "input noise gain": "0.10000000000000001",
-            "multiplicative noise (input)": "false",
-            "multiplicative noise (activation)": "false",
-            "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
-            },
-            "global inhibition": "0",
-            "lateral kernels": "",
-            "lateral kernel convolution": {
-                "borderType": "Zero",
-                "mode": "Same",
-                "engine": {
-                    "type": "cedar.aux.conv.OpenCV"
-                },
-                "alternate even kernel center": "false"
-            },
-            "noise correlation kernel": {
-                "dimensionality": "1",
-                "anchor": [
-                    "0"
-                ],
-                "amplitude": "0",
-                "sigmas": [
-                    "3"
-                ],
-                "normalize": "true",
-                "shifts": [
-                    "0"
-                ],
-                "limit": "5"
-            },
-            "comments": ""
-        },
-        "cedar.dynamics.NeuralField": {
-            "name": "Precondition-Oriented To Object",
-            "activation as output": "false",
-            "discrete metric (workaround)": "false",
-            "update stepIcon according to output": "true",
-            "threshold for updating the stepIcon": "0.80000000000000004",
-            "dimensionality": "0",
-            "sizes": "",
-            "time scale": "100",
-            "resting level": "-0.75",
+            "resting level": "-0.5",
             "input noise gain": "0.10000000000000001",
             "multiplicative noise (input)": "false",
             "multiplicative noise (activation)": "false",
@@ -5020,28 +4885,11 @@
         },
         "cedar.processing.Projection": {
             "name": "Projection 3",
-            "dimension mapping": {
-                "0": "4294967295",
-                "1": "1",
-                "2": "0"
-            },
+            "dimension mapping": "",
             "output dimensionality": "2",
             "output dimension sizes": [
                 "20",
                 "52"
-            ],
-            "compression type": "MAXIMUM",
-            "comments": ""
-        },
-        "cedar.processing.Projection": {
-            "name": "Projection 31",
-            "dimension mapping": {
-                "0": "1"
-            },
-            "output dimensionality": "2",
-            "output dimension sizes": [
-                "6",
-                "3"
             ],
             "compression type": "MAXIMUM",
             "comments": ""
@@ -5150,51 +4998,6 @@
             "sigmoid": {
                 "type": "cedar.aux.math.HeavisideSigmoid",
                 "threshold": "0"
-            },
-            "global inhibition": "0",
-            "lateral kernels": "",
-            "lateral kernel convolution": {
-                "borderType": "Zero",
-                "mode": "Same",
-                "engine": {
-                    "type": "cedar.aux.conv.OpenCV"
-                },
-                "alternate even kernel center": "false"
-            },
-            "noise correlation kernel": {
-                "dimensionality": "1",
-                "anchor": [
-                    "0"
-                ],
-                "amplitude": "0",
-                "sigmas": [
-                    "3"
-                ],
-                "normalize": "true",
-                "shifts": [
-                    "0"
-                ],
-                "limit": "5"
-            },
-            "comments": ""
-        },
-        "cedar.dynamics.NeuralField": {
-            "name": "Recall-Goal-Match-CoS",
-            "activation as output": "false",
-            "discrete metric (workaround)": "false",
-            "update stepIcon according to output": "true",
-            "threshold for updating the stepIcon": "0.80000000000000004",
-            "dimensionality": "0",
-            "sizes": "",
-            "time scale": "100",
-            "resting level": "-1.75",
-            "input noise gain": "0.10000000000000001",
-            "multiplicative noise (input)": "false",
-            "multiplicative noise (activation)": "false",
-            "sigmoid": {
-                "type": "cedar.aux.math.AbsSigmoid",
-                "threshold": "0",
-                "beta": "100"
             },
             "global inhibition": "0",
             "lateral kernels": "",
@@ -6533,7 +6336,7 @@
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 11",
-            "gain factor": "-1",
+            "gain factor": "-0.29999999999999999",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -6572,18 +6375,13 @@
             "comments": ""
         },
         "cedar.processing.StaticGain": {
-            "name": "Static Gain 12",
-            "gain factor": "-1",
-            "comments": ""
-        },
-        "cedar.processing.StaticGain": {
             "name": "Static Gain 120",
             "gain factor": "0.25",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
             "name": "Static Gain 13",
-            "gain factor": "-1",
+            "gain factor": "-0.29999999999999999",
             "comments": ""
         },
         "cedar.processing.StaticGain": {
@@ -8204,12 +8002,9 @@
             "start with all": "true",
             "listeners": [
                 "Belief-Node 1",
-                "CoS-Color In Attention",
                 "Precondition-Color In Attention",
                 "Intention In Action-Orient To Object",
                 "CoS-Orient To Object",
-                "Precondition-Oriented To Object",
-                "CoS-Is In Front Of",
                 "Precondition-Is In Front Of",
                 "Intention In Action-Action1",
                 "CoS-Action1",
@@ -8304,7 +8099,6 @@
                 "Color-Change-Inhibition",
                 "Goal-Change-Detection",
                 "Goal-Change-Inhibition",
-                "Action-Color-Projection",
                 "Action-Projection",
                 "Intention-Selection",
                 "Goal-Recall-CoS",
@@ -8322,7 +8116,6 @@
                 "Action-Habituation",
                 "Goal-Intention",
                 "Goal-Selection",
-                "Recall-Goal-Match-CoS",
                 "Recall-Precondition",
                 "Intention-Remember-Strategy",
                 "Strategy-Selection",
@@ -8376,7 +8169,8 @@
                 "Strategie-Gate",
                 "Break Status",
                 "Color-Mem-Gate",
-                "Action-Mem-Gate"
+                "Action-Mem-Gate",
+                "Motor-Gate"
             ]
         }
     },
@@ -8412,14 +8206,6 @@
         {
             "source": "Color-matching-Field.sigmoided activation",
             "target": "Projection 6.input"
-        },
-        {
-            "source": "Projection 6.output",
-            "target": "CoS-Color In Attention.input"
-        },
-        {
-            "source": "CoS-Color In Attention.sigmoided activation",
-            "target": "Static Gain 9.input"
         },
         {
             "source": "Precondition-Color In Attention.sigmoided activation",
@@ -8466,14 +8252,6 @@
             "target": "Projection 10.input"
         },
         {
-            "source": "Projection 10.output",
-            "target": "CoS-Is In Front Of.input"
-        },
-        {
-            "source": "CoS-Is In Front Of.sigmoided activation",
-            "target": "Static Gain 13.input"
-        },
-        {
             "source": "Precondition-Is In Front Of.sigmoided activation",
             "target": "Static Gain 14.input"
         },
@@ -8488,18 +8266,6 @@
         {
             "source": "Static Gain 13.output",
             "target": "Precondition-Is In Front Of.input"
-        },
-        {
-            "source": "Precondition-Oriented To Object.sigmoided activation",
-            "target": "Static Gain 12.input"
-        },
-        {
-            "source": "Static Gain 12.output",
-            "target": "CoS-Is In Front Of.input"
-        },
-        {
-            "source": "Static Gain 11.output",
-            "target": "Precondition-Oriented To Object.input"
         },
         {
             "source": "Static Gain 9.output",
@@ -8556,10 +8322,6 @@
         {
             "source": "Intention In Action-Orient To Object.sigmoided activation",
             "target": "Motor-Attractor.input"
-        },
-        {
-            "source": "Motor-Attractor.sigmoided activation",
-            "target": "Space To Rate Code.input"
         },
         {
             "source": "Static Gain 19.output",
@@ -9899,23 +9661,11 @@
         },
         {
             "source": "Projection 15.output",
-            "target": "CoS-Color In Attention.input"
-        },
-        {
-            "source": "Projection 15.output",
             "target": "Precondition-Color In Attention.input"
         },
         {
             "source": "Projection 15.output",
             "target": "Intention In Action-Orient To Object.input"
-        },
-        {
-            "source": "Projection 15.output",
-            "target": "CoS-Orient To Object.input"
-        },
-        {
-            "source": "Projection 15.output",
-            "target": "Precondition-Oriented To Object.input"
         },
         {
             "source": "Projection 15.output",
@@ -9928,14 +9678,6 @@
         {
             "source": "Projection 15.output",
             "target": "Intention In Action-Break.input"
-        },
-        {
-            "source": "Projection 15.output",
-            "target": "CoS-Break.input"
-        },
-        {
-            "source": "Projection 15.output",
-            "target": "CoS-Is In Front Of.input"
         },
         {
             "source": "Color-Space-Perception.sigmoided activation",
@@ -9974,20 +9716,12 @@
             "target": "Sound Role Field.input"
         },
         {
-            "source": "Projection 21.output",
-            "target": "Action-Color-Projection.input"
-        },
-        {
             "source": "Projection 22.output",
             "target": "Action-Projection.input"
         },
         {
             "source": "Action-Projection.sigmoided activation",
             "target": "Projection 15.input"
-        },
-        {
-            "source": "Action-Color-Projection.sigmoided activation",
-            "target": "Color-matching-Field.input"
         },
         {
             "source": "Sound Concepts.sigmoided activation",
@@ -10138,14 +9872,6 @@
             "target": "Action-Habituation.input"
         },
         {
-            "source": "Recall-Goal-Match-CoS.sigmoided activation",
-            "target": "Static Gain 8.input"
-        },
-        {
-            "source": "Static Gain 8.output",
-            "target": "Recall-Precondition.input"
-        },
-        {
             "source": "Recall-Precondition.sigmoided activation",
             "target": "Static Gain 15.input"
         },
@@ -10178,16 +9904,8 @@
             "target": "Projection 18.input"
         },
         {
-            "source": "Projection 18.output",
-            "target": "Recall-Goal-Match-CoS.input"
-        },
-        {
             "source": "Static Gain 99.output",
             "target": "Intention-Perform-Action.input"
-        },
-        {
-            "source": "Goal-Intention.sigmoided activation",
-            "target": "Recall-Goal-Match-CoS.input"
         },
         {
             "source": "Goal-Intention.sigmoided activation",
@@ -10204,10 +9922,6 @@
         {
             "source": "Goal-Intention.sigmoided activation",
             "target": "Strategy-Selection.input"
-        },
-        {
-            "source": "Goal-Intention.sigmoided activation",
-            "target": "CoS-loaded-strategy.input"
         },
         {
             "source": "Goal-Intention.sigmoided activation",
@@ -10922,14 +10636,6 @@
             "target": "Strategy-Selection.input"
         },
         {
-            "source": "Action-Working-Memory.sigmoided activation",
-            "target": "Projection 31.input"
-        },
-        {
-            "source": "Projection 31.output",
-            "target": "Intention-Selection.input"
-        },
-        {
             "source": "Static Gain 97.output",
             "target": "Intention-Selection.input"
         },
@@ -11176,6 +10882,42 @@
         {
             "source": "Static Gain 112.output",
             "target": "Action role Field.input"
+        },
+        {
+            "source": "Motor-Attractor.sigmoided activation",
+            "target": "Motor-Gate.input"
+        },
+        {
+            "source": "Motor-Gate.sigmoided activation",
+            "target": "Space To Rate Code.input"
+        },
+        {
+            "source": "Static Gain 11.output",
+            "target": "Precondition-Is In Front Of.input"
+        },
+        {
+            "source": "Projection 21.output",
+            "target": "Color-matching-Field.input"
+        },
+        {
+            "source": "Projection 6.output",
+            "target": "Static Gain 9.input"
+        },
+        {
+            "source": "Projection 10.output",
+            "target": "Static Gain 13.input"
+        },
+        {
+            "source": "Projection 18.output",
+            "target": "Static Gain 8.input"
+        },
+        {
+            "source": "Static Gain 8.output",
+            "target": "Recall-Precondition.input"
+        },
+        {
+            "source": "Intention-Remember-Strategy.sigmoided activation",
+            "target": "CoS-loaded-strategy.input"
         }
     ],
     "records": {
@@ -11197,7 +10939,6 @@
         "Intention-Remember-Strategy[BUFFER].activation": "0.1 s",
         "Intention-Selection[BUFFER].activation": "0.1 s",
         "ObjectColor Concepts[BUFFER].activation": "0.2 s",
-        "Recall-Goal-Match-CoS[BUFFER].activation": "0.1 s",
         "Sound Concepts[BUFFER].activation": "0.2 s",
         "Strategy-Selection[BUFFER].activation": "0.1 s"
     },
@@ -11234,8 +10975,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1288",
-            "positionY": "-2156"
+            "positionX": "3836",
+            "positionY": "-742"
         },
         {
             "type": "step",
@@ -11245,15 +10986,6 @@
             "height": "40",
             "positionX": "1904",
             "positionY": "1232"
-        },
-        {
-            "type": "step",
-            "step": "Action-Color-Projection",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-3346",
-            "positionY": "-126"
         },
         {
             "type": "step",
@@ -11270,8 +11002,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-112",
-            "positionY": "-2114"
+            "positionX": "3542",
+            "positionY": "658"
         },
         {
             "type": "step",
@@ -11279,8 +11011,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-322",
-            "positionY": "-2282"
+            "positionX": "3332",
+            "positionY": "462"
         },
         {
             "type": "step",
@@ -11333,8 +11065,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1470",
-            "positionY": "-1064"
+            "positionX": "4018",
+            "positionY": "350"
         },
         {
             "type": "step",
@@ -11342,8 +11074,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2982",
-            "positionY": "-2100"
+            "positionX": "5530",
+            "positionY": "-686"
         },
         {
             "type": "step",
@@ -11351,8 +11083,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "3066",
-            "positionY": "-2100"
+            "positionX": "5614",
+            "positionY": "-686"
         },
         {
             "type": "step",
@@ -11360,8 +11092,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1960",
-            "positionY": "-1456"
+            "positionX": "4508",
+            "positionY": "-42"
         },
         {
             "type": "step",
@@ -11369,8 +11101,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1960",
-            "positionY": "-1708"
+            "positionX": "4508",
+            "positionY": "-294"
         },
         {
             "type": "step",
@@ -11378,8 +11110,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1960",
-            "positionY": "-1960"
+            "positionX": "4508",
+            "positionY": "-546"
         },
         {
             "type": "step",
@@ -11387,8 +11119,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1960",
-            "positionY": "-2212"
+            "positionX": "4508",
+            "positionY": "-798"
         },
         {
             "type": "step",
@@ -11396,8 +11128,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1960",
-            "positionY": "-2464"
+            "positionX": "4508",
+            "positionY": "-1050"
         },
         {
             "type": "step",
@@ -11405,8 +11137,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1960",
-            "positionY": "-2716"
+            "positionX": "4508",
+            "positionY": "-1302"
         },
         {
             "type": "step",
@@ -11473,24 +11205,6 @@
         },
         {
             "type": "step",
-            "step": "CoS-Color In Attention",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-2926",
-            "positionY": "-266"
-        },
-        {
-            "type": "step",
-            "step": "CoS-Is In Front Of",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-1582",
-            "positionY": "-266"
-        },
-        {
-            "type": "step",
             "step": "CoS-Orient To Object",
             "display style": "ICON_AND_TEXT",
             "width": "124",
@@ -11531,8 +11245,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1288",
-            "positionY": "-2226"
+            "positionX": "3836",
+            "positionY": "-812"
         },
         {
             "type": "step",
@@ -11549,8 +11263,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-714",
-            "positionY": "-1778"
+            "positionX": "2338",
+            "positionY": "854"
         },
         {
             "type": "step",
@@ -11558,8 +11272,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-714",
-            "positionY": "-1722"
+            "positionX": "2338",
+            "positionY": "910"
         },
         {
             "type": "step",
@@ -11567,8 +11281,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-112",
-            "positionY": "-2170"
+            "positionX": "3542",
+            "positionY": "588"
         },
         {
             "type": "step",
@@ -11585,8 +11299,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "154",
-            "positionY": "-1778"
+            "positionX": "3388",
+            "positionY": "-756"
         },
         {
             "type": "step",
@@ -11594,8 +11308,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "154",
-            "positionY": "-1722"
+            "positionX": "3388",
+            "positionY": "-700"
         },
         {
             "type": "step",
@@ -11612,8 +11326,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-3136",
-            "positionY": "-210"
+            "positionX": "-2982",
+            "positionY": "-224"
         },
         {
             "type": "step",
@@ -11630,8 +11344,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1736",
-            "positionY": "-1064"
+            "positionX": "4284",
+            "positionY": "350"
         },
         {
             "type": "step",
@@ -11639,8 +11353,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "2268",
-            "positionY": "-1456"
+            "positionX": "4816",
+            "positionY": "-42"
         },
         {
             "type": "step",
@@ -11648,8 +11362,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "2268",
-            "positionY": "-1708"
+            "positionX": "4816",
+            "positionY": "-294"
         },
         {
             "type": "step",
@@ -11657,8 +11371,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "2268",
-            "positionY": "-1960"
+            "positionX": "4816",
+            "positionY": "-546"
         },
         {
             "type": "step",
@@ -11666,8 +11380,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "2268",
-            "positionY": "-2212"
+            "positionX": "4816",
+            "positionY": "-798"
         },
         {
             "type": "step",
@@ -11675,8 +11389,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "2268",
-            "positionY": "-2464"
+            "positionX": "4816",
+            "positionY": "-1050"
         },
         {
             "type": "step",
@@ -11684,8 +11398,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "2268",
-            "positionY": "-2716"
+            "positionX": "4816",
+            "positionY": "-1302"
         },
         {
             "type": "step",
@@ -11693,8 +11407,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1736",
-            "positionY": "-2926"
+            "positionX": "4284",
+            "positionY": "-1512"
         },
         {
             "type": "step",
@@ -11702,8 +11416,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2114",
-            "positionY": "-2674"
+            "positionX": "4662",
+            "positionY": "-1260"
         },
         {
             "type": "step",
@@ -11711,8 +11425,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2114",
-            "positionY": "-2422"
+            "positionX": "4662",
+            "positionY": "-1008"
         },
         {
             "type": "step",
@@ -11720,8 +11434,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1792",
-            "positionY": "-2324"
+            "positionX": "4340",
+            "positionY": "-910"
         },
         {
             "type": "step",
@@ -11729,8 +11443,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1792",
-            "positionY": "-2212"
+            "positionX": "4340",
+            "positionY": "-798"
         },
         {
             "type": "step",
@@ -11738,8 +11452,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1792",
-            "positionY": "-2142"
+            "positionX": "4340",
+            "positionY": "-728"
         },
         {
             "type": "step",
@@ -11747,8 +11461,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2114",
-            "positionY": "-2170"
+            "positionX": "4662",
+            "positionY": "-756"
         },
         {
             "type": "step",
@@ -11756,8 +11470,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2408",
-            "positionY": "-2198"
+            "positionX": "4956",
+            "positionY": "-784"
         },
         {
             "type": "step",
@@ -11765,8 +11479,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1792",
-            "positionY": "-2030"
+            "positionX": "4340",
+            "positionY": "-616"
         },
         {
             "type": "step",
@@ -11774,8 +11488,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1792",
-            "positionY": "-1960"
+            "positionX": "4340",
+            "positionY": "-546"
         },
         {
             "type": "step",
@@ -11783,8 +11497,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1792",
-            "positionY": "-1890"
+            "positionX": "4340",
+            "positionY": "-476"
         },
         {
             "type": "step",
@@ -11792,8 +11506,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1792",
-            "positionY": "-2786"
+            "positionX": "4340",
+            "positionY": "-1372"
         },
         {
             "type": "step",
@@ -11801,8 +11515,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2114",
-            "positionY": "-1918"
+            "positionX": "4662",
+            "positionY": "-504"
         },
         {
             "type": "step",
@@ -11810,8 +11524,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2408",
-            "positionY": "-1946"
+            "positionX": "4956",
+            "positionY": "-532"
         },
         {
             "type": "step",
@@ -11819,8 +11533,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1792",
-            "positionY": "-1778"
+            "positionX": "4340",
+            "positionY": "-364"
         },
         {
             "type": "step",
@@ -11828,8 +11542,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1792",
-            "positionY": "-1708"
+            "positionX": "4340",
+            "positionY": "-294"
         },
         {
             "type": "step",
@@ -11837,8 +11551,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1792",
-            "positionY": "-1638"
+            "positionX": "4340",
+            "positionY": "-224"
         },
         {
             "type": "step",
@@ -11846,8 +11560,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2114",
-            "positionY": "-1666"
+            "positionX": "4662",
+            "positionY": "-252"
         },
         {
             "type": "step",
@@ -11855,8 +11569,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2408",
-            "positionY": "-1694"
+            "positionX": "4956",
+            "positionY": "-280"
         },
         {
             "type": "step",
@@ -11864,8 +11578,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1792",
-            "positionY": "-1526"
+            "positionX": "4340",
+            "positionY": "-112"
         },
         {
             "type": "step",
@@ -11873,8 +11587,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1792",
-            "positionY": "-1456"
+            "positionX": "4340",
+            "positionY": "-42"
         },
         {
             "type": "step",
@@ -11882,8 +11596,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1792",
-            "positionY": "-1386"
+            "positionX": "4340",
+            "positionY": "28"
         },
         {
             "type": "step",
@@ -11891,8 +11605,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1792",
-            "positionY": "-2716"
+            "positionX": "4340",
+            "positionY": "-1302"
         },
         {
             "type": "step",
@@ -11900,8 +11614,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2114",
-            "positionY": "-1414"
+            "positionX": "4662",
+            "positionY": "0"
         },
         {
             "type": "step",
@@ -11909,8 +11623,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2408",
-            "positionY": "-1442"
+            "positionX": "4956",
+            "positionY": "-28"
         },
         {
             "type": "step",
@@ -11918,8 +11632,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2254",
-            "positionY": "-1078"
+            "positionX": "4802",
+            "positionY": "336"
         },
         {
             "type": "step",
@@ -11927,8 +11641,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1792",
-            "positionY": "-2646"
+            "positionX": "4340",
+            "positionY": "-1232"
         },
         {
             "type": "step",
@@ -11936,8 +11650,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2408",
-            "positionY": "-2702"
+            "positionX": "4956",
+            "positionY": "-1288"
         },
         {
             "type": "step",
@@ -11945,8 +11659,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1792",
-            "positionY": "-2534"
+            "positionX": "4340",
+            "positionY": "-1120"
         },
         {
             "type": "step",
@@ -11954,8 +11668,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1792",
-            "positionY": "-2464"
+            "positionX": "4340",
+            "positionY": "-1050"
         },
         {
             "type": "step",
@@ -11963,8 +11677,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1792",
-            "positionY": "-2394"
+            "positionX": "4340",
+            "positionY": "-980"
         },
         {
             "type": "step",
@@ -11972,8 +11686,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2408",
-            "positionY": "-2450"
+            "positionX": "4956",
+            "positionY": "-1036"
         },
         {
             "type": "step",
@@ -12017,8 +11731,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-2030",
-            "positionY": "-1610"
+            "positionX": "1218",
+            "positionY": "1708"
         },
         {
             "type": "step",
@@ -12026,8 +11740,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-2030",
-            "positionY": "-1946"
+            "positionX": "1218",
+            "positionY": "1372"
         },
         {
             "type": "step",
@@ -12035,8 +11749,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-714",
-            "positionY": "-2002"
+            "positionX": "2338",
+            "positionY": "1162"
         },
         {
             "type": "step",
@@ -12044,8 +11758,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-112",
-            "positionY": "-1904"
+            "positionX": "3122",
+            "positionY": "-882"
         },
         {
             "type": "step",
@@ -12053,8 +11767,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-714",
-            "positionY": "-1946"
+            "positionX": "2338",
+            "positionY": "1218"
         },
         {
             "type": "step",
@@ -12125,8 +11839,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "154",
-            "positionY": "-2002"
+            "positionX": "3388",
+            "positionY": "-980"
         },
         {
             "type": "step",
@@ -12134,8 +11848,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "154",
-            "positionY": "-1946"
+            "positionX": "3388",
+            "positionY": "-924"
         },
         {
             "type": "step",
@@ -12143,8 +11857,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-322",
-            "positionY": "-2002"
+            "positionX": "2912",
+            "positionY": "-980"
         },
         {
             "type": "step",
@@ -12350,8 +12064,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1526",
-            "positionY": "-952"
+            "positionX": "4074",
+            "positionY": "462"
         },
         {
             "type": "step",
@@ -12359,8 +12073,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "2422",
-            "positionY": "-1064"
+            "positionX": "4970",
+            "positionY": "350"
         },
         {
             "type": "step",
@@ -12391,12 +12105,21 @@
         },
         {
             "type": "step",
+            "step": "Motor-Gate",
+            "display style": "ICON_AND_TEXT",
+            "width": "124",
+            "height": "40",
+            "positionX": "-2338",
+            "positionY": "-56"
+        },
+        {
+            "type": "step",
             "step": "Object-Gate",
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-112",
-            "positionY": "-1680"
+            "positionX": "3122",
+            "positionY": "-658"
         },
         {
             "type": "step",
@@ -12404,8 +12127,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-322",
-            "positionY": "-1778"
+            "positionX": "2912",
+            "positionY": "-756"
         },
         {
             "type": "step",
@@ -12422,8 +12145,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-112",
-            "positionY": "-2226"
+            "positionX": "3542",
+            "positionY": "518"
         },
         {
             "type": "step",
@@ -12431,8 +12154,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-2030",
-            "positionY": "-2002"
+            "positionX": "1218",
+            "positionY": "1316"
         },
         {
             "type": "step",
@@ -12459,15 +12182,6 @@
             "width": "124",
             "height": "40",
             "positionX": "-1386",
-            "positionY": "-294"
-        },
-        {
-            "type": "step",
-            "step": "Precondition-Oriented To Object",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-1862",
             "positionY": "-294"
         },
         {
@@ -12503,8 +12217,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1428",
-            "positionY": "-2968"
+            "positionX": "3976",
+            "positionY": "-1554"
         },
         {
             "type": "step",
@@ -12512,8 +12226,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1428",
-            "positionY": "-2926"
+            "positionX": "3976",
+            "positionY": "-1512"
         },
         {
             "type": "step",
@@ -12521,8 +12235,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1428",
-            "positionY": "-2884"
+            "positionX": "3976",
+            "positionY": "-1470"
         },
         {
             "type": "step",
@@ -12548,8 +12262,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-546",
-            "positionY": "-1778"
+            "positionX": "2506",
+            "positionY": "854"
         },
         {
             "type": "step",
@@ -12557,8 +12271,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-560",
-            "positionY": "-2002"
+            "positionX": "2492",
+            "positionY": "1162"
         },
         {
             "type": "step",
@@ -12602,8 +12316,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-3430",
-            "positionY": "-126"
+            "positionX": "-3066",
+            "positionY": "-224"
         },
         {
             "type": "step",
@@ -12670,15 +12384,6 @@
         },
         {
             "type": "step",
-            "step": "Projection 31",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "2114",
-            "positionY": "1106"
-        },
-        {
-            "type": "step",
             "step": "Projection 32",
             "display style": "ICON_ONLY",
             "width": "40",
@@ -12692,8 +12397,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-546",
-            "positionY": "-2282"
+            "positionX": "2492",
+            "positionY": "602"
         },
         {
             "type": "step",
@@ -12710,8 +12415,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-2982",
-            "positionY": "-252"
+            "positionX": "-2842",
+            "positionY": "-266"
         },
         {
             "type": "step",
@@ -12760,15 +12465,6 @@
         },
         {
             "type": "step",
-            "step": "Recall-Goal-Match-CoS",
-            "display style": "ICON_AND_TEXT",
-            "width": "124",
-            "height": "40",
-            "positionX": "-2618",
-            "positionY": "-1050"
-        },
-        {
-            "type": "step",
             "step": "Recall-Precondition",
             "display style": "ICON_AND_TEXT",
             "width": "124",
@@ -12782,8 +12478,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "2044",
-            "positionY": "-1064"
+            "positionX": "4592",
+            "positionY": "350"
         },
         {
             "type": "step",
@@ -12791,8 +12487,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "2618",
-            "positionY": "-2716"
+            "positionX": "5166",
+            "positionY": "-1302"
         },
         {
             "type": "step",
@@ -12800,8 +12496,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1568",
-            "positionY": "-1918"
+            "positionX": "4116",
+            "positionY": "-504"
         },
         {
             "type": "step",
@@ -12809,8 +12505,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1568",
-            "positionY": "-2240"
+            "positionX": "4116",
+            "positionY": "-826"
         },
         {
             "type": "step",
@@ -12818,8 +12514,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1568",
-            "positionY": "-2170"
+            "positionX": "4116",
+            "positionY": "-756"
         },
         {
             "type": "step",
@@ -12827,8 +12523,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1568",
-            "positionY": "-2310"
+            "positionX": "4116",
+            "positionY": "-896"
         },
         {
             "type": "step",
@@ -12836,8 +12532,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1568",
-            "positionY": "-2422"
+            "positionX": "4116",
+            "positionY": "-1008"
         },
         {
             "type": "step",
@@ -12845,8 +12541,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1568",
-            "positionY": "-2562"
+            "positionX": "4116",
+            "positionY": "-1148"
         },
         {
             "type": "step",
@@ -12854,8 +12550,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1568",
-            "positionY": "-2814"
+            "positionX": "4116",
+            "positionY": "-1400"
         },
         {
             "type": "step",
@@ -12863,8 +12559,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1568",
-            "positionY": "-2674"
+            "positionX": "4116",
+            "positionY": "-1260"
         },
         {
             "type": "step",
@@ -12872,8 +12568,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1568",
-            "positionY": "-2744"
+            "positionX": "4116",
+            "positionY": "-1330"
         },
         {
             "type": "step",
@@ -12881,8 +12577,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1568",
-            "positionY": "-1554"
+            "positionX": "4116",
+            "positionY": "-140"
         },
         {
             "type": "step",
@@ -12890,8 +12586,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1568",
-            "positionY": "-1484"
+            "positionX": "4116",
+            "positionY": "-70"
         },
         {
             "type": "step",
@@ -12899,8 +12595,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "2618",
-            "positionY": "-2464"
+            "positionX": "5166",
+            "positionY": "-1050"
         },
         {
             "type": "step",
@@ -12908,8 +12604,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "2618",
-            "positionY": "-2212"
+            "positionX": "5166",
+            "positionY": "-798"
         },
         {
             "type": "step",
@@ -12917,8 +12613,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "2618",
-            "positionY": "-1960"
+            "positionX": "5166",
+            "positionY": "-546"
         },
         {
             "type": "step",
@@ -12926,8 +12622,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "2618",
-            "positionY": "-1708"
+            "positionX": "5166",
+            "positionY": "-294"
         },
         {
             "type": "step",
@@ -12935,8 +12631,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "2618",
-            "positionY": "-1456"
+            "positionX": "5166",
+            "positionY": "-42"
         },
         {
             "type": "step",
@@ -12989,8 +12685,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1568",
-            "positionY": "-1414"
+            "positionX": "4116",
+            "positionY": "0"
         },
         {
             "type": "step",
@@ -13034,8 +12730,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1568",
-            "positionY": "-1806"
+            "positionX": "4116",
+            "positionY": "-392"
         },
         {
             "type": "step",
@@ -13070,8 +12766,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1568",
-            "positionY": "-1736"
+            "positionX": "4116",
+            "positionY": "-322"
         },
         {
             "type": "step",
@@ -13079,8 +12775,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1568",
-            "positionY": "-1666"
+            "positionX": "4116",
+            "positionY": "-252"
         },
         {
             "type": "step",
@@ -13088,8 +12784,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1568",
-            "positionY": "-2058"
+            "positionX": "4116",
+            "positionY": "-644"
         },
         {
             "type": "step",
@@ -13097,8 +12793,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1568",
-            "positionY": "-1988"
+            "positionX": "4116",
+            "positionY": "-574"
         },
         {
             "type": "step",
@@ -13106,8 +12802,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1568",
-            "positionY": "-2492"
+            "positionX": "4116",
+            "positionY": "-1078"
         },
         {
             "type": "step",
@@ -13160,8 +12856,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-1820",
-            "positionY": "-1890"
+            "positionX": "1428",
+            "positionY": "1428"
         },
         {
             "type": "step",
@@ -13205,8 +12901,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "1288",
-            "positionY": "-2296"
+            "positionX": "3836",
+            "positionY": "-882"
         },
         {
             "type": "step",
@@ -13214,8 +12910,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-700",
-            "positionY": "-2282"
+            "positionX": "2338",
+            "positionY": "602"
         },
         {
             "type": "step",
@@ -13223,8 +12919,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-700",
-            "positionY": "-2226"
+            "positionX": "2338",
+            "positionY": "658"
         },
         {
             "type": "step",
@@ -13242,7 +12938,7 @@
             "width": "124",
             "height": "40",
             "positionX": "-2338",
-            "positionY": "-56"
+            "positionY": "0"
         },
         {
             "type": "step",
@@ -13304,8 +13000,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-1862",
-            "positionY": "-2002"
+            "positionX": "1386",
+            "positionY": "1316"
         },
         {
             "type": "step",
@@ -13331,8 +13027,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-448",
-            "positionY": "-2114"
+            "positionX": "3514",
+            "positionY": "462"
         },
         {
             "type": "step",
@@ -13430,17 +13126,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-448",
-            "positionY": "-1960"
-        },
-        {
-            "type": "step",
-            "step": "Static Gain 12",
-            "display style": "ICON_ONLY",
-            "width": "40",
-            "height": "40",
-            "positionX": "-1722",
-            "positionY": "-280"
+            "positionX": "2590",
+            "positionY": "1162"
         },
         {
             "type": "step",
@@ -13457,8 +13144,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-1442",
-            "positionY": "-280"
+            "positionX": "-1554",
+            "positionY": "-168"
         },
         {
             "type": "step",
@@ -13511,8 +13198,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-546",
-            "positionY": "-2226"
+            "positionX": "2492",
+            "positionY": "658"
         },
         {
             "type": "step",
@@ -13529,8 +13216,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-560",
-            "positionY": "-1946"
+            "positionX": "2492",
+            "positionY": "1218"
         },
         {
             "type": "step",
@@ -13538,8 +13225,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-560",
-            "positionY": "-1722"
+            "positionX": "2492",
+            "positionY": "910"
         },
         {
             "type": "step",
@@ -13547,8 +13234,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-448",
-            "positionY": "-2002"
+            "positionX": "2786",
+            "positionY": "-980"
         },
         {
             "type": "step",
@@ -13556,8 +13243,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2170",
-            "positionY": "-1400"
+            "positionX": "4718",
+            "positionY": "14"
         },
         {
             "type": "step",
@@ -13565,8 +13252,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2478",
-            "positionY": "-1442"
+            "positionX": "5026",
+            "positionY": "-28"
         },
         {
             "type": "step",
@@ -13574,8 +13261,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2170",
-            "positionY": "-1904"
+            "positionX": "4718",
+            "positionY": "-490"
         },
         {
             "type": "step",
@@ -13583,8 +13270,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2478",
-            "positionY": "-1946"
+            "positionX": "5026",
+            "positionY": "-532"
         },
         {
             "type": "step",
@@ -13592,8 +13279,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2170",
-            "positionY": "-2156"
+            "positionX": "4718",
+            "positionY": "-742"
         },
         {
             "type": "step",
@@ -13601,8 +13288,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2478",
-            "positionY": "-2198"
+            "positionX": "5026",
+            "positionY": "-784"
         },
         {
             "type": "step",
@@ -13610,8 +13297,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2170",
-            "positionY": "-1652"
+            "positionX": "4718",
+            "positionY": "-238"
         },
         {
             "type": "step",
@@ -13619,8 +13306,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2170",
-            "positionY": "-2660"
+            "positionX": "4718",
+            "positionY": "-1246"
         },
         {
             "type": "step",
@@ -13628,8 +13315,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2478",
-            "positionY": "-2450"
+            "positionX": "5026",
+            "positionY": "-1036"
         },
         {
             "type": "step",
@@ -13637,8 +13324,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2478",
-            "positionY": "-2702"
+            "positionX": "5026",
+            "positionY": "-1288"
         },
         {
             "type": "step",
@@ -13646,8 +13333,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2170",
-            "positionY": "-2408"
+            "positionX": "4718",
+            "positionY": "-994"
         },
         {
             "type": "step",
@@ -13655,8 +13342,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1904",
-            "positionY": "-2926"
+            "positionX": "4452",
+            "positionY": "-1512"
         },
         {
             "type": "step",
@@ -13664,8 +13351,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1498",
-            "positionY": "-2660"
+            "positionX": "4046",
+            "positionY": "-1246"
         },
         {
             "type": "step",
@@ -13673,8 +13360,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1498",
-            "positionY": "-2730"
+            "positionX": "4046",
+            "positionY": "-1316"
         },
         {
             "type": "step",
@@ -13682,8 +13369,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1498",
-            "positionY": "-2800"
+            "positionX": "4046",
+            "positionY": "-1386"
         },
         {
             "type": "step",
@@ -13691,8 +13378,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1498",
-            "positionY": "-2548"
+            "positionX": "4046",
+            "positionY": "-1134"
         },
         {
             "type": "step",
@@ -13700,8 +13387,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1498",
-            "positionY": "-2478"
+            "positionX": "4046",
+            "positionY": "-1064"
         },
         {
             "type": "step",
@@ -13709,8 +13396,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2478",
-            "positionY": "-1694"
+            "positionX": "5026",
+            "positionY": "-280"
         },
         {
             "type": "step",
@@ -13718,8 +13405,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1498",
-            "positionY": "-2408"
+            "positionX": "4046",
+            "positionY": "-994"
         },
         {
             "type": "step",
@@ -13727,8 +13414,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1498",
-            "positionY": "-2296"
+            "positionX": "4046",
+            "positionY": "-882"
         },
         {
             "type": "step",
@@ -13736,8 +13423,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1498",
-            "positionY": "-2226"
+            "positionX": "4046",
+            "positionY": "-812"
         },
         {
             "type": "step",
@@ -13745,8 +13432,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1498",
-            "positionY": "-2156"
+            "positionX": "4046",
+            "positionY": "-742"
         },
         {
             "type": "step",
@@ -13754,8 +13441,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1498",
-            "positionY": "-2044"
+            "positionX": "4046",
+            "positionY": "-630"
         },
         {
             "type": "step",
@@ -13763,8 +13450,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1498",
-            "positionY": "-1974"
+            "positionX": "4046",
+            "positionY": "-560"
         },
         {
             "type": "step",
@@ -13772,8 +13459,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1498",
-            "positionY": "-1904"
+            "positionX": "4046",
+            "positionY": "-490"
         },
         {
             "type": "step",
@@ -13781,8 +13468,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1498",
-            "positionY": "-1792"
+            "positionX": "4046",
+            "positionY": "-378"
         },
         {
             "type": "step",
@@ -13790,8 +13477,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1498",
-            "positionY": "-1722"
+            "positionX": "4046",
+            "positionY": "-308"
         },
         {
             "type": "step",
@@ -13799,8 +13486,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1498",
-            "positionY": "-1652"
+            "positionX": "4046",
+            "positionY": "-238"
         },
         {
             "type": "step",
@@ -13808,8 +13495,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "56",
-            "positionY": "-2170"
+            "positionX": "3710",
+            "positionY": "588"
         },
         {
             "type": "step",
@@ -13817,8 +13504,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1498",
-            "positionY": "-1540"
+            "positionX": "4046",
+            "positionY": "-126"
         },
         {
             "type": "step",
@@ -13826,8 +13513,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1498",
-            "positionY": "-1470"
+            "positionX": "4046",
+            "positionY": "-56"
         },
         {
             "type": "step",
@@ -13835,8 +13522,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1498",
-            "positionY": "-1400"
+            "positionX": "4046",
+            "positionY": "14"
         },
         {
             "type": "step",
@@ -13844,8 +13531,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2114",
-            "positionY": "-2716"
+            "positionX": "4662",
+            "positionY": "-1302"
         },
         {
             "type": "step",
@@ -13853,8 +13540,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2114",
-            "positionY": "-2464"
+            "positionX": "4662",
+            "positionY": "-1050"
         },
         {
             "type": "step",
@@ -13862,8 +13549,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2114",
-            "positionY": "-2212"
+            "positionX": "4662",
+            "positionY": "-798"
         },
         {
             "type": "step",
@@ -13871,8 +13558,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2114",
-            "positionY": "-1960"
+            "positionX": "4662",
+            "positionY": "-546"
         },
         {
             "type": "step",
@@ -13880,8 +13567,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2114",
-            "positionY": "-1708"
+            "positionX": "4662",
+            "positionY": "-294"
         },
         {
             "type": "step",
@@ -13889,8 +13576,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2114",
-            "positionY": "-1456"
+            "positionX": "4662",
+            "positionY": "-42"
         },
         {
             "type": "step",
@@ -13898,8 +13585,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1890",
-            "positionY": "-1064"
+            "positionX": "4438",
+            "positionY": "350"
         },
         {
             "type": "step",
@@ -13907,8 +13594,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "56",
-            "positionY": "-2114"
+            "positionX": "3710",
+            "positionY": "658"
         },
         {
             "type": "step",
@@ -13916,8 +13603,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2198",
-            "positionY": "-1064"
+            "positionX": "4746",
+            "positionY": "350"
         },
         {
             "type": "step",
@@ -13925,8 +13612,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2772",
-            "positionY": "-2716"
+            "positionX": "5320",
+            "positionY": "-1302"
         },
         {
             "type": "step",
@@ -13934,8 +13621,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2772",
-            "positionY": "-2464"
+            "positionX": "5320",
+            "positionY": "-1050"
         },
         {
             "type": "step",
@@ -13943,8 +13630,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2772",
-            "positionY": "-2212"
+            "positionX": "5320",
+            "positionY": "-798"
         },
         {
             "type": "step",
@@ -13952,8 +13639,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2772",
-            "positionY": "-1960"
+            "positionX": "5320",
+            "positionY": "-546"
         },
         {
             "type": "step",
@@ -13961,8 +13648,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2772",
-            "positionY": "-1708"
+            "positionX": "5320",
+            "positionY": "-294"
         },
         {
             "type": "step",
@@ -13970,8 +13657,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2772",
-            "positionY": "-1456"
+            "positionX": "5320",
+            "positionY": "-42"
         },
         {
             "type": "step",
@@ -13997,8 +13684,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-448",
-            "positionY": "-1778"
+            "positionX": "2786",
+            "positionY": "-756"
         },
         {
             "type": "step",
@@ -14015,8 +13702,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-1736",
-            "positionY": "-1890"
+            "positionX": "1512",
+            "positionY": "1428"
         },
         {
             "type": "step",
@@ -14024,8 +13711,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "322",
-            "positionY": "-2002"
+            "positionX": "3556",
+            "positionY": "-980"
         },
         {
             "type": "step",
@@ -14033,8 +13720,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "56",
-            "positionY": "-1904"
+            "positionX": "3290",
+            "positionY": "-882"
         },
         {
             "type": "step",
@@ -14042,8 +13729,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "56",
-            "positionY": "-1680"
+            "positionX": "3290",
+            "positionY": "-658"
         },
         {
             "type": "step",
@@ -14051,8 +13738,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "70",
-            "positionY": "-1778"
+            "positionX": "3304",
+            "positionY": "-756"
         },
         {
             "type": "step",
@@ -14060,8 +13747,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-1820",
-            "positionY": "-1666"
+            "positionX": "1428",
+            "positionY": "1652"
         },
         {
             "type": "step",
@@ -14069,8 +13756,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-2478",
-            "positionY": "-1064"
+            "positionX": "-2604",
+            "positionY": "-1036"
         },
         {
             "type": "step",
@@ -14078,8 +13765,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-1820",
-            "positionY": "-1722"
+            "positionX": "1428",
+            "positionY": "1596"
         },
         {
             "type": "step",
@@ -14096,8 +13783,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "70",
-            "positionY": "-2002"
+            "positionX": "3304",
+            "positionY": "-980"
         },
         {
             "type": "step",
@@ -14114,8 +13801,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-1820",
-            "positionY": "-1610"
+            "positionX": "1428",
+            "positionY": "1708"
         },
         {
             "type": "step",
@@ -14123,8 +13810,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "56",
-            "positionY": "-2226"
+            "positionX": "3710",
+            "positionY": "518"
         },
         {
             "type": "step",
@@ -14150,8 +13837,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "322",
-            "positionY": "-1778"
+            "positionX": "3556",
+            "positionY": "-756"
         },
         {
             "type": "step",
@@ -14222,8 +13909,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-2576",
-            "positionY": "-1876"
+            "positionX": "-56",
+            "positionY": "1442"
         },
         {
             "type": "step",
@@ -14240,8 +13927,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-1330",
-            "positionY": "-1890"
+            "positionX": "-1526",
+            "positionY": "-1302"
         },
         {
             "type": "step",
@@ -14258,8 +13945,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-2198",
-            "positionY": "-42"
+            "positionX": "-2170",
+            "positionY": "0"
         },
         {
             "type": "step",
@@ -14267,8 +13954,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-2744",
-            "positionY": "-1876"
+            "positionX": "-1064",
+            "positionY": "1442"
         },
         {
             "type": "step",
@@ -14276,8 +13963,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-2030",
-            "positionY": "-1778"
+            "positionX": "1218",
+            "positionY": "1540"
         },
         {
             "type": "step",
@@ -14285,8 +13972,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-2030",
-            "positionY": "-1890"
+            "positionX": "1218",
+            "positionY": "1428"
         },
         {
             "type": "step",
@@ -14294,8 +13981,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-2030",
-            "positionY": "-1834"
+            "positionX": "1218",
+            "positionY": "1484"
         },
         {
             "type": "step",
@@ -14312,8 +13999,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1722",
-            "positionY": "-2534"
+            "positionX": "4270",
+            "positionY": "-1120"
         },
         {
             "type": "step",
@@ -14321,8 +14008,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1722",
-            "positionY": "-2464"
+            "positionX": "4270",
+            "positionY": "-1050"
         },
         {
             "type": "step",
@@ -14330,8 +14017,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1722",
-            "positionY": "-2394"
+            "positionX": "4270",
+            "positionY": "-980"
         },
         {
             "type": "step",
@@ -14339,8 +14026,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1722",
-            "positionY": "-2282"
+            "positionX": "4270",
+            "positionY": "-868"
         },
         {
             "type": "step",
@@ -14348,8 +14035,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1722",
-            "positionY": "-2212"
+            "positionX": "4270",
+            "positionY": "-798"
         },
         {
             "type": "step",
@@ -14357,8 +14044,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1722",
-            "positionY": "-2142"
+            "positionX": "4270",
+            "positionY": "-728"
         },
         {
             "type": "step",
@@ -14366,8 +14053,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1722",
-            "positionY": "-2030"
+            "positionX": "4270",
+            "positionY": "-616"
         },
         {
             "type": "step",
@@ -14375,8 +14062,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1722",
-            "positionY": "-1960"
+            "positionX": "4270",
+            "positionY": "-546"
         },
         {
             "type": "step",
@@ -14393,8 +14080,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1722",
-            "positionY": "-1890"
+            "positionX": "4270",
+            "positionY": "-476"
         },
         {
             "type": "step",
@@ -14402,8 +14089,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1722",
-            "positionY": "-1778"
+            "positionX": "4270",
+            "positionY": "-364"
         },
         {
             "type": "step",
@@ -14411,8 +14098,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1722",
-            "positionY": "-1708"
+            "positionX": "4270",
+            "positionY": "-294"
         },
         {
             "type": "step",
@@ -14420,8 +14107,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1722",
-            "positionY": "-1638"
+            "positionX": "4270",
+            "positionY": "-224"
         },
         {
             "type": "step",
@@ -14429,8 +14116,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1722",
-            "positionY": "-1526"
+            "positionX": "4270",
+            "positionY": "-112"
         },
         {
             "type": "step",
@@ -14438,8 +14125,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1722",
-            "positionY": "-1456"
+            "positionX": "4270",
+            "positionY": "-42"
         },
         {
             "type": "step",
@@ -14447,8 +14134,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1722",
-            "positionY": "-1386"
+            "positionX": "4270",
+            "positionY": "28"
         },
         {
             "type": "step",
@@ -14456,8 +14143,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1722",
-            "positionY": "-2786"
+            "positionX": "4270",
+            "positionY": "-1372"
         },
         {
             "type": "step",
@@ -14465,8 +14152,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1722",
-            "positionY": "-2716"
+            "positionX": "4270",
+            "positionY": "-1302"
         },
         {
             "type": "step",
@@ -14474,8 +14161,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1722",
-            "positionY": "-2646"
+            "positionX": "4270",
+            "positionY": "-1232"
         },
         {
             "type": "step",
@@ -14492,8 +14179,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "-2268",
-            "positionY": "-1876"
+            "positionX": "980",
+            "positionY": "1442"
         },
         {
             "type": "step",
@@ -14528,8 +14215,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-2030",
-            "positionY": "-1666"
+            "positionX": "1218",
+            "positionY": "1652"
         },
         {
             "type": "step",
@@ -14537,8 +14224,8 @@
             "display style": "ICON_AND_TEXT",
             "width": "124",
             "height": "40",
-            "positionX": "-2030",
-            "positionY": "-1722"
+            "positionX": "1218",
+            "positionY": "1596"
         },
         {
             "type": "step",
@@ -14590,8 +14277,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1610",
-            "positionY": "-3052"
+            "positionX": "4158",
+            "positionY": "-1638"
         },
         {
             "type": "step",
@@ -14617,8 +14304,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2086",
-            "positionY": "-3052"
+            "positionX": "4634",
+            "positionY": "-1638"
         },
         {
             "type": "step",
@@ -14626,8 +14313,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1666",
-            "positionY": "-2926"
+            "positionX": "4214",
+            "positionY": "-1512"
         },
         {
             "type": "step",
@@ -14671,8 +14358,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "1736",
-            "positionY": "-3010"
+            "positionX": "4284",
+            "positionY": "-1596"
         },
         {
             "type": "step",
@@ -14689,8 +14376,8 @@
             "display style": "ICON_ONLY",
             "width": "40",
             "height": "40",
-            "positionX": "2352",
-            "positionY": "-3010"
+            "positionX": "4900",
+            "positionY": "-1596"
         },
         {
             "type": "step",
@@ -14703,23 +14390,129 @@
         }
     ],
     "ui view": {
-        "ScrollBarX": "-246",
-        "ScrollBarY": "-1225",
-        "SliderPosX": "-246",
-        "SliderPosY": "-1225",
-        "Zoom": "0.47999999999999998"
+        "ScrollBarX": "-1789",
+        "ScrollBarY": "-1162",
+        "SliderPosX": "-1789",
+        "SliderPosY": "-1162",
+        "Zoom": "0.78000000000000003"
     },
     "ui generic": {
         "group": "element",
         "open plots": {
-            "Action role FieldWidget0": {
-                "step": "Action role Field",
-                "position_x": "1130",
-                "position_y": "296",
+            "Action ConceptsWidget0": {
+                "step": "Action Concepts",
+                "position_x": "1076",
+                "position_y": "464",
                 "width": "200",
                 "height": "200",
-                "position_relative_x": "0.6114718614718615",
-                "position_relative_y": "0.29133858267716534",
+                "position_relative_x": "0.58225108225108224",
+                "position_relative_y": "0.45669291338582679",
+                "width_relative": "0.10822510822510822",
+                "height_relative": "0.19685039370078741",
+                "data_list": [
+                    {
+                        "id": "BUFFER",
+                        "name": "input sum",
+                        "ignoreIfMissing": "false",
+                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                    },
+                    {
+                        "id": "BUFFER",
+                        "name": "activation",
+                        "ignoreIfMissing": "true",
+                        "plotDeclaration": ""
+                    },
+                    {
+                        "id": "OUTPUT",
+                        "name": "activation",
+                        "ignoreIfMissing": "true",
+                        "plotDeclaration": ""
+                    },
+                    {
+                        "id": "OUTPUT",
+                        "name": "sigmoided activation",
+                        "ignoreIfMissing": "false",
+                        "plotDeclaration": ""
+                    }
+                ],
+                "plot configurations": [
+                    {
+                        "row": "1",
+                        "col": "0",
+                        "plot configuration": {
+                            "autoscaling": "true",
+                            "major grid visible": "false",
+                            "minor grid visible": "false",
+                            "y axis limits": {
+                                "lower limit": "0",
+                                "upper limit": "1"
+                            },
+                            "discrete plot": "true"
+                        }
+                    }
+                ]
+            },
+            "Action-Outcome-DetectioWidget0": {
+                "step": "Action-Outcome-Detectio",
+                "position_x": "1051",
+                "position_y": "241",
+                "width": "405",
+                "height": "215",
+                "position_relative_x": "0.56872294372294374",
+                "position_relative_y": "0.23720472440944881",
+                "width_relative": "0.21915584415584416",
+                "height_relative": "0.21161417322834647",
+                "data_list": [
+                    {
+                        "id": "BUFFER",
+                        "name": "input sum",
+                        "ignoreIfMissing": "false",
+                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                    },
+                    {
+                        "id": "BUFFER",
+                        "name": "activation",
+                        "ignoreIfMissing": "true",
+                        "plotDeclaration": ""
+                    },
+                    {
+                        "id": "OUTPUT",
+                        "name": "activation",
+                        "ignoreIfMissing": "true",
+                        "plotDeclaration": ""
+                    },
+                    {
+                        "id": "OUTPUT",
+                        "name": "sigmoided activation",
+                        "ignoreIfMissing": "false",
+                        "plotDeclaration": ""
+                    }
+                ],
+                "plot configurations": [
+                    {
+                        "row": "1",
+                        "col": "0",
+                        "plot configuration": {
+                            "autoscaling": "true",
+                            "major grid visible": "false",
+                            "minor grid visible": "false",
+                            "y axis limits": {
+                                "lower limit": "0",
+                                "upper limit": "1"
+                            },
+                            "discrete plot": "false"
+                        }
+                    }
+                ]
+            },
+            "Action role FieldWidget0": {
+                "step": "Action role Field",
+                "position_x": "801",
+                "position_y": "153",
+                "width": "200",
+                "height": "200",
+                "position_relative_x": "0.43344155844155846",
+                "position_relative_y": "0.15059055118110237",
                 "width_relative": "0.10822510822510822",
                 "height_relative": "0.19685039370078741",
                 "data_list": [
@@ -14768,13 +14561,13 @@
             "Camera TCP ReaderWidget0": {
                 "step": "Camera TCP Reader",
                 "position_x": "1460",
-                "position_y": "262",
-                "width": "200",
-                "height": "200",
+                "position_y": "75",
+                "width": "440",
+                "height": "376",
                 "position_relative_x": "0.79004329004328999",
-                "position_relative_y": "0.25787401574803148",
-                "width_relative": "0.10822510822510822",
-                "height_relative": "0.19685039370078741",
+                "position_relative_y": "0.073818897637795269",
+                "width_relative": "0.23809523809523808",
+                "height_relative": "0.37007874015748032",
                 "data_list": [
                     {
                         "id": "OUTPUT",
@@ -14803,12 +14596,12 @@
             },
             "Color Role FieldWidget0": {
                 "step": "Color Role Field",
-                "position_x": "923",
-                "position_y": "284",
+                "position_x": "598",
+                "position_y": "153",
                 "width": "200",
                 "height": "200",
-                "position_relative_x": "0.49945887445887444",
-                "position_relative_y": "0.27952755905511811",
+                "position_relative_x": "0.3235930735930736",
+                "position_relative_y": "0.15059055118110237",
                 "width_relative": "0.10822510822510822",
                 "height_relative": "0.19685039370078741",
                 "data_list": [
@@ -14991,22 +14784,40 @@
                     }
                 ]
             },
-            "LED TCP ReaderWidget0": {
-                "step": "LED TCP Reader",
-                "position_x": "1338",
-                "position_y": "464",
+            "LED-Perception-FieldWidget0": {
+                "step": "LED-Perception-Field",
+                "position_x": "1079",
+                "position_y": "669",
                 "width": "200",
                 "height": "200",
-                "position_relative_x": "0.72402597402597402",
-                "position_relative_y": "0.45669291338582679",
+                "position_relative_x": "0.58387445887445888",
+                "position_relative_y": "0.65846456692913391",
                 "width_relative": "0.10822510822510822",
                 "height_relative": "0.19685039370078741",
                 "data_list": [
                     {
-                        "id": "OUTPUT",
-                        "name": "output",
+                        "id": "BUFFER",
+                        "name": "input sum",
                         "ignoreIfMissing": "false",
                         "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                    },
+                    {
+                        "id": "BUFFER",
+                        "name": "activation",
+                        "ignoreIfMissing": "true",
+                        "plotDeclaration": ""
+                    },
+                    {
+                        "id": "OUTPUT",
+                        "name": "activation",
+                        "ignoreIfMissing": "true",
+                        "plotDeclaration": ""
+                    },
+                    {
+                        "id": "OUTPUT",
+                        "name": "sigmoided activation",
+                        "ignoreIfMissing": "false",
+                        "plotDeclaration": ""
                     }
                 ],
                 "plot configurations": [
@@ -15014,35 +14825,52 @@
                         "row": "1",
                         "col": "0",
                         "plot configuration": {
-                            "smooth scaling": "true",
-                            "keep aspect ratio": "true",
-                            "automatic value scaling": "true",
-                            "show legend": "true",
-                            "value limits": {
+                            "autoscaling": "true",
+                            "major grid visible": "false",
+                            "minor grid visible": "false",
+                            "y axis limits": {
                                 "lower limit": "0",
                                 "upper limit": "1"
                             },
-                            "color jet": "PlotDefault"
+                            "discrete plot": "true"
                         }
                     }
                 ]
             },
-            "Microphone TCP ReaderWidget0": {
-                "step": "Microphone TCP Reader",
-                "position_x": "1486",
-                "position_y": "626",
+            "ObjectColor ConceptsWidget0": {
+                "step": "ObjectColor Concepts",
+                "position_x": "1274",
+                "position_y": "466",
                 "width": "200",
-                "height": "200",
-                "position_relative_x": "0.80411255411255411",
-                "position_relative_y": "0.61614173228346458",
+                "height": "193",
+                "position_relative_x": "0.68939393939393945",
+                "position_relative_y": "0.45866141732283466",
                 "width_relative": "0.10822510822510822",
-                "height_relative": "0.19685039370078741",
+                "height_relative": "0.18996062992125984",
                 "data_list": [
                     {
-                        "id": "OUTPUT",
-                        "name": "output",
+                        "id": "BUFFER",
+                        "name": "input sum",
                         "ignoreIfMissing": "false",
                         "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                    },
+                    {
+                        "id": "BUFFER",
+                        "name": "activation",
+                        "ignoreIfMissing": "true",
+                        "plotDeclaration": ""
+                    },
+                    {
+                        "id": "OUTPUT",
+                        "name": "activation",
+                        "ignoreIfMissing": "true",
+                        "plotDeclaration": ""
+                    },
+                    {
+                        "id": "OUTPUT",
+                        "name": "sigmoided activation",
+                        "ignoreIfMissing": "false",
+                        "plotDeclaration": ""
                     }
                 ],
                 "plot configurations": [
@@ -15050,27 +14878,79 @@
                         "row": "1",
                         "col": "0",
                         "plot configuration": {
-                            "smooth scaling": "true",
-                            "keep aspect ratio": "true",
-                            "automatic value scaling": "true",
-                            "show legend": "true",
-                            "value limits": {
+                            "autoscaling": "true",
+                            "major grid visible": "false",
+                            "minor grid visible": "false",
+                            "y axis limits": {
                                 "lower limit": "0",
                                 "upper limit": "1"
                             },
-                            "color jet": "PlotDefault"
+                            "discrete plot": "true"
+                        }
+                    }
+                ]
+            },
+            "Sound ConceptsWidget0": {
+                "step": "Sound Concepts",
+                "position_x": "1468",
+                "position_y": "465",
+                "width": "200",
+                "height": "200",
+                "position_relative_x": "0.7943722943722944",
+                "position_relative_y": "0.45767716535433073",
+                "width_relative": "0.10822510822510822",
+                "height_relative": "0.19685039370078741",
+                "data_list": [
+                    {
+                        "id": "BUFFER",
+                        "name": "input sum",
+                        "ignoreIfMissing": "false",
+                        "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                    },
+                    {
+                        "id": "BUFFER",
+                        "name": "activation",
+                        "ignoreIfMissing": "true",
+                        "plotDeclaration": ""
+                    },
+                    {
+                        "id": "OUTPUT",
+                        "name": "activation",
+                        "ignoreIfMissing": "true",
+                        "plotDeclaration": ""
+                    },
+                    {
+                        "id": "OUTPUT",
+                        "name": "sigmoided activation",
+                        "ignoreIfMissing": "false",
+                        "plotDeclaration": ""
+                    }
+                ],
+                "plot configurations": [
+                    {
+                        "row": "1",
+                        "col": "0",
+                        "plot configuration": {
+                            "autoscaling": "true",
+                            "major grid visible": "false",
+                            "minor grid visible": "false",
+                            "y axis limits": {
+                                "lower limit": "0",
+                                "upper limit": "1"
+                            },
+                            "discrete plot": "true"
                         }
                     }
                 ]
             },
             "Sound Role FieldWidget0": {
                 "step": "Sound Role Field",
-                "position_x": "714",
-                "position_y": "276",
+                "position_x": "389",
+                "position_y": "157",
                 "width": "200",
                 "height": "200",
-                "position_relative_x": "0.38636363636363635",
-                "position_relative_y": "0.27165354330708663",
+                "position_relative_x": "0.21049783549783549",
+                "position_relative_y": "0.15452755905511811",
                 "width_relative": "0.10822510822510822",
                 "height_relative": "0.19685039370078741",
                 "data_list": [
@@ -15200,22 +15080,40 @@
                     }
                 ]
             },
-            "TCP-Task-readerWidget0": {
-                "step": "TCP-Task-reader",
-                "position_x": "1477",
-                "position_y": "837",
+            "Supervisor-Task-InputWidget0": {
+                "step": "Supervisor-Task-Input",
+                "position_x": "1465",
+                "position_y": "745",
                 "width": "200",
                 "height": "200",
-                "position_relative_x": "0.7992424242424242",
-                "position_relative_y": "0.82381889763779526",
+                "position_relative_x": "0.79274891774891776",
+                "position_relative_y": "0.7332677165354331",
                 "width_relative": "0.10822510822510822",
                 "height_relative": "0.19685039370078741",
                 "data_list": [
                     {
-                        "id": "OUTPUT",
-                        "name": "output",
+                        "id": "BUFFER",
+                        "name": "input sum",
                         "ignoreIfMissing": "false",
                         "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                    },
+                    {
+                        "id": "BUFFER",
+                        "name": "activation",
+                        "ignoreIfMissing": "true",
+                        "plotDeclaration": ""
+                    },
+                    {
+                        "id": "OUTPUT",
+                        "name": "activation",
+                        "ignoreIfMissing": "true",
+                        "plotDeclaration": ""
+                    },
+                    {
+                        "id": "OUTPUT",
+                        "name": "sigmoided activation",
+                        "ignoreIfMissing": "false",
+                        "plotDeclaration": ""
                     }
                 ],
                 "plot configurations": [
@@ -15223,15 +15121,14 @@
                         "row": "1",
                         "col": "0",
                         "plot configuration": {
-                            "smooth scaling": "true",
-                            "keep aspect ratio": "true",
-                            "automatic value scaling": "true",
-                            "show legend": "true",
-                            "value limits": {
+                            "autoscaling": "true",
+                            "major grid visible": "false",
+                            "minor grid visible": "false",
+                            "y axis limits": {
                                 "lower limit": "0",
                                 "upper limit": "1"
                             },
-                            "color jet": "PlotDefault"
+                            "discrete plot": "true"
                         }
                     }
                 ]
@@ -15239,6 +15136,743 @@
         },
         "plot groups": {
             "Plotgroup#0": {
+                "visible": "false"
+            },
+            "report": {
+                "Action ConceptsWidget0": {
+                    "step": "Action Concepts",
+                    "position_x": "1076",
+                    "position_y": "464",
+                    "width": "200",
+                    "height": "200",
+                    "position_relative_x": "0.58225108225108224",
+                    "position_relative_y": "0.45669291338582679",
+                    "width_relative": "0.10822510822510822",
+                    "height_relative": "0.19685039370078741",
+                    "data_list": [
+                        {
+                            "id": "BUFFER",
+                            "name": "input sum",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        },
+                        {
+                            "id": "BUFFER",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "sigmoided activation",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": ""
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "autoscaling": "true",
+                                "major grid visible": "false",
+                                "minor grid visible": "false",
+                                "y axis limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "discrete plot": "true"
+                            }
+                        }
+                    ]
+                },
+                "Action-Outcome-DetectioWidget0": {
+                    "step": "Action-Outcome-Detectio",
+                    "position_x": "1252",
+                    "position_y": "262",
+                    "width": "205",
+                    "height": "200",
+                    "position_relative_x": "0.67748917748917747",
+                    "position_relative_y": "0.25787401574803148",
+                    "width_relative": "0.11093073593073594",
+                    "height_relative": "0.19685039370078741",
+                    "data_list": [
+                        {
+                            "id": "BUFFER",
+                            "name": "input sum",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        },
+                        {
+                            "id": "BUFFER",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "sigmoided activation",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": ""
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "autoscaling": "true",
+                                "major grid visible": "false",
+                                "minor grid visible": "false",
+                                "y axis limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "discrete plot": "false"
+                            }
+                        }
+                    ]
+                },
+                "Action role FieldWidget0": {
+                    "step": "Action role Field",
+                    "position_x": "801",
+                    "position_y": "153",
+                    "width": "200",
+                    "height": "200",
+                    "position_relative_x": "0.43344155844155846",
+                    "position_relative_y": "0.15059055118110237",
+                    "width_relative": "0.10822510822510822",
+                    "height_relative": "0.19685039370078741",
+                    "data_list": [
+                        {
+                            "id": "BUFFER",
+                            "name": "input sum",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        },
+                        {
+                            "id": "BUFFER",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "sigmoided activation",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": ""
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "autoscaling": "true",
+                                "major grid visible": "false",
+                                "minor grid visible": "false",
+                                "y axis limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "discrete plot": "true"
+                            }
+                        }
+                    ]
+                },
+                "Camera TCP ReaderWidget0": {
+                    "step": "Camera TCP Reader",
+                    "position_x": "1460",
+                    "position_y": "75",
+                    "width": "440",
+                    "height": "376",
+                    "position_relative_x": "0.79004329004328999",
+                    "position_relative_y": "0.073818897637795269",
+                    "width_relative": "0.23809523809523808",
+                    "height_relative": "0.37007874015748032",
+                    "data_list": [
+                        {
+                            "id": "OUTPUT",
+                            "name": "output",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "smooth scaling": "true",
+                                "keep aspect ratio": "true",
+                                "automatic value scaling": "true",
+                                "show legend": "true",
+                                "value limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "color jet": "PlotDefault"
+                            }
+                        }
+                    ]
+                },
+                "Color Role FieldWidget0": {
+                    "step": "Color Role Field",
+                    "position_x": "598",
+                    "position_y": "153",
+                    "width": "200",
+                    "height": "200",
+                    "position_relative_x": "0.3235930735930736",
+                    "position_relative_y": "0.15059055118110237",
+                    "width_relative": "0.10822510822510822",
+                    "height_relative": "0.19685039370078741",
+                    "data_list": [
+                        {
+                            "id": "BUFFER",
+                            "name": "input sum",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        },
+                        {
+                            "id": "BUFFER",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "sigmoided activation",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": ""
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "autoscaling": "true",
+                                "major grid visible": "false",
+                                "minor grid visible": "false",
+                                "y axis limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "discrete plot": "true"
+                            }
+                        }
+                    ]
+                },
+                "Goal-SelectionWidget0": {
+                    "step": "Goal-Selection",
+                    "position_x": "88",
+                    "position_y": "362",
+                    "width": "200",
+                    "height": "200",
+                    "position_relative_x": "0.047619047619047616",
+                    "position_relative_y": "0.35629921259842517",
+                    "width_relative": "0.10822510822510822",
+                    "height_relative": "0.19685039370078741",
+                    "data_list": [
+                        {
+                            "id": "BUFFER",
+                            "name": "input sum",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        },
+                        {
+                            "id": "BUFFER",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "sigmoided activation",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": ""
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "autoscaling": "true",
+                                "major grid visible": "false",
+                                "minor grid visible": "false",
+                                "y axis limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "discrete plot": "true"
+                            }
+                        }
+                    ]
+                },
+                "Intention-SelectionWidget0": {
+                    "step": "Intention-Selection",
+                    "position_x": "472",
+                    "position_y": "565",
+                    "width": "392",
+                    "height": "364",
+                    "position_relative_x": "0.25541125541125542",
+                    "position_relative_y": "0.55610236220472442",
+                    "width_relative": "0.21212121212121213",
+                    "height_relative": "0.35826771653543305",
+                    "data_list": [
+                        {
+                            "id": "BUFFER",
+                            "name": "input sum",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        },
+                        {
+                            "id": "BUFFER",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "sigmoided activation",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "smooth scaling": "true",
+                                "keep aspect ratio": "true",
+                                "automatic value scaling": "true",
+                                "show legend": "true",
+                                "value limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "color jet": "PlotDefault"
+                            }
+                        },
+                        {
+                            "row": "1",
+                            "col": "1",
+                            "plot configuration": {
+                                "smooth scaling": "true",
+                                "keep aspect ratio": "true",
+                                "automatic value scaling": "true",
+                                "show legend": "true",
+                                "value limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "color jet": "PlotDefault"
+                            }
+                        },
+                        {
+                            "row": "3",
+                            "col": "0",
+                            "plot configuration": {
+                                "smooth scaling": "true",
+                                "keep aspect ratio": "true",
+                                "automatic value scaling": "false",
+                                "show legend": "true",
+                                "value limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "color jet": "PlotDefault"
+                            }
+                        }
+                    ]
+                },
+                "LED-Perception-FieldWidget0": {
+                    "step": "LED-Perception-Field",
+                    "position_x": "1079",
+                    "position_y": "669",
+                    "width": "200",
+                    "height": "200",
+                    "position_relative_x": "0.58387445887445888",
+                    "position_relative_y": "0.65846456692913391",
+                    "width_relative": "0.10822510822510822",
+                    "height_relative": "0.19685039370078741",
+                    "data_list": [
+                        {
+                            "id": "BUFFER",
+                            "name": "input sum",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        },
+                        {
+                            "id": "BUFFER",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "sigmoided activation",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": ""
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "autoscaling": "true",
+                                "major grid visible": "false",
+                                "minor grid visible": "false",
+                                "y axis limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "discrete plot": "true"
+                            }
+                        }
+                    ]
+                },
+                "ObjectColor ConceptsWidget0": {
+                    "step": "ObjectColor Concepts",
+                    "position_x": "1274",
+                    "position_y": "466",
+                    "width": "200",
+                    "height": "193",
+                    "position_relative_x": "0.68939393939393945",
+                    "position_relative_y": "0.45866141732283466",
+                    "width_relative": "0.10822510822510822",
+                    "height_relative": "0.18996062992125984",
+                    "data_list": [
+                        {
+                            "id": "BUFFER",
+                            "name": "input sum",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        },
+                        {
+                            "id": "BUFFER",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "sigmoided activation",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": ""
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "autoscaling": "true",
+                                "major grid visible": "false",
+                                "minor grid visible": "false",
+                                "y axis limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "discrete plot": "true"
+                            }
+                        }
+                    ]
+                },
+                "Sound ConceptsWidget0": {
+                    "step": "Sound Concepts",
+                    "position_x": "1468",
+                    "position_y": "465",
+                    "width": "200",
+                    "height": "200",
+                    "position_relative_x": "0.7943722943722944",
+                    "position_relative_y": "0.45767716535433073",
+                    "width_relative": "0.10822510822510822",
+                    "height_relative": "0.19685039370078741",
+                    "data_list": [
+                        {
+                            "id": "BUFFER",
+                            "name": "input sum",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        },
+                        {
+                            "id": "BUFFER",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "sigmoided activation",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": ""
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "autoscaling": "true",
+                                "major grid visible": "false",
+                                "minor grid visible": "false",
+                                "y axis limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "discrete plot": "true"
+                            }
+                        }
+                    ]
+                },
+                "Sound Role FieldWidget0": {
+                    "step": "Sound Role Field",
+                    "position_x": "389",
+                    "position_y": "157",
+                    "width": "200",
+                    "height": "200",
+                    "position_relative_x": "0.21049783549783549",
+                    "position_relative_y": "0.15452755905511811",
+                    "width_relative": "0.10822510822510822",
+                    "height_relative": "0.19685039370078741",
+                    "data_list": [
+                        {
+                            "id": "BUFFER",
+                            "name": "input sum",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        },
+                        {
+                            "id": "BUFFER",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "sigmoided activation",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": ""
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "autoscaling": "true",
+                                "major grid visible": "false",
+                                "minor grid visible": "false",
+                                "y axis limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "discrete plot": "true"
+                            }
+                        }
+                    ]
+                },
+                "Strategy-SelectionWidget0": {
+                    "step": "Strategy-Selection",
+                    "position_x": "74",
+                    "position_y": "563",
+                    "width": "392",
+                    "height": "364",
+                    "position_relative_x": "0.04004329004329004",
+                    "position_relative_y": "0.55413385826771655",
+                    "width_relative": "0.21212121212121213",
+                    "height_relative": "0.35826771653543305",
+                    "data_list": [
+                        {
+                            "id": "BUFFER",
+                            "name": "input sum",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        },
+                        {
+                            "id": "BUFFER",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "sigmoided activation",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "smooth scaling": "true",
+                                "keep aspect ratio": "true",
+                                "automatic value scaling": "true",
+                                "show legend": "true",
+                                "value limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "color jet": "PlotDefault"
+                            }
+                        },
+                        {
+                            "row": "1",
+                            "col": "1",
+                            "plot configuration": {
+                                "smooth scaling": "true",
+                                "keep aspect ratio": "true",
+                                "automatic value scaling": "true",
+                                "show legend": "true",
+                                "value limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "color jet": "PlotDefault"
+                            }
+                        },
+                        {
+                            "row": "3",
+                            "col": "0",
+                            "plot configuration": {
+                                "smooth scaling": "true",
+                                "keep aspect ratio": "true",
+                                "automatic value scaling": "false",
+                                "show legend": "true",
+                                "value limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "color jet": "PlotDefault"
+                            }
+                        }
+                    ]
+                },
+                "Supervisor-Task-InputWidget0": {
+                    "step": "Supervisor-Task-Input",
+                    "position_x": "1465",
+                    "position_y": "745",
+                    "width": "200",
+                    "height": "200",
+                    "position_relative_x": "0.79274891774891776",
+                    "position_relative_y": "0.7332677165354331",
+                    "width_relative": "0.10822510822510822",
+                    "height_relative": "0.19685039370078741",
+                    "data_list": [
+                        {
+                            "id": "BUFFER",
+                            "name": "input sum",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": "cedar::aux::gui::MatDataPlot"
+                        },
+                        {
+                            "id": "BUFFER",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "activation",
+                            "ignoreIfMissing": "true",
+                            "plotDeclaration": ""
+                        },
+                        {
+                            "id": "OUTPUT",
+                            "name": "sigmoided activation",
+                            "ignoreIfMissing": "false",
+                            "plotDeclaration": ""
+                        }
+                    ],
+                    "plot configurations": [
+                        {
+                            "row": "1",
+                            "col": "0",
+                            "plot configuration": {
+                                "autoscaling": "true",
+                                "major grid visible": "false",
+                                "minor grid visible": "false",
+                                "y axis limits": {
+                                    "lower limit": "0",
+                                    "upper limit": "1"
+                                },
+                                "discrete plot": "true"
+                            }
+                        }
+                    ]
+                },
                 "visible": "false"
             }
         },
