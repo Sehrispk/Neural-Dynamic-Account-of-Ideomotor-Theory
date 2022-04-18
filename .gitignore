@@ -8,3 +8,4 @@ data
 *.wbproj
 *.vs
 *.pyc
+*.venv
