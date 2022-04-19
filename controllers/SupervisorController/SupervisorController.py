@@ -51,29 +51,31 @@ f_traj = open(path + "/trajectory.dat", 'w')
 f_ev = open(path + "/events.dat", 'w')
 f_count = open(path + "/actionCount.dat", 'w')
 
-f_traj.write("{}\t{}\t{}\t{}\t{}\t{}\n".format("Time", "SimulationTime", "e-puck", supervisor.robotIDs[0], supervisor.robotIDs[1], supervisor.robotIDs[2]))
-f_ev.write("{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format("Time", "phase", "phaseEpisode", "actionEpisode", "goal", "action", "target", "sound"))
+f_traj.write("{},{},{},{},{},{}\n".format("Time", "SimulationTime", "e-puck", supervisor.robotIDs[0], supervisor.robotIDs[1], supervisor.robotIDs[2]))
+f_ev.write("{},{},{},{},{},{},{},{}\n".format("Time", "phase", "phaseEpisode", "actionEpisode", "goal", "action", "target", "sound"))
+#f_count.write("T, r1, g1, b1, y1, r2, g2, b2, y2, r3, g3, b3, y3\n")
+f_count.write("T,counter\n")
 
 # Main loop:
 init = 0
 tic = time.time()
 count = supervisor.currentState.phase['actionCounter'].copy()
-f_count.write("T:\t{}\n{}\n".format(supervisor.clock.reading, supervisor.currentState.phase['actionCounter']))
+f_count.write("{},{}\n".format(supervisor.clock.reading, supervisor.currentState.phase['actionCounter'].to_numpy().flatten()))
 print("start experiment...")
 while supervisor.step(timestep) != -1:
     supervisor.updateState()
     supervisor.updatePhase()
 
     # write data
-    positions = "{} {} {}".format(supervisor.currentState.epuck['position'], supervisor.currentState.epuck['orientation'], supervisor.currentState.epuck['led'])
+    positions = "[{}, {}, {}]".format(supervisor.currentState.epuck['position'], supervisor.currentState.epuck['orientation'], supervisor.currentState.epuck['led'])
     for ID in supervisor.robotIDs:
         if isActive(ID, supervisor):
-            positions += "\t{}".format(supervisor.currentState.objects[ID]['position'])
+            positions += ",{}".format(supervisor.currentState.objects[ID]['position'])
         else:
-            positions += "\t"
+            positions += ","
 
     toc = time.time()
-    f_traj.write("{}\t{}\t{}\n".format(toc-tic, supervisor.clock.reading, positions))
+    f_traj.write("{},{},{}\n".format(toc-tic, supervisor.clock.reading, positions))
     f_traj.flush()
 
     sound = np.zeros(10)
@@ -82,7 +84,7 @@ while supervisor.step(timestep) != -1:
             if any(supervisor.currentState.objects[ID]['sound']):
                 sound = supervisor.currentState.objects[ID]['sound']
 
-    f_ev.write("{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format(supervisor.clock.reading,supervisor.currentState.phase['phase'],
+    f_ev.write("{},{},{},{},{},{},{},{}\n".format(supervisor.clock.reading,supervisor.currentState.phase['phase'],
                                            supervisor.phaseEpisode,
                                            supervisor.currentState.phase['actionEpisode'],
                                            list(supervisor.currentState.epuck['goal']),
@@ -93,7 +95,7 @@ while supervisor.step(timestep) != -1:
     
     if not count.equals(supervisor.currentState.phase['actionCounter']):
         count = supervisor.currentState.phase['actionCounter'].copy()
-        f_count.write("{}\n{}\n".format(supervisor.clock.reading, supervisor.currentState.phase['actionCounter']))
+        f_count.write("{},{}\n".format(supervisor.clock.reading, supervisor.currentState.phase['actionCounter'].to_numpy().flatten()))
         f_count.flush()
 
 f_traj.close()

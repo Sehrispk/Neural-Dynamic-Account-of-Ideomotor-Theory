@@ -66,9 +66,9 @@ Scenarios:
      '2': 0
      
   settings:
-   targetRate: 0.3
+   targetRate: 0.5
    distractorRate: 0.5
-   queRate: 0.2
+   queRate: 0.
    customSequence: 'dtdtdtdtdtdtdtdtdtdt'
    rewardRate: 1
    rewardDelay: 0
