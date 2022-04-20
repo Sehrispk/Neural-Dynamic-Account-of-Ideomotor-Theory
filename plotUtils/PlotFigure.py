@@ -76,7 +76,7 @@ class PlotFigure:
                                     color=data.colors[col] if data.colors else 'r',
                                     linewidth=self.lineWidth)
             
-        self.subaxes[key].legend(loc='upper right')
+        self.subaxes[key].legend()
         self.subaxes[key].axhline(y=0, color='black', linestyle='-', linewidth=self.lineWidth)
         self.subaxes[key].tick_params('both', direction='in', top=True, right=True)
         self.subaxes[key].set_xlim(data.xyLimits['x'] if not data._data_gap else None)
@@ -101,7 +101,7 @@ class PlotFigure:
             tick_pos += 0.5
         data.xyTicks['x'] = {'ticks': ticks, 'label': labels}
 
-        self.subaxes[key].text(0.05, 0.95, "T={}s".format(round(data.data.iloc[:,0].values[0],0)), transform= self.subaxes[key].transAxes, fontsize=10, verticalalignment='top')
+        self.subaxes[key].text(0.05, 0.95, "T={}s".format(round(data.data.iloc[:,0].values[0],1)), transform= self.subaxes[key].transAxes, fontsize=10, verticalalignment='top')
         self.subaxes[key].axhline(y=0, color='black', linestyle='-', linewidth=self.lineWidth)
         self.subaxes[key].tick_params('both', direction='in', top=True, right=True)
         self.subaxes[key].set_xlim([-0.2,len(ticks)/2-0.3])
@@ -120,7 +120,7 @@ class PlotFigure:
         self.subaxes[key].set_yticks([])
         self.subaxes[key].text(0.05, 
                                 0.95, 
-                                "T={}s".format(round(data.data.iloc[:,0].values[0],0)), 
+                                "T={}s".format(round(data.data.iloc[:,0].values[0],1)), 
                                 transform= self.subaxes[key].transAxes, 
                                 fontsize=10,
                                 verticalalignment='top')
@@ -133,13 +133,13 @@ class PlotFigure:
         self.subaxes[key].plot(xRange, data.data.iloc[:, 1:].values[0], label=data.xyLabel['y'], color= 'r', linewidth=self.lineWidth)
         self.subaxes[key].text(0.05, 
                                 0.95, 
-                                "T={}s".format(round(data.data.iloc[:,0].values[0],0)), 
+                                "T={}s".format(round(data.data.iloc[:,0].values[0],1)), 
                                 transform=self.subaxes[key].transAxes, 
                                 fontsize=10,
                                 verticalalignment='top')
         self.subaxes[key].axhline(y=0, color='black', linestyle='-', linewidth=self.lineWidth)
         self.subaxes[key].tick_params('both', direction='in', top=True, right=True)
-        self.subaxes[key].set_xlim(data.xyLimits['x'])
+        #self.subaxes[key].set_xlim(data.xyLimits['x'])
         self.subaxes[key].set_ylim(data.xyLimits['y'])
 
         self._set_label(data, key)
@@ -148,14 +148,17 @@ class PlotFigure:
     def _plot_2d_field(self, data, key):
         """Internal function to plot snapshot of 2d-field. Is called through PlotFigure.plot()"""
         image = data.data.iloc[:, 1:].values.reshape((data._field_size[0],data._field_size[1])).transpose([1,0])
-        art = self.subaxes[key].imshow(image, cmap='plasma', vmin=-2, vmax=2)
+        if data.xyLimits['y']:
+            art = self.subaxes[key].imshow(image, cmap='jet', vmin=data.xyLimits['y'][0], vmax=data.xyLimits['y'][1])
+        else:
+            art = self.subaxes[key].imshow(image, cmap='jet')
         divider =  make_axes_locatable(self.subaxes[key])
         bar_axis = divider.append_axes("right", size="5%", pad=0.05)
         bar = plt.colorbar(art, cax=bar_axis)
         
         self.subaxes[key].text(0.05, 
                                 1.2, 
-                                "T={}s".format(round(data.data.iloc[:,0].values[0],0)), 
+                                "T={}s".format(round(data.data.iloc[:,0].values[0],1)), 
                                 transform= self.subaxes[key].transAxes, 
                                 fontsize=10,
                                 verticalalignment='top',
@@ -182,17 +185,13 @@ class PlotFigure:
                 self.subaxes[key].set_yticks(data.xyTicks['y']['ticks'], labels=data.xyTicks['y']['label'], minor=False)
 
     def _set_label(self, data, key):
-        if data.xyLabel['x'] == None:
-            pass
-        elif data.xyLabel['x'] != None:
+        if data.xyLabel['x'] != None:
             if data._data_gap:
-                self.subaxes[key].set_xlabel(data.xyLabel['x'], fontsize=data.xyLabel['size'],labelpad=data._label_pad if data._label_pad else 20)
+                self.subaxes[key].set_xlabel(data.xyLabel['x'], fontsize=data.xyLabel['size'],labelpad=20)
             else:
-                self.subaxes[key].set_ylabel(data.xyLabel['y'], fontsize=data.xyLabel['size'],labelpad=data._label_pad if data._label_pad else 0)
+                self.subaxes[key].set_xlabel(data.xyLabel['x'], fontsize=data.xyLabel['size'],labelpad=0)
         
-        if data.xyLabel['y'] == None:
-            pass
-        elif data.xyLabel['y'] != None:
+        if data.xyLabel['y'] != None:
             if data._data_gap:
                 self.subaxes[key].set_ylabel(data.xyLabel['y'], fontsize=data.xyLabel['size'],labelpad=data._label_pad if data._label_pad else 30)
             else:
@@ -211,4 +210,4 @@ class PlotFigure:
             elif self.plotData[key].pltType == 'snapshot' and self.plotData[key].dataType == '2dfield':
                 self._plot_2d_field(self.plotData[key], key)
             
-        plt.tight_layout()
+        #plt.tight_layout()
