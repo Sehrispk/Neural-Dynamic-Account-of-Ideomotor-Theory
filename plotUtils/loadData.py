@@ -63,6 +63,7 @@ class Data:
                     self.data[col+'2'] = DataObj.data[col]
                 else:
                     self.data[col] = DataObj.data[col]
+        print(self.data.columns)
 
     def pruneData(self, timeWindow):
         """Prunes data to fit in specific timeWindow. plotType must be timeCourse and timeWinow must fit into recorded data.
@@ -106,15 +107,11 @@ def loadWebotsData(path, col_names, dataType, plotFormat):
     ::return::
         Data: Data object"""
     sound_converter = lambda x: list(map(float, x[1:-1].split(',')))
-    df = pd.read_csv(path, names=col_names, skiprows=1, delimiter=',', converters={'sound': sound_converter})
-    Time = list(df.iloc[:,0].values)
-    sound = []
-    for row in df.iloc[:,-9:-2].values:
-        sound.append(list(row))
-    d = {'T': Time, 'sound': sound}
-    df2 = pd.DataFrame.from_dict(d)
-    data = Data(df2, dataType, plotFormat)
-    
+    Hist_converter = lambda x: list(map(float, x[1:-1].split('.')[:-1]))
+    goal_converter = lambda x: list(map(float, x[1:-1].split(',')))
+    df = pd.read_csv(path, names=col_names, skiprows=1, delimiter='\t', converters={'sound': sound_converter, 'counter': Hist_converter, 'g': goal_converter})
+    data = Data(df, dataType, plotFormat)
+
     return data
 
 def generateSnapShotSeries(DataObj, snapShotTimePoints):

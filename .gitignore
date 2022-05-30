@@ -9,3 +9,4 @@ data
 *.vs
 *.pyc
 *.venv
+*.zip

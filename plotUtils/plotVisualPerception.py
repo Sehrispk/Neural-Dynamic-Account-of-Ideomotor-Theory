@@ -14,13 +14,13 @@ with open("config.yml", "r") as f:
 pathParser = lambda fileKey: r"{}\{}".format(config['BasePath'], config['FileNames'][fileKey])
 
 baseFormat = plotFormat()
-plotInterval = [778.75,780.1]
+plotInterval = [138.9,140.2]
 #cutInterval  = [505, 575]
-snapShots = [779,779.5,780.0]
+snapShots = [139.05,139.4,140]
 
 """-----------------------------------------timeCorrection---------------------------------------------------------------------------------"""
 soundPerception = loadCedarData(path=pathParser('SoundPerception'), col_names=['T', 'S1', 'S2', 'S3'], dataType='nodes', plotFormat=baseFormat.copy())
-soundWebots = loadWebotsData(path=pathParser('events'), col_names=None, dataType='webots', plotFormat=baseFormat.copy())
+soundWebots = loadWebotsData(path=pathParser('events'), col_names=['T', 'ph', 'ph2', 'acE', 'g', 'a', 't','sound'], dataType='webots', plotFormat=baseFormat.copy())
 correctTime = correctTimeOffSet(soundPerception.data, soundWebots.data[['T', 'sound']])
 """-----------------------------------------timeCorrection---------------------------------------------------------------------------------"""
 
@@ -29,7 +29,7 @@ colorConceptFormat.name = 'ColorConcepts' # name
 colorConceptFormat.pltType = 'timecourse' # timecourse, snapshot
 colorConceptFormat.pltPosition = (6, 1, 1) # (n_rows, n_cols, index)
 colorConceptFormat.xyLimits = {'x':plotInterval,'y':[-1,1]} # {'x': xlim, 'y': ylim}
-colorConceptFormat.xyLabel = {'x':'Time [s]','y':'Color Concepts','size':12} # {'x': 'x', 'y': 'y', 'size': size}
+colorConceptFormat.xyLabel = {'x':'T[s]','y':'Color Concepts','size':12} # {'x': 'x', 'y': 'y', 'size': size}
 colorConceptFormat.snapShotMarkers = snapShots
 colorConceptFormat.colors = {'red':'red', 'orange': 'orange', 'yellow':'yellow', 'green': 'green', 'blue': 'blue', 'violet': 'violet'} # {'col1': '-r', ...}
 
@@ -158,7 +158,7 @@ figure_Data = {'ColorConcepts': colorConcept,
 			   }
 figure_size = [200,180]
 figure_format = {'title': "Visual Perception", 
-				 'lineWidth': 2}
+				 'lineWidth': 3}
 figure = PlotFigure(figure_Data, figure_size, figure_format)
 figure.plot()
 plt.show()

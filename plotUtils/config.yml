@@ -1,21 +1,68 @@
-BasePath: D:\
+BasePath: I:\
 
 FileNames:
- ColorSpacePerception: data\DFT-Architecture\Experiment_2022_04_19__16_12_00\Trial_0\Color-Space-Perception[BUFFER].activation.csv
- ColorSpaceAttention: data\DFT-Architecture\Experiment_2022_04_19__16_12_00\Trial_0\Attention-Color-Binding-Field[BUFFER].activation.csv
- CameraImage: data\DFT-Architecture\Experiment_2022_04_19__16_12_00\Trial_0\Camera_TCP_Reader[OUTPUT].output.csv
- ColorAttention: data\DFT-Architecture\Experiment_2022_04_19__16_12_00\Trial_0\Color-Attention-Field[BUFFER].activation.csv
- SpaceAttention: data\DFT-Architecture\Experiment_2022_04_19__16_12_00\Trial_0\Space-Attention-Field[BUFFER].activation.csv
- ColorConcepts: data\DFT-Architecture\Experiment_2022_04_19__16_12_00\Trial_0\ObjectColor_Concepts[BUFFER].activation.csv
- Space2Rate: data\DFT-Architecture\Experiment_2022_04_19__16_12_00\Trial_0\Space_To_Rate_Code[OUTPUT].output.csv
- SpaceMatching: data\DFT-Architecture\Experiment_2022_04_19__16_12_00\Trial_0\Space-matching-Field[BUFFER].activation.csv
- ColorMatching: data\DFT-Architecture\Experiment_2022_04_19__16_12_00\Trial_0\Color-matching-Field[BUFFER].activation.csv
- OrientCoS: data\DFT-Architecture\Experiment_2022_04_19__16_12_00\Trial_0\CoS-Orient_To_Object[BUFFER].activation.csv
- OrientIiA: data\DFT-Architecture\Experiment_2022_04_19__16_12_00\Trial_0\Intention_In_Action-Orient_To_Object[BUFFER].activation.csv
- SoundPerception: data\DFT-Architecture\Experiment_2022_04_19__16_12_00\Trial_0\Sound_Concepts[BUFFER].activation.csv
- ActionSelection: data\DFT-Architecture\Intention-Selection[BUFFER].activation.csv
+ ColorSpacePerception: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Color-Space-Perception[BUFFER].activation.csv
+ ColorSpaceAttention: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Attention-Color-Binding-Field[BUFFER].activation.csv
+ CameraImage: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Camera_TCP_Reader[OUTPUT].output.csv
+ ColorAttention: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Color-Attention-Field[BUFFER].activation.csv
+ SpaceAttention: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Space-Attention-Field[BUFFER].activation.csv
+ ColorConcepts: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\ObjectColor_Concepts[BUFFER].activation.csv
+ Space2Rate: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Space_To_Rate_Code[OUTPUT].output.csv
+ BrakeNode: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Break_Status[BUFFER].activation.csv
+ SpaceMatching: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Space-matching-Field[BUFFER].activation.csv
+ ColorMatching: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Color-matching-Field[BUFFER].activation.csv
+ SoundPerception: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Sound_Concepts[BUFFER].activation.csv
  
+ ActionSelection: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Intention-Selection[BUFFER].activation.csv
+ InhibitionOfReturn: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Action-Habituation[OUTPUT].activation.csv
+ PriorCoS: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Action-Timeout[BUFFER].activation.csv
+ PriorI: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Intention-Perform-Action[BUFFER].activation.csv
+ OrientCoS: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\CoS-Orient_To_Object[BUFFER].activation.csv
+ OrientIiA: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Intention_In_Action-Orient_To_Object[BUFFER].activation.csv
+ DriveCoS: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\CoS-Break[BUFFER].activation.csv
+ DriveIiA: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Intention_In_Action-Break[BUFFER].activation.csv
+ LEDCoS: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\CoS-Action1[BUFFER].activation.csv
+ LEDIiA: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Intention_In_Action-Action1[BUFFER].activation.csv
+ LEDIiA3: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Intention-In-Action-Action3[BUFFER].activation.csv
 
- histogramms: data\Simulation\Simulation_2022_04_19__16_11_36\actionCount.dat
- events: data\Simulation\Simulation_2022_04_19__16_11_36\events.dat
- trajectories: data\Simulation\Simulation_2022_04_19__16_11_36\trajectorie.dat
+ LearningNode: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Learning-Node[BUFFER].activation.csv
+ BeliefActiveNode: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Belief-Active[BUFFER].activation.csv
+ CommitBoostNode: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Commit_Boost[BUFFER].activation.csv
+ RecruitNode: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Recruitment_Boost[BUFFER].activation.csv
+ RewardNode: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Learning-Reward-Node[BUFFER].activation.csv
+ OutcomeDetection: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Action-Outcome-Detectio[BUFFER].activation.csv
+ ColorRecall: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Object-Recall-Intention[BUFFER].activation.csv
+ ColorRecallCoS: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Color-Recall-CoS[BUFFER].activation.csv
+ ColorRecallCoD: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Color-Recall-CoD[BUFFER].activation.csv
+ StrategyRecall: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Goal-Recall-Intention[BUFFER].activation.csv
+ StrategyRecallCoS: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Goal-Recall-CoS[BUFFER].activation.csv
+ StrategyRecallCoD: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Goal-Recall-CoDs[BUFFER].activation.csv
+ RoleOutcome: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Sound_Role_Field[BUFFER].activation.csv
+ RoleAction: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Action_role_Field[BUFFER].activation.csv
+ RoleColor: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Color_Role_Field[BUFFER].activation.csv
+ B1: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Belief-Node_1[BUFFER].activation.csv
+ B2: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Belief-Node_2[BUFFER].activation.csv
+ B3: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Belief-Node_3[BUFFER].activation.csv
+ B4: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Belief-Node_4[BUFFER].activation.csv
+ B5: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Belief-Node_5[BUFFER].activation.csv
+ B6: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Belief-Node_6[BUFFER].activation.csv
+ C1: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Commit-Node_1[BUFFER].activation.csv
+ C2: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Commit-Node_2[BUFFER].activation.csv
+ C3: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Commit-Node_3[BUFFER].activation.csv
+ C4: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Commit-Node_4[BUFFER].activation.csv
+ C5: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Commit-Node_5[BUFFER].activation.csv
+ C6: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Commit-Node_6[BUFFER].activation.csv
+
+ LEDs: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\LED-Control-Vector[OUTPUT].vector.csv
+
+ GoalSelection: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Goal-Selection[BUFFER].activation.csv
+ Strategy: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Strategy-Selection[BUFFER].activation.csv
+ posMemTrace: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Goal-Perseveration[OUTPUT].activation.csv
+ negMemTrace: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Goal-Habituation[OUTPUT].activation.csv
+ SuperVisorCommands: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Supervisor-Task-Input[BUFFER].activation.csv
+ GoalCoS: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Goal-CoS[BUFFER].activation.csv
+ GoalInhibition: data\DFT-Architecture\Experiment_2022_04_21__13_45_09\Trial_0\Goal-Timeout[BUFFER].activation.csv
+
+ Histograms: data\Simulation\Simulation_2022_04_21__13_45_51\actionCount.dat
+ events: data\Simulation\Simulation_2022_04_21__13_45_51\events_fixed.dat
+ trajectories: data\Simulation\Simulation_2022_04_21__13_45_51\trajectorie.dat
